@@ -11,7 +11,9 @@ import ErrorLayoutRoute from "../layouts/routes/errorRoutes";
 // Main Layout
 
 // Full Layout
-const LazyLogin = lazy(() => import("../views/pages/login"));
+const Login = lazy(() => import("../views/_main/Login/login"));
+const SignUp = lazy(()=> import("../views/_main/SignUp/signup"));
+
 const LazyForgotPassword = lazy(() => import("../views/pages/forgotPassword"));
 const LazyRegister = lazy(() => import("../views/pages/register"));
 const LazyMaintainance = lazy(() => import("../views/pages/maintainance"));
@@ -43,7 +45,16 @@ class Router extends Component {
                   path="/"
                   render={matchprops => (
                      <Suspense fallback={<Spinner />}>
-                        <LazyLogin {...matchprops} />
+                        <Login {...matchprops} />
+                     </Suspense>
+                  )}
+               />
+               <FullPageLayout
+                  exact
+                  path="/signup"
+                  render={matchprops => (
+                     <Suspense fallback={<Spinner />}>
+                        <SignUp {...matchprops} />
                      </Suspense>
                   )}
                />

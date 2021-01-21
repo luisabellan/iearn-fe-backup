@@ -1,0 +1,21 @@
+$main-color: #0C2340;
+
+.page-login {
+  .card-login {
+    padding: 40px 60px;
+
+    label {
+      font-weight: 700;
+    }
+
+    h1 {
+      color: $main-color;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    
+    .button-main {
+      margin-top: 30px;
+    }
+  }
+}

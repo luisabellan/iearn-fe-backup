@@ -1,0 +1,30 @@
+$main-color: #0C2340;
+
+.page-login {
+  .card-login {
+    padding: 40px 60px;
+
+    label {
+      font-weight: 700;
+    }
+
+    h1 {
+      color: $main-color;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 25px;
+      letter-spacing: 0.09em;
+    }
+
+    .button-main {
+      margin-top: 30px;
+    }
+
+    .button-progress {
+
+    }
+  }
+}

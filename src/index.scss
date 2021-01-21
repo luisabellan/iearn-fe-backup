@@ -1,2 +1,37 @@
 @import "./assets/scss/app.scss";
 @import '../node_modules/react-redux-toastr/src/styles/index';
+
+$main-color: #0C2340;
+$main-transition: 0.2s ease-in-out all;
+
+.button-main {
+  border: 2px solid $main-color;
+  background: transparent;
+  font-size: 36px;
+  font-weight: 700;
+  padding: 10px 40px;
+  border-radius: 10px;
+}
+
+.button-transparent {
+  border: 0;
+  background: 0;
+  color: $main-color;
+  padding: 0;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.set-transparent {
+  opacity: 0.5;
+  transition: $main-transition;
+
+  &:hover {
+    opacity: 1;
+    transition: $main-transition;
+  }
+}
+
+.text-blue {
+  color: $main-color;
+}
