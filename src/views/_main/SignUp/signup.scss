@@ -1,8 +1,11 @@
 $main-color: #0C2340;
 
-.page-login {
-  .card-login {
+.page-signup {
+  .card-signup {
     padding: 40px 60px;
+    max-width: 700px;
+    margin: 0 auto;
+    border-radius: 10px;
 
     label {
       font-weight: 700;
@@ -23,8 +26,22 @@ $main-color: #0C2340;
       margin-top: 30px;
     }
 
-    .button-progress {
+    .progress-wrapper {
+      text-align: center;
+      margin-top: 15px;
+      .button-progress {
+        width: 12px;
+        height: 12px;
+        background: #E5E5E5;
+        border-radius: 50%;
+        border: 0;
+        margin: 0 2px;
+        cursor: default;
+      }
 
+      .active {
+        background: $main-color;
+      }
     }
   }
 }

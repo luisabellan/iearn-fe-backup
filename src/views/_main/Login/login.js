@@ -1,7 +1,7 @@
 // import external modules
 import React, { useState } from "react";
-import "./login.scss"
-import {useHistory} from "react-router-dom";
+import "./login.scss";
+import { useHistory } from "react-router-dom";
 import {
   Row,
   Col,
@@ -12,45 +12,46 @@ import {
   CardBody,
   FormFeedback,
 } from "reactstrap";
-import {Formik} from "formik";
+import { Formik } from "formik";
 import * as Yup from "yup";
 import classNames from "classnames";
 
 const Login = () => {
-   const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-   let history = useHistory();
+  let history = useHistory();
 
-   const LoginSchema = Yup.object().shape({
-      email: Yup.string().required("Email field is required"),
-      password: Yup.string().required("Password field is required"),
-    });
+  const LoginSchema = Yup.object().shape({
+    email: Yup.string().required("Email field is required"),
+    password: Yup.string().required("Password field is required"),
+  });
 
-    const initialValues = {
-      email: "",
-      password: "",
-    };
+  const initialValues = {
+    email: "",
+    password: "",
+  };
 
-    const onSubmit = () => {
-       console.log("Submitted")
-    }
+  const onSubmit = () => {
+    console.log("Submitted");
+  };
 
-//   const { error, loading, login } = useAuth();
-
+  //   const { error, loading, login } = useAuth();
 
   return (
     <div className="container page-login">
-       <Row className='full-height-vh'>
+      <Row className="full-height-vh">
         <Col
-          xs='12'
-          className='d-flex align-items-center justify-content-center'>
-          <Card className='card-login'>
+          xs="12"
+          className="d-flex align-items-center justify-content-center"
+        >
+          <Card className="card-login">
             <CardBody>
               <h1>Subto Resource Center</h1>
               <Formik
                 initialValues={initialValues}
                 validationSchema={LoginSchema}
-                onSubmit={onSubmit}>
+                onSubmit={onSubmit}
+              >
                 {({
                   handleSubmit,
                   handleBlur,
@@ -59,26 +60,26 @@ const Login = () => {
                   touched,
                   errors,
                 }) => (
-                  <Formik className='pt-2'>
+                  <Formik className="pt-2">
                     <fieldset disabled={isLoading}>
                       {/* {error && (
                         <Alert color='warning' fade={false}>
                           {error}
                         </Alert>
                       )} */}
-                      <Col md='12'>
+                      <Col md="12">
                         <FormGroup>
                           <Label>Email</Label>
                           <Input
-                            id='email'
-                            name='email'
-                            type='text'
+                            id="email"
+                            name="email"
+                            type="text"
                             required
                             className={classNames("form-control", {
                               "login-warning":
                                 !!errors.email && !!touched.email,
                             })}
-                            placeholder='john.doe@gmail.com'
+                            placeholder="john.doe@gmail.com"
                             value={values.email}
                             onBlur={handleBlur("email")}
                             onChange={handleChange("email")}
@@ -89,19 +90,19 @@ const Login = () => {
                           </FormFeedback>
                         </FormGroup>
                       </Col>
-                      <Col md='12'>
+                      <Col md="12">
                         <FormGroup>
                           <Label>Password</Label>
                           <Input
-                            id='password'
-                            name='password'
-                            type='password'
+                            id="password"
+                            name="password"
+                            type="password"
                             required
                             className={classNames("form-control", {
                               "login-warning":
                                 !!errors.password && !!touched.password,
                             })}
-                            placeholder='************'
+                            placeholder="************"
                             value={values.password}
                             onBlur={handleBlur("password")}
                             onChange={handleChange("password")}
@@ -113,19 +114,25 @@ const Login = () => {
                         </FormGroup>
                       </Col>
                       <FormGroup>
-                        <Col md='12' className="text-center">
+                        <Col md="12" className="text-center">
                           <button
-                            type='submit'
-                            color='primary'
+                            type="submit"
+                            color="primary"
                             block
-                            className='button-main'
+                            className="button-main"
                             disabled={isLoading}
-                            onClick={handleSubmit}>
+                            onClick={handleSubmit}
+                          >
                             LOGIN
                           </button>
                         </Col>
-                        <Col md='12' className="text-center mt-3">
-                          <p>Don't have an account yet? <button className="button-transparent">Sign Up</button></p>
+                        <Col md="12" className="text-center mt-3">
+                          <p>
+                            Don't have an account yet?{" "}
+                            <button className="button-transparent" onClick={()=>history.push("/signup")}>
+                              Sign Up
+                            </button>
+                          </p>
                         </Col>
                       </FormGroup>
                     </fieldset>
@@ -136,7 +143,7 @@ const Login = () => {
           </Card>
         </Col>
       </Row>
-      </div>
+    </div>
   );
 };
 
