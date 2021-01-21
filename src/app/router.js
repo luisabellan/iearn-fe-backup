@@ -9,15 +9,16 @@ import FullPageLayout from "../layouts/routes/fullpageRoutes";
 import ErrorLayoutRoute from "../layouts/routes/errorRoutes";
 
 // Main Layout
+const Overview = lazy(() => import("../views/_main/Overview"));
 
 // Full Layout
-const Login = lazy(() => import("../views/_main/Login/login"));
-const SignUp = lazy(()=> import("../views/_main/SignUp/signup"));
+const Login = lazy(() => import("../views/_main/Login"));
+const SignUp = lazy(()=> import("../views/_main/SignUp"));
 
-const LazyForgotPassword = lazy(() => import("../views/pages/forgotPassword"));
-const LazyRegister = lazy(() => import("../views/pages/register"));
-const LazyMaintainance = lazy(() => import("../views/pages/maintainance"));
-const LazyLockScreen = lazy(() => import("../views/pages/lockScreen"));
+// const LazyForgotPassword = lazy(() => import("../views/pages/forgotPassword"));
+// const LazyRegister = lazy(() => import("../views/pages/register"));
+// const LazyMaintainance = lazy(() => import("../views/pages/maintainance"));
+// const LazyLockScreen = lazy(() => import("../views/pages/lockScreen"));
 
 // Error Pages
 const LazyErrorPage = lazy(() => import("../views/pages/error"));
@@ -29,20 +30,20 @@ class Router extends Component {
          <BrowserRouter basename="/">
             <Switch>
                {/* Dashboard Views */}
-               {/* <MainLayoutRoutes
+               <MainLayoutRoutes
                   exact
                   path="/"
                   render={matchprops => (
                      <Suspense fallback={<Spinner />}>
-                        <LazyEcommerceDashboard {...matchprops} />
+                        <Overview {...matchprops} />
                      </Suspense>
                   )}
-               /> */}
+               />
 
                {/* Saperate Pages Views */}
                <FullPageLayout
                   exact
-                  path="/"
+                  path="/login"
                   render={matchprops => (
                      <Suspense fallback={<Spinner />}>
                         <Login {...matchprops} />
