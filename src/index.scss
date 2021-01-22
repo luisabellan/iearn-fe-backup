@@ -1,2 +1,85 @@
 @import "./assets/scss/app.scss";
 @import '../node_modules/react-redux-toastr/src/styles/index';
+
+$main-color: #0C2340;
+$main-transition: 0.2s ease-in-out all;
+
+.button-main {
+  border: 2px solid $main-color;
+  background: transparent;
+  font-size: 36px;
+  font-weight: 700;
+  padding: 10px 40px;
+  border-radius: 10px;
+  transition: $main-transition;
+
+  &:hover {
+    background:$main-color;
+    color: white;
+    transition: $main-transition;
+  }
+}
+
+.button-transparent {
+  border: 0;
+  background: 0;
+  color: $main-color;
+  padding: 0;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.button-transparent-2 {
+  border: 0;
+  background: 0;
+  color: $main-color;
+  padding: 0;
+  font-weight: 600;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.set-transparent {
+  opacity: 0.25;
+  transition: $main-transition;
+
+  &:hover {
+    opacity: 1;
+    transition: $main-transition;
+  }
+}
+
+.set-transition {
+  transition: $main-transition;
+
+  &:hover {
+    transition: $main-transition;
+  }
+}
+
+.text-blue {
+  color: $main-color;
+}
+
+//Letter Spacings
+.ls-1 {
+  letter-spacing: 0.05em;
+}
+
+.ls-2 {
+  letter-spacing: 0.10em;
+}
+
+.ls-3 {
+  letter-spacing: 0.15em;
+}
+
+.ls-4 {
+  letter-spacing: 0.20em;
+}
+
+.ls-5 {
+  letter-spacing: 0.25em;
+}

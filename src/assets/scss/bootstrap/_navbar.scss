@@ -57,6 +57,19 @@
    }
 }
 
+.navbar-container {
+   .button-profile {
+      border-left: 2px solid #DFE0EB;
+      padding-left: 25px;
+
+      img {
+         margin-left: 20px;
+         padding: 2px;
+         border: 2px solid #DFE0EB;
+      }
+   }
+}
+
 /* For sm screen*/
 @include media-breakpoint-down(md) {
    .navbar-header {
