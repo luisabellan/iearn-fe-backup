@@ -10,6 +10,7 @@ import ErrorLayoutRoute from "../layouts/routes/errorRoutes";
 
 // Main Layout
 const Overview = lazy(() => import("../views/_main/Overview"));
+const Support = lazy(()=> import("../views/_main/Support"));
 
 // Full Layout
 const Login = lazy(() => import("../views/_main/Login"));
@@ -36,6 +37,15 @@ class Router extends Component {
                   render={matchprops => (
                      <Suspense fallback={<Spinner />}>
                         <Overview {...matchprops} />
+                     </Suspense>
+                  )}
+               />
+               <MainLayoutRoutes
+                  exact
+                  path="/support"
+                  render={matchprops => (
+                     <Suspense fallback={<Spinner />}>
+                        <Support {...matchprops} />
                      </Suspense>
                   )}
                />

@@ -29,6 +29,18 @@ $main-transition: 0.2s ease-in-out all;
   font-weight: 600;
 }
 
+.button-transparent-2 {
+  border: 0;
+  background: 0;
+  color: $main-color;
+  padding: 0;
+  font-weight: 600;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .set-transparent {
   opacity: 0.25;
   transition: $main-transition;
