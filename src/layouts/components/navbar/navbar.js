@@ -42,7 +42,7 @@ import userImage4 from "../../../assets/img/portrait/small/avatar-s-4.png";
 const ThemeNavbar = (props) => {
   const [
     isOpen,
-    // setIsOpen
+    setIsOpen
   ] = useState(false);
 
   const location = useLocation();
@@ -63,35 +63,33 @@ const ThemeNavbar = (props) => {
     return header;
   };
 
-  //   const handleClick = (e) => {
-  //     props.toggleSidebarMenu("open");
-  //   };
+    const handleClick = (e) => {
+      props.toggleSidebarMenu("open");
+    };
 
-  //   const toggle = () => {
-  //     setIsOpen(!isOpen);
-  //   };
+    const toggle = () => {
+      setIsOpen(!isOpen);
+    };
 
   return (
     <Navbar className="navbar navbar-expand-lg navbar-light bg-faded">
       <div className="container-fluid px-0">
         <div className="navbar-header">
-          <h2 className="text-capitalize text-blue font-weight-bold">
+          <h2 className="text-capitalize text-blue font-weight-bold tablet-hidden">
             {getPageName()}
           </h2>
-          {/* <Menu
+          <Menu
             size={14}
             className="navbar-toggle d-lg-none float-left"
             onClick={() => handleClick()}
             data-toggle="collapse"
           />
-          <Form className="navbar-form mt-1 float-left" role="search">
-            <NavbarSearch />
-          </Form>
+          
           <MoreVertical
             className="mt-1 navbar-toggler black no-border float-right"
             size={50}
             onClick={() => toggle()}
-          /> */}
+          />
         </div>
 
         <div className="navbar-container">

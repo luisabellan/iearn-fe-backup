@@ -83,3 +83,10 @@ $main-transition: 0.2s ease-in-out all;
 .ls-5 {
   letter-spacing: 0.25em;
 }
+
+
+.tablet-hidden {
+  @media (max-width: 990px) {
+    display: none;
+  }
+}

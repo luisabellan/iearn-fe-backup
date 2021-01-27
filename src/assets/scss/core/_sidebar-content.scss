@@ -136,6 +136,24 @@
     height: calc(100vh - 90px);
     overflow: auto;
     z-index: 4;
+
+
+    .nav-container {
+
+      &:nth-child(2) {
+        position: absolute;
+        width: 100%;
+        bottom: 35px;
+      }
+
+      &.active {
+        &:nth-child(2) {
+          @media (max-width: 1440px) {
+            display: none;
+          }
+        }
+      }
+    }
   }
   .logo-img {
     width: 50px;
