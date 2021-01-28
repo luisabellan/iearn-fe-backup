@@ -1,5 +1,6 @@
 // import external modules
-import React, {useState} from "react";
+import React from "react";
+import {useLocation} from "react-router-dom";
 
 import {
    ChevronRight,
@@ -31,6 +32,7 @@ import "../../../../assets/scss/components/sidebar/sidemenu/sidemenu.scss";
 import SideMenu from "../sidemenuHelper";
 
 const SideMenuContent = props => {
+   const location = useLocation();
    
    const hideBottomNav = () => {
       let menus = document.getElementsByClassName("nav-container");
@@ -44,8 +46,9 @@ const SideMenuContent = props => {
    return (
       <>
          <SideMenu className="sidebar-content" toggleSidebarMenu={props.toggleSidebarMenu}>
+            
          <SideMenu.MenuSingleItem>
-            <NavLink to="/" activeclassname="active">
+            <NavLink to="/overview" activeclassname="active">
                <i className="menu-icon">
                   <PieChart size={22} />
                </i>
@@ -105,10 +108,6 @@ const SideMenuContent = props => {
                <span className="menu-item-text">Calendar</span>
             </NavLink>
          </SideMenu.MenuSingleItem>
-
-      </SideMenu>
-
-      <SideMenu className="sidebar-content" toggleSidebarMenu={props.toggleSidebarMenu}>
          
 
          {/* <SideMenu.MenuSingleItem>
@@ -129,6 +128,9 @@ const SideMenuContent = props => {
             </NavLink>
          </SideMenu.MenuSingleItem> */}
 
+         </SideMenu>
+         <SideMenu className="sidebar-content" toggleSidebarMenu={props.toggleSidebarMenu}>
+
 
          <SideMenu.MenuSingleItem>
             <hr/>
@@ -146,7 +148,7 @@ const SideMenuContent = props => {
 
 
          <SideMenu.MenuSingleItem>
-            <NavLink to="/settings" activeclassname="active">
+            <NavLink to={`/settings/${location.pathname.includes("contact") ? "contact" : "account"}`} activeclassname="active" >
                <i className="menu-icon">
                   <Settings size={22} />
                </i>

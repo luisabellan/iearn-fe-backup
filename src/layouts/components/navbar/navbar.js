@@ -60,6 +60,14 @@ const ThemeNavbar = (props) => {
       header = "Home";
     }
 
+    if(location.pathname.includes("account")) {
+      header = "Account Settings";
+    }
+
+    if(location.pathname.includes("contact")) {
+      header = "Contact Settings";
+    }
+
     return header;
   };
 

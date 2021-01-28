@@ -20,6 +20,22 @@ $main-transition: 0.2s ease-in-out all;
   }
 }
 
+.button-submain {
+  border: 2px solid $main-color;
+  background: transparent;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 10px;
+  transition: $main-transition;
+
+  &:hover {
+    background:$main-color;
+    color: white;
+    transition: $main-transition;
+  }
+}
+
 .button-transparent {
   border: 0;
   background: 0;
@@ -37,6 +53,7 @@ $main-transition: 0.2s ease-in-out all;
   font-weight: 600;
 
   &:hover {
+    color: $main-color;
     text-decoration: underline;
   }
 }
@@ -89,4 +106,10 @@ $main-transition: 0.2s ease-in-out all;
   @media (max-width: 990px) {
     display: none;
   }
+}
+
+
+.no-size-padding {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
 }
