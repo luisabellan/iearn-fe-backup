@@ -102,13 +102,6 @@ $main-transition: 0.2s ease-in-out all;
 }
 
 
-.tablet-hidden {
-  @media (max-width: 990px) {
-    display: none;
-  }
-}
-
-
 .no-size-padding {
   padding-right: 0 !important;
   padding-left: 0 !important;
@@ -123,13 +116,13 @@ $main-transition: 0.2s ease-in-out all;
 }
 
 .tablet-hidden {
-  @media (min-width: 768px) and (max-width: 991px) {
+  @media (min-width: 768px) and (max-width: 990px) {
     display: none !important;
   }
 }
 
 .tab-hidden {
-  @media (min-width: 992px) and (max-width: 1199px) {
+  @media (min-width: 991px) and (max-width: 1199px) {
     display: none !important;
   }
 }

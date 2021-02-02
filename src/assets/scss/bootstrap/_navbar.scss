@@ -4,7 +4,7 @@
   border-radius: 0;
   padding: 1rem 0;
 
-  @media (max-width: 991px) {
+  @media (max-width: 990px) {
     margin: 0 -16px;
     padding: 1rem 15px;
     background: #0C2340;
@@ -103,7 +103,7 @@
 }
 
 /* For sm screen*/
-@media (max-width: 991px) {
+@media (max-width: 990px) {
    
   .navbar-header {
     width: 100% !important;
