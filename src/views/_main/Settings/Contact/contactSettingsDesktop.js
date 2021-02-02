@@ -16,8 +16,6 @@ import "../settings.scss";
 
 import { updateContact } from "./constants";
 
-//Assets
-import cards from "../_assets/images/cards.png";
 
 const contactSettings = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -28,10 +26,10 @@ const contactSettings = () => {
 
   return (
     <Fragment>
-      <Card className="page-settings">
+      <Card>
         <CardBody>
           <div className="row justify-content-center">
-            <div className="col-11">
+            <div className="col-lg-11">
               <Formik
                 enableReinitialize
                 initialValues={{
@@ -66,7 +64,7 @@ const contactSettings = () => {
                   errors,
                 }) => {
                   return (
-                    <Form className="px-3">
+                    <Form className="px-lg-3">
                       <fieldset disabled={isLoading}>
                         <Row className="my-4">
                           <Col>
@@ -78,7 +76,7 @@ const contactSettings = () => {
                               </Col>
                             </Row>
                             <Row className="mt-2">
-                              <Col sm="6">
+                              <Col xl="8">
                                 <FormGroup>
                                   <Label className="mt-1">Street Address</Label>
                                   <Input
@@ -105,7 +103,7 @@ const contactSettings = () => {
                                   </FormFeedback>
 
                                   <Row>
-                                    <Col sm="6">
+                                    <Col sm="5" lg="5" xl="6">
                                       <Label className="mt-1">City</Label>
                                       <Input
                                         id="homeCity"
@@ -130,7 +128,7 @@ const contactSettings = () => {
                                         {touched.homeCity && errors.homeCity}
                                       </FormFeedback>
                                     </Col>
-                                    <Col sm="2">
+                                    <Col sm="3" lg="3" xl="2">
                                       <Label className="mt-1">State</Label>
                                       <Input
                                         id="homeState"
@@ -157,7 +155,7 @@ const contactSettings = () => {
                                         {touched.state && errors.state}
                                       </FormFeedback>
                                     </Col>
-                                    <Col sm="4">
+                                    <Col sm="4" lg="4" xl="4">
                                       <Label className="mt-1">Zip</Label>
                                       <Input
                                         id="homeZip"
@@ -184,7 +182,7 @@ const contactSettings = () => {
                                   </Row>
                                 </FormGroup>
                               </Col>
-                              <Col sm="3">
+                              <Col xl="4">
                                 <FormGroup>
                                   <Label className="mt-1">Home Phone</Label>
                                   <Input
@@ -244,7 +242,7 @@ const contactSettings = () => {
                               </Col>
                             </Row>
                             <Row className="mt-2">
-                              <Col sm="6">
+                              <Col xl="8">
                                 <FormGroup>
                                   <Label className="mt-1">Street Address</Label>
                                   <Input
@@ -272,7 +270,7 @@ const contactSettings = () => {
                                   </FormFeedback>
 
                                   <Row>
-                                    <Col sm="6">
+                                    <Col sm="5" lg="5" xl="6">
                                       <Label className="mt-1">City</Label>
                                       <Input
                                         id="businessCity"
@@ -298,7 +296,7 @@ const contactSettings = () => {
                                           errors.businessCity}
                                       </FormFeedback>
                                     </Col>
-                                    <Col sm="2">
+                                    <Col sm="3" lg="3" xl="2">
                                       <Label className="mt-1">State</Label>
                                       <Input
                                         id="businessState"
@@ -326,7 +324,7 @@ const contactSettings = () => {
                                           errors.businessState}
                                       </FormFeedback>
                                     </Col>
-                                    <Col sm="4">
+                                    <Col sm="4" lg="4" xl="4">
                                       <Label className="mt-1">Zip</Label>
                                       <Input
                                         id="businessZip"
@@ -355,7 +353,7 @@ const contactSettings = () => {
                                   </Row>
                                 </FormGroup>
                               </Col>
-                              <Col sm="3">
+                              <Col xl="4">
                                 <FormGroup>
                                   <Label className="mt-1">Business Phone</Label>
                                   <Input
@@ -420,7 +418,7 @@ const contactSettings = () => {
                             </Row>
 
                             <Row>
-                              <Col md="3">
+                              <Col xl="4">
                                 <FormGroup>
                                   <Label className="mt-1">LinkedIn</Label>
                                   <Input
@@ -467,7 +465,7 @@ const contactSettings = () => {
                                   </FormFeedback>
                                 </FormGroup>
                               </Col>
-                              <Col md="3">
+                              <Col xl="4">
                                 <FormGroup>
                                   <Label className="mt-1">Instagram</Label>
                                   <Input
@@ -515,7 +513,7 @@ const contactSettings = () => {
                                   </FormFeedback>
                                 </FormGroup>
                               </Col>
-                              <Col md="3">
+                              <Col xl="4">
                                 <FormGroup>
                                   <Label className="mt-1">Slack</Label>
                                   <Input
@@ -563,7 +561,7 @@ const contactSettings = () => {
                             </Row>
 
                             <Row>
-                              <Col sm="2">
+                              <Col sm="4">
                                 <button
                                   className="button-submain"
                                   onClick={handleSubmit}
@@ -571,7 +569,7 @@ const contactSettings = () => {
                                   Back
                                 </button>
                               </Col>
-                              <Col sm={{ size: 2, offset: 4 }}>
+                              <Col sm={{ size: 4, offset: 4 }}>
                                 <button
                                   className="button-submain"
                                   onClick={handleSubmit}

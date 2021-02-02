@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import {
   Col,
   Form,
@@ -31,11 +31,10 @@ const accountSettings = () => {
   };
 
   return (
-    <Fragment>
-      <Card className="page-settings">
+      <Card>
         <CardBody>
           <div className="row justify-content-center">
-            <div className="col-11">
+            <div className="col-lg-11">
               <Formik
                 enableReinitialize
                 initialValues={{
@@ -54,7 +53,7 @@ const accountSettings = () => {
                   errors,
                 }) => {
                   return (
-                    <Form className="px-3">
+                    <Form className="px-lg-3">
                       <fieldset disabled={isLoading}>
                         <Row className="mt-4">
                           <Col>
@@ -66,7 +65,7 @@ const accountSettings = () => {
                               </Col>
                             </Row>
                             <Row className="mt-2">
-                              <Col sm="6">
+                              <Col xl="6">
                                 <FormGroup className="mb-1">
                                   <Label>New Password</Label>
                                   <Input
@@ -93,8 +92,8 @@ const accountSettings = () => {
                               </Col>
                             </Row>
                             <Row>
-                              <Col sm="6">
-                                <FormGroup>
+                              <Col xl="6">
+                                <FormGroup className="mb-0">
                                   <Label>Confirm New Password</Label>
                                   <Input
                                     id="confirmPassword"
@@ -121,7 +120,10 @@ const accountSettings = () => {
                                   </FormFeedback>
                                 </FormGroup>
                               </Col>
-                              <Col sm={{ size: 2, offset: 2 }}>
+                              <Col
+                                xl={{ size: 3, offset: 2 }}
+                                xs={{ size: 6, offset: 6 }}
+                              >       
                                 <button
                                   className="button-submain mt-3"
                                   onClick={handleSubmit}
@@ -141,7 +143,7 @@ const accountSettings = () => {
             </div>
           </div>
           <div className="row justify-content-center">
-            <div className="col-11">
+            <div className="col-lg-11">
               <Formik
                 enableReinitialize
                 initialValues={{
@@ -165,7 +167,7 @@ const accountSettings = () => {
                   errors,
                 }) => {
                   return (
-                    <Form className="px-3">
+                    <Form className="px-lg-3">
                       <fieldset disabled={isLoading}>
                         <Row className="my-4">
                           <Col>
@@ -177,8 +179,8 @@ const accountSettings = () => {
                               </Col>
                             </Row>
                             <Row className="mt-2">
-                              <Col sm="6">
-                                <FormGroup>
+                              <Col xl="6">
+                                <FormGroup className="mb-0">
                                   <Label>Name on Card</Label>
                                   <Input
                                     id="cardName"
@@ -224,7 +226,7 @@ const accountSettings = () => {
                                   </FormFeedback>
 
                                   <Row>
-                                    <Col sm="6">
+                                    <Col xl="6" sm="12">
                                       <Label className="mt-1">City</Label>
                                       <Input
                                         id="city"
@@ -247,7 +249,7 @@ const accountSettings = () => {
                                         {touched.city && errors.city}
                                       </FormFeedback>
                                     </Col>
-                                    <Col sm="2">
+                                    <Col xl="3" sm="6">
                                       <Label className="mt-1">State</Label>
                                       <Input
                                         id="state"
@@ -272,7 +274,7 @@ const accountSettings = () => {
                                         {touched.state && errors.state}
                                       </FormFeedback>
                                     </Col>
-                                    <Col sm="4">
+                                    <Col xl="3" sm="6">
                                       <Label className="mt-1">Zip</Label>
                                       <Input
                                         id="zip"
@@ -294,74 +296,113 @@ const accountSettings = () => {
                                       </FormFeedback>
                                     </Col>
                                   </Row>
-
-                                  <Row>
-                                    <Col md="6">
-                                      <Label className="mt-1">
-                                        Card Number{" "}
-                                        <img src={cards} alt="Cards" />
-                                      </Label>
-                                      <Input
-                                        id="cardNumber"
-                                        name="cardNumber"
-                                        type="text"
-                                        required
-                                        placeholder="1111 1111 1111 1111"
-                                        className={classNames("form-control", {
-                                          "login-warning":
-                                            !!errors.cardNumber &&
-                                            !!touched.cardNumber,
-                                        })}
-                                        value={values.cardNumber}
-                                        onBlur={handleBlur("cardNumber")}
-                                        onChange={handleChange("cardNumber")}
-                                        invalid={
-                                          !!touched.cardNumber &&
-                                          !!errors.cardNumber
-                                        }
-                                      />
-                                      <FormFeedback>
-                                        {touched.cardNumber &&
-                                          errors.cardNumber}
-                                      </FormFeedback>
-                                    </Col>
-
-                                    <Col md="6">
-                                      <Label className="mt-1">
-                                        Expiration Date
-                                      </Label>
-                                      <Input
-                                        id="cardExpiration"
-                                        name="cardExpiration"
-                                        type="text"
-                                        placeholder="02/26"
-                                        required
-                                        className={classNames("form-control", {
-                                          "login-warning":
-                                            !!errors.cardExpiration &&
-                                            !!touched.cardExpiration,
-                                        })}
-                                        value={values.cardExpiration}
-                                        onBlur={handleBlur("cardExpiration")}
-                                        onChange={handleChange(
-                                          "cardExpiration"
-                                        )}
-                                        invalid={
-                                          !!touched.cardExpiration &&
-                                          !!errors.cardExpiration
-                                        }
-                                      />
-                                      <FormFeedback>
-                                        {touched.cardExpiration &&
-                                          errors.cardExpiration}
-                                      </FormFeedback>
-                                    </Col>
-                                  </Row>
                                 </FormGroup>
                               </Col>
                             </Row>
                             <Row>
-                              <Col sm="2">
+                              <Col xl="8">
+                                <Row>
+                                  <Col xl="9">
+                                    <FormGroup>
+                                      <Row>
+                                        <Col xl="6">
+                                          <Label className="mt-1">
+                                            Card Number{" "}
+                                            <img src={cards} alt="Cards" />
+                                          </Label>
+                                          <Input
+                                            id="cardNumber"
+                                            name="cardNumber"
+                                            type="text"
+                                            required
+                                            placeholder="1111 1111 1111 1111"
+                                            className={classNames(
+                                              "form-control",
+                                              {
+                                                "login-warning":
+                                                  !!errors.cardNumber &&
+                                                  !!touched.cardNumber,
+                                              }
+                                            )}
+                                            value={values.cardNumber}
+                                            onBlur={handleBlur("cardNumber")}
+                                            onChange={handleChange(
+                                              "cardNumber"
+                                            )}
+                                            invalid={
+                                              !!touched.cardNumber &&
+                                              !!errors.cardNumber
+                                            }
+                                          />
+                                          <FormFeedback>
+                                            {touched.cardNumber &&
+                                              errors.cardNumber}
+                                          </FormFeedback>
+                                        </Col>
+
+                                        <Col sm="6">
+                                          <Label className="mt-1">
+                                            Expiration Date
+                                          </Label>
+                                          <Input
+                                            id="cardExpiration"
+                                            name="cardExpiration"
+                                            type="text"
+                                            placeholder="02/26"
+                                            required
+                                            className={classNames(
+                                              "form-control",
+                                              {
+                                                "login-warning":
+                                                  !!errors.cardExpiration &&
+                                                  !!touched.cardExpiration,
+                                              }
+                                            )}
+                                            value={values.cardExpiration}
+                                            onBlur={handleBlur(
+                                              "cardExpiration"
+                                            )}
+                                            onChange={handleChange(
+                                              "cardExpiration"
+                                            )}
+                                            invalid={
+                                              !!touched.cardExpiration &&
+                                              !!errors.cardExpiration
+                                            }
+                                          />
+                                          <FormFeedback>
+                                            {touched.cardExpiration &&
+                                              errors.cardExpiration}
+                                          </FormFeedback>
+                                        </Col>
+
+                                        <Col sm="6" className="desktop-hidden">
+                                          <button
+                                            className="button-submain mt-3 mt-md-4"
+                                            onClick={handleSubmit}
+                                          >
+                                            Use Different Method
+                                          </button>
+                                        </Col>
+                                      </Row>
+                                    </FormGroup>
+                                  </Col>
+                                </Row>
+                              </Col>
+                              <Col
+                                xl="3"
+                                className="mobile-hidden tablet-hidden tab-hidden"
+                              >
+                                <button
+                                  className="button-submain mt-xl-4 mt-lg-3"
+                                  onClick={handleSubmit}
+                                >
+                                  Use Different Method
+                                </button>
+                              </Col>
+                            </Row>
+                            <Row>
+                              <Col xl="3" xs="6">
                                 <button
                                   className="button-submain"
                                   onClick={handleSubmit}
@@ -369,15 +410,7 @@ const accountSettings = () => {
                                   Back
                                 </button>
                               </Col>
-                              <Col sm={{ size: 2, offset: 4 }}>
-                                <button
-                                  className="button-submain"
-                                  onClick={handleSubmit}
-                                >
-                                  Use Different Method
-                                </button>
-                              </Col>
-                              <Col sm="2">
+                              <Col xl={{size: 3, offset: 5}} xs="6">
                                 <button
                                   className="button-submain"
                                   onClick={handleSubmit}
@@ -397,7 +430,6 @@ const accountSettings = () => {
           </div>
         </CardBody>
       </Card>
-    </Fragment>
   );
 };
 
