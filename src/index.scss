@@ -18,6 +18,12 @@ $main-transition: 0.2s ease-in-out all;
     color: white;
     transition: $main-transition;
   }
+
+  @media (max-width: 575px) {
+    font-size: 20px;
+    padding: 10px 15px;
+    margin: 0 5px !important;
+  }
 }
 
 .button-submain {

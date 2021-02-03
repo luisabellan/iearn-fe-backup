@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import "../signup.scss";
 import {
   Col,
@@ -17,6 +18,8 @@ import classNames from "classnames";
 import Progress from "./Progress";
 
 const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
+  let history = useHistory();
+
   const signUpSchema = Yup.object().shape({
     firstName: Yup.string()
       .min(2, "Firstname too short")
@@ -51,7 +54,7 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
 
   return (
     <Card className="card-signup">
-      <h1 className="text-center">New Member Onboarding</h1>
+      <h1 className="text-center">Sign Up</h1>
       <CardBody>
         <Formik
           initialValues={form1}
@@ -192,7 +195,6 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
                     <button
                       type="submit"
                       color="primary"
-                      block
                       className="button-main ls-2"
                       disabled={isLoading}
                       onClick={handleSubmit}
@@ -205,7 +207,18 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
             </Formik>
           )}
         </Formik>
-        <Progress {...{currentStep}} />
+        <Progress {...{ currentStep }} />
+        <Col md="12" className="text-center mt-3">
+          <p>
+            Already have an account?{" "}
+            <button
+              className="button-transparent"
+              onClick={() => history.push("/login")}
+            >
+              Login
+            </button>
+          </p>
+        </Col>
       </CardBody>
     </Card>
   );

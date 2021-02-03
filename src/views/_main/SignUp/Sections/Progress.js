@@ -21,6 +21,16 @@ const Progress = ({ currentStep }) => {
             currentStep >= 2 ? "active" : ""
           }`}
         ></button>
+        <button
+          className={`button-progress set-transition ${
+            currentStep >= 3 ? "active" : ""
+          }`}
+        ></button>
+        <button
+          className={`button-progress set-transition ${
+            currentStep >= 4 ? "active" : ""
+          }`}
+        ></button>
       </div>
     </Col>
   );
