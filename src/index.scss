@@ -83,7 +83,7 @@ $main-transition: 0.2s ease-in-out all;
 }
 
 .text-blue {
-  color: $main-color;
+  color: $main-color !important;
 }
 
 //Letter Spacings
@@ -115,6 +115,12 @@ $main-transition: 0.2s ease-in-out all;
 
 
 //Hidden
+.xs-hidden {
+  @media (max-width: 374px) {
+    display: none !important;
+  }
+}
+
 .mobile-hidden {
   @media (max-width: 767px) {
     display: none !important;
@@ -129,6 +135,12 @@ $main-transition: 0.2s ease-in-out all;
 
 .tab-hidden {
   @media (min-width: 991px) and (max-width: 1199px) {
+    display: none !important;
+  }
+}
+
+.tab-below-hidden {
+  @media (max-width: 1199px) {
     display: none !important;
   }
 }

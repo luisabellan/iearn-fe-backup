@@ -9,9 +9,12 @@ import FullPageLayout from "../layouts/routes/fullpageRoutes";
 import ErrorLayoutRoute from "../layouts/routes/errorRoutes";
 
 // Main Layout
-const Home = lazy(()=> import("../views/_main/Home"));
+const Home = lazy(() => import("../views/_main/Home"));
 const Overview = lazy(() => import("../views/_main/Overview"));
-const Support = lazy(() => import("../views/_main/Support"));
+const Support = lazy(() => import("../views/_main/Support/Support"));
+const SupportDetails = lazy(() =>
+  import("../views/_main/Support/SupportDetails")
+);
 const Settings = lazy(() => import("../views/_main/Settings"));
 const Calendar = lazy(() => import("../views/_main/Calendar"));
 
@@ -49,6 +52,16 @@ class Router extends Component {
             render={(matchprops) => (
               <Suspense fallback={<Spinner />}>
                 <Support {...matchprops} />
+              </Suspense>
+            )}
+          />
+
+          <MainLayoutRoutes
+            exact
+            path="/support/:id"
+            render={(matchprops) => (
+              <Suspense fallback={<Spinner />}>
+                <SupportDetails {...matchprops} />
               </Suspense>
             )}
           />

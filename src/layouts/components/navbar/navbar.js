@@ -70,7 +70,19 @@ const ThemeNavbar = (props) => {
       header = "Contact Settings";
     }
 
-    return header;
+    if (location.pathname.includes("support")) {
+      header = "Support";
+    }
+
+    if (!header) {
+      return null;
+    }
+
+    return (
+      <h2 className="text-capitalize text-blue font-weight-bold mobile-hidden tablet-hidden">
+        {header}
+      </h2>
+    );
   };
 
   const handleClick = (e) => {
@@ -88,9 +100,7 @@ const ThemeNavbar = (props) => {
       <Navbar className="navbar navbar-expand-lg navbar-light bg-faded">
         <div className="container-fluid px-0">
           <div className="navbar-header">
-            <h2 className="text-capitalize text-blue font-weight-bold mobile-hidden tablet-hidden">
-              {getPageName()}
-            </h2>
+            {getPageName()}
             {/* <Menu
             size={14}
             className="navbar-toggle d-lg-none float-left"
