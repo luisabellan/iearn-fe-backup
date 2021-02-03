@@ -1,18 +1,7 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./support.scss";
 import { useHistory } from "react-router-dom";
-import {
-  Row,
-  Col,
-  Card,
-  CardBody,
-  Input,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Table,
-} from "reactstrap";
+import { Row, Col, Card, CardBody, Input } from "reactstrap";
 import { ChevronLeft, Plus, Minus } from "react-feather";
 
 //Utils
@@ -23,10 +12,8 @@ import userImage from "../../../assets/img/portrait/small/avatar-s-1.png";
 
 const SupportDetails = () => {
   const history = useHistory();
-
-  const currentUser = "Tom Cruise";
-
-  const convo = [
+  const chatRef = useRef(null);
+  const [convo, setConvo] = useState([
     {
       text: `Hello, I have a problem.`,
       author: "Tom Cruise",
@@ -57,7 +44,33 @@ const SupportDetails = () => {
       author: "Howard Jones",
       date: new Date(),
     },
-  ];
+  ]);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, []);
+
+  const scrollToBottom = () => {
+    const scroll = chatRef.current.scrollHeight - chatRef.current.clientHeight;
+    chatRef.current.scrollTo(0, scroll);
+  };
+
+  const currentUser = "Tom Cruise";
+
+  const handleClick = () => {
+    setConvo([
+      ...convo,
+      {
+        text: `What you playing at, boi?`,
+        author: "Howard Jones",
+        date: new Date(),
+      },
+    ]);
+  };
+
+  useEffect(()=>{
+    scrollToBottom();
+  },[convo])
 
   const mapConvo = () => {
     return convo.map((item, index) => (
@@ -138,16 +151,30 @@ const SupportDetails = () => {
                 <p className="history text-right">Update 1 day ago</p>
               </Col>
             </Row>
-            <Row className="convo-container">
-              <Col>{mapConvo()}</Col>
+            <Row>
+              <Col>
+                <div ref={chatRef} className="convo-container">
+                  {mapConvo()}
+                </div>
+              </Col>
             </Row>
             <Row className="mt-3">
-              <Col xs={{size: 12, order: 2}} lg={{order: 1}} className="send-container">
+              <Col
+                xs={{ size: 12, order: 2 }}
+                lg={{ order: 1 }}
+                className="send-container"
+              >
                 <Input type="textarea" rows="1" />
-                <button className="button-send">Send</button>
+                <button className="button-send" onClick={() => handleClick()}>
+                  Send
+                </button>
               </Col>
 
-              <Col xs={{size: 12, order: 1}} lg={{order: 2}} className="send-container-bottom">
+              <Col
+                xs={{ size: 12, order: 1 }}
+                lg={{ order: 2 }}
+                className="send-container-bottom"
+              >
                 <p>
                   Priority&emsp;
                   <button className="button-transparent-2">

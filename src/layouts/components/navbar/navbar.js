@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, forwardRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   // Form,
@@ -113,7 +113,7 @@ const ThemeNavbar = (props) => {
                 <img src={logo} alt="Logo" />
               </div>
               <div>
-                <h3>Subto</h3>
+                <span>Subto</span>
               </div>
             </div>
 
@@ -319,9 +319,9 @@ const ThemeNavbar = (props) => {
         </div>
       </Navbar>
 
-      <h3 className="text-capitalize text-blue font-weight-bold mt-3 tab-hidden desktop-hidden">
+      <div className="text-capitalize text-blue font-weight-bold mt-3 tab-hidden desktop-hidden">
         {getPageName()}
-      </h3>
+      </div>
     </>
   );
 };

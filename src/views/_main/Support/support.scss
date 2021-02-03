@@ -145,7 +145,8 @@ $light-gray: #c5c7cd;
 
     .convo-container {
       max-height: calc(100vh - 450px);
-      overflow: auto;
+      overflow-y: auto;
+      overflow-x: hidden;
     }
 
     .text-container {
@@ -172,6 +173,8 @@ $light-gray: #c5c7cd;
         padding: 13px 15px;
         border-radius: 20px;
         color: black;
+        width: fit-content;
+        float: right;
       }
     }
 
@@ -199,6 +202,12 @@ $light-gray: #c5c7cd;
         color: white;
         background-color: $main-color;
         border-radius: 20px;
+        transition: 0.3 ease-in-out all;
+
+        &:hover {
+          opacity: 0.8;
+          transition: 0.3 ease-in-out all;
+        }
       }
     }
 
