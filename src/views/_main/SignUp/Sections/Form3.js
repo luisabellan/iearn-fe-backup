@@ -11,14 +11,6 @@ const Form2 = ({ currentStep, setCurrentStep, isLoading }) => {
   const [error, setError] = useState("");
 
   let experienceSchema = Yup.object().shape({
-    noneCheck: Yup.boolean(),
-    fixflipCheck: Yup.boolean(),
-    wholesalingCheck: Yup.boolean(),
-    flippingCheck: Yup.boolean(),
-    buyholdCheck: Yup.boolean(),
-    leaseOptionCheck: Yup.boolean(),
-    lendingCheck: Yup.boolean(),
-
     fixflip: Yup.string(),
     wholesaling: Yup.string(),
     flipping: Yup.string(),
@@ -27,49 +19,12 @@ const Form2 = ({ currentStep, setCurrentStep, isLoading }) => {
     lending: Yup.string(),
   });
 
-  experienceSchema = experienceSchema.test(
-    // this test is added additional to any other (build-in) tests
-    "checkedTest",
-    null, // we'll return error message ourself if needed
-    (obj) => {
-      // only testing the checkboxes here
-      if (
-        !(
-          obj.noneCheck ||
-          obj.fixflipCheck ||
-          obj.wholesalingCheck ||
-          obj.flippingCheck ||
-          obj.buyholdCheck ||
-          obj.leaseOptionCheck ||
-          obj.lendingCheck
-        )
-      ) {
-        setError("Check at least one checkbox"); // everything is fine
-      } else {
-        setError("");
-      }
-    }
-  );
-
   const form3 = {
-    noneCheck: false,
-
-    fixflipCheck: false,
     fixflip: "",
-
-    wholesalingCheck: false,
     wholesaling: "",
-
-    flippingCheck: false,
     flipping: "",
-
-    buyholdCheck: false,
     buyhold: "",
-
-    leaseOptionCheck: false,
     leaseOption: "",
-
-    lendingCheck: false,
     lending: "",
   };
 
@@ -80,12 +35,25 @@ const Form2 = ({ currentStep, setCurrentStep, isLoading }) => {
     }
   };
 
+  const mapOptions = () => {
+    return (
+      <>
+        <option value="0">None</option>
+        <option value="1-3">1-3</option>
+        <option value="4-6">4-6</option>
+        <option value="7-10">7-10</option>
+        <option value="10+">10+</option>
+      </>
+    );
+  };
+
   return (
     <Card className="card-signup">
       <h1 className="text-center">Sign Up</h1>
       <CardBody>
         <p className="text-center text-blue">
-          Enter your investing experience below
+          Enter your <span className="font-weight-bold">years</span> of
+          investing experience below
           <br />
           <span style={{ fontSize: `16px` }}>(select all that apply)</span>
         </p>
@@ -112,271 +80,106 @@ const Form2 = ({ currentStep, setCurrentStep, isLoading }) => {
                 <Col md="12">
                   <FormGroup id="section-experience">
                     <Row>
-                      <Col lg="6" className="text-right">
-                        <Label>None</Label>
-                      </Col>
-                      <Col lg="1" className="pr-0 text-center">
-                        <Input
-                          type="checkbox"
-                          onChange={(e) => {
-                            handleChange("noneCheck")(e);
-                            if (e.target.value) {
-                              handleChange("fixflipCheck")(false);
-                              handleChange("wholesalingCheck")(false);
-                              handleChange("flippingCheck")(false);
-                              handleChange("buyholdCheck")(false);
-                              handleChange("leaseOptionCheck")(false);
-                              handleChange("lendingCheck")(false);
-
-                              handleChange("fixflip")("");
-                              handleChange("wholesaling")("");
-                              handleChange("flipping")("");
-                              handleChange("buyhold")("");
-                              handleChange("leaseOption")("");
-                              handleChange("lending")("");
-                            }
-                          }}
-                          checked={values.noneCheck || ""}
-                        />
-                      </Col>
-                    </Row>
-
-                    <Row>
-                      <Col lg="6" className="text-right">
+                      <Col xs="6" lg="6" className="text-right">
                         <Label>Fix &amp; Flip</Label>
                       </Col>
-                      <Col lg="1" className="pr-0 text-center">
+                      <Col xs="6" lg="3">
                         <Input
-                          type="checkbox"
-                          onChange={(e) => {
-                            handleChange("fixflipCheck")(e);
-                            handleChange("noneCheck")(false);
-
-                            if (e.target.value) {
-                              handleChange("fixflip")("");
-                            }
-                          }}
-                          checked={values.fixflipCheck}
-                        />
+                          type="select"
+                          placeholder="0"
+                          min="1"
+                          value={values.fixflip || ""}
+                          onChange={handleChange("fixflip")}
+                        >
+                          {mapOptions()}
+                        </Input>
                       </Col>
-                      {values.fixflipCheck ? (
-                        <>
-                          <Col lg="2">
-                            <Input
-                              type="number"
-                              placeholder="0"
-                              min="1"
-                              value={values.fixflip || ""}
-                              onChange={handleChange("fixflip")}
-                            />
-                          </Col>
-                          <Col lg="2" className="pl-0">
-                            <Label>years</Label>
-                          </Col>
-                        </>
-                      ) : (
-                        ""
-                      )}
                     </Row>
 
                     <Row>
-                      <Col lg="6" className="text-right">
+                      <Col xs="6" lg="6" className="text-right">
                         <Label>Wholesaling</Label>
                       </Col>
-                      <Col lg="1" className="pr-0 text-center">
+                      <Col xs="6" lg="3">
                         <Input
-                          type="checkbox"
-                          onChange={(e) => {
-                            handleChange("wholesalingCheck")(e);
-                            handleChange("noneCheck")(false);
-
-                            if (e.target.value) {
-                              handleChange("wholesaling")("");
-                            }
-                          }}
-                          checked={values.wholesalingCheck}
-                        />
+                          type="select"
+                          placeholder="0"
+                          min="1"
+                          value={values.wholesaling || ""}
+                          onChange={handleChange("wholesaling")}
+                        >
+                          {mapOptions()}
+                        </Input>
                       </Col>
-                      {values.wholesalingCheck ? (
-                        <>
-                          <Col lg="3">
-                            <Input
-                              type="number"
-                              placeholder="0"
-                              min="1"
-                              value={values.wholesaling || ""}
-                              onChange={handleChange("wholesaling")}
-                            />
-                          </Col>
-                          <Col lg="2" className="pl-0">
-                            <Label>years</Label>
-                          </Col>
-                        </>
-                      ) : (
-                        ""
-                      )}
                     </Row>
 
                     <Row>
-                      <Col lg="6" className="text-right">
+                      <Col xs="6" lg="6" className="text-right">
                         <Label>Flipping</Label>
                       </Col>
-                      <Col lg="1" className="pr-0 text-center">
+                      <Col xs="6" lg="3">
                         <Input
-                          type="checkbox"
-                          onChange={(e) => {
-                            handleChange("flippingCheck")(e);
-                            handleChange("noneCheck")(false);
-
-                            if (e.target.value) {
-                              handleChange("flipping")("");
-                            }
-                          }}
-                          checked={values.flippingCheck}
-                        />
+                          type="select"
+                          placeholder="0"
+                          min="1"
+                          value={values.flipping || ""}
+                          onChange={handleChange("flipping")}
+                        >
+                          {mapOptions()}
+                        </Input>
                       </Col>
-                      {values.flippingCheck ? (
-                        <>
-                          <Col lg="3">
-                            <Input
-                              type="number"
-                              placeholder="0"
-                              min="1"
-                              value={values.flipping || ""}
-                              onChange={handleChange("flipping")}
-                            />
-                          </Col>
-                          <Col lg="2" className="pl-0">
-                            <Label>years</Label>
-                          </Col>
-                        </>
-                      ) : (
-                        ""
-                      )}
                     </Row>
 
                     <Row>
-                      <Col lg="6" className="text-right">
+                      <Col xs="6" lg="6" className="text-right">
                         <Label>Buy &amp; Hold</Label>
                       </Col>
-                      <Col lg="1" className="pr-0 text-center">
+                      <Col xs="6" lg="3">
                         <Input
-                          type="checkbox"
-                          onChange={(e) => {
-                            handleChange("buyholdCheck")(e);
-                            handleChange("noneCheck")(false);
-
-                            if (e.target.value) {
-                              handleChange("buyhold")("");
-                            }
-                          }}
-                          checked={values.buyholdCheck}
-                        />
+                          type="select"
+                          placeholder="0"
+                          min="1"
+                          value={values.buyhold || ""}
+                          onChange={handleChange("buyhold")}
+                        >
+                          {mapOptions()}
+                        </Input>
                       </Col>
-                      {values.buyholdCheck ? (
-                        <>
-                          <Col lg="3">
-                            <Input
-                              type="number"
-                              placeholder="0"
-                              min="1"
-                              value={values.buyhold || ""}
-                              onChange={handleChange("buyhold")}
-                            />
-                          </Col>
-
-                          <Col lg="2" className="pl-0">
-                            <Label>years</Label>
-                          </Col>
-                        </>
-                      ) : (
-                        ""
-                      )}
                     </Row>
 
                     <Row>
-                      <Col lg="6" className="text-right">
+                      <Col xs="6" lg="6" className="text-right">
                         <Label>Lease Option</Label>
                       </Col>
-                      <Col lg="1" className="pr-0 text-center">
+                      <Col xs="6" lg="3">
                         <Input
-                          type="checkbox"
-                          onChange={(e) => {
-                            handleChange("leaseOptionCheck")(e);
-                            handleChange("noneCheck")(false);
-
-                            if (e.target.value) {
-                              handleChange("leaseOption")("");
-                            }
-                          }}
-                          checked={values.leaseOptionCheck}
-                        />
+                          type="select"
+                          placeholder="0"
+                          min="1"
+                          value={values.leaseOption || ""}
+                          onChange={handleChange("leaseOption")}
+                        >
+                          {mapOptions()}
+                        </Input>
                       </Col>
-                      {values.leaseOptionCheck ? (
-                        <>
-                          <Col lg="3">
-                            <Input
-                              type="number"
-                              placeholder="0"
-                              min="1"
-                              value={values.leaseOption || ""}
-                              onChange={handleChange("leaseOption")}
-                            />
-                          </Col>
-                          <Col lg="2" className="pl-0">
-                            <Label>years</Label>
-                          </Col>
-                        </>
-                      ) : (
-                        ""
-                      )}
                     </Row>
 
                     <Row>
-                      <Col lg="6" className="text-right">
+                      <Col xs="6" lg="6" className="text-right">
                         <Label>Lending</Label>
                       </Col>
-                      <Col lg="1" className="pr-0 text-center">
+                      <Col xs="6" lg="3">
                         <Input
-                          type="checkbox"
-                          onChange={(e) => {
-                            handleChange("lendingCheck")(e);
-                            handleChange("noneCheck")(false);
-
-                            if (e.target.value) {
-                              handleChange("lending")("");
-                            }
-                          }}
-                          checked={values.lendingCheck}
-                        />
+                          type="select"
+                          placeholder="0"
+                          min="1"
+                          value={values.lending || ""}
+                          onChange={handleChange("lending")}
+                        >
+                          {mapOptions()}
+                        </Input>
                       </Col>
-                      {values.lendingCheck ? (
-                        <>
-                          <Col lg="3">
-                            <Input
-                              type="number"
-                              placeholder="0"
-                              min="1"
-                              value={values.lending || ""}
-                              onChange={handleChange("lending")}
-                            />
-                          </Col>
-                          <Col lg="2" className="pl-0">
-                            <Label>years</Label>
-                          </Col>
-                        </>
-                      ) : (
-                        ""
-                      )}
                     </Row>
-
-                    {error ? (
-                      <p className="text-center text-error">
-                        Check at least one checkbox.
-                      </p>
-                    ) : (
-                      ""
-                    )}
                   </FormGroup>
                 </Col>
                 <Col md="12" className="text-center">

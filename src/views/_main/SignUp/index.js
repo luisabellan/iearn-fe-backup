@@ -12,7 +12,7 @@ import Form5 from "./Sections/Form5";
 
 const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(2);
 
   //   const { error, loading, login } = useAuth();
 

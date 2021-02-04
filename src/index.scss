@@ -19,7 +19,7 @@ $main-transition: 0.2s ease-in-out all;
     transition: $main-transition;
   }
 
-  @media (max-width: 575px) {
+  @media (max-width: 767px) {
     font-size: 20px;
     padding: 10px 15px;
     margin: 0 5px !important;
