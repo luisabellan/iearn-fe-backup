@@ -1,5 +1,5 @@
-import React, { useEffect, forwardRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useLocation, withRouter } from "react-router-dom";
 import {
   // Form,
   Media,
@@ -96,9 +96,17 @@ const ThemeNavbar = (props) => {
     props.toggleSidebarMenu("open");
   };
 
-  useEffect(() => {
-    console.log(props);
-  }, []);
+  // useEffect(() => {
+  //   console.log(props);
+  // }, []);
+
+  useEffect(
+    () =>
+      props.history.listen(() => {
+        props.setPageTitle("");
+      }),
+    []
+  );
 
   // const toggle = () => {
   //   setIsOpen(!isOpen);
@@ -337,4 +345,4 @@ const ThemeNavbar = (props) => {
   );
 };
 
-export default withTitleContext(ThemeNavbar);
+export default withTitleContext(withRouter(ThemeNavbar));
