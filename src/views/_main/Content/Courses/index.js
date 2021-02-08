@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect } from "react";
 
-const index = () => {
-  return (
-    <div>
-      You are in Courses
-    </div>
-  )
-}
+const index = (props) => {
+  // useEffect(() => {
+  //   console.log(props);
+  // }, []);
 
-export default index
+  return <div>You are in Courses</div>;
+};
+
+export default index;

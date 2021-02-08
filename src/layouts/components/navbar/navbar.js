@@ -44,6 +44,9 @@ import userImage3 from "../../../assets/img/portrait/small/avatar-s-3.png";
 import userImage4 from "../../../assets/img/portrait/small/avatar-s-4.png";
 import logo from "../../../assets/img/_main/logo.svg";
 
+//Utils
+import withTitleContext from "../../utils/withContexts/withTitle";
+
 const ThemeNavbar = (props) => {
   // const [isOpen, setIsOpen] = useState(false);
 
@@ -55,27 +58,31 @@ const ThemeNavbar = (props) => {
     name = name.split("-");
 
     let header = "";
-    name.forEach((x) => (header += ` ${x}`));
-    header.trim();
+    if (!props.pageTitle) {
+      name.forEach((x) => (header += ` ${x}`));
+      header.trim();
 
-    if (location.pathname === "/") {
-      header = "Home";
-    }
+      if (location.pathname === "/") {
+        header = "Home";
+      }
 
-    if (location.pathname.includes("account")) {
-      header = "Account Settings";
-    }
+      if (location.pathname.includes("account")) {
+        header = "Account Settings";
+      }
 
-    if (location.pathname.includes("contact")) {
-      header = "Contact Settings";
-    }
+      if (location.pathname.includes("contact")) {
+        header = "Contact Settings";
+      }
 
-    if (location.pathname.includes("support")) {
-      header = "Support";
-    }
+      if (location.pathname.includes("support")) {
+        header = "Support";
+      }
 
-    if (!header) {
-      return null;
+      if (!header) {
+        return null;
+      }
+    } else {
+      header = props.pageTitle;
     }
 
     return (
@@ -88,6 +95,10 @@ const ThemeNavbar = (props) => {
   const handleClick = (e) => {
     props.toggleSidebarMenu("open");
   };
+
+  useEffect(() => {
+    console.log(props);
+  }, []);
 
   // const toggle = () => {
   //   setIsOpen(!isOpen);
@@ -326,4 +337,4 @@ const ThemeNavbar = (props) => {
   );
 };
 
-export default ThemeNavbar;
+export default withTitleContext(ThemeNavbar);

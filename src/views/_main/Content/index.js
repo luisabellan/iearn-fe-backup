@@ -1,15 +1,19 @@
-import React from "react";
-import { Switch, Route, Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Switch, Route } from "react-router-dom";
 
 //Pages
 import Courses from "./Courses";
 
-const index = () => {
+const index = (props) => {
+  useEffect(() => {
+    // console.log(props);
+  }, []);
+
   return (
     <Switch>
-      <Route exact component={Courses} path="/content/courses"/>
+      <Route exact component={Courses} path="/content/courses" />
     </Switch>
-  )
-}
+  );
+};
 
-export default index
+export default index;
