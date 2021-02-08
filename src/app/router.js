@@ -17,6 +17,7 @@ const SupportDetails = lazy(() =>
 );
 const Settings = lazy(() => import("../views/_main/Settings"));
 const Calendar = lazy(() => import("../views/_main/Calendar"));
+const Content = lazy(() => import("../views/_main/Content"));
 
 // Full Layout
 const Login = lazy(() => import("../views/_main/Login"));
@@ -72,6 +73,16 @@ class Router extends Component {
             render={(matchprops) => (
               <Suspense fallback={<Spinner />}>
                 <Settings {...matchprops} />
+              </Suspense>
+            )}
+          />
+
+          <MainLayoutRoutes
+            exact
+            path="/content/:category"
+            render={(matchprops) => (
+              <Suspense fallback={<Spinner />}>
+                <Content {...matchprops} />
               </Suspense>
             )}
           />
