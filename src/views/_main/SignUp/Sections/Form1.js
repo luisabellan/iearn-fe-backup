@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import "../signup.scss";
 import {
   Col,
@@ -78,7 +78,7 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
                       )} */}
                 <Col md="12">
                   <FormGroup>
-                    <Label>First Name</Label>
+                    <Label>First Name <span className="required">*</span></Label>
                     <Input
                       id="firstName"
                       name="firstName"
@@ -101,7 +101,7 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
                 </Col>
                 <Col md="12">
                   <FormGroup>
-                    <Label>Last Name</Label>
+                    <Label>Last Name <span className="required">*</span></Label>
                     <Input
                       id="lastName"
                       name="lastName"
@@ -124,7 +124,7 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
                 </Col>
                 <Col md="12">
                   <FormGroup>
-                    <Label>Email</Label>
+                    <Label>Email <span className="required">*</span></Label>
                     <Input
                       id="email"
                       name="email"
@@ -144,7 +144,7 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
                 </Col>
                 <Col md="12">
                   <FormGroup>
-                    <Label>Password</Label>
+                    <Label>Password <span className="required">*</span></Label>
                     <Input
                       id="password"
                       name="password"
@@ -167,7 +167,7 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
                 </Col>
                 <Col md="12">
                   <FormGroup>
-                    <Label for="projectinput3">Confirm Password</Label>
+                    <Label for="projectinput3">Confirm Password <span className="required">*</span></Label>
                     <Input
                       id="confirmPassword"
                       name="confirmPassword"
@@ -199,9 +199,24 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
                       disabled={isLoading}
                       onClick={handleSubmit}
                     >
-                      SIGN UP
+                      NEXT
                     </button>
                   </Col>
+                  <div className="col-md-12">
+                    <p className="subtext text-center mt-2">
+                      Signup with{" "}
+                      <a
+                        href="http://google.com"
+                        className="button-transparent"
+                      >
+                        Google
+                      </a>{" "}
+                      or{" "}
+                      <Link to="/" className="button-transparent">
+                        Social Media Account
+                      </Link>
+                    </p>
+                  </div>
                 </FormGroup>
               </fieldset>
             </Formik>

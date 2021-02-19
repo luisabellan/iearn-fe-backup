@@ -1,5 +1,5 @@
 // import external modules
-import React, { Component, Fragment } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import classnames from "classnames";
 import PerfectScrollbar from "react-perfect-scrollbar";
@@ -18,88 +18,76 @@ import {
   sidebarSize,
 } from "../../../redux/actions/customizer/customizerActions";
 
-class Sidebar extends Component {
-  state = {
-    collapsedSidebar: templateConfig.sidebar.collapsed,
-    width: window.innerWidth,
-  };
-  updateWidth = () => {
-    this.setState((prevState) => ({
-      width: window.innerWidth,
-    }));
+const Sidebar = (props) => {
+  const [collapsedSidebar, setCollapsedSidebar] = useState(
+    templateConfig.sidebar.collapsed
+  );
+  const [width, setWidth] = useState(window.innerWidth);
+
+  const updateWidth = () => {
+    setWidth(window.innerWidth);
   };
 
-  handleCollapsedSidebar = (collapsedSidebar) => {
-    this.setState({ collapsedSidebar });
+  const handleCollapsedSidebar = (collapsedSidebar) => {
+    setCollapsedSidebar({ collapsedSidebar });
   };
 
-  componentDidMount() {
+  useEffect(() => {
     if (window !== "undefined") {
-      window.addEventListener("resize", this.updateWidth, false);
+      window.addEventListener("resize", updateWidth(), false);
     }
-  }
 
-  componentWillUnmount() {
-    if (window !== "undefined") {
-      window.removeEventListener("resize", this.updateWidth, false);
-    }
-  }
-  handleMouseEnter = (e) => {
-    this.setState((prevState) => ({
-      collapsedSidebar: false,
-    }));
+    return () => {
+      if (window !== "undefined") {
+        window.removeEventListener("resize", updateWidth(), false);
+      }
+    };
+  });
+
+  const handleMouseEnter = (e) => {
+    setCollapsedSidebar(false);
   };
 
-  handleMouseLeave = (e) => {
-    this.setState((prevState) => ({
-      collapsedSidebar: true,
-    }));
+  const handleMouseLeave = (e) => {
+    setCollapsedSidebar(true);
   };
 
-  render() {
-    return (
-      <Fragment>
-        <FoldedContentConsumer>
-          {(context) => (
-            <div
-              style={{ backgroundColor: "#0C2340" }}
-              className={classnames(
-                "app-sidebar",
-                {
-                  "": !this.state.collapsedSidebar,
-                  collapsed: this.state.collapsedSidebar,
-                },
-                {
-                  "hide-sidebar":
-                    this.state.width < 991 &&
-                    this.props.sidebarState === "close",
-                  "": this.props.sidebarState === "open",
-                }
-              )}
-              onMouseEnter={
-                context.foldedContent ? this.handleMouseEnter : null
+  return (
+    <Fragment>
+      <FoldedContentConsumer>
+        {(context) => (
+          <div
+            style={{ backgroundColor: "#0C2340" }}
+            className={classnames(
+              "app-sidebar",
+              {
+                "": !collapsedSidebar,
+                collapsed: collapsedSidebar,
+              },
+              {
+                "hide-sidebar": width < 991 && props.sidebarState === "close",
+                "": props.sidebarState === "open",
               }
-              onMouseLeave={
-                context.foldedContent ? this.handleMouseLeave : null
-              }
-            >
-              <SidebarHeader
-                toggleSidebarMenu={this.props.toggleSidebarMenu}
-                sidebarBgColor={this.props.color}
+            )}
+            onMouseEnter={context.foldedContent ? handleMouseEnter() : null}
+            onMouseLeave={context.foldedContent ? handleMouseLeave() : null}
+          >
+            <SidebarHeader
+              toggleSidebarMenu={() => props.toggleSidebarMenu()}
+              sidebarBgColor={props.color}
+            />
+            <PerfectScrollbar className="sidebar-content">
+              <SideMenuContent
+                collapsedSidebar={collapsedSidebar}
+                toggleSidebarMenu={() => props.toggleSidebarMenu()}
               />
-              <PerfectScrollbar className="sidebar-content">
-                <SideMenuContent
-                  collapsedSidebar={this.state.collapsedSidebar}
-                  toggleSidebarMenu={this.props.toggleSidebarMenu}
-                />
-              </PerfectScrollbar>
-            </div>
-          )}
-        </FoldedContentConsumer>
-      </Fragment>
-    );
-  }
-}
+            </PerfectScrollbar>
+          </div>
+        )}
+      </FoldedContentConsumer>
+    </Fragment>
+  );
+};
 
 const mapStateToProps = (state) => ({
   color: state.customizer.sidebarBgColor,

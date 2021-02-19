@@ -81,7 +81,7 @@ const Form2 = ({ currentStep, setCurrentStep, isLoading }) => {
                   <FormGroup id="section-experience">
                     <Row>
                       <Col xs="6" lg="6" className="text-right">
-                        <Label>Fix &amp; Flip</Label>
+                        <Label>Fix &amp; Flip <span className="required">*</span></Label>
                       </Col>
                       <Col xs="6" lg="3">
                         <Input
@@ -98,7 +98,7 @@ const Form2 = ({ currentStep, setCurrentStep, isLoading }) => {
 
                     <Row>
                       <Col xs="6" lg="6" className="text-right">
-                        <Label>Wholesaling</Label>
+                        <Label>Wholesaling <span className="required">*</span></Label>
                       </Col>
                       <Col xs="6" lg="3">
                         <Input
@@ -115,7 +115,7 @@ const Form2 = ({ currentStep, setCurrentStep, isLoading }) => {
 
                     <Row>
                       <Col xs="6" lg="6" className="text-right">
-                        <Label>Flipping</Label>
+                        <Label>Flipping <span className="required">*</span></Label>
                       </Col>
                       <Col xs="6" lg="3">
                         <Input
@@ -132,7 +132,7 @@ const Form2 = ({ currentStep, setCurrentStep, isLoading }) => {
 
                     <Row>
                       <Col xs="6" lg="6" className="text-right">
-                        <Label>Buy &amp; Hold</Label>
+                        <Label>Buy &amp; Hold <span className="required">*</span></Label>
                       </Col>
                       <Col xs="6" lg="3">
                         <Input
@@ -149,7 +149,7 @@ const Form2 = ({ currentStep, setCurrentStep, isLoading }) => {
 
                     <Row>
                       <Col xs="6" lg="6" className="text-right">
-                        <Label>Lease Option</Label>
+                        <Label>Lease Option <span className="required">*</span></Label>
                       </Col>
                       <Col xs="6" lg="3">
                         <Input
@@ -166,7 +166,7 @@ const Form2 = ({ currentStep, setCurrentStep, isLoading }) => {
 
                     <Row>
                       <Col xs="6" lg="6" className="text-right">
-                        <Label>Lending</Label>
+                        <Label>Lending <span className="required">*</span></Label>
                       </Col>
                       <Col xs="6" lg="3">
                         <Input

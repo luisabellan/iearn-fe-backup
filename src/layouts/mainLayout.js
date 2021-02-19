@@ -39,6 +39,7 @@ const MainLayout = (props) => {
 
   const toggleSidebarMenu = (sidebarState) => {
     setSideBarState({ sidebarState });
+    console.log("activated");
   };
 
   return (
@@ -58,13 +59,13 @@ const MainLayout = (props) => {
             })}
           >
             <Sidebar
-              toggleSidebarMenu={toggleSidebarMenu}
+              toggleSidebarMenu={() => toggleSidebarMenu()}
               sidebarState={sidebarState}
               handleSidebarSize={handleSidebarSize}
               handleLayout={handleLayout}
             />
             <Navbar
-              toggleSidebarMenu={toggleSidebarMenu}
+              toggleSidebarMenu={() => toggleSidebarMenu()}
               sidebarState={sidebarState}
             />
             <main>{props.children}</main>
