@@ -1,33 +1,43 @@
 import React, { useEffect } from "react";
-import "./courses.scss";
+import "./videos.scss";
 import { useHistory } from "react-router-dom";
 import {
   Row,
   Col,
   Card,
   CardBody,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
   Table,
 } from "reactstrap";
 import {
+  List,
+  Filter,
   ChevronLeft,
   ChevronRight,
+  ArrowDown,
+  ArrowUp,
 } from "react-feather";
 import { MoreVertical } from "react-feather";
 
 //Assets
+import userImage from "../../../../assets/img/portrait/small/avatar-s-1.png";
 import placeholder from "../_temp/placeholder.png";
 
 //Utils
 import { useWindowDimensions } from "../../Utils/utils";
 import withTitleContext from "../../../../layouts/utils/withContexts/withTitle";
 
-const CourseOverview = (props) => { 
+const AllVideos = (props) => {
   const history = useHistory();
   const { width } = useWindowDimensions();
 
   useEffect(() => {
-    props.setPageTitle("Course Overview");
-  }, []);
+    props.setPageTitle("Videos");
+    props.setActiveSubPage("");
+  });
 
   const handleClick = () => {
     if (width < 1200) {
@@ -41,33 +51,61 @@ const CourseOverview = (props) => {
         <Card>
           <CardBody className="pb-0 courses-container">
             <Row className="pt-2 table-header">
-              <Col xs="4 pr-0" sm="4" md="8" className="pl-lg-3">
-                <h4>Week 0 - Course Foundations</h4>
+              <Col xs="4 pr-0" sm="4" md="6" lg="8" xl="10" className="pl-lg-3">
+                <h4>All Videos</h4>
               </Col>
-              <Col xs="4 px-0" sm="4" md="4">
-                <Row>
-                  <Col xs="6" className="text-right progress-label"><h4>Progress:</h4></Col>
-                  <Col xs="6" className="text-center progress-counter"><h1>1 / 2</h1></Col>
-                </Row>
+              <Col
+                xs="4 px-0"
+                sm="4"
+                md="3"
+                lg="2"
+                xl="1"
+                className="text-right"
+              >
+                <UncontrolledDropdown className="pr-1">
+                  <DropdownToggle className="button-sort button-transparent-2">
+                    <List size={20} color="#333" />
+                    <span className="xs-hidden"> Sort</span>
+                  </DropdownToggle>
+                  <DropdownMenu right>
+                    <DropdownItem>Hello</DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+              </Col>
+              <Col xs="4 px-0" sm="4" md="3" lg="2" xl="1">
+                <UncontrolledDropdown className="pr-1">
+                  <DropdownToggle className="button-sort button-transparent-2">
+                    <Filter size={20} color="#333" />
+                    <span className="xs-hidden"> Filter</span>
+                  </DropdownToggle>
+                  <DropdownMenu right>
+                    <DropdownItem>Hello</DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
               </Col>
             </Row>
             <Row className="table-courses">
-              <Col className="px-0 pt-0">
+              <Col className="px-0 pt-0 pt-lg-4">
                 <Table hover>
                   <thead>
                     <tr>
                       <th>
                         <Row>
-                          <Col xl={{ size: 3 }} className="pl-2 pl-xl-4">
-                            Course Overview
+                          <Col xl={{ size: 4 }} className="pl-2 pl-xl-4">
+                            Video
+                          </Col>
+                          <Col xl={{ size: 2 }} className="text-center">
+                            Upvotes
                           </Col>
                           <Col
                             xl={{ size: 2 }}
                             className="xs-hidden tab-below-hidden text-center"
                           >
-                            Completed?
+                            Published On
                           </Col>
-                          <Col xl={{ size: 6 }}>Upvotes</Col>
+                          <Col xl={{ size: 3 }} className="pr-0 text-center">
+                            Author
+                          </Col>
                           <Col
                             xl={{ size: 1 }}
                             className="xs-hidden tab-below-hidden"
@@ -86,10 +124,10 @@ const CourseOverview = (props) => {
                     >
                       <td>
                         <Row>
-                          <Col xl={{ size: 3 }} className="pl-2 pl-xl-4">
+                          <Col xl={{ size: 4 }} className="pl-2 pl-xl-4">
                             <Row>
                               <Col
-                                sm="5"
+                                sm="3"
                                 className="text-center tab-below-hidden"
                               >
                                 <img
@@ -98,111 +136,52 @@ const CourseOverview = (props) => {
                                   className="width-100"
                                 />
                               </Col>
-                              <Col xs="12" xl="7" className="pr-1 pl-2 pl-xl-0">
-                                <p className="title">Lesson 1</p>
+                              <Col xs="12" xl="9" className="pr-1 pl-2 pl-xl-0">
+                                <p className="title">
+                                  Balloons - Bonus Call
+                                </p>
                                 <p className="history">Updated 1 day ago</p>
                               </Col>
                             </Row>
+                          </Col>
+                          <Col xl={{ size: 2 }} className="text-center">
+                            <p className="title">
+                              <button className="button-transparent-2">
+                                <ArrowDown size="22" color="#c5c7cd" />
+                              </button>
+                              &ensp;18&ensp;
+                              <button className="button-transparent-2">
+                                <ArrowUp size="22" color="#0c2340" />
+                              </button>
+                            </p>
                           </Col>
                           <Col
                             xl={{ size: 2 }}
                             className="xs-hidden tab-below-hidden text-center"
                           >
-                            <p className="title">Yes</p>
-                            <p className="history">on 24.05.2019 </p>
+                            <p className="title">May 12, 2019</p>
+                            <p className="history">6:30 PM</p>
                           </Col>
-                          <Col xl={{ size: 2 }}>
-                            <p className="title">
-                              <button className="button-transparent-2 font-weight-bold">
-                                Lesson Resources
-                              </button>
-                            </p>
-                          </Col>
-                          <Col xl={{ size: 2 }}>
-                            <p className="title">
-                              <button className="button-transparent-2 font-weight-bold">
-                                Public Notes
-                              </button>
-                            </p>
-                          </Col>
-                          <Col xl={{ size: 2 }}>
-                            <p className="title">
-                              <button className="button-transparent-2 font-weight-bold">
-                                Personal Notes
-                              </button>
-                            </p>
-                          </Col>
-
-                          <Col
-                            xl={{ size: 1 }}
-                            className="xs-hidden tab-below-hidden"
-                          >
-                            <button
-                              className="button-transparent-2"
-                              onClick={() => {
-                                history.push(`/content/courses/asdasd/asdasd`);
-                              }}
-                            >
-                              <MoreVertical size={20} color="#000" />
-                            </button>
-                          </Col>
-                        </Row>
-                      </td>
-                    </tr>
-                    <tr
-                      onClick={() => {
-                        handleClick();
-                      }}
-                    >
-                      <td>
-                        <Row>
-                          <Col xl={{ size: 3 }} className="pl-2 pl-xl-4">
+                          <Col xl={{ size: 3 }} className="pr-0">
                             <Row>
                               <Col
-                                sm="5"
-                                className="text-center tab-below-hidden"
+                                className="text-right tab-below-hidden"
+                                xl={{ size: 5 }}
                               >
                                 <img
-                                  src={placeholder}
+                                  src={userImage}
                                   alt="logged-in-user"
-                                  className="width-100"
+                                  className="rounded-circle width-50"
                                 />
                               </Col>
-                              <Col xs="12" xl="7" className="pr-1 pl-2 pl-xl-0">
-                                <p className="title">Lesson 2</p>
-                                <p className="history">Updated 1 day ago</p>
+                              <Col
+                                className="pr-1 pl-2 pl-xl-0"
+                                xl={{ size: 7 }}
+                              >
+                                <p className="title">Barnes, Elle</p>
                               </Col>
                             </Row>
                           </Col>
-                          <Col
-                            xl={{ size: 2 }}
-                            className="xs-hidden tab-below-hidden text-center"
-                          >
-                            <p className="title">No</p>
-                            <p className="history">on 24.05.2019 </p>
-                          </Col>
-                          <Col xl={{ size: 2 }}>
-                            <p className="title">
-                              <button className="button-transparent-2 font-weight-bold">
-                                Lesson Resources
-                              </button>
-                            </p>
-                          </Col>
-                          <Col xl={{ size: 2 }}>
-                            <p className="title">
-                              <button className="button-transparent-2 font-weight-bold">
-                                Public Notes
-                              </button>
-                            </p>
-                          </Col>
-                          <Col xl={{ size: 2 }}>
-                            <p className="title">
-                              <button className="button-transparent-2 font-weight-bold">
-                                Personal Notes
-                              </button>
-                            </p>
-                          </Col>
-
                           <Col
                             xl={{ size: 1 }}
                             className="xs-hidden tab-below-hidden"
@@ -210,7 +189,7 @@ const CourseOverview = (props) => {
                             <button
                               className="button-transparent-2"
                               onClick={() => {
-                                history.push(`/content/courses/asdasd/asdasd`);
+                                history.push(`/content/courses/asdasd`);
                               }}
                             >
                               <MoreVertical size={20} color="#000" />
@@ -254,4 +233,4 @@ const CourseOverview = (props) => {
   );
 };
 
-export default withTitleContext(CourseOverview);
+export default withTitleContext(AllVideos);

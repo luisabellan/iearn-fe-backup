@@ -1,80 +1,89 @@
 // import external modules
-import React, { useState, useEffect } from "react";
+import React, { PureComponent } from "react";
 import classnames from "classnames";
-import { withRouter } from "react-router-dom";
 
 // import internal(own) modules
-import {
-  FoldedContentConsumer,
-  FoldedContentProvider,
-} from "../utility/context/toggleContentContext";
+import { FoldedContentConsumer, FoldedContentProvider } from "../utility/context/toggleContentContext";
 import Sidebar from "./components/sidebar/sidebar";
 import Navbar from "./components/navbar/navbar";
 import Footer from "./components/footer/footer";
 import templateConfig from "../templateConfig";
 
-const MainLayout = (props) => {
-  const [width, setWidth] = useState(window.innerWidth);
-  const [sidebarState, setSideBarState] = useState("close");
-  const [sidebarSize, setSidebarSize] = useState("");
-  const [layout, setLayout] = useState("");
+class MainLayout extends PureComponent {
+   state = {
+      width: window.innerWidth,
+      sidebarState: "close",
+      sidebarSize: '',
+      layout: ''
+   };
 
-  const updateWidth = () => {
-    setWidth(window.innerWidth);
-  };
+   updateWidth = () => {
+      this.setState(prevState => ({
+         width: window.innerWidth
+      }));
+   };
 
-  const handleSidebarSize = (sidebarSize) => {
-    setSidebarSize({ sidebarSize });
-  };
+   handleSidebarSize = (sidebarSize) => {
+      this.setState({ sidebarSize });
+   }
 
-  const handleLayout = (layout) => {
-    setLayout({ layout });
-  };
+   handleLayout = (layout) => {
+      this.setState({ layout });
+   }
 
-  useEffect(() => {
-    if (window !== "undefined") {
-      window.addEventListener("resize", updateWidth, false);
-    }
-  }, []);
+   componentDidMount() {
+      if (window !== "undefined") {
+         window.addEventListener("resize", this.updateWidth, false);
+      }
+   }
 
-  const toggleSidebarMenu = (sidebarState) => {
-    setSideBarState({ sidebarState });
-    console.log("activated");
-  };
+   componentWillUnmount() {
+      if (window !== "undefined") {
+         window.removeEventListener("resize", this.updateWidth, false);
+      }
+   }
 
-  return (
-    <FoldedContentProvider>
-      <FoldedContentConsumer>
-        {(context) => (
-          <div
-            className={classnames("wrapper ", {
-              "menu-collapsed": context.foldedContent || width < 991,
-              "main-layout": !context.foldedContent,
-              [`${templateConfig.sidebar.size}`]: sidebarSize === "",
-              [`${sidebarSize}`]: sidebarSize !== "",
-              //    "layout-dark": (layout === 'layout-dark'),
-              //    " layout-dark": (layout === '' && templateConfig.layoutDark === true)
-              [`${templateConfig.layoutColor}`]: layout === "",
-              [`${layout}`]: layout !== "",
-            })}
-          >
-            <Sidebar
-              toggleSidebarMenu={() => toggleSidebarMenu()}
-              sidebarState={sidebarState}
-              handleSidebarSize={handleSidebarSize}
-              handleLayout={handleLayout}
-            />
-            <Navbar
-              toggleSidebarMenu={() => toggleSidebarMenu()}
-              sidebarState={sidebarState}
-            />
-            <main>{props.children}</main>
-            <Footer />
-          </div>
-        )}
-      </FoldedContentConsumer>
-    </FoldedContentProvider>
-  );
-};
+   toggleSidebarMenu(sidebarState) {
+      this.setState({ sidebarState });
+   }
 
-export default withRouter(MainLayout);
+   render() {
+      return (
+            <FoldedContentProvider>
+               <FoldedContentConsumer>
+                  {context => (
+                  
+                     <div
+                        className={classnames("wrapper ", {
+                           "menu-collapsed": context.foldedContent || this.state.width < 991,
+                           "main-layout": !context.foldedContent,
+                           [`${templateConfig.sidebar.size}`]: (this.state.sidebarSize === ''),
+                           [`${this.state.sidebarSize}`]: (this.state.sidebarSize !== ''),
+                        //    "layout-dark": (this.state.layout === 'layout-dark'),
+                        //    " layout-dark": (this.state.layout === '' && templateConfig.layoutDark === true)
+                           [`${templateConfig.layoutColor}`]: (this.state.layout === ''),
+                           [`${this.state.layout}`]: (this.state.layout !== '')
+                        })}
+                     >
+
+                        <Sidebar
+                           toggleSidebarMenu={this.toggleSidebarMenu.bind(this)}
+                           sidebarState={this.state.sidebarState}
+                           handleSidebarSize={this.handleSidebarSize.bind(this)}
+                           handleLayout={this.handleLayout.bind(this)}
+                        />
+                        <Navbar
+                           toggleSidebarMenu={this.toggleSidebarMenu.bind(this)}
+                           sidebarState={this.state.sidebarState}
+                        />
+                        <main>{this.props.children}</main>
+                        <Footer />
+                     </div>
+                  )}
+               </FoldedContentConsumer>
+            </FoldedContentProvider>
+      );
+   }
+}
+
+export default MainLayout;

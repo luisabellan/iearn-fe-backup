@@ -17,7 +17,10 @@ const SupportDetails = lazy(() =>
 );
 const Settings = lazy(() => import("../views/_main/Settings"));
 const Calendar = lazy(() => import("../views/_main/Calendar"));
-const Content = lazy(() => import("../views/_main/Content"));
+const Courses = lazy(() => import("../views/_main/Content/Courses"));
+const Videos = lazy(() => import("../views/_main/Content/Videos"));
+const Files = lazy(() => import("../views/_main/Content/Files"));
+const FAQs = lazy(() => import("../views/_main/Content/FAQs"));
 
 // Full Layout
 const Login = lazy(() => import("../views/_main/Login"));
@@ -77,12 +80,65 @@ class Router extends Component {
             )}
           />
 
+          {/*Content Category*/}
           <MainLayoutRoutes
             exact
-            path="/content/:category"
+            path="/content/courses"
             render={(matchprops) => (
               <Suspense fallback={<Spinner />}>
-                <Content {...matchprops} />
+                <Courses {...matchprops} />
+              </Suspense>
+            )}
+          />
+
+          {/*All Courses Viewer*/}
+          <MainLayoutRoutes
+            exact
+            path="/content/courses/:id"
+            render={(matchprops) => (
+              <Suspense fallback={<Spinner />}>
+                <Courses {...matchprops} />
+              </Suspense>
+            )}
+          />
+
+          {/*Course Lessons Viewer*/}
+          <MainLayoutRoutes
+            exact
+            path="/content/courses/:courseId/:id"
+            render={(matchprops) => (
+              <Suspense fallback={<Spinner />}>
+                <Courses {...matchprops} />
+              </Suspense>
+            )}
+          />
+
+          <MainLayoutRoutes
+            exact
+            path="/content/videos"
+            render={(matchprops) => (
+              <Suspense fallback={<Spinner />}>
+                <Videos {...matchprops} />
+              </Suspense>
+            )}
+          />
+
+          <MainLayoutRoutes
+            exact
+            path="/content/faqs"
+            render={(matchprops) => (
+              <Suspense fallback={<Spinner />}>
+                <FAQs {...matchprops} />
+              </Suspense>
+            )}
+          />
+
+          <MainLayoutRoutes
+            exact
+            path="/content/files"
+            render={(matchprops) => (
+              <Suspense fallback={<Spinner />}>
+                <Files {...matchprops} />
               </Suspense>
             )}
           />

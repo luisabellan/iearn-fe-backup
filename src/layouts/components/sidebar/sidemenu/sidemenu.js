@@ -1,5 +1,5 @@
 // import external modules
-import React from "react";
+import React, {useEffect} from "react";
 import {useLocation} from "react-router-dom";
 
 import {
@@ -30,6 +30,9 @@ import { NavLink } from "react-router-dom";
 import "../../../../assets/scss/components/sidebar/sidemenu/sidemenu.scss";
 // import internal(own) modules
 import SideMenu from "../sidemenuHelper";
+
+//Context
+import withTitleContext from "../../../utils/withContexts/withTitle";
 
 const SideMenuContent = props => {
    const location = useLocation();
@@ -86,7 +89,7 @@ const SideMenuContent = props => {
             ArrowRight={<ChevronRight size={22} />}
             collapsedSidebar={props.collapsedSidebar}
          >
-            <NavLink to="/content/courses" exact className="item" activeclassname="active">
+            <NavLink to="/content/courses" exact className={`item ${props.activeSubPage === "Courses" ? "active" : ""}`} activeclassname="active">
                <i className="menu-icon"><Video size={22} /></i> <span className="menu-item-text">Courses</span>
             </NavLink>
             <NavLink to="/content/videos" exact className="item" activeclassname="active">
@@ -95,7 +98,7 @@ const SideMenuContent = props => {
             <NavLink to="/content/files" exact className="item" activeclassname="active">
                <i className="menu-icon"><File size={22} /></i> <span className="menu-item-text">Files</span>
             </NavLink>
-            <NavLink to="/content/faq" exact className="item" activeclassname="active">
+            <NavLink to="/content/faqs" exact className="item" activeclassname="active">
                <i className="menu-icon"><HelpCircle size={22} /></i> <span className="menu-item-text">FAQ</span>
             </NavLink>
          </SideMenu.MenuMultiItems>
@@ -179,4 +182,4 @@ const SideMenuContent = props => {
    );
 }
 
-export default SideMenuContent;
+export default withTitleContext(SideMenuContent);
