@@ -206,7 +206,7 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
                     <p className="subtext text-center mt-2">
                       Signup with{" "}
                       <a
-                        href="http://google.com"
+                        href="."
                         className="button-transparent"
                       >
                         Google

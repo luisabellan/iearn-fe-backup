@@ -4,7 +4,7 @@ import {Switch, Redirect} from "react-router-dom";
 const Home = () => {
   return (
     <Switch>
-      <Redirect from="/" to="/overview"/>
+      <Redirect from="/" to="/login"/>
     </Switch>
   )
 };

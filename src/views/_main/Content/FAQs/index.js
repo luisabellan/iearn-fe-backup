@@ -178,9 +178,6 @@ const Faqs = (props) => {
                           >
                             <button
                               className="button-transparent-2"
-                              onClick={() => {
-                                history.push(`/content/courses/asdasd`);
-                              }}
                             >
                               <MoreVertical size={20} color="#000" />
                             </button>

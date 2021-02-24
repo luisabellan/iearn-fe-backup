@@ -22,7 +22,7 @@ const Login = () => {
   let history = useHistory();
 
   const LoginSchema = Yup.object().shape({
-    email: Yup.string().required("Email field is required"),
+    email: Yup.string().email("Please enter a valid email address").required("Email field is required"),
     password: Yup.string().required("Password field is required"),
   });
 
@@ -32,7 +32,7 @@ const Login = () => {
   };
 
   const onSubmit = () => {
-    console.log("Submitted");
+    history.push("/overview");
   };
 
   //   const { error, loading, login } = useAuth();
