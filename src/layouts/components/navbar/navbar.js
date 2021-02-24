@@ -1,49 +1,54 @@
-// import external modules
-import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useLocation, withRouter } from "react-router-dom";
 import {
-  Form,
+  // Form,
   Media,
-  Collapse,
+  // Collapse,
   Navbar,
   Nav,
   NavItem,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem,
+  // DropdownItem,
+  Row,
+  Col,
 } from "reactstrap";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import {
   // Moon,
-  Mail,
-  Menu,
+  // Mail,
+  // Menu,
   MoreVertical,
   Check,
   Bell,
-  User,
+  // User,
   AlertTriangle,
-  Inbox,
-  Phone,
-  Calendar,
-  Lock,
+  // Inbox,
+  // Phone,
+  // Calendar,
+  // Lock,
   X,
-  LogOut,
+  // LogOut,
   Search,
 } from "react-feather";
 // import NavbarSearch from "../../../components/search/Search";
 // import ReactCountryFlag from "react-country-flag";
 
+import { useWindowDimensions } from "../../utils/utils";
+
+//Assets
 import userImage from "../../../assets/img/portrait/small/avatar-s-1.png";
 import userImage2 from "../../../assets/img/portrait/small/avatar-s-2.png";
 import userImage3 from "../../../assets/img/portrait/small/avatar-s-3.png";
 import userImage4 from "../../../assets/img/portrait/small/avatar-s-4.png";
+import logo from "../../../assets/img/_main/logo.svg";
+
+//Utils
+import withTitleContext from "../../utils/withContexts/withTitle";
 
 const ThemeNavbar = (props) => {
-  const [
-    isOpen,
-    // setIsOpen
-  ] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
   const location = useLocation();
 
@@ -53,49 +58,93 @@ const ThemeNavbar = (props) => {
     name = name.split("-");
 
     let header = "";
-    name.forEach((x) => (header += ` ${x}`));
-    header.trim();
+    if (!props.pageTitle) {
+      name.forEach((x) => (header += ` ${x}`));
+      header.trim();
 
-    if (location.pathname === "/") {
-      header = "Home";
+      if (location.pathname === "/") {
+        header = "Home";
+      }
+
+      if (location.pathname.includes("account")) {
+        header = "Account Settings";
+      }
+
+      if (location.pathname.includes("contact")) {
+        header = "Contact Settings";
+      }
+
+      if (location.pathname.includes("support")) {
+        header = "Support";
+      }
+
+      if (!header) {
+        return null;
+      }
+    } else {
+      header = props.pageTitle;
     }
 
-    return header;
+    return (
+      <h2 className="text-capitalize text-blue font-weight-bold mobile-hidden tablet-hidden">
+        {header}
+      </h2>
+    );
   };
 
-  //   const handleClick = (e) => {
-  //     props.toggleSidebarMenu("open");
-  //   };
+  const handleClick = (e) => {
+    props.toggleSidebarMenu("open");
+  };
 
-  //   const toggle = () => {
-  //     setIsOpen(!isOpen);
-  //   };
+  // useEffect(() => {
+  //   console.log(props);
+  // }, []);
+
+  useEffect(
+    () =>
+      props.history.listen(() => {
+        props.setPageTitle("");
+      }),
+    []
+  );
+
+  // const toggle = () => {
+  //   setIsOpen(!isOpen);
+  // };
+
+  const { width } = useWindowDimensions();
 
   return (
-    <Navbar className="navbar navbar-expand-lg navbar-light bg-faded">
-      <div className="container-fluid px-0">
-        <div className="navbar-header">
-          <h2 className="text-capitalize text-blue font-weight-bold">
+    <>
+      <Navbar className="navbar navbar-expand-lg navbar-light bg-faded">
+        <div className="container-fluid px-0">
+          <div className="navbar-header">
             {getPageName()}
-          </h2>
-          {/* <Menu
+            {/* <Menu
             size={14}
             className="navbar-toggle d-lg-none float-left"
             onClick={() => handleClick()}
             data-toggle="collapse"
-          />
-          <Form className="navbar-form mt-1 float-left" role="search">
-            <NavbarSearch />
-          </Form>
-          <MoreVertical
-            className="mt-1 navbar-toggler black no-border float-right"
-            size={50}
-            onClick={() => toggle()}
           /> */}
-        </div>
 
-        <div className="navbar-container">
-          <Collapse isOpen={isOpen} navbar>
+            <div className="logo-container float-left tab-hidden desktop-hidden">
+              <div>
+                <img src={logo} alt="Logo" />
+              </div>
+              <div>
+                <span>Subto</span>
+              </div>
+            </div>
+
+            <MoreVertical
+              className="mt-1 navbar-toggler black no-border float-right tab-hidden"
+              size={50}
+              onClick={() => handleClick()}
+              color={width < 991 ? `#fff` : `#333`}
+            />
+          </div>
+
+          <div className="navbar-container">
             <Nav className="ml-auto float-right" navbar>
               {/* <UncontrolledDropdown nav inNavbar className="pr-1">
                 <DropdownToggle nav>
@@ -119,7 +168,7 @@ const ThemeNavbar = (props) => {
               <NavItem className="pr-1">
                 <div className="nav-link">
                   <button className="button-transparent">
-                    <Search size={20} color="#333" />
+                    <Search size={20} color={width < 991 ? `#fff` : `#333`} />
                   </button>
                 </div>
               </NavItem>
@@ -129,6 +178,7 @@ const ThemeNavbar = (props) => {
                   <Bell
                     size={21}
                     className="text-dark notification-danger animate-shake"
+                    color={width < 991 ? `#fff` : `#333`}
                   />
                 </DropdownToggle>
                 <DropdownMenu right className="notification-dropdown">
@@ -272,7 +322,9 @@ const ThemeNavbar = (props) => {
               <NavItem className="pr-1">
                 <div className="nav-link">
                   <button className="button-transparent-2 button-profile">
-                    Jones Ferdinand
+                    <span className="mobile-hidden tablet-hidden">
+                      Jones Ferdinand
+                    </span>
                     <img
                       src={userImage}
                       alt="logged-in-user"
@@ -282,11 +334,15 @@ const ThemeNavbar = (props) => {
                 </div>
               </NavItem>
             </Nav>
-          </Collapse>
+          </div>
         </div>
+      </Navbar>
+
+      <div className="text-capitalize text-blue font-weight-bold mt-3 tab-hidden desktop-hidden">
+        {getPageName()}
       </div>
-    </Navbar>
+    </>
   );
 };
 
-export default ThemeNavbar;
+export default withTitleContext(withRouter(ThemeNavbar));

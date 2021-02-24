@@ -122,7 +122,8 @@
       width: 200px;
    }
    .notification-dropdown {
-      width: 300px;
+      width: 100vw;
+      right: -93px;
       .noti-wrapper {
          white-space: initial;
       }
@@ -132,9 +133,6 @@
 @media (max-width: 320px) {
    .navbar-right {
       display: none;
-   }
-   .notification-dropdown {
-      width: 250px;
    }
 }
 

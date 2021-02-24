@@ -18,6 +18,28 @@ $main-transition: 0.2s ease-in-out all;
     color: white;
     transition: $main-transition;
   }
+
+  @media (max-width: 767px) {
+    font-size: 20px;
+    padding: 10px 15px;
+    margin: 0 5px !important;
+  }
+}
+
+.button-submain {
+  border: 2px solid $main-color;
+  background: transparent;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 10px;
+  transition: $main-transition;
+
+  &:hover {
+    background:$main-color;
+    color: white;
+    transition: $main-transition;
+  }
 }
 
 .button-transparent {
@@ -27,6 +49,10 @@ $main-transition: 0.2s ease-in-out all;
   padding: 0;
   text-decoration: underline;
   font-weight: 600;
+
+  &:hover {
+    color: $main-color;
+  }
 }
 
 .button-transparent-2 {
@@ -37,6 +63,7 @@ $main-transition: 0.2s ease-in-out all;
   font-weight: 600;
 
   &:hover {
+    color: $main-color;
     text-decoration: underline;
   }
 }
@@ -60,7 +87,7 @@ $main-transition: 0.2s ease-in-out all;
 }
 
 .text-blue {
-  color: $main-color;
+  color: $main-color !important;
 }
 
 //Letter Spacings
@@ -82,4 +109,48 @@ $main-transition: 0.2s ease-in-out all;
 
 .ls-5 {
   letter-spacing: 0.25em;
+}
+
+
+.no-size-padding {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+
+//Hidden
+.xs-hidden {
+  @media (max-width: 374px) {
+    display: none !important;
+  }
+}
+
+.mobile-hidden {
+  @media (max-width: 767px) {
+    display: none !important;
+  }
+}
+
+.tablet-hidden {
+  @media (min-width: 768px) and (max-width: 990px) {
+    display: none !important;
+  }
+}
+
+.tab-hidden {
+  @media (min-width: 991px) and (max-width: 1199px) {
+    display: none !important;
+  }
+}
+
+.tab-below-hidden {
+  @media (max-width: 1199px) {
+    display: none !important;
+  }
+}
+
+.desktop-hidden {
+  @media (min-width: 1200px) {
+    display: none !important;
+  }
 }

@@ -7,6 +7,8 @@ import SwipeableViews from "react-swipeable-views";
 import Form1 from "./Sections/Form1";
 import Form2 from "./Sections/Form2";
 import Form3 from "./Sections/Form3";
+import Form4 from "./Sections/Form4";
+import Form5 from "./Sections/Form5";
 
 const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -30,7 +32,9 @@ const SignUp = () => {
           >
             <Form1 {...{ isLoading, currentStep, setCurrentStep }} />
             <Form2 {...{ isLoading, currentStep, setCurrentStep }} />
-            <Form3 {...{ currentStep }} />
+            <Form3 {...{ isLoading, currentStep, setCurrentStep }} />
+            <Form4 {...{ isLoading, currentStep, setCurrentStep }} />
+            <Form5 {...{ currentStep }} />
           </SwipeableViews>
         </Col>
       </Row>

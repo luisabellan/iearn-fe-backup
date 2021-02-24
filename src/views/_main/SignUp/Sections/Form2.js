@@ -44,7 +44,7 @@ const Form2 = ({ currentStep, setCurrentStep, isLoading }) => {
 
   return (
     <Card className="card-signup">
-      <h1 className="text-center">New Member Onboarding</h1>
+      <h1 className="text-center">Sign Up</h1>
       <CardBody>
         <p className="text-center text-blue">
           Add your social media and earn a hat!
@@ -143,18 +143,18 @@ const Form2 = ({ currentStep, setCurrentStep, isLoading }) => {
                     <button
                       type="submit"
                       color="primary"
-                      block
                       className="button-main set-transparent ls-5"
                       disabled={isLoading}
-                      onClick={handleSubmit}
+                      onClick={() => {
+                        setCurrentStep(0);
+                      }}
                     >
-                      SKIP
+                      BACK
                     </button>
 
                     <button
                       type="submit"
                       color="primary"
-                      block
                       className="button-main ml-2 ls-5"
                       disabled={isLoading}
                       onClick={handleSubmit}
@@ -167,7 +167,7 @@ const Form2 = ({ currentStep, setCurrentStep, isLoading }) => {
             </Formik>
           )}
         </Formik>
-        <Progress {...{currentStep}} />
+        <Progress {...{ currentStep }} />
       </CardBody>
     </Card>
   );

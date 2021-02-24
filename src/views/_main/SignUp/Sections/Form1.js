@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory, Link } from "react-router-dom";
 import "../signup.scss";
 import {
   Col,
@@ -17,6 +18,8 @@ import classNames from "classnames";
 import Progress from "./Progress";
 
 const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
+  let history = useHistory();
+
   const signUpSchema = Yup.object().shape({
     firstName: Yup.string()
       .min(2, "Firstname too short")
@@ -51,7 +54,7 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
 
   return (
     <Card className="card-signup">
-      <h1 className="text-center">New Member Onboarding</h1>
+      <h1 className="text-center">Sign Up</h1>
       <CardBody>
         <Formik
           initialValues={form1}
@@ -75,7 +78,7 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
                       )} */}
                 <Col md="12">
                   <FormGroup>
-                    <Label>First Name</Label>
+                    <Label>First Name <span className="required">*</span></Label>
                     <Input
                       id="firstName"
                       name="firstName"
@@ -98,7 +101,7 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
                 </Col>
                 <Col md="12">
                   <FormGroup>
-                    <Label>Last Name</Label>
+                    <Label>Last Name <span className="required">*</span></Label>
                     <Input
                       id="lastName"
                       name="lastName"
@@ -121,7 +124,7 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
                 </Col>
                 <Col md="12">
                   <FormGroup>
-                    <Label>Email</Label>
+                    <Label>Email <span className="required">*</span></Label>
                     <Input
                       id="email"
                       name="email"
@@ -141,7 +144,7 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
                 </Col>
                 <Col md="12">
                   <FormGroup>
-                    <Label>Password</Label>
+                    <Label>Password <span className="required">*</span></Label>
                     <Input
                       id="password"
                       name="password"
@@ -164,7 +167,7 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
                 </Col>
                 <Col md="12">
                   <FormGroup>
-                    <Label for="projectinput3">Confirm Password</Label>
+                    <Label for="projectinput3">Confirm Password <span className="required">*</span></Label>
                     <Input
                       id="confirmPassword"
                       name="confirmPassword"
@@ -192,20 +195,45 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
                     <button
                       type="submit"
                       color="primary"
-                      block
                       className="button-main ls-2"
                       disabled={isLoading}
                       onClick={handleSubmit}
                     >
-                      SIGN UP
+                      NEXT
                     </button>
                   </Col>
+                  <div className="col-md-12">
+                    <p className="subtext text-center mt-2">
+                      Signup with{" "}
+                      <a
+                        href="."
+                        className="button-transparent"
+                      >
+                        Google
+                      </a>{" "}
+                      or{" "}
+                      <Link to="/" className="button-transparent">
+                        Social Media Account
+                      </Link>
+                    </p>
+                  </div>
                 </FormGroup>
               </fieldset>
             </Formik>
           )}
         </Formik>
-        <Progress {...{currentStep}} />
+        <Progress {...{ currentStep }} />
+        <Col md="12" className="text-center mt-3">
+          <p>
+            Already have an account?{" "}
+            <button
+              className="button-transparent"
+              onClick={() => history.push("/login")}
+            >
+              Login
+            </button>
+          </p>
+        </Col>
       </CardBody>
     </Card>
   );

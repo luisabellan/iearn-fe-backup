@@ -56,7 +56,7 @@ class SideMenuHelper extends PureComponent {
 
    static MenuMultiItems = props => (
       <Fragment>
-         <li className={`has-sub nav-item  ${props.selected === true && props.collapsedSidebar === false ? `open` : ""}`}>
+         <li className={`has-sub nav-item  ${props.selected === true && props.collapsedSidebar === false ? `open` : ""}`} onClick={() => props.onClick()}>
              {/* eslint-disable-next-line */}
             <a
                onClick={() => {
