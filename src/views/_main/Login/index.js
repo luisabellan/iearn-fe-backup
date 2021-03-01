@@ -11,13 +11,18 @@ import {
   Card,
   CardBody,
   FormFeedback,
+  Alert
 } from "reactstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import classNames from "classnames";
 
-const Login = () => {
+//Context Providers
+import withUserContext from "../../../layouts/utils/withContexts/withUser";
+
+const Login = (props) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false)
 
   let history = useHistory();
 
@@ -31,8 +36,22 @@ const Login = () => {
     password: "",
   };
 
-  const onSubmit = () => {
-    history.push("/overview");
+  const onSubmit = (values) => {
+    if(values.email === "admin@subto.com" && values.password === "Abcd1234!") {
+      history.push("/overview");
+      props.setType("admin");
+      props.setName("Jake Peralta");
+    } else if(values.email === "mentor@subto.com" && values.password === "Abcd1234!") {
+      history.push("/overview");
+      props.setType("mentor");
+      props.setName("Amy Santiago")
+    } else if(values.email === "user@subto.com" && values.password === "Abcd1234!") {
+      history.push("/overview");
+      props.setType("user");
+      props.setName("Charles Boyle")
+    } else {
+      setError(true);
+    }
   };
 
   //   const { error, loading, login } = useAuth();
@@ -62,11 +81,11 @@ const Login = () => {
                 }) => (
                   <Formik className="pt-2">
                     <fieldset disabled={isLoading}>
-                      {/* {error && (
+                      {error && (
                         <Alert color='warning' fade={false}>
-                          {error}
+                          Incorrect Email/Password
                         </Alert>
-                      )} */}
+                      )}
                       <Col md="12">
                         <FormGroup>
                           <Label>Email</Label>
@@ -118,7 +137,7 @@ const Login = () => {
                           <button
                             type="submit"
                             color="primary"
-                            block
+                            block="true"
                             className="button-main"
                             disabled={isLoading}
                             onClick={handleSubmit}
@@ -147,4 +166,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default withUserContext(Login);

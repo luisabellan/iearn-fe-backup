@@ -46,6 +46,8 @@ import logo from "../../../assets/img/_main/logo.svg";
 
 //Utils
 import withTitleContext from "../../utils/withContexts/withTitle";
+import withUserContext from "../../utils/withContexts/withUser";
+import { useFilters } from "react-table";
 
 const ThemeNavbar = (props) => {
   // const [isOpen, setIsOpen] = useState(false);
@@ -107,6 +109,7 @@ const ThemeNavbar = (props) => {
       }),
     []
   );
+
 
   // const toggle = () => {
   //   setIsOpen(!isOpen);
@@ -323,7 +326,7 @@ const ThemeNavbar = (props) => {
                 <div className="nav-link">
                   <button className="button-transparent-2 button-profile">
                     <span className="mobile-hidden tablet-hidden">
-                      Jones Ferdinand
+                      {props.name}
                     </span>
                     <img
                       src={userImage}
@@ -345,4 +348,4 @@ const ThemeNavbar = (props) => {
   );
 };
 
-export default withTitleContext(withRouter(ThemeNavbar));
+export default withTitleContext(withUserContext(withRouter(ThemeNavbar)));
