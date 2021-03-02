@@ -1,0 +1,29 @@
+.profile-container {
+  .profile-picture {
+    text-align: center;
+    img {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+
+  .profile-info {
+    h3 {
+      @media (max-width: 767px) {
+        font-size: 20px;
+      }
+
+      @media (max-width: 576px) { 
+        font-size: 12px;
+      }
+    }
+  }
+
+  
+
+  p {
+    @media (max-width: 576px) { 
+      font-size: 12px;
+    }
+  }
+}

@@ -105,7 +105,7 @@ const SupportDetails = () => {
                   onClick={() => history.push(`/support`)}
                 >
                   <ChevronLeft size="22" color="#ccc" />
-                  <span className="mobile-hidden tablet-hidden tab-hidden">
+                  <span className="sm-hidden mobile-hidden tablet-hidden tab-hidden">
                     {" "}
                     Back
                   </span>
@@ -115,7 +115,7 @@ const SupportDetails = () => {
                 <Row>
                   <Col
                     xs="3"
-                    className="text-center mobile-hidden tablet-hidden"
+                    className="text-center sm-hidden mobile-hidden tablet-hidden"
                   >
                     <img
                       src={userImage}
@@ -131,7 +131,7 @@ const SupportDetails = () => {
               </Col>
               <Col
                 lg={{ size: 4, order: 3 }}
-                className="mobile-hidden tablet-hidden tab-hidden"
+                className="sm-hiddenmobile-hidden tablet-hidden tab-hidden"
               >
                 <p className="title">Contact Email not Linked</p>
               </Col>

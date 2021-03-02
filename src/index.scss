@@ -8,6 +8,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
 }
 
+
 .button-main {
   border: 2px solid $main-color;
   background: transparent;
@@ -129,8 +130,14 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.sm-hidden {
+  @media (max-width: 568px) {
+    display: none !important;
+  }
+}
+
 .mobile-hidden {
-  @media (max-width: 767px) {
+  @media (min-width: 567px) and (max-width: 767px) {
     display: none !important;
   }
 }

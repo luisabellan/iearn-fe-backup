@@ -88,7 +88,7 @@ const ThemeNavbar = (props) => {
     }
 
     return (
-      <h2 className="text-capitalize text-blue font-weight-bold mobile-hidden tablet-hidden">
+      <h2 className="text-capitalize text-blue font-weight-bold">
         {header}
       </h2>
     );
@@ -122,6 +122,20 @@ const ThemeNavbar = (props) => {
       <Navbar className="navbar navbar-expand-lg navbar-light bg-faded">
         <div className="container-fluid px-0">
           <div className="navbar-header">
+          <div className="logo-container float-left tab-hidden desktop-hidden">
+              <div>
+                <img src={logo} alt="Logo" />
+              </div>
+              <div>
+                <span>Subto</span>
+              </div>
+            </div>
+            <MoreVertical
+              className="mt-1 navbar-toggler black no-border float-right tab-hidden"
+              size={50}
+              onClick={() => handleClick()}
+              color={width < 991 ? `#fff` : `#333`}
+            />
             {getPageName()}
             {/* <Menu
             size={14}
@@ -130,21 +144,7 @@ const ThemeNavbar = (props) => {
             data-toggle="collapse"
           /> */}
 
-            <div className="logo-container float-left tab-hidden desktop-hidden">
-              <div>
-                <img src={logo} alt="Logo" />
-              </div>
-              <div>
-                <span>Subto</span>
-              </div>
-            </div>
 
-            <MoreVertical
-              className="mt-1 navbar-toggler black no-border float-right tab-hidden"
-              size={50}
-              onClick={() => handleClick()}
-              color={width < 991 ? `#fff` : `#333`}
-            />
           </div>
 
           <div className="navbar-container">
@@ -325,7 +325,7 @@ const ThemeNavbar = (props) => {
               <NavItem className="pr-1">
                 <div className="nav-link">
                   <button className="button-transparent-2 button-profile">
-                    <span className="mobile-hidden tablet-hidden">
+                    <span className="sm-hidden mobile-hidden tablet-hidden">
                       {props.name}
                     </span>
                     <img

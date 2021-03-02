@@ -8,7 +8,7 @@ import Mobile from "./contactSettingsMobile.js";
 const index = () => {
   return (
     <>
-      <Card className="mobile-hidden tablet-hidden">
+      <Card className="sm-hidden mobile-hidden tablet-hidden">
         <Desktop/>
       </Card>
       <Card className="tab-hidden desktop-hidden">
