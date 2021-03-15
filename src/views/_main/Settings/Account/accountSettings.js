@@ -391,7 +391,7 @@ const accountSettings = () => {
                               </Col>
                               <Col
                                 xl="3"
-                                className="mobile-hidden tablet-hidden tab-hidden"
+                                className="sm-hidden mobile-hidden tablet-hidden tab-hidden"
                               >
                                 <button
                                   className="button-submain mt-xl-4 mt-lg-3"

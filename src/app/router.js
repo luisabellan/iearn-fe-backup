@@ -21,6 +21,7 @@ const Courses = lazy(() => import("../views/_main/Content/Courses"));
 const Videos = lazy(() => import("../views/_main/Content/Videos"));
 const Files = lazy(() => import("../views/_main/Content/Files"));
 const FAQs = lazy(() => import("../views/_main/Content/FAQs"));
+const Profile = lazy(() => import("../views/_main/Profile"));
 
 // Full Layout
 const Login = lazy(() => import("../views/_main/Login"));
@@ -149,6 +150,16 @@ class Router extends Component {
             render={(matchprops) => (
               <Suspense fallback={<Spinner />}>
                 <Calendar {...matchprops} />
+              </Suspense>
+            )}
+          />
+
+          <MainLayoutRoutes
+            exact
+            path="/people/profile"
+            render={(matchprops) => (
+              <Suspense fallback={<Spinner />}>
+                <Profile {...matchprops} />
               </Suspense>
             )}
           />
