@@ -69,9 +69,9 @@ const SideMenuContent = props => {
             <NavLink to="/people/profile" exact className="item" activeclassname="active">
                <i className="menu-icon"><User size={22} /></i> <span className="menu-item-text">Profile</span>
             </NavLink>
-            <NavLink to="/people/groups" exact className="item" activeclassname="active">
+            {/* <NavLink to="/people/groups" exact className="item" activeclassname="active">
                <i className="menu-icon"><UserPlus size={22} /></i> <span className="menu-item-text">Groups</span>
-            </NavLink>
+            </NavLink> */}
             <NavLink to="/people/directory" exact className="item" activeclassname="active">
                <i className="menu-icon"><Bookmark size={22} /></i> <span className="menu-item-text">Directory</span>
             </NavLink>
@@ -89,12 +89,12 @@ const SideMenuContent = props => {
             ArrowRight={<ChevronRight size={22} />}
             collapsedSidebar={props.collapsedSidebar}
          >
-            <NavLink to="/content/courses" exact className={`item ${props.activeSubPage === "Courses" ? "active" : ""}`} activeclassname="active">
+            {/* <NavLink to="/content/courses" exact className={`item ${props.activeSubPage === "Courses" ? "active" : ""}`} activeclassname="active">
                <i className="menu-icon"><Video size={22} /></i> <span className="menu-item-text">Courses</span>
             </NavLink>
             <NavLink to="/content/videos" exact className="item" activeclassname="active">
                <i className="menu-icon"><Film size={22} /></i> <span className="menu-item-text">Videos</span>
-            </NavLink>
+            </NavLink> */}
             <NavLink to="/content/files" exact className="item" activeclassname="active">
                <i className="menu-icon"><File size={22} /></i> <span className="menu-item-text">Files</span>
             </NavLink>
@@ -103,14 +103,14 @@ const SideMenuContent = props => {
             </NavLink>
          </SideMenu.MenuMultiItems>
          
-         <SideMenu.MenuSingleItem>
+         {/* <SideMenu.MenuSingleItem>
             <NavLink to="/calendar" activeclassname="active">
                <i className="menu-icon">
                   <Calendar size={22} />
                </i>
                <span className="menu-item-text">Calendar</span>
             </NavLink>
-         </SideMenu.MenuSingleItem>
+         </SideMenu.MenuSingleItem> */}
          
 
          {/* <SideMenu.MenuSingleItem>
@@ -140,14 +140,14 @@ const SideMenuContent = props => {
          </SideMenu.MenuSingleItem>
 
          
-         <SideMenu.MenuSingleItem>
+         {/* <SideMenu.MenuSingleItem>
             <NavLink to="/store" activeclassname="active">
                <i className="menu-icon">
                   <ShoppingBag size={22} />
                </i>
                <span className="menu-item-text">Store</span>
             </NavLink>
-         </SideMenu.MenuSingleItem>
+         </SideMenu.MenuSingleItem> */}
 
 
          <SideMenu.MenuSingleItem>

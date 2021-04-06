@@ -1,0 +1,501 @@
+{
+  "fundingThisProject": {
+    "type": "question",
+    "answer": "",
+    "question": "How are you funding this project?",
+    "choices": ["creativeFinancePurchase", "conventionalPurchase"]
+  },
+  "creativeFinancePurchase": {
+    "type": "question",
+    "answer": "Creative Finance Purchase",
+    "question": "What is your primary goal?",
+    "choices": ["longTermCash", "upfrontFee"]
+  },
+  "conventionalPurchase": {
+    "type": "question",
+    "answer": "Conventional Purchase",
+    "question": "Is a down payment required?",
+    "choices": ["downpaymentYes", "downpaymentNo"]
+  },
+  "longTermCash": {
+    "type": "question",
+    "answer": "Long Term Cash",
+    "question": "Can you personally fund the entry fee?",
+    "choices": ["entryFeeYes", "entryFeeNo"]
+  },
+  "upfrontFee": {
+    "type": "question",
+    "answer": "Upfront Fee",
+    "question": "Does the property cash flow?",
+    "choices": ["propertyCashFlowYes", "propertyCashFlowNo"]
+  },
+  "entryFeeYes": {
+    "type": "question",
+    "answer": "Yes",
+    "question": "Does it still cashflow after raising money?",
+    "choices": ["raisingMoneyYes", "raisingMoneyNo"]
+  },
+  "entryFeeNo": {
+    "type": "question",
+    "answer": "No",
+    "question": "Can you find private money or can the buyers bring your entry fee?",
+    "choices": ["entryFeeYes", "privateMoneyNo"]
+  },
+  "privateMoneyNo": {
+    "type": "question",
+    "answer": "No",
+    "question": "Is the entry fee more than $7,500?",
+    "choices": ["moreThanYes", "moreThanNo"]
+  },
+  "moreThanYes": {
+    "type": "question",
+    "answer": "Yes",
+    "question": "Can you find a homestead buyer to cover your entry fee?",
+    "choices": ["coverYes", "coverNo"]
+  },
+  "moreThanNo": {
+    "type": "question",
+    "answer": "No",
+    "question": "Do you want to personally own this property and manage it?",
+    "choices": ["personalYes", "personalNo"]
+  },
+  "personalYes": {
+    "type": "question",
+    "answer": "Yer",
+    "question": "Are you okay with someone buying this property in 3-7 years and you lose ownership?",
+    "choices": ["buyPropertyYes", "buyPropertyNo"]
+  },
+  "personalNo": {
+    "type": "question",
+    "answer": "No",
+    "question": "Can you find a homestead buyer to cover your entry fee?",
+    "choices": ["coverYes", "coverNo"]
+  },
+  "coverYes": {
+    "type": "question",
+    "answer": "Yes",
+    "question": "Is your sales price over $100,000 or is your buyer bringing more than 10% deposit?",
+    "choices": ["salesPriceYes", "salesPriceNo"]
+  },
+  "coverNo": {
+    "type": "question",
+    "answer": "No",
+    "question": "Do you have someone to partner with?",
+    "choices": ["partnerYes", "longTermNo"]
+  },
+  "partnerYes": {
+    "type": "conclusion",
+    "answer": "Yes",
+    "description": "Partner with a Cash Buyer and own the property together"
+  },
+  "raisingMoneyYes": {
+    "type": "question",
+    "answer": "Yes",
+    "question": "Do you want to deploy capital into this long term?",
+    "choices": ["longTermYes", "longTermNo"]
+  },
+  "raisingMoneyNo": {
+    "type": "question",
+    "answer": "No",
+    "question": "Does it have equity?",
+    "choices": ["haveEquityYes", "haveEquityNo"]
+  },
+  "haveEquityYes": {
+    "type": "question",
+    "answer": "Yes",
+    "question": "Is it a tight spread?",
+    "choices": ["tightSpreadYes", "tightSpreadNo"]
+  },
+  "haveEquityNo": {
+    "type": "question",
+    "answer": "No",
+    "question": "Can it cashflow with a different model?",
+    "choices": ["differentCashFlowYes", "differentCashFlowNo"]
+  },
+  "differentCashFlowYes": {
+    "type": "question",
+    "answer": "Yes",
+    "question": "Is the property zoned for a group home?",
+    "choices": ["groupHomeYes", "groupHomeNo"]
+  },
+  "differentCashFlowNo": {
+    "type": "question",
+    "answer": "No",
+    "question": "Is there room to negotiate?",
+    "choices": ["negotiateYes", "negotiateNo"]
+  },
+  "negotiateYes": {
+    "type": "question",
+    "answer": "Yes",
+    "question": "Can you do a loan modification?",
+    "choices": ["loanModificationYes", "loanModificationNo"]
+  },
+  "negotiateNo": {
+    "type": "conclusion",
+    "answer": "No",
+    "description": "Short Sale"
+  },
+  "loanModificationYes": {
+    "type": "question",
+    "answer": "Yes",
+    "question": "Help the seller with a loan modification.",
+    "choices": ["loanModificationSuccessful", "loanModificationUnsuccessful"]
+  },
+  "loanModificationNo": {
+    "type": "question",
+    "answer": "No",
+    "question": "Can you renegotiate with the seller?",
+    "choices": ["renegotiateYes", "renegotiateNo"]
+  },
+  "renegotiateYes": {
+    "type": "conclusion",
+    "answer": "Yes",
+    "description": "Renegotiate with the seller and start over"
+  },
+  "renegotiateNo": {
+    "type": "conclusion",
+    "answer": "No",
+    "description": "Wholesale to Homestead Buyer for a fee"
+  },
+  "loanModificationSuccessful": {
+    "type": "restart",
+    "answer": "Successful?",
+    "description": "Restart"
+  },
+  "loanModificationUnsuccessful": {
+    "type": "conclusion",
+    "answer": "Unsuccessful?",
+    "description": "Short Sale or Buy at Auction"
+  },
+  "tightSpreadYes": {
+    "type": "question",
+    "answer": "Yes",
+    "question": "Lower equity, do you want to run a construction project?",
+    "choices": ["lowConstructionYes", "lowConstructionNo"]
+  },
+  "tightSpreadNo": {
+    "type": "question",
+    "answer": "No",
+    "question": "Plenty of equity, do you want to run a construction project?",
+    "choices": ["plentyConstructionYes", "plentyConstructionNo"]
+  },
+  "plentyConstructionYes": {
+    "type": "conclusion",
+    "answer": "Yes",
+    "description": "Sub-Tail"
+  },
+  "plentyConstructionNo": {
+    "type": "conclusion",
+    "answer": "No",
+    "description": "Wholesale to a Fix and Flipper with terms in place, and possible JV Partnership"
+  },
+  "lowConstructionYes": {
+    "type": "conclusion",
+    "answer": "Yes",
+    "description": "Novation Agreement"
+  },
+  "lowConstructionNo": {
+    "type": "conclusion",
+    "answer": "Yes",
+    "description": "Wholesale a Novation Agreement"
+  },
+  "longTermYes": {
+    "type": "question",
+    "answer": "Yes",
+    "question": "Do you want to control the property (landlord)?",
+    "choices": ["landlordYes", "landlordNo"]
+  },
+  "longTermNo": {
+    "type": "conclusion",
+    "answer": "No",
+    "description": "Wholesale"
+  },
+  "landlordYes": {
+    "type": "question",
+    "answer": "Yes",
+    "question": "Is the property zoned for a group home?",
+    "choices": ["groupHomeYes", "groupHomeNo"]
+  },
+  "landLordNo": {
+    "type": "question",
+    "answer": "No",
+    "question": "Is your sales price over $100,000 or is your buyer bringing more than 10% deposit?",
+    "choices": ["salesPriceYes", "salesPriceNo"]
+  },
+  "salesPriceYes": {
+    "type": "conclusion",
+    "answer": "Yes",
+    "description": "Wrap to homestead buyer. Collect the downpayment. Be the bank."
+  },
+  "salesPriceNo": {
+    "type": "conclusion",
+    "answer": "No",
+    "description": "Agreement for sale, keep the deed. Collect the downpayment. Be the bank."
+  },
+  "groupHomeYes": {
+    "type": "question",
+    "answer": "Yes",
+    "question": "Do you want to build a group home business?",
+    "choices": ["groupHomeBusinessYes", "groupHomeBusinessNo"]
+  },
+  "groupHomeNo": {
+    "type": "question",
+    "answer": "No",
+    "question": "Is the property located in a business or tourism area?",
+    "choices": ["businessTourismAreaYes", "businessTourismAreaNo"]
+  },
+  "groupHomeBusinessYes": {
+    "type": "question",
+    "answer": "Yes",
+    "question": "Are you sure?",
+    "choices": ["groupHomeBusinessSureYes", "groupHomeBusinessNo"]
+  },
+  "groupHomeBusinessNo": {
+    "type": "conclusion",
+    "answer": "No",
+    "description": "Wholesale or Partner with a Group Home Business"
+  },
+  "groupHomeBusinessSureYes": {
+    "type": "conclusion",
+    "answer": "Yes",
+    "description": "Build a Group Home Business"
+  },
+  "businessTourismAreaYes": {
+    "type": "question",
+    "answer": "Yes",
+    "question": "Do you want to own/operate and AIRBNB business?",
+    "choices": ["airbnbYes", "airbnbNo"]
+  },
+  "businessTourismAreaNo": {
+    "type": "question",
+    "answer": "No",
+    "question": "Do you want to manage rentals?",
+    "choices": ["manageRentalsYes", "manageRentalsNo"]
+  },
+  "airbnbYes": {
+    "type": "conclusion",
+    "answer": "Yes",
+    "description": "Buy as an AIRBNB"
+  },
+  "airbnbNo": {
+    "type": "conclusion",
+    "answer": "No",
+    "description": "Wholesale to an AIRBNB Investor"
+  },
+  "manageRentalsYes": {
+    "type": "question",
+    "answer": "Yes",
+    "question": "Are you sure you want to manage tenants and collect basic rent?",
+    "choices": ["rentYes", "manageRentalsNo"]
+  },
+  "manageRentalsNo": {
+    "type": "question",
+    "answer": "No",
+    "question": "Are you okay with someone buying this property in 3-7 years and you lose ownership?",
+    "choices": ["buyPropertyYes", "buyPropertyNo"]
+  },
+  "rentYes": {
+    "type": "conclusion",
+    "answer": "Yes",
+    "description": "SRRR (Rental)"
+  },
+  "buyPropertyYes": {
+    "type": "conclusion",
+    "answer": "Yes",
+    "description": "Lease Option, Run the risk of potentially having someone buy the home from you."
+  },
+  "buyPropertyNo": {
+    "type": "conclusion",
+    "answer": "No",
+    "description": "SRRR (Rental)"
+  },
+  "propertyCashFlowYes": {
+    "type": "question",
+    "answer": "Yes",
+    "question": "Do you want to stay involved after you wholesale the property?",
+    "choices": ["involvedYes", "involvedNo"]
+  },
+  "propertyCashFlowNo": {
+    "type": "question",
+    "answer": "No",
+    "question": "Does the property have equity?",
+    "choices": ["haveEquityYes", "propertyEquityNo"]
+  },
+  "propertyEquityNo": {
+    "type": "conclusion",
+    "answer": "No",
+    "description": "Wholesale to a cashbuyer or a homestead buyer for a fee"
+  },
+  "involvedYes": {
+    "type": "conclusion",
+    "answer": "Yes",
+    "description": "Wholesale it. Take a smaller upfront fee and a portion of the backend."
+  },
+  "involvedNo": {
+    "type": "conclusion",
+    "answer": "No",
+    "description": "Wholesale it for a larger fee."
+  },
+  "downpaymentYes": {
+    "type": "question",
+    "answer": "Yes",
+    "question": "Can you cover the downpayment?",
+    "choices": ["coverDownYes", "longTermNo"]
+  },
+  "downpaymentNo": {
+    "type": "question",
+    "answer": "No",
+    "question": "Is your strategy to build passive income?",
+    "choices": ["passiveIncomeYes", "passiveIncomeNo"]
+  },
+  "coverDownYes": {
+    "type": "question",
+    "answer": "Yes",
+    "question": "Is your goal to make Fast Cash or Passive Income?",
+    "choices": ["fastCash", "passiveIncome"]
+  },
+  "fastCash": {
+    "type": "question",
+    "answer": "Fast Cash",
+    "question": "Can you afford the rehab to flip the property?",
+    "choices": ["fastCashYes", "longTermNo"]
+  },
+  "passiveIncome": {
+    "type": "question",
+    "answer": "Passive Income",
+    "question": "Could you qualify for a bank loan?",
+    "choices": ["bankLoanYes", "bankLoanNo"]
+  },
+  "fastCashYes": {
+    "type": "conclusion",
+    "answer": "Yes",
+    "description": "Fix 'N' Flip"
+  },
+  "bankLoanYes": {
+    "type": "question",
+    "answer": "Yes",
+    "question": "Is the property in a desirable business or tourism area?",
+    "choices": ["airbnb", "tourismNo"]
+  },
+  "bankLoanNo": {
+    "type": "question",
+    "answer": "No",
+    "question": "Do you have private funding for the purchase?",
+    "choices": ["bankLoanPrivateFundingYes", "longTermNo"]
+  },
+  "bankLoanPrivateFundingYes": {
+    "type": "question",
+    "answer": "Yes",
+    "question": "Is the property in a desirable business or tourism area?",
+    "choices": ["airbnb", "renovationNo"]
+  },
+  "airbnb": {
+    "type": "conclusion",
+    "answer": "Yes",
+    "description": "AirBNB"
+  },
+  "tourismNo": {
+    "type": "question",
+    "answer": "No",
+    "question": "Is it possible to obtain zoning for group homes?",
+    "choices": ["zoningYes", "zoningNo"]
+  },
+  "zoningYes": {
+    "type": "question",
+    "answer": "Yes",
+    "question": "Do you want to operate a group home business?",
+    "choices": ["groupHomeBusinessSureYes", "groupHomeBusinessNo"]
+  },
+  "zoningNo": {
+    "type": "question",
+    "answer": "No",
+    "question": "Is it an area you would like to own property long term?",
+    "choices": ["areaLongTermYes", "longTermNo"]
+  },
+  "areaLongTermYes": {
+    "type": "question",
+    "answer": "Yes",
+    "question": "Does it need a large renovation?",
+    "choices": ["renovationYes", "renovationNo"]
+  },
+  "renovationYes": {
+    "type": "conclusion",
+    "answer": "Yes",
+    "description": "BRRR Strategy"
+  },
+  "renovationNo": {
+    "type": "conclusion",
+    "answer": "No",
+    "description": "Traditional Rental"
+  },
+  "passiveIncomeYes": {
+    "type": "question",
+    "answer": "Yes",
+    "question": "Could you qualify for a bank loan?",
+    "choices": ["passiveLoanYes", "passiveLoanNo"]
+  },
+  "passiveIncomeNo": {
+    "type": "question",
+    "answer": "No",
+    "question": "Can you afford to rehab and flip the property?",
+    "choices": ["rehabYes", "longTermNo"]
+  },
+  "rehabYes": {
+    "type": "question",
+    "answer": "Yes",
+    "question": "Will you make more money flipping than wholesaling?",
+    "choices": ["fastCashYes", "longTermNo"]
+  },
+  "passiveLoanYes": {
+    "type": "question",
+    "answer": "Yes",
+    "question": "Is the property in a desirable business or tourism area?",
+    "choices": ["airbnb", "passivePropertyNo"]
+  },
+  "passiveLoanNo": {
+    "type": "question",
+    "answer": "No",
+    "question": "Do you have private funding for the purchase?",
+    "choices": ["passivePrivateFundingYes", "passivePrivateFundingNo"]
+  },
+  "passivePropertyNo": {
+    "type": "restart",
+    "answer": "No",
+    "description": "Restart"
+  },
+  "passivePrivateFundingYes": {
+    "type": "question",
+    "answer": "Yes",
+    "question": "Is the property in a desirable business or tourism area?",
+    "choices": ["airbnb", "renovationNo"]
+  },
+  "passivePrivateFundingNo": {
+    "type": "question",
+    "answer": "No",
+    "question": "Would you cashflow $350 over your hard money monthly payment?",
+    "choices": ["hardMoneyYes", "hardMoneyNo"]
+  },
+  "hardMoneyYes": {
+    "type": "question",
+    "answer": "Yes",
+    "question": "Is your hard money loan long term (duration longer than 1 year)?",
+    "choices": ["bankLoanPrivateFundingYes", "loanLongTermNo"]
+  },
+  "hardMoneyNo": {
+    "type": "question",
+    "answer": "No",
+    "question": "Can you renegotiate your deal?",
+    "choices": ["hardMoneyRenegotiateYes", "loanLongTermNo"]
+  },
+  "loanLongTermNo": {
+    "type": "question",
+    "answer": "No",
+    "question": "Could you qualify for a bank loan before your hard money loan expires?",
+    "choices": ["bankLoanPrivateFundingYes", "longTermNo"]
+  },
+  "hardMoneyRenegotiateYes": {
+    "type": "restart",
+    "answer": "Yes",
+    "description": "Renegotiate and start over"
+  }
+}
