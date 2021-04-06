@@ -1,0 +1,58 @@
+.decision-tree {
+  .question-wrapper {
+    margin-top: 100px;
+
+    .main-question {
+      color: black;
+      font-weight: 800;
+      font-size: 48px;
+    }
+
+    .question-choice {
+      border: 5px solid black;
+      text-align: center;
+      height: 370px;
+      margin-top: 50px;
+      cursor: pointer;
+      padding: 30px;
+
+      h1 {
+        color: #00b16a !important;
+        font-weight: 700;
+        font-size: 60px;
+      }
+    }
+
+    .yes {
+      border-color: #00b16a !important;
+    }
+
+    .no {
+      border-color: #f22613 !important;
+
+      h1 {
+        color: #f22613 !important;
+      }
+    }
+
+    .conclusion {
+      font-size: 96px;
+      color: black;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+  }
+
+  .reset-button {
+    font-size: 36px;
+    padding: 20px 40px;
+    min-width: 280px;
+    color: white;
+    text-transform: uppercase;
+    border-radius: 10px;
+    background-color: #19b5fe;
+    border: 0;
+    font-weight: 700;
+    margin-top: 100px;
+  }
+}

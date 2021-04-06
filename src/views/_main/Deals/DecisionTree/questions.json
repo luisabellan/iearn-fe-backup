@@ -216,7 +216,7 @@
     "question": "Is the property zoned for a group home?",
     "choices": ["groupHomeYes", "groupHomeNo"]
   },
-  "landLordNo": {
+  "landlordNo": {
     "type": "question",
     "answer": "No",
     "question": "Is your sales price over $100,000 or is your buyer bringing more than 10% deposit?",

@@ -12,7 +12,6 @@ import {
   DropdownItem,
   Table,
   FormGroup,
-  Label,
   Input,
   CustomInput,
 } from "reactstrap";
@@ -21,11 +20,8 @@ import {
   Filter,
   ChevronLeft,
   ChevronRight,
-  ArrowDown,
-  ArrowUp,
   Search,
 } from "react-feather";
-import { MoreVertical } from "react-feather";
 import { Link } from "react-router-dom";
 
 //Assets
