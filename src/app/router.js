@@ -22,6 +22,8 @@ const Videos = lazy(() => import("../views/_main/Content/Videos"));
 const Files = lazy(() => import("../views/_main/Content/Files"));
 const FAQs = lazy(() => import("../views/_main/Content/FAQs"));
 const Profile = lazy(() => import("../views/_main/Profile"));
+const Deals = lazy(() => import("../views/_main/Deals"));
+const DecisionTree = lazy(() => import("../views/_main/Deals/DecisionTree"));
 
 // Full Layout
 const Login = lazy(() => import("../views/_main/Login"));
@@ -160,6 +162,26 @@ class Router extends Component {
             render={(matchprops) => (
               <Suspense fallback={<Spinner />}>
                 <Profile {...matchprops} />
+              </Suspense>
+            )}
+          />
+
+          <MainLayoutRoutes
+            exact
+            path="/people/deals"
+            render={(matchprops) => (
+              <Suspense fallback={<Spinner />}>
+                <Deals {...matchprops} />
+              </Suspense>
+            )}
+          />
+
+          <MainLayoutRoutes
+            exact
+            path="/decision-tree"
+            render={(matchprops) => (
+              <Suspense fallback={<Spinner />}>
+                <DecisionTree {...matchprops} />
               </Suspense>
             )}
           />

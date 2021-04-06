@@ -92,11 +92,9 @@ const Files = (props) => {
                       <th>
                         <Row>
                           <Col xl={{ size: 4 }} className="pl-2 pl-xl-4">
-                            File Detials
+                            File Details
                           </Col>
-                          <Col xl={{ size: 1 }}>
-                            File Type
-                          </Col>
+                          <Col xl={{ size: 1 }}>File Type</Col>
                           <Col xl={{ size: 1 }} className="text-center">
                             Upvotes
                           </Col>
@@ -141,16 +139,14 @@ const Files = (props) => {
                               </Col>
                               <Col xs="12" xl="9" className="pr-1 pl-2 pl-xl-0">
                                 <p className="title">
-                                No Agency Relationship Disclosure
+                                  No Agency Relationship Disclosure
                                 </p>
                                 <p className="history">Updated 1 day ago</p>
                               </Col>
                             </Row>
                           </Col>
                           <Col xl={{ size: 1 }}>
-                            <p className="title">
-                              PDF
-                            </p>
+                            <p className="title">PDF</p>
                           </Col>
                           <Col xl={{ size: 1 }} className="text-center">
                             <p className="title">
@@ -194,9 +190,7 @@ const Files = (props) => {
                             xl={{ size: 1 }}
                             className="xs-hidden tab-below-hidden"
                           >
-                            <button
-                              className="button-transparent-2"
-                            >
+                            <button className="button-transparent-2">
                               <MoreVertical size={20} color="#000" />
                             </button>
                           </Col>
