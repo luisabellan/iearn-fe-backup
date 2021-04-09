@@ -78,7 +78,7 @@ const SideMenuContent = props => {
             <NavLink to="/people/resources" exact className="item" activeclassname="active">
                <i className="menu-icon"><FolderPlus size={22} /></i> <span className="menu-item-text">Resources</span>
             </NavLink>
-            <NavLink to="/people/deals" exact className="item" activeclassname="active">
+            <NavLink to="/people/deals" exact className={`item ${props.activeSubPage === "Deals" ? "active" : ""}`}  activeclassname="active" >
                <i className="menu-icon"><Award size={22} /></i> <span className="menu-item-text">Deals</span>
             </NavLink>
          </SideMenu.MenuMultiItems>
