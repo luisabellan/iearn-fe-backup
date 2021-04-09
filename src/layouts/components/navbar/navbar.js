@@ -88,7 +88,7 @@ const ThemeNavbar = (props) => {
     }
 
     return (
-      <h2 className="text-capitalize text-blue font-weight-bold">
+      <h2 className="text-capitalize text-blue font-weight-bold text-center text-md-left">
         {header}
       </h2>
     );

@@ -11,11 +11,11 @@ import questions from "./questions.json";
 import withTitleContext from "../../../../layouts/utils/withContexts/withTitle";
 
 const DecisionTree = (props) => {
-  let [current, setCurrent] = useState("loanModificationUnsuccessful");
+  let [current, setCurrent] = useState("fundingThisProject");
 
   useEffect(() => {
     props.setPageTitle("New Deal - Exit Strategy Tool");
-    props.setActiveSubPage("");
+    props.setActiveSubPage("Deals");
   });
 
   const mapQuestions = () => {
@@ -29,13 +29,14 @@ const DecisionTree = (props) => {
           <Row>
             {choices.map((choice, index) => {
               return (
-                <Col xl="6" key={index}>
+                <Col xs="6" key={index}>
                   <div
                     className={`question-choice ${
                       questions[choice].answer === "Yes" ||
                       questions[choice].answer === "Successful?"
                         ? "yes"
-                        : questions[choice].answer === "No" || questions[choice].answer === "Unsuccessful?"
+                        : questions[choice].answer === "No" ||
+                          questions[choice].answer === "Unsuccessful?"
                         ? "no"
                         : ""
                     }`}
@@ -59,7 +60,7 @@ const DecisionTree = (props) => {
           <h1 className="conclusion font-weight-bold">
             {questions[current].description}
           </h1>
-          <button className="reset-button">More Information</button>
+          <Link to="/people/deals/new-deal"><button className="reset-button">Continue</button></Link>
         </Col>
       );
     }
@@ -83,19 +84,19 @@ const DecisionTree = (props) => {
     <Row className="decision-tree">
       <Col>
         <Card>
-          <CardBody className="p-4">
-            <h1>
+          <CardBody className="px-2 py-4 px-md-4">
+            <h1 className="sm-hidden">
               <span className="font-weight-bold text-green">$ubto</span>
               <span className="font-weight-light">tal</span>
             </h1>
             <div className="row justify-content-center">{mapQuestions()}</div>
             <Row>
-              <Col>
+              <Col xs="6">
                 <Link to="/people/deals">
                   <button className="reset-button">Exit</button>
                 </Link>
               </Col>
-              <Col className="text-right">
+              <Col className="text-right" xs="6">
                 <button
                   className="reset-button"
                   onClick={() => setCurrent("fundingThisProject")}
