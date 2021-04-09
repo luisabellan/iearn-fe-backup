@@ -60,3 +60,16 @@ export const getDateTime = (date) => {
 
   return `${formattedMonth}/${formattedDate} ${formattedHours}:${formattedMins}${timeHandler}`;
 };
+
+
+
+//Formatting Numbers with Commas
+export const formatNumberWithCommas = (x) => {
+  return (
+    "$ " +
+    x
+      .toFixed(2)
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+  );
+};

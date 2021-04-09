@@ -14,8 +14,9 @@ import "./index.scss";
 import Spinner from "./components/spinner/spinner";
 
 //Context Providers
-import TitleContextProvider from "./layouts/utils/contexts/title-context";
-import UserContextProvider from "./layouts/utils/contexts/user-context";
+import TitleContextProvider from "./utility/context/title-context";
+import UserContextProvider from "./utility/context/user-context";
+import DealsContextProvider from "./utility/context/deals-context";
 
 const LazyApp = lazy(() => import("./app/app"));
 
@@ -24,8 +25,9 @@ ReactDOM.render(
     <Suspense fallback={<Spinner />}>
       <TitleContextProvider>
         <UserContextProvider>
-          <LazyApp />
-          {/* <ReduxToastr
+          <DealsContextProvider>
+            <LazyApp />
+            {/* <ReduxToastr
             timeOut={4000}
             newestOnTop={false}
             preventDuplicates
@@ -34,6 +36,7 @@ ReactDOM.render(
             transitionOut="fadeOut"
             progressBar
             closeOnToastrClick/> */}
+          </DealsContextProvider>
         </UserContextProvider>
       </TitleContextProvider>
     </Suspense>
