@@ -14,13 +14,16 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { DollarSign, Search, Plus } from "react-feather";
 import classNames from "classnames";
+import { useHistory } from "react-router-dom";
 
 //Utils
 // import { useWindowDimensions } from "../../Utils/utils";
 import withTitleContext from "../../../../layouts/utils/withContexts/withTitle";
+import withDealContext from "../../../../layouts/utils/withContexts/withDeals";
 
 const NewDeal = (props) => {
   const [isLoading, setIsLoading] = useState(false);
+  const history = useHistory();
   // const [error, setError] = useState(false)
 
   useEffect(() => {
@@ -51,7 +54,10 @@ const NewDeal = (props) => {
   };
 
   const onSubmit = (values) => {
-    console.log("Success!");
+    let deals = [...props.dealList];
+    deals.push(values);
+    props.setDealList(deals);
+    history.push(`/people/deals`);
   };
 
   return (
@@ -324,4 +330,4 @@ const NewDeal = (props) => {
   );
 };
 
-export default withTitleContext(NewDeal);
+export default withTitleContext(withDealContext(NewDeal));

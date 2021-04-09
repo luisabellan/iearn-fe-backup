@@ -9,6 +9,9 @@ import NewDeal from "./NewDeal";
 //Context
 import withTitleContext from "../../../../layouts/utils/withContexts/withTitle";
 
+//Contex Providers
+import DealsContextProvider from "../../../layouts/utils/withContexts/withDeals";
+
 const index = (props) => {
   const location = useLocation();
 
@@ -22,15 +25,15 @@ const index = (props) => {
   });
 
   return (
-    <Switch>
-      <Route exact component={Main} path="/people/deals" />
-      <Route
-        exact
-        component={DecisionTree}
-        path="/people/deals/decision-tree"
-      />
-      <Route exact component={NewDeal} path="/people/deals/new-deal" />
-    </Switch>
+      <Switch>
+        <Route exact component={Main} path="/people/deals" />
+        <Route
+          exact
+          component={DecisionTree}
+          path="/people/deals/decision-tree"
+        />
+        <Route exact component={NewDeal} path="/people/deals/new-deal" />
+      </Switch>
   );
 };
 

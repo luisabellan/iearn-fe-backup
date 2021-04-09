@@ -15,21 +15,16 @@ import {
   Input,
   CustomInput,
 } from "reactstrap";
-import {
-  List,
-  Filter,
-  ChevronLeft,
-  ChevronRight,
-  Search,
-} from "react-feather";
+import { List, Filter, ChevronLeft, ChevronRight, Search } from "react-feather";
 import { Link } from "react-router-dom";
 
 //Assets
 // import placeholder from "../_temp/pdf_icon.png";
 
 //Utils
-import { useWindowDimensions } from "../../Utils/utils";
+import { useWindowDimensions, formatNumberWithCommas } from "../../Utils/utils";
 import withTitleContext from "../../../../layouts/utils/withContexts/withTitle";
+import withDealsContext from "../../../../layouts/utils/withContexts/withDeals";
 
 const Deals = (props) => {
   const history = useHistory();
@@ -44,6 +39,44 @@ const Deals = (props) => {
     if (width < 1200) {
       history.push(`/courses/asdasd`);
     }
+  };
+
+  const mapDeals = () => {
+    let deals = [...props.dealList];
+
+    return deals.map((deal, index) => {
+      return (
+        <Row key={index}>
+          <Col xl={{ size: 2 }} className="pl-2 pl-xl-4">
+            <p className="mb-0">{deal.collaborators}</p>
+          </Col>
+          <Col xl={{ size: 1 }}>{formatNumberWithCommas(deal.price)}</Col>
+          <Col xl={{ size: 2 }}>
+            {deal.address}, {deal.city}, {deal.state} {deal.zip}
+          </Col>
+          <Col xl={{ size: 2 }} className="xs-hidden tab-below-hidden">
+            {deal.notes}
+          </Col>
+          <Col xl={{ size: 2 }} className="pr-0 text-center">
+            <Link to="/">Resources</Link>
+          </Col>
+          <Col xl={{ size: 2 }} className="xs-hidden tab-below-hidden">
+            <Link to="/">Images</Link>
+          </Col>
+          <Col
+            xl={{ size: 1 }}
+            className="xs-hidden tab-below-hidden text-center"
+          >
+            <CustomInput
+              type="checkbox"
+              id="exampleCustomCheckbox"
+              label=""
+              defaultChecked
+            />
+          </Col>
+        </Row>
+      );
+    });
   };
 
   return (
@@ -137,7 +170,7 @@ const Deals = (props) => {
                               xl={{ size: 2 }}
                               className="xs-hidden tab-below-hidden"
                             >
-                              Description
+                              Notes
                             </Col>
                             <Col xl={{ size: 2 }} className="pr-0 text-center">
                               &nbsp;
@@ -164,50 +197,7 @@ const Deals = (props) => {
                           handleClick();
                         }}
                       >
-                        <td>
-                          <Row>
-                            <Col xl={{ size: 2 }} className="pl-2 pl-xl-4">
-                              <p className="mb-0">
-                                Carpenter, Lily
-                                <br />
-                                Tate, Michael
-                                <br />
-                                Ellsworth, Sean
-                              </p>
-                            </Col>
-                            <Col xl={{ size: 1 }}>$256,465</Col>
-                            <Col xl={{ size: 2 }}>
-                              111 WInding Way Palm Bay, FL 32908
-                            </Col>
-                            <Col
-                              xl={{ size: 2 }}
-                              className="xs-hidden tab-below-hidden"
-                            >
-                              Tenetur quod quidem in voluptatem corporis dolorum
-                              dicta sit pariatur
-                            </Col>
-                            <Col xl={{ size: 2 }} className="pr-0 text-center">
-                              <Link to="/">Resources</Link>
-                            </Col>
-                            <Col
-                              xl={{ size: 2 }}
-                              className="xs-hidden tab-below-hidden"
-                            >
-                              <Link to="/">Images</Link>
-                            </Col>
-                            <Col
-                              xl={{ size: 1 }}
-                              className="xs-hidden tab-below-hidden text-center"
-                            >
-                              <CustomInput
-                                type="checkbox"
-                                id="exampleCustomCheckbox"
-                                label=""
-                                defaultChecked
-                              />
-                            </Col>
-                          </Row>
-                        </td>
+                        <td>{mapDeals()}</td>
                       </tr>
 
                       <tr>
@@ -245,4 +235,4 @@ const Deals = (props) => {
   );
 };
 
-export default withTitleContext(Deals);
+export default withTitleContext(withDealsContext(Deals));
