@@ -80,7 +80,7 @@ class UserProfile extends Component {
                         <Col xs="5">
                            <div className="align-self-start halfway-fab pl-3 pt-2">
                               <div className="text-left">
-                                 <h3 className="card-title text-white">Jose Diaz</h3>
+                                 <h3 className="card-title text-white">Diane Diaz</h3>
                               </div>
                            </div>
                         </Col>

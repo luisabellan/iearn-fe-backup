@@ -91,9 +91,10 @@ class Register extends Component {
                            </FormGroup>
                            <FormGroup>
                               <Col md="12">
-                                 <Button type="submit" color="danger" block className="btn-pink btn-raised">
+                                 {/* <Button type="submit" color="danger" block className="btn-pink btn-raised">
                                     Submit
-                                 </Button>
+                                 </Button> */}
+                                 
                                  <Button type="button" color="secondary" block className="btn-raised">
                                     Cancel
                                  </Button>
