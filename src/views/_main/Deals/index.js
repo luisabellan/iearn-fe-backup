@@ -7,10 +7,7 @@ import DecisionTree from "./DecisionTree";
 import NewDeal from "./NewDeal";
 
 //Context
-import withTitleContext from "../../../../layouts/utils/withContexts/withTitle";
-
-//Contex Providers
-import DealsContextProvider from "../../../layouts/utils/withContexts/withDeals";
+import withTitleContext from "../../../../utility/withContexts/withTitle";
 
 const index = (props) => {
   const location = useLocation();

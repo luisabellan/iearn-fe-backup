@@ -45,8 +45,8 @@ import userImage4 from "../../../assets/img/portrait/small/avatar-s-4.png";
 import logo from "../../../assets/img/_main/logo.svg";
 
 //Utils
-import withTitleContext from "../../utils/withContexts/withTitle";
-import withUserContext from "../../utils/withContexts/withUser";
+import withTitleContext from "../../../utility/withContexts/withTitle";
+import withUserContext from "../../../utility/withContexts/withUser";
 import { useFilters } from "react-table";
 
 const ThemeNavbar = (props) => {

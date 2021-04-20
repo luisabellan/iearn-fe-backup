@@ -18,7 +18,7 @@ import * as Yup from "yup";
 import classNames from "classnames";
 
 //Context Providers
-import withUserContext from "../../../layouts/utils/withContexts/withUser";
+import withUserContext from "../../../utility/withContexts/withTitle";
 
 const Login = (props) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -38,15 +38,15 @@ const Login = (props) => {
 
   const onSubmit = (values) => {
     if(values.email === "admin@subto.com" && values.password === "Abcd1234!") {
-      history.push("/overview");
+      history.push("/people/profile");
       props.setType("admin");
       props.setName("Jake Peralta");
     } else if(values.email === "mentor@subto.com" && values.password === "Abcd1234!") {
-      history.push("/overview");
+      history.push("/people/profile");
       props.setType("mentor");
       props.setName("Amy Santiago")
     } else if(values.email === "user@subto.com" && values.password === "Abcd1234!") {
-      history.push("/overview");
+      history.push("/people/profile");
       props.setType("user");
       props.setName("Charles Boyle")
     } else {

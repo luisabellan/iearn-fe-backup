@@ -1,6 +1,7 @@
 import React from "react";
 import "../signup.scss";
 import { Card, CardBody } from "reactstrap";
+import { Link } from "react-router-dom";
 
 //Components
 import Progress from "./Progress";
@@ -15,7 +16,9 @@ const Form3 = ({ currentStep }) => {
           <br />
           Let's explore the Resource Center!
         </p>
-        <button className="button-main ls-2">NEXT</button>
+        <Link to="/login">
+          <button className="button-main ls-2">NEXT</button>
+        </Link>
         <Progress {...{ currentStep }} />
       </CardBody>
     </Card>

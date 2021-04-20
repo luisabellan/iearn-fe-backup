@@ -14,6 +14,9 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import classNames from "classnames";
 
+//api
+import api from "../../../../api";
+
 //Components
 import Progress from "./Progress";
 
@@ -48,8 +51,22 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
     confirmPassword: "",
   };
 
-  const onSubmit = () => {
-    setCurrentStep(1);
+  const onSubmit = (values) => {
+    let { confirmPassword, ...formValues } = values;
+
+    formValues = {
+      phone: "123123",
+      userStatus: 1,
+      ...formValues,
+    };
+
+    api
+      .post(`/users`, formValues)
+      .then((res) => {
+        console.log(res);
+        setCurrentStep(1);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -78,7 +95,9 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
                       )} */}
                 <Col md="12">
                   <FormGroup>
-                    <Label>First Name <span className="required">*</span></Label>
+                    <Label>
+                      First Name <span className="required">*</span>
+                    </Label>
                     <Input
                       id="firstName"
                       name="firstName"
@@ -101,7 +120,9 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
                 </Col>
                 <Col md="12">
                   <FormGroup>
-                    <Label>Last Name <span className="required">*</span></Label>
+                    <Label>
+                      Last Name <span className="required">*</span>
+                    </Label>
                     <Input
                       id="lastName"
                       name="lastName"
@@ -124,7 +145,9 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
                 </Col>
                 <Col md="12">
                   <FormGroup>
-                    <Label>Email <span className="required">*</span></Label>
+                    <Label>
+                      Email <span className="required">*</span>
+                    </Label>
                     <Input
                       id="email"
                       name="email"
@@ -144,7 +167,9 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
                 </Col>
                 <Col md="12">
                   <FormGroup>
-                    <Label>Password <span className="required">*</span></Label>
+                    <Label>
+                      Password <span className="required">*</span>
+                    </Label>
                     <Input
                       id="password"
                       name="password"
@@ -167,7 +192,9 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
                 </Col>
                 <Col md="12">
                   <FormGroup>
-                    <Label for="projectinput3">Confirm Password <span className="required">*</span></Label>
+                    <Label for="projectinput3">
+                      Confirm Password <span className="required">*</span>
+                    </Label>
                     <Input
                       id="confirmPassword"
                       name="confirmPassword"
@@ -205,10 +232,7 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
                   <div className="col-md-12">
                     <p className="subtext text-center mt-2">
                       Signup with{" "}
-                      <a
-                        href="."
-                        className="button-transparent"
-                      >
+                      <a href="." className="button-transparent">
                         Google
                       </a>{" "}
                       or{" "}

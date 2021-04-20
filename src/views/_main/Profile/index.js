@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 
 //Context Providers
-import withUserContext from "../../../layouts/utils/withContexts/withUser";
-import withTitleContext from "../../../layouts/utils/withContexts/withTitle";
+import withUserContext from "../../../utility/withContexts/withUser";
+import withTitleContext from "../../../utility/withContexts/withTitle";
 
 //Components
 import UserProfile from "./User";

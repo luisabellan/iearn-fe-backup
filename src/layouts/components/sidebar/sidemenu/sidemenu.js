@@ -32,7 +32,7 @@ import "../../../../assets/scss/components/sidebar/sidemenu/sidemenu.scss";
 import SideMenu from "../sidemenuHelper";
 
 //Context
-import withTitleContext from "../../../utils/withContexts/withTitle";
+import withTitleContext from "../../../../utility/withContexts/withTitle";
 
 const SideMenuContent = props => {
    const location = useLocation();
@@ -50,14 +50,14 @@ const SideMenuContent = props => {
       <>
          <SideMenu className="sidebar-content" toggleSidebarMenu={props.toggleSidebarMenu}>
             
-         <SideMenu.MenuSingleItem>
+         {/* <SideMenu.MenuSingleItem>
             <NavLink to="/overview" activeclassname="active">
                <i className="menu-icon">
                   <PieChart size={22} />
                </i>
                <span className="menu-item-text">Overview</span>
             </NavLink>
-         </SideMenu.MenuSingleItem>
+         </SideMenu.MenuSingleItem> */}
 
          <SideMenu.MenuMultiItems onClick={()=>hideBottomNav()}
             name="People"

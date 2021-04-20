@@ -23,8 +23,8 @@ import { Link } from "react-router-dom";
 
 //Utils
 import { useWindowDimensions, formatNumberWithCommas } from "../../Utils/utils";
-import withTitleContext from "../../../../layouts/utils/withContexts/withTitle";
-import withDealsContext from "../../../../layouts/utils/withContexts/withDeals";
+import withTitleContext from "../../../../utility/withContexts/withTitle";
+import withDealsContext from "../../../../utility/withContexts/withDeals";
 
 const Deals = (props) => {
   const history = useHistory();

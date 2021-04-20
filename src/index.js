@@ -14,8 +14,8 @@ import "./index.scss";
 import Spinner from "./components/spinner/spinner";
 
 //Context Providers
+import Authentication from "./utility/context/user-context";
 import TitleContextProvider from "./utility/context/title-context";
-import UserContextProvider from "./utility/context/user-context";
 import DealsContextProvider from "./utility/context/deals-context";
 
 const LazyApp = lazy(() => import("./app/app"));
@@ -23,8 +23,8 @@ const LazyApp = lazy(() => import("./app/app"));
 ReactDOM.render(
   <Provider store={store}>
     <Suspense fallback={<Spinner />}>
-      <TitleContextProvider>
-        <UserContextProvider>
+      <Authentication>
+        <TitleContextProvider>
           <DealsContextProvider>
             <LazyApp />
             {/* <ReduxToastr
@@ -37,8 +37,8 @@ ReactDOM.render(
             progressBar
             closeOnToastrClick/> */}
           </DealsContextProvider>
-        </UserContextProvider>
-      </TitleContextProvider>
+        </TitleContextProvider>
+      </Authentication>
     </Suspense>
   </Provider>,
   document.getElementById("root")

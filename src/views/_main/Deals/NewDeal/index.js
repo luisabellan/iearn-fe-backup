@@ -18,8 +18,8 @@ import { useHistory } from "react-router-dom";
 
 //Utils
 // import { useWindowDimensions } from "../../Utils/utils";
-import withTitleContext from "../../../../layouts/utils/withContexts/withTitle";
-import withDealContext from "../../../../layouts/utils/withContexts/withDeals";
+import withTitleContext from "../../../../utility/withContexts/withTitle";
+import withDealContext from "../../../../utility/withContexts/withDeals";
 
 const NewDeal = (props) => {
   const [isLoading, setIsLoading] = useState(false);

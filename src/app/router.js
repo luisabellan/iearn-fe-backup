@@ -1,12 +1,15 @@
 // import external modules
-import React, { Component, Suspense, lazy } from "react";
-import { BrowserRouter, Switch, Redirect } from "react-router-dom";
+import React, { Suspense, lazy, useEffect } from "react";
+import { BrowserRouter, Switch, Redirect, useHistory } from "react-router-dom";
 import Spinner from "../components/spinner/spinner";
 
 // import internal(own) modules
 import MainLayoutRoutes from "../layouts/routes/mainRoutes";
 import FullPageLayout from "../layouts/routes/fullpageRoutes";
 import ErrorLayoutRoute from "../layouts/routes/errorRoutes";
+
+//Context
+import withAuthentication from "../utility/withContexts/withUser";
 
 // Main Layout
 const Home = lazy(() => import("../views/_main/Home"));
@@ -38,216 +41,224 @@ const SignUp = lazy(() => import("../views/_main/SignUp"));
 // Error Pages
 const LazyErrorPage = lazy(() => import("../views/pages/error"));
 
-class Router extends Component {
-  render() {
-    return (
-      // Set the directory path if you are deplying in sub-folder
-      <BrowserRouter basename="/">
-        <Switch>
-          {/* Main Dashboard Views */}
-          <MainLayoutRoutes
-            exact
-            path="/overview"
-            render={(matchprops) => (
-              <Suspense fallback={<Spinner />}>
-                <Overview {...matchprops} />
-              </Suspense>
-            )}
-          />
-          <MainLayoutRoutes
-            exact
-            path="/support"
-            render={(matchprops) => (
-              <Suspense fallback={<Spinner />}>
-                <Support {...matchprops} />
-              </Suspense>
-            )}
-          />
+const Router = ({ user }) => {
+  const history = useHistory();
 
-          <MainLayoutRoutes
-            exact
-            path="/support/:id"
-            render={(matchprops) => (
-              <Suspense fallback={<Spinner />}>
-                <SupportDetails {...matchprops} />
-              </Suspense>
-            )}
-          />
+  useEffect(() => {
+    if (user) {
+      console.log(`Nice ka one!`);
+    } else {
+      history.push("/login");
+    }
+  }, []);
 
-          <MainLayoutRoutes
-            exact
-            path="/settings/:category"
-            render={(matchprops) => (
-              <Suspense fallback={<Spinner />}>
-                <Settings {...matchprops} />
-              </Suspense>
-            )}
-          />
+  return (
+    // Set the directory path if you are deplying in sub-folder
+    <>
+      <Switch>
+        {/* Main Dashboard Views */}
+        <MainLayoutRoutes
+          exact
+          path="/overview"
+          render={(matchprops) => (
+            <Suspense fallback={<Spinner />}>
+              <Overview {...matchprops} />
+            </Suspense>
+          )}
+        />
+        <MainLayoutRoutes
+          exact
+          path="/support"
+          render={(matchprops) => (
+            <Suspense fallback={<Spinner />}>
+              <Support {...matchprops} />
+            </Suspense>
+          )}
+        />
 
-          {/*Content Category*/}
-          <MainLayoutRoutes
-            exact
-            path="/content/courses"
-            render={(matchprops) => (
-              <Suspense fallback={<Spinner />}>
-                <Courses {...matchprops} />
-              </Suspense>
-            )}
-          />
+        <MainLayoutRoutes
+          exact
+          path="/support/:id"
+          render={(matchprops) => (
+            <Suspense fallback={<Spinner />}>
+              <SupportDetails {...matchprops} />
+            </Suspense>
+          )}
+        />
 
-          {/*All Courses Viewer*/}
-          <MainLayoutRoutes
-            exact
-            path="/content/courses/:id"
-            render={(matchprops) => (
-              <Suspense fallback={<Spinner />}>
-                <Courses {...matchprops} />
-              </Suspense>
-            )}
-          />
+        <MainLayoutRoutes
+          exact
+          path="/settings/:category"
+          render={(matchprops) => (
+            <Suspense fallback={<Spinner />}>
+              <Settings {...matchprops} />
+            </Suspense>
+          )}
+        />
 
-          {/*Course Lessons Viewer*/}
-          <MainLayoutRoutes
-            exact
-            path="/content/courses/:courseId/:id"
-            render={(matchprops) => (
-              <Suspense fallback={<Spinner />}>
-                <Courses {...matchprops} />
-              </Suspense>
-            )}
-          />
+        {/*Content Category*/}
+        <MainLayoutRoutes
+          exact
+          path="/content/courses"
+          render={(matchprops) => (
+            <Suspense fallback={<Spinner />}>
+              <Courses {...matchprops} />
+            </Suspense>
+          )}
+        />
 
-          <MainLayoutRoutes
-            exact
-            path="/content/videos"
-            render={(matchprops) => (
-              <Suspense fallback={<Spinner />}>
-                <Videos {...matchprops} />
-              </Suspense>
-            )}
-          />
+        {/*All Courses Viewer*/}
+        <MainLayoutRoutes
+          exact
+          path="/content/courses/:id"
+          render={(matchprops) => (
+            <Suspense fallback={<Spinner />}>
+              <Courses {...matchprops} />
+            </Suspense>
+          )}
+        />
 
-          <MainLayoutRoutes
-            exact
-            path="/content/faqs"
-            render={(matchprops) => (
-              <Suspense fallback={<Spinner />}>
-                <FAQs {...matchprops} />
-              </Suspense>
-            )}
-          />
+        {/*Course Lessons Viewer*/}
+        <MainLayoutRoutes
+          exact
+          path="/content/courses/:courseId/:id"
+          render={(matchprops) => (
+            <Suspense fallback={<Spinner />}>
+              <Courses {...matchprops} />
+            </Suspense>
+          )}
+        />
 
-          <MainLayoutRoutes
-            exact
-            path="/content/files"
-            render={(matchprops) => (
-              <Suspense fallback={<Spinner />}>
-                <Files {...matchprops} />
-              </Suspense>
-            )}
-          />
+        <MainLayoutRoutes
+          exact
+          path="/content/videos"
+          render={(matchprops) => (
+            <Suspense fallback={<Spinner />}>
+              <Videos {...matchprops} />
+            </Suspense>
+          )}
+        />
 
-          <MainLayoutRoutes
-            exact
-            path="/calendar"
-            render={(matchprops) => (
-              <Suspense fallback={<Spinner />}>
-                <Calendar {...matchprops} />
-              </Suspense>
-            )}
-          />
+        <MainLayoutRoutes
+          exact
+          path="/content/faqs"
+          render={(matchprops) => (
+            <Suspense fallback={<Spinner />}>
+              <FAQs {...matchprops} />
+            </Suspense>
+          )}
+        />
 
-          <MainLayoutRoutes
-            exact
-            path="/people/profile"
-            render={(matchprops) => (
-              <Suspense fallback={<Spinner />}>
-                <Profile {...matchprops} />
-              </Suspense>
-            )}
-          />
+        <MainLayoutRoutes
+          exact
+          path="/content/files"
+          render={(matchprops) => (
+            <Suspense fallback={<Spinner />}>
+              <Files {...matchprops} />
+            </Suspense>
+          )}
+        />
 
-          <MainLayoutRoutes
-            exact
-            path="/people/deals"
-            render={(matchprops) => (
-              <Suspense fallback={<Spinner />}>
-                <Deals {...matchprops} />
-              </Suspense>
-            )}
-          />
+        <MainLayoutRoutes
+          exact
+          path="/calendar"
+          render={(matchprops) => (
+            <Suspense fallback={<Spinner />}>
+              <Calendar {...matchprops} />
+            </Suspense>
+          )}
+        />
 
-          <MainLayoutRoutes
-            exact
-            path="/people/deals/decision-tree"
-            render={(matchprops) => (
-              <Suspense fallback={<Spinner />}>
-                <DecisionTree {...matchprops} />
-              </Suspense>
-            )}
-          />
+        <MainLayoutRoutes
+          exact
+          path="/people/profile"
+          render={(matchprops) => (
+            <Suspense fallback={<Spinner />}>
+              <Profile {...matchprops} />
+            </Suspense>
+          )}
+        />
 
-          <MainLayoutRoutes
-            exact
-            path="/people/deals/new-deal"
-            render={(matchprops) => (
-              <Suspense fallback={<Spinner />}>
-                <NewDeal {...matchprops} />
-              </Suspense>
-            )}
-          />
+        <MainLayoutRoutes
+          exact
+          path="/people/deals"
+          render={(matchprops) => (
+            <Suspense fallback={<Spinner />}>
+              <Deals {...matchprops} />
+            </Suspense>
+          )}
+        />
 
-          {/* Full Pages Views */}
-          <FullPageLayout
-            exact
-            path="/"
-            render={(matchprops) => (
-              <Suspense fallback={<Spinner />}>
-                <Home {...matchprops} />
-              </Suspense>
-            )}
-          />
+        <MainLayoutRoutes
+          exact
+          path="/people/deals/decision-tree"
+          render={(matchprops) => (
+            <Suspense fallback={<Spinner />}>
+              <DecisionTree {...matchprops} />
+            </Suspense>
+          )}
+        />
 
-          <FullPageLayout
-            exact
-            path="/login"
-            render={(matchprops) => (
-              <Suspense fallback={<Spinner />}>
-                <Login {...matchprops} />
-              </Suspense>
-            )}
-          />
-          <FullPageLayout
-            exact
-            path="/signup"
-            render={(matchprops) => (
-              <Suspense fallback={<Spinner />}>
-                <SignUp {...matchprops} />
-              </Suspense>
-            )}
-          />
+        <MainLayoutRoutes
+          exact
+          path="/people/deals/new-deal"
+          render={(matchprops) => (
+            <Suspense fallback={<Spinner />}>
+              <NewDeal {...matchprops} />
+            </Suspense>
+          )}
+        />
 
-          <ErrorLayoutRoute
-            exact
-            path="/pages/error"
-            render={(matchprops) => (
-              <Suspense fallback={<Spinner />}>
-                <LazyErrorPage {...matchprops} />
-              </Suspense>
-            )}
-          />
+        {/* Full Pages Views */}
+        <FullPageLayout
+          exact
+          path="/"
+          render={(matchprops) => (
+            <Suspense fallback={<Spinner />}>
+              <Home {...matchprops} />
+            </Suspense>
+          )}
+        />
 
-          <ErrorLayoutRoute
-            render={(matchprops) => (
-              <Suspense fallback={<Spinner />}>
-                <LazyErrorPage {...matchprops} />
-              </Suspense>
-            )}
-          />
-        </Switch>
-      </BrowserRouter>
-    );
-  }
-}
+        <FullPageLayout
+          exact
+          path="/login"
+          render={(matchprops) => (
+            <Suspense fallback={<Spinner />}>
+              <Login {...matchprops} />
+            </Suspense>
+          )}
+        />
+        <FullPageLayout
+          exact
+          path="/signup"
+          render={(matchprops) => (
+            <Suspense fallback={<Spinner />}>
+              <SignUp {...matchprops} />
+            </Suspense>
+          )}
+        />
 
-export default Router;
+        <ErrorLayoutRoute
+          exact
+          path="/pages/error"
+          render={(matchprops) => (
+            <Suspense fallback={<Spinner />}>
+              <LazyErrorPage {...matchprops} />
+            </Suspense>
+          )}
+        />
+
+        <ErrorLayoutRoute
+          render={(matchprops) => (
+            <Suspense fallback={<Spinner />}>
+              <LazyErrorPage {...matchprops} />
+            </Suspense>
+          )}
+        />
+      </Switch>
+    </>
+  );
+};
+
+export default withAuthentication(Router);

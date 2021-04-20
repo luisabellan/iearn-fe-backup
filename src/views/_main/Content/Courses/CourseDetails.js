@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Row, Col, Card, CardBody, Input } from "reactstrap";
 
 //Utils
-import withTitleContext from "../../../../layouts/utils/withContexts/withTitle";
+import withTitleContext from "../../../../utility/withContexts/withTitle";
 
 //Assets
 import video from "../_temp/video.png";
