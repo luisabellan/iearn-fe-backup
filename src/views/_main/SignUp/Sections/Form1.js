@@ -14,13 +14,11 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import classNames from "classnames";
 
-//api
-import api from "../../../../api";
 
 //Components
 import Progress from "./Progress";
 
-const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
+const Form1 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
   let history = useHistory();
 
   const signUpSchema = Yup.object().shape({
@@ -52,21 +50,8 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading }) => {
   };
 
   const onSubmit = (values) => {
-    let { confirmPassword, ...formValues } = values;
-
-    formValues = {
-      phone: "123123",
-      userStatus: 1,
-      ...formValues,
-    };
-
-    api
-      .post(`/users`, formValues)
-      .then((res) => {
-        console.log(res);
-        setCurrentStep(1);
-      })
-      .catch((err) => console.log(err));
+    gatherValues(values, 0);
+    setCurrentStep(1);
   };
 
   return (

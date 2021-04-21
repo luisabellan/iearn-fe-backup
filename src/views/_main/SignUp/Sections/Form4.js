@@ -7,7 +7,7 @@ import * as Yup from "yup";
 //Components
 import Progress from "./Progress";
 
-const Form2 = ({ currentStep, setCurrentStep, isLoading }) => {
+const Form2 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
   const skillsSchema = Yup.object().shape({
     skill1: Yup.string(),
     skill2: Yup.string(),
@@ -24,32 +24,36 @@ const Form2 = ({ currentStep, setCurrentStep, isLoading }) => {
     skill5: "",
   };
 
-  const onSubmit = () => {
-    setCurrentStep(4);
+  const onSubmit = (values) => {
+    let formValues = values;
+    let arr = [];
+
+    Object.entries(formValues).forEach(([key, val]) => {
+      if (val) {
+        arr.push(val);
+      }
+    });
+
+    gatherValues({ skills: arr }, 3);
+
+    // setCurrentStep(4);
   };
 
   return (
     <Card className="card-signup">
       <h1 className="text-center">Sign Up</h1>
       <CardBody>
-      <p className="text-center text-blue">
-          Enter your investing experience below
+        <p className="text-center text-blue">
+          Please add your skills below
           <br />
-          <span style={{ fontSize: `16px` }}>(select all that apply)</span>
+          <span style={{ fontSize: `16px` }}>(you can add more later)</span>
         </p>
         <Formik
           initialValues={form4}
           validationSchema={skillsSchema}
           onSubmit={onSubmit}
         >
-          {({
-            handleSubmit,
-            handleBlur,
-            handleChange,
-            values,
-            touched,
-            errors,
-          }) => (
+          {({ handleSubmit, handleBlur, handleChange, values }) => (
             <Formik className="pt-2">
               <fieldset disabled={isLoading}>
                 {/* {error && (
