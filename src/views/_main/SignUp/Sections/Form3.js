@@ -55,6 +55,7 @@ const Form2 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
   const mapOptions = (name, value) => {
     return (
       <>
+        <option value=""></option>
         <option
           value={`{"text": "${name}", "value": "${value}", "minYears": 0, "maxYears": 0}`}
         >
@@ -230,8 +231,10 @@ const Form2 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
                       </Col>
                       <Col xs="6" lg="3">
                         <Input
-                          id="fixflip"
-                          invalid={!!touched.fixflip && !!errors.fixflip}
+                          id="leaseOption"
+                          invalid={
+                            !!touched.leaseOption && !!errors.leaseOption
+                          }
                           type="select"
                           placeholder="0"
                           min="1"

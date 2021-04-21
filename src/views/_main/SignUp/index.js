@@ -31,15 +31,25 @@ const SignUp = () => {
         Object.entries(finalize).filter(([_, v]) => v !== "")
       );
 
-      signUp(body);
+      signUp(body, password);
     }
   };
 
-  const signUp = (values) => {
+  const signUp = (values, password) => {
+    setIsLoading(true);
+
     api
       .post(`/users`, values)
       .then((res) => {
-        console.log(res.data);
+        api
+          .post(`/usersettings`, { user: res.data.id, password })
+          .then((res) => {
+            setIsLoading(false);
+            setCurrentStep(4);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         console.log(err);
