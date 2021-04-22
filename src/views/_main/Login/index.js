@@ -43,15 +43,19 @@ const Login = ({ setUser }) => {
   };
 
   const onSubmit = (values) => {
+    setIsLoading(true);
+
     api
       .post(`/users/login`, values)
       .then(({ data }) => {
+        setIsLoading(false);
         localStorage.setItem("token", `JWT ${data.token}`);
         handleAuthorizationHeader();
         history.push(`/people/profile`);
       })
       .catch((err) => {
-        console.log(err);
+        setIsLoading(false);
+        setError(true);
       });
   };
 
@@ -102,7 +106,10 @@ const Login = ({ setUser }) => {
                             placeholder="john.doe@gmail.com"
                             value={values.email}
                             onBlur={handleBlur("email")}
-                            onChange={handleChange("email")}
+                            onChange={(e) => {
+                              handleChange("email")(e);
+                              setError(false);
+                            }}
                             invalid={!!touched.email && !!errors.email}
                           />
                           <FormFeedback>
@@ -125,7 +132,10 @@ const Login = ({ setUser }) => {
                             placeholder="************"
                             value={values.password}
                             onBlur={handleBlur("password")}
-                            onChange={handleChange("password")}
+                            onChange={(e) => {
+                              handleChange("password")(e);
+                              setError(false);
+                            }}
                             invalid={!!touched.password && !!errors.password}
                           />
                           <FormFeedback>
