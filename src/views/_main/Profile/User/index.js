@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Col, Card, CardBody } from "reactstrap";
 import "../profile.scss";
 import {
@@ -11,11 +11,62 @@ import {
   Twitter,
 } from "react-feather";
 import { Link } from "react-router-dom";
+import SpinnerComponent from "../../../../components/spinner/spinner";
 
 //Assets
-import userImage from "../../../../assets/img/_main/amy-santiago.png";
+import profilePlaceholder from "../../../../assets/img/_main/profile-placeholder.jpg";
 
-const UserProfile = () => {
+//Context
+import withUserContext from "../../../../utility/withContexts/withUser";
+
+const UserProfile = ({ user }) => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (user) {
+      setIsLoading(false);
+      console.log(user);
+    }
+  }, [user]);
+
+  const mapSocialMedia = () => {
+    const arr = [
+      {
+        icon: <Facebook className="mr-3" />,
+        link: user.facebook,
+        key: "facebook",
+      },
+      {
+        icon: <Instagram className="mr-3" />,
+        link: user.instagram,
+        key: "instagram",
+      },
+      {
+        icon: <Twitter className="mr-3" />,
+        link: user.twitter,
+        key: "twitter",
+      },
+      {
+        icon: <Linkedin className="mr-3" />,
+        link: user.linkedin,
+        key: "linkedin",
+      },
+    ];
+
+    return arr.map((item, index) => (
+      <button
+        className="button-transparent"
+        key={index}
+        disabled={!user[item.key]}
+        onClick={() => window.open(`http://${item.link}`, "_blank")}
+      >
+        {item.icon}
+      </button>
+    ));
+  };
+
+  if (isLoading) return <SpinnerComponent />;
+
   return (
     <Row className="profile-container">
       <Col>
@@ -26,7 +77,7 @@ const UserProfile = () => {
                 <Row>
                   <Col>
                     <h3 className="tablet-hidden tab-hidden desktop-hidden mb-0">
-                      Amy Santiago
+                      {user.firstName} {user.lastName}
                     </h3>
                     <hr className="tablet-hidden tab-hidden desktop-hidden" />
                   </Col>
@@ -35,51 +86,71 @@ const UserProfile = () => {
                   <Col className="profile-picture" xs="5" sm="4" md="4">
                     <Row>
                       <Col className="px-0 px-md-2">
-                        <img
-                          src={userImage}
-                          alt="logged-in-user"
-                          className="rounded-circle"
-                        />
+                        {user.userImg ? (
+                          <img
+                            src={user.userImg}
+                            alt="logged-in-user"
+                            className="rounded-circle"
+                          />
+                        ) : (
+                          <img
+                            src={profilePlaceholder}
+                            alt="logged-in-user"
+                            className="rounded-circle"
+                          />
+                        )}
                       </Col>
                     </Row>
                     <Row className="tablet-hidden tab-hidden desktop-hidden">
                       <Col>
-                        <p className="text-center">GMT +8</p>
+                        <p className="text-center">
+                          Timezone:{" "}
+                          <span className={user.timezone ? "" : "opacity-50"}>
+                            {user.timezone ? user.timezone : "Unset"}
+                          </span>
+                        </p>
                       </Col>
                     </Row>
                   </Col>
                   <Col className="py-3 profile-info pr-0" xs="7" sm="8" md="8">
-                    <h1 className="sm-hidden mobile-hidden">Jake Peralta</h1>
+                    <h1 className="sm-hidden mobile-hidden">
+                      {user.firstName} {user.lastName}
+                    </h1>
                     <h3 className="mt-0 mt-md-3">
                       <MapPin className="mr-1 mr-md-3" color="#DADADA" />{" "}
-                      Brooklyn
+                      <span className={user.location ? "" : "opacity-50"}>
+                        {user.location ? user.location : "Unset"}
+                      </span>
                     </h3>
                     <h3 className="mt-0 mt-md-3">
                       <PhoneCall className="mr-1 mr-md-3" color="#DADADA" />{" "}
-                      555-555-555
+                      <span className={user.businessPhone ? "" : "opacity-50"}>
+                        {user.businessPhone ? user.businessPhone : "Unset"}
+                      </span>
                     </h3>
                     <h3 className="mt-0 mt-md-3">
                       <Mail className="mr-1 mr-md-3" color="#DADADA" />{" "}
-                      email@email.com
+                      {user.email}
                     </h3>
                   </Col>
                 </Row>
                 <Row className="mt-md-3">
                   <Col className="sm-hidden mobile-hidden" md={{ size: 4 }}>
-                    <p className="text-center">Time Zone: GMT +8</p>
+                    <p className="text-center">
+                      Timezone:{" "}
+                      <span className={user.timezone ? "" : "opacity-50"}>
+                        {user.timezone ? user.timezone : "Unset"}
+                      </span>
+                    </p>
                   </Col>
                   <Col xs={{ order: 2, size: 12 }} md={{ size: 4, order: 1 }}>
                     <p className="text-center mb-0 mb-md-2">
-                      Preferred method of communication: <u>Facebook</u>
+                      Preferred method of communication:{" "}
+                      <u className="text-capitalize">{user.preferredContact}</u>
                     </p>
                   </Col>
                   <Col xs={{ order: 1, size: 12 }} md={{ size: 4, order: 2 }}>
-                    <p className="text-center">
-                      <Facebook className="mr-3" />
-                      <Instagram className="mr-3" />
-                      <Twitter className="mr-3" />
-                      <Linkedin className="mr-3" />
-                    </p>
+                    <p className="text-center">{mapSocialMedia()}</p>
                   </Col>
                 </Row>
                 <hr />
@@ -89,21 +160,13 @@ const UserProfile = () => {
                     <Row>
                       <Col lg="12" xl="8">
                         <Row>
-                          <Col xs="6" md="4">
-                            <p className="mb-1 mb-md-2">Lorem ipsum</p>
-                            <p className="mb-1 mb-md-2">Lorem ipsum</p>
-                            <p className="mb-1 mb-md-2">Lorem ipsum</p>
-                          </Col>
-                          <Col xs="6" md="4">
-                            <p className="mb-1 mb-md-2">Lorem ipsum</p>
-                            <p className="mb-1 mb-md-2">Lorem ipsum</p>
-                            <p className="mb-1 mb-md-2">Lorem ipsum</p>
-                          </Col>
-                          <Col xs="6" md="4">
-                            <p className="mb-1 mb-md-2">Lorem ipsum</p>
-                            <p className="mb-1 mb-md-2">Lorem ipsum</p>
-                            <p className="mb-1 mb-md-2">Lorem ipsum</p>
-                          </Col>
+                          {user.skills.map((skill, index) => (
+                            <Col key={index} xs="6" md="4">
+                              <p className="mb-1 mb-md-2 text-capitalize">
+                                {skill}
+                              </p>
+                            </Col>
+                          ))}
                         </Row>
                       </Col>
                       <Col lg="0" xl="4"></Col>
@@ -147,4 +210,4 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+export default withUserContext(UserProfile);

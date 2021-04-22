@@ -50,8 +50,8 @@ const Router = ({ user, setUser }) => {
   const fetchUser = async () => {
     try {
       const { data } = await api.get("/users/current");
-      setUser(data.user);
-      console.log(data.user);
+      setUser(data);
+      // console.log(data);
       history.push(`/people/profile`);
     } catch (e) {
       setUser(null);
@@ -64,6 +64,8 @@ const Router = ({ user, setUser }) => {
       fetchUser(setUser);
     }
   }, []);
+
+  if (!user) return <Spinner />;
 
   return (
     // Set the directory path if you are deplying in sub-folder

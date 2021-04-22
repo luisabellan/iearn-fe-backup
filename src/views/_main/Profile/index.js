@@ -9,12 +9,15 @@ import UserProfile from "./User";
 import MentorProfile from "./Mentor";
 
 const Profile = (props) => {
-  useEffect(() => {props.setPageTitle("Profile")});
+  useEffect(() => {
+    props.setPageTitle("Profile");
+  });
 
   return (
     <>
-      {(props.type === "user" || props.type === "admin") && <UserProfile />}
-      {props.type === "mentor" && <MentorProfile />}
+      <UserProfile />
+      {/* {(props.type === "user" || props.type === "admin") && <UserProfile />} */}
+      {/* {props.type === "mentor" && <MentorProfile />} */}
     </>
   );
 };

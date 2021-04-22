@@ -1,13 +1,17 @@
 @import "./assets/scss/app.scss";
-@import '../node_modules/react-redux-toastr/src/styles/index';
+@import "../node_modules/react-redux-toastr/src/styles/index";
 
-$main-color: #0C2340;
+$main-color: #0c2340;
 $main-transition: 0.2s ease-in-out all;
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 600;
 }
-
 
 .button-main {
   border: 2px solid $main-color;
@@ -19,7 +23,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: $main-transition;
 
   &:hover {
-    background:$main-color;
+    background: $main-color;
     color: white;
     transition: $main-transition;
   }
@@ -41,7 +45,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: $main-transition;
 
   &:hover {
-    background:$main-color;
+    background: $main-color;
     color: white;
     transition: $main-transition;
   }
@@ -57,6 +61,11 @@ h1, h2, h3, h4, h5, h6 {
 
   &:hover {
     color: $main-color;
+  }
+
+  &:disabled {
+    opacity: 50%;
+    cursor: default;
   }
 }
 
@@ -96,7 +105,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .text-green {
-  color: #00B16A !important;
+  color: #00b16a !important;
 }
 
 //Letter Spacings
@@ -105,7 +114,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .ls-2 {
-  letter-spacing: 0.10em;
+  letter-spacing: 0.1em;
 }
 
 .ls-3 {
@@ -113,19 +122,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .ls-4 {
-  letter-spacing: 0.20em;
+  letter-spacing: 0.2em;
 }
 
 .ls-5 {
   letter-spacing: 0.25em;
 }
 
-
 .no-size-padding {
   padding-right: 0 !important;
   padding-left: 0 !important;
 }
-
 
 //Hidden
 .xs-hidden {
@@ -168,4 +175,13 @@ h1, h2, h3, h4, h5, h6 {
   @media (min-width: 1200px) {
     display: none !important;
   }
+}
+
+//Opacity
+.opacity-10 {
+  opacity: 10%;
+}
+
+.opacity-50 {
+  opacity: 50%;
 }
