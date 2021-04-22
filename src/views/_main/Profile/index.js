@@ -6,7 +6,7 @@ import withTitleContext from "../../../utility/withContexts/withTitle";
 
 //Components
 import UserProfile from "./User";
-import MentorProfile from "./Mentor";
+// import MentorProfile from "./Mentor";
 
 const Profile = (props) => {
   useEffect(() => {

@@ -22,21 +22,15 @@ import withUserContext from "../../../../utility/withContexts/withUser";
 //Notes
 //Circle taken from: https://codepen.io/cbracco/pen/qnduh
 
-const UserProfile = ({ user, profile }) => {
+const UserProfile = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [currentProfile, setCurrentProfile] = useState(null);
-
   const location = useLocation();
 
   useEffect(() => {
-    if (profile) {
-      setCurrentProfile(profile);
-      setIsLoading(false);
-    } else if (user) {
-      setCurrentProfile(user);
-      setIsLoading(false);
-    }
-  }, [user]);
+    setCurrentProfile(location.state);
+    setIsLoading(false);
+  }, []);
 
   const mapSocialMedia = () => {
     const arr = [

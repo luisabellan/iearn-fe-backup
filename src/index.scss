@@ -104,6 +104,10 @@ h6 {
   color: $main-color !important;
 }
 
+.text-light-blue {
+  color: #4d89b7 !important;
+}
+
 .text-green {
   color: #00b16a !important;
 }
@@ -184,4 +188,13 @@ h6 {
 
 .opacity-50 {
   opacity: 50%;
+}
+
+//Custom font-weight
+.font-weight-500 {
+  font-weight: 500;
+}
+
+.font-weight-600 {
+  font-weight: 600;
 }
