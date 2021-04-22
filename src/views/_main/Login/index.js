@@ -11,23 +11,29 @@ import {
   Card,
   CardBody,
   FormFeedback,
-  Alert
+  Alert,
 } from "reactstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import classNames from "classnames";
 
 //Context Providers
-import withUserContext from "../../../utility/withContexts/withTitle";
+import withUserContext from "../../../utility/withContexts/withUser";
 
-const Login = (props) => {
+//Helpers
+import { handleAuthorizationHeader } from "../../../api/helpers";
+import api from "../../../api/api";
+
+const Login = ({ setUser }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(false);
 
   let history = useHistory();
 
   const LoginSchema = Yup.object().shape({
-    email: Yup.string().email("Please enter a valid email address").required("Email field is required"),
+    email: Yup.string()
+      .email("Please enter a valid email address")
+      .required("Email field is required"),
     password: Yup.string().required("Password field is required"),
   });
 
@@ -37,21 +43,16 @@ const Login = (props) => {
   };
 
   const onSubmit = (values) => {
-    if(values.email === "admin@subto.com" && values.password === "Abcd1234!") {
-      history.push("/people/profile");
-      props.setType("admin");
-      props.setName("Jake Peralta");
-    } else if(values.email === "mentor@subto.com" && values.password === "Abcd1234!") {
-      history.push("/people/profile");
-      props.setType("mentor");
-      props.setName("Amy Santiago")
-    } else if(values.email === "user@subto.com" && values.password === "Abcd1234!") {
-      history.push("/people/profile");
-      props.setType("user");
-      props.setName("Charles Boyle")
-    } else {
-      setError(true);
-    }
+    api
+      .post(`/users/login`, values)
+      .then(({ data }) => {
+        localStorage.setItem("token", `JWT ${data.token}`);
+        handleAuthorizationHeader();
+        history.push(`/people/profile`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   //   const { error, loading, login } = useAuth();
@@ -82,7 +83,7 @@ const Login = (props) => {
                   <Formik className="pt-2">
                     <fieldset disabled={isLoading}>
                       {error && (
-                        <Alert color='warning' fade={false}>
+                        <Alert color="warning" fade={false}>
                           Incorrect Email/Password
                         </Alert>
                       )}
@@ -148,7 +149,10 @@ const Login = (props) => {
                         <Col md="12" className="text-center mt-3">
                           <p>
                             Don't have an account yet?{" "}
-                            <button className="button-transparent" onClick={()=>history.push("/signup")}>
+                            <button
+                              className="button-transparent"
+                              onClick={() => history.push("/signup")}
+                            >
                               Sign Up
                             </button>
                           </p>

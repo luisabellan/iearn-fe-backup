@@ -11,6 +11,9 @@ import ErrorLayoutRoute from "../layouts/routes/errorRoutes";
 //Context
 import withAuthentication from "../utility/withContexts/withUser";
 
+//API
+import api from "../api/api";
+
 // Main Layout
 const Home = lazy(() => import("../views/_main/Home"));
 const Overview = lazy(() => import("../views/_main/Overview"));
@@ -41,14 +44,24 @@ const SignUp = lazy(() => import("../views/_main/SignUp"));
 // Error Pages
 const LazyErrorPage = lazy(() => import("../views/pages/error"));
 
-const Router = ({ user }) => {
+const Router = ({ user, setUser }) => {
   const history = useHistory();
 
-  useEffect(() => {
-    if (user) {
-      console.log(`Nice ka one!`);
-    } else {
+  const fetchUser = async () => {
+    try {
+      const { data } = await api.get("/users/current");
+      setUser(data.user);
+      console.log(data.user);
+      history.push(`/people/profile`);
+    } catch (e) {
+      setUser(null);
       history.push("/login");
+    }
+  };
+
+  useEffect(() => {
+    if (!user) {
+      fetchUser(setUser);
     }
   }, []);
 

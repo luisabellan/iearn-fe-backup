@@ -11,7 +11,7 @@ import Form4 from "./Sections/Form4";
 import Form5 from "./Sections/Form5";
 
 //API
-import api from "../../../api";
+import api from "../../../api/api";
 
 const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
