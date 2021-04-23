@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import "../deals.scss";
+import React, { useEffect, useState } from "react";
+import "./directory.scss";
 import { useHistory } from "react-router-dom";
 import {
   Row,
@@ -13,92 +13,139 @@ import {
   Table,
   FormGroup,
   Input,
-  CustomInput,
 } from "reactstrap";
 import { List, Filter, ChevronLeft, ChevronRight, Search } from "react-feather";
+import Spinner from "../../../components/spinner/spinner";
 import { Link } from "react-router-dom";
 
 //Assets
 // import placeholder from "../_temp/pdf_icon.png";
 
-//Utils
-import { useWindowDimensions, formatNumberWithCommas } from "../../Utils/utils";
-import withTitleContext from "../../../../utility/withContexts/withTitle";
-import withDealsContext from "../../../../utility/withContexts/withDeals";
+//API
+import api from "../../../api/api";
+
+//Context
+import withTitleContext from "../../../utility/withContexts/withTitle";
 
 const Deals = (props) => {
-  const history = useHistory();
-  const { width } = useWindowDimensions();
+  const [people, setPeople] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    props.setPageTitle("My Deals");
+    props.setPageTitle("Directory");
     props.setActiveSubPage("");
   });
 
-  const handleClick = () => {
-    if (width < 1200) {
-      history.push(`/courses/asdasd`);
-    }
+  useEffect(() => {
+    populatePeople();
+  }, []);
+
+  const handleClick = () => {};
+
+  const populatePeople = () => {
+    setIsLoading(true);
+
+    api
+      .get(`/users`)
+      .then(({ data }) => {
+        setIsLoading(false);
+        setPeople(data);
+      })
+      .catch((err) => console.log(err));
   };
 
   const mapDeals = () => {
-    let deals = [...props.dealList];
+    let arr = [...people];
 
-    return deals.map((deal, index) => {
+    if (isLoading)
       return (
-        <Row key={index}>
-          <Col xl={{ size: 2 }} className="pl-2 pl-xl-4">
-            <p className="mb-0">{deal.collaborators}</p>
-          </Col>
-          <Col xl={{ size: 1 }}>{formatNumberWithCommas(deal.price)}</Col>
-          <Col xl={{ size: 2 }}>
-            {deal.address}, {deal.city}, {deal.state} {deal.zip}
-          </Col>
-          <Col xl={{ size: 2 }} className="xs-hidden tab-below-hidden">
-            {deal.notes}
-          </Col>
-          <Col xl={{ size: 2 }} className="pr-0 text-center">
-            <Link to="/">Resources</Link>
-          </Col>
-          <Col xl={{ size: 2 }} className="xs-hidden tab-below-hidden">
-            <Link to="/">Images</Link>
-          </Col>
-          <Col
-            xl={{ size: 1 }}
-            className="xs-hidden tab-below-hidden text-center"
-          >
-            <CustomInput
-              type="checkbox"
-              id="exampleCustomCheckbox"
-              label=""
-              defaultChecked
-            />
-          </Col>
-        </Row>
+        <tr>
+          <td className="py-5">
+            <Spinner />
+          </td>
+        </tr>
+      );
+
+    const mapSkills = (skills) => {
+      let length = skills.length - 1;
+
+      return skills.map((skill, index) => {
+        if (index < length) {
+          return `${skill}, `;
+        } else {
+          return `${skill}`;
+        }
+      });
+    };
+
+    return arr.map((person, index) => {
+      return (
+        <tr
+          onClick={() => {
+            handleClick();
+          }}
+          key={index}
+        >
+          <td>
+            <Row>
+              <Col xl={{ size: 3 }} className="people-wrapper">
+                {person.userImg ? (
+                  <img
+                    src={person.userImg}
+                    alt="logged-in-user"
+                    className="rounded-circle width-35"
+                  />
+                ) : (
+                  <div className="ml-2 width-35">
+                    <div className="circle">
+                      <div className="circle__inner">
+                        <div className="circle__wrapper">
+                          <div className="circle__content">
+                            {person.firstName[0]} {person.lastName[0]}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                <div className="person-name">
+                  <p className="ml-2 text-capitalize">
+                    {person.lastName}, {person.firstName}
+                  </p>
+                </div>
+              </Col>
+              <Col xl={{ size: 3 }}>
+                <span className={person.location ? "" : "opacity-50"}>
+                  {person.location ? person.location : "Unset"}
+                </span>
+              </Col>
+              <Col xl={{ size: 4 }}>{mapSkills(person.skills)}</Col>
+              <Col xl={{ size: 2 }}>
+                <Link
+                  to={{
+                    pathname: "/people/user",
+                    state: {
+                      ...person,
+                    },
+                  }}
+                  className="text-light-blue font-weight-500"
+                >
+                  View Profile
+                </Link>
+              </Col>
+            </Row>
+          </td>
+        </tr>
       );
     });
   };
 
   return (
     <>
-      <Row>
+      <Row className="page-directory">
         <Col>
           <Card>
-            <CardBody className="my-3">
-              <h3 className="text-center">
-                Start with the Decision Tree Tool to add a new deal.
-              </h3>
-              <Link to="/people/deals/decision-tree">
-                <h1 className="text-center">Strategy Tool</h1>
-              </Link>
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
-      <Row className="page-courses">
-        <Col>
-          <Card>
-            <CardBody className="pb-0 courses-container">
+            <CardBody className="pb-0 directory-container">
               <Row className="pt-2 table-header">
                 <Col
                   xs="4 pr-0"
@@ -154,52 +201,23 @@ const Deals = (props) => {
                   </UncontrolledDropdown>
                 </Col>
               </Row>
-              <Row className="table-courses">
+              <Row className="table-directory">
                 <Col className="px-0 pt-0">
                   <Table hover>
                     <thead>
                       <tr>
                         <th>
                           <Row>
-                            <Col xl={{ size: 2 }} className="pl-2 pl-xl-4">
-                              Collaborators
-                            </Col>
-                            <Col xl={{ size: 1 }}>Price</Col>
-                            <Col xl={{ size: 2 }}>Address</Col>
-                            <Col
-                              xl={{ size: 2 }}
-                              className="xs-hidden tab-below-hidden"
-                            >
-                              Notes
-                            </Col>
-                            <Col xl={{ size: 2 }} className="pr-0 text-center">
-                              &nbsp;
-                            </Col>
-                            <Col
-                              xl={{ size: 2 }}
-                              className="xs-hidden tab-below-hidden"
-                            >
-                              &nbsp;
-                            </Col>
-                            <Col
-                              xl={{ size: 1 }}
-                              className="xs-hidden tab-below-hidden text-center"
-                            >
-                              Active
-                            </Col>
+                            <Col xl={{ size: 3 }}>People</Col>
+                            <Col xl={{ size: 3 }}>Location</Col>
+                            <Col xl={{ size: 4 }}>Skills</Col>
+                            <Col xl={{ size: 2 }}></Col>
                           </Row>
                         </th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr
-                        onClick={() => {
-                          handleClick();
-                        }}
-                      >
-                        <td>{mapDeals()}</td>
-                      </tr>
-
+                      {mapDeals()}
                       <tr>
                         <td className="pb-0">
                           <div className="row justify-content-end pagination-options">
@@ -235,4 +253,4 @@ const Deals = (props) => {
   );
 };
 
-export default withTitleContext(withDealsContext(Deals));
+export default withTitleContext(Deals);

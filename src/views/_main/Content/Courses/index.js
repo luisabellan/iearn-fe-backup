@@ -8,7 +8,7 @@ import CourseDetails from "./CourseDetails";
 import Videos from "../Videos";
 
 //Context
-import withTitleContext from "../../../../layouts/utils/withContexts/withTitle";
+import withTitleContext from "../../../../utility/withContexts/withTitle";
 
 const index = (props) => {
   const location = useLocation();

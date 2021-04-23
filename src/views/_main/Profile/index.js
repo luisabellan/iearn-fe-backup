@@ -1,20 +1,23 @@
 import React, { useEffect } from "react";
 
 //Context Providers
-import withUserContext from "../../../layouts/utils/withContexts/withUser";
-import withTitleContext from "../../../layouts/utils/withContexts/withTitle";
+import withUserContext from "../../../utility/withContexts/withUser";
+import withTitleContext from "../../../utility/withContexts/withTitle";
 
 //Components
 import UserProfile from "./User";
-import MentorProfile from "./Mentor";
+// import MentorProfile from "./Mentor";
 
 const Profile = (props) => {
-  useEffect(() => {props.setPageTitle("Profile")});
+  useEffect(() => {
+    props.setPageTitle("Profile");
+  });
 
   return (
     <>
-      {(props.type === "user" || props.type === "admin") && <UserProfile />}
-      {props.type === "mentor" && <MentorProfile />}
+      <UserProfile />
+      {/* {(props.type === "user" || props.type === "admin") && <UserProfile />} */}
+      {/* {props.type === "mentor" && <MentorProfile />} */}
     </>
   );
 };

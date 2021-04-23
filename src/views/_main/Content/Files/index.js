@@ -28,7 +28,7 @@ import placeholder from "../_temp/pdf_icon.png";
 
 //Utils
 import { useWindowDimensions } from "../../Utils/utils";
-import withTitleContext from "../../../../layouts/utils/withContexts/withTitle";
+import withTitleContext from "../../../../utility/withContexts/withTitle";
 
 const Files = (props) => {
   const history = useHistory();

@@ -8,7 +8,7 @@ import questions from "./questions.json";
 
 //Utils
 // import { useWindowDimensions } from "../../Utils/utils";
-import withTitleContext from "../../../../layouts/utils/withContexts/withTitle";
+import withTitleContext from "../../../../utility/withContexts/withTitle";
 
 const DecisionTree = (props) => {
   let [current, setCurrent] = useState("fundingThisProject");

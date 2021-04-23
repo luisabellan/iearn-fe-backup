@@ -1,60 +1,48 @@
 import React, { useEffect } from "react";
-import { Link, useLocation, withRouter } from "react-router-dom";
+import { Link, useLocation, withRouter, useHistory } from "react-router-dom";
 import {
-  // Form,
   Media,
-  // Collapse,
   Navbar,
   Nav,
   NavItem,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  // DropdownItem,
-  Row,
-  Col,
 } from "reactstrap";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import {
-  // Moon,
-  // Mail,
-  // Menu,
   MoreVertical,
   Check,
   Bell,
-  // User,
   AlertTriangle,
-  // Inbox,
-  // Phone,
-  // Calendar,
-  // Lock,
   X,
-  // LogOut,
   Search,
 } from "react-feather";
 // import NavbarSearch from "../../../components/search/Search";
 // import ReactCountryFlag from "react-country-flag";
+import "./custom-navbar.scss";
 
 import { useWindowDimensions } from "../../utils/utils";
 
 //Assets
-import userImage from "../../../assets/img/portrait/small/avatar-s-1.png";
 import userImage2 from "../../../assets/img/portrait/small/avatar-s-2.png";
 import userImage3 from "../../../assets/img/portrait/small/avatar-s-3.png";
 import userImage4 from "../../../assets/img/portrait/small/avatar-s-4.png";
 import logo from "../../../assets/img/_main/logo.svg";
+import profilePlaceholder from "../../../assets/img/_main/profile-placeholder.jpg";
 
 //Utils
-import withTitleContext from "../../utils/withContexts/withTitle";
-import withUserContext from "../../utils/withContexts/withUser";
-import { useFilters } from "react-table";
+import withTitleContext from "../../../utility/withContexts/withTitle";
+import withUserContext from "../../../utility/withContexts/withUser";
 
 const ThemeNavbar = (props) => {
   // const [isOpen, setIsOpen] = useState(false);
+  const history = useHistory();
 
   const location = useLocation();
 
   const getPageName = () => {
+    let mobileActive = true;
     let name = location.pathname;
     name = name.slice(1);
     name = name.split("-");
@@ -87,8 +75,24 @@ const ThemeNavbar = (props) => {
       header = props.pageTitle;
     }
 
+    if (
+      location.pathname.includes("profile") ||
+      location.pathname.includes("user")
+    ) {
+      header = "Profile";
+      mobileActive = false;
+    }
+
+    if (!mobileActive) {
+      return (
+        <h2 className="text-capitalize text-blue font-weight-bold text-center text-md-left sm-hidden">
+          {header}
+        </h2>
+      );
+    }
+
     return (
-      <h2 className="text-capitalize text-blue font-weight-bold text-center text-md-left">
+      <h2 className="text-capitalize mt-3 text-blue font-weight-bold text-center text-md-left">
         {header}
       </h2>
     );
@@ -110,7 +114,6 @@ const ThemeNavbar = (props) => {
     []
   );
 
-
   // const toggle = () => {
   //   setIsOpen(!isOpen);
   // };
@@ -119,10 +122,10 @@ const ThemeNavbar = (props) => {
 
   return (
     <>
-      <Navbar className="navbar navbar-expand-lg navbar-light bg-faded">
+      <Navbar className="navbar navbar-expand-lg navbar-light bg-faded navbar-custom">
         <div className="container-fluid px-0">
           <div className="navbar-header">
-          <div className="logo-container float-left tab-hidden desktop-hidden">
+            <div className="logo-container float-left tab-hidden desktop-hidden">
               <div>
                 <img src={logo} alt="Logo" />
               </div>
@@ -143,8 +146,6 @@ const ThemeNavbar = (props) => {
             onClick={() => handleClick()}
             data-toggle="collapse"
           /> */}
-
-
           </div>
 
           <div className="navbar-container">
@@ -324,16 +325,38 @@ const ThemeNavbar = (props) => {
 
               <NavItem className="pr-1">
                 <div className="nav-link">
-                  <button className="button-transparent-2 button-profile">
-                    <span className="sm-hidden mobile-hidden tablet-hidden">
-                      {props.name}
-                    </span>
-                    <img
-                      src={userImage}
-                      alt="logged-in-user"
-                      className="rounded-circle width-35"
-                    />
-                  </button>
+                  <div
+                    className="button-profile"
+                    onClick={() => {
+                      history.push(`/people/profile`);
+                    }}
+                  >
+                    <div className="sm-hidden mobile-hidden tablet-hidden">
+                      <span className="text-blue">
+                        {props.user.firstName} {props.user.lastName}
+                      </span>
+                    </div>
+                    {props.user.userImg ? (
+                      <img
+                        src={props.user.userImg}
+                        alt="logged-in-user"
+                        className="rounded-circle width-35"
+                      />
+                    ) : (
+                      <div className="ml-2 width-35">
+                        <div className="circle">
+                          <div className="circle__inner">
+                            <div className="circle__wrapper">
+                              <div className="circle__content">
+                                {props.user.firstName[0]}{" "}
+                                {props.user.lastName[0]}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </NavItem>
             </Nav>
@@ -341,7 +364,7 @@ const ThemeNavbar = (props) => {
         </div>
       </Navbar>
 
-      <div className="text-capitalize text-blue font-weight-bold mt-3 tab-hidden desktop-hidden">
+      <div className="text-capitalize text-blue font-weight-bold tab-hidden desktop-hidden">
         {getPageName()}
       </div>
     </>

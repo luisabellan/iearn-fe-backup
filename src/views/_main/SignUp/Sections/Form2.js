@@ -16,7 +16,7 @@ import classNames from "classnames";
 //Components
 import Progress from "./Progress";
 
-const Form2 = ({ currentStep, setCurrentStep, isLoading }) => {
+const Form2 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
   const socialSchema = Yup.object().shape({
     facebook: Yup.string().matches(
       /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
@@ -38,7 +38,8 @@ const Form2 = ({ currentStep, setCurrentStep, isLoading }) => {
     linkedin: "",
   };
 
-  const onSubmit = () => {
+  const onSubmit = (values) => {
+    gatherValues(values, 1);
     setCurrentStep(2);
   };
 
@@ -74,18 +75,18 @@ const Form2 = ({ currentStep, setCurrentStep, isLoading }) => {
                     <Label>Facebook</Label>
                     <Input
                       id="facebook"
-                      name="facebook"
-                      type="text"
                       required
                       className={classNames("form-control", {
                         "login-warning":
                           !!errors.facebook && !!touched.facebook,
                       })}
+                      invalid={!!touched.facebook && !!errors.facebook}
+                      onBlur={handleBlur("facebook")}
+                      name="facebook"
+                      type="text"
                       placeholder="facebook.com/jonnyd"
                       value={values.facebook}
-                      onBlur={handleBlur("facebook")}
                       onChange={handleChange("facebook")}
-                      invalid={!!touched.facebook && !!errors.facebook}
                     />
                     <FormFeedback>
                       {touched.facebook && errors.facebook}

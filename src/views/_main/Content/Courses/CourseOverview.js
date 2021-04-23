@@ -19,7 +19,7 @@ import placeholder from "../_temp/placeholder.png";
 
 //Utils
 import { useWindowDimensions } from "../../Utils/utils";
-import withTitleContext from "../../../../layouts/utils/withContexts/withTitle";
+import withTitleContext from "../../../../utility/withContexts/withTitle";
 
 const CourseOverview = (props) => { 
   const history = useHistory();
