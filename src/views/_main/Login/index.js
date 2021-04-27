@@ -51,7 +51,11 @@ const Login = ({ setUser }) => {
         setIsLoading(false);
         localStorage.setItem("token", `JWT ${data.token}`);
         handleAuthorizationHeader();
-        history.push(`/people/profile`);
+
+        api.get(`/users/current`).then(({ data }) => {
+          setUser(data);
+          history.push(`/people/profile`);
+        });
       })
       .catch((err) => {
         setIsLoading(false);
