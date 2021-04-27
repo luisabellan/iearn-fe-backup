@@ -1,5 +1,5 @@
 // import external modules
-import React, { Suspense, lazy, useEffect } from "react";
+import React, { Suspense, lazy, useEffect, useState } from "react";
 import { BrowserRouter, Switch, Redirect, useHistory } from "react-router-dom";
 import Spinner from "../components/spinner/spinner";
 
@@ -47,26 +47,29 @@ const SignUp = lazy(() => import("../views/_main/SignUp"));
 const LazyErrorPage = lazy(() => import("../views/pages/error"));
 
 const Router = ({ user, setUser }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
 
   const fetchUser = async () => {
     try {
       const { data } = await api.get("/users/current");
       setUser(data);
-      // console.log(data);
     } catch (e) {
       setUser(null);
       history.push("/login");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
     if (!user) {
+      setIsLoading(true);
       fetchUser(setUser);
     }
   }, []);
 
-  if (!user) return <Spinner />;
+  if (isLoading) return <Spinner />;
 
   return (
     // Set the directory path if you are deplying in sub-folder

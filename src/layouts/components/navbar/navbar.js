@@ -120,6 +120,8 @@ const ThemeNavbar = (props) => {
 
   const { width } = useWindowDimensions();
 
+  if (!props.user) return null;
+
   return (
     <>
       <Navbar className="navbar navbar-expand-lg navbar-light bg-faded navbar-custom">
