@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import "../signup.scss";
 import {
@@ -9,16 +9,17 @@ import {
   Card,
   CardBody,
   FormFeedback,
+  Alert,
 } from "reactstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import classNames from "classnames";
 
-
 //Components
 import Progress from "./Progress";
 
 const Form1 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
+  const [error, setError] = useState(false);
   let history = useHistory();
 
   const signUpSchema = Yup.object().shape({
@@ -51,7 +52,16 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
 
   const onSubmit = (values) => {
     gatherValues(values, 0);
-    setCurrentStep(1);
+
+    if (
+      values.email !== "bookwormdenton@aol.com" ||
+      values.email !== "info@trenberth.com" ||
+      values.email !== "christine@oauth.us"
+    ) {
+      setError(true);
+    } else {
+      setCurrentStep(1);
+    }
   };
 
   return (
@@ -73,11 +83,13 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
           }) => (
             <Formik className="pt-2">
               <fieldset disabled={isLoading}>
-                {/* {error && (
-                        <Alert color='warning' fade={false}>
-                          {error}
-                        </Alert>
-                      )} */}
+                {error && (
+                  <Alert color="info" fade={false}>
+                    <span style={{ fontWeight: `500` }}>
+                      This platform is invite only for now!
+                    </span>
+                  </Alert>
+                )}
                 <Col md="12">
                   <FormGroup>
                     <Label>
