@@ -18,6 +18,9 @@ import classNames from "classnames";
 //Components
 import Progress from "./Progress";
 
+//Assets
+import invited from "../invited.json";
+
 const Form1 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
   const [error, setError] = useState(false);
   let history = useHistory();
@@ -53,11 +56,12 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
   const onSubmit = (values) => {
     gatherValues(values, 0);
 
-    if (
-      values.email !== "bookwormdenton@aol.com" ||
-      values.email !== "info@trenberth.com" ||
-      values.email !== "christine@oauth.us"
-    ) {
+    let isInvited = false;
+    invited.forEach((invite) => {
+      if (invite === values.email) isInvited = true;
+    });
+
+    if (!isInvited) {
       setError(true);
     } else {
       setCurrentStep(1);
@@ -156,7 +160,10 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
                       placeholder="john.doe@gmail.com"
                       value={values.email}
                       onBlur={handleBlur("email")}
-                      onChange={handleChange("email")}
+                      onChange={(e) => {
+                        handleChange("email")(e);
+                        setError(false);
+                      }}
                       invalid={!!touched.email && !!errors.email}
                     />
                     <FormFeedback>{touched.email && errors.email}</FormFeedback>
