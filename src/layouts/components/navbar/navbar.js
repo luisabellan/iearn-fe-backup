@@ -340,7 +340,7 @@ const ThemeNavbar = (props) => {
                     </div>
                     {props.user.userImg ? (
                       <img
-                        src={props.user.userImg}
+                        src={`https://mentor-beast-nuclius.s3.us-east-2.amazonaws.com/${props.user.userImg}`}
                         alt="logged-in-user"
                         className="rounded-circle width-35"
                       />

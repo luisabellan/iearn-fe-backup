@@ -92,7 +92,7 @@ const UserProfile = () => {
                       <Col className="px-0 px-md-2">
                         {currentProfile.userImg ? (
                           <img
-                            src={currentProfile.userImg}
+                            src={`https://mentor-beast-nuclius.s3.us-east-2.amazonaws.com/${currentProfile.userImg}`}
                             alt="logged-in-user"
                             className="rounded-circle"
                           />
