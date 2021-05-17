@@ -115,7 +115,7 @@ const SideMenuContent = (props) => {
             <i className="menu-icon">
               <Award size={22} />
             </i>{" "}
-            <span className="menu-item-text">Deals</span>
+            <span className="menu-item-text">My Deals</span>
           </NavLink>
         </SideMenu.MenuMultiItems>
 

@@ -34,6 +34,7 @@ const Form2 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
       }
     });
 
+    setCurrentStep(4);
     gatherValues({ skills: arr }, 3);
   };
 

@@ -139,7 +139,7 @@ const UserProfile = ({ user, profile }) => {
                       </Row>
                       <Row className="tablet-hidden tab-hidden desktop-hidden">
                         <Col>
-                          <p className="text-center">
+                          {/* <p className="text-center">
                             Timezone:{" "}
                             <span
                               className={
@@ -150,7 +150,7 @@ const UserProfile = ({ user, profile }) => {
                                 ? currentProfile.timezone
                                 : "Unset"}
                             </span>
-                          </p>
+                          </p> */}
                         </Col>
                       </Row>
                     </Col>
@@ -204,12 +204,12 @@ const UserProfile = ({ user, profile }) => {
                       </p>
                     </Col>
                     <Col xs={{ order: 2, size: 12 }} md={{ size: 4, order: 1 }}>
-                      <p className="text-center mb-0 mb-md-2">
+                      {/* <p className="text-center mb-0 mb-md-2">
                         Preferred method of communication:{" "}
                         <u className="text-capitalize">
                           {currentProfile.preferredContact}
                         </u>
-                      </p>
+                      </p> */}
                     </Col>
                     <Col xs={{ order: 1, size: 12 }} md={{ size: 4, order: 2 }}>
                       <p className="text-center">{mapSocialMedia()}</p>

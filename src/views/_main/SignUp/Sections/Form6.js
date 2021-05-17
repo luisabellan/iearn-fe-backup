@@ -16,7 +16,7 @@ import classNames from "classnames";
 //Components
 import Progress from "./Progress";
 
-const Form5 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
+const Form6 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
   // const socialSchema = Yup.object().shape({
   //   facebook: Yup.string().matches(
   //     /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
@@ -47,12 +47,12 @@ const Form5 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
     <Card className="card-signup">
       <h1 className="text-center">Sign Up</h1>
       <CardBody>
-        This is Form 5
-        <button onClick={() => setCurrentStep(5)}>Click Here</button>
+        This is Form 6
+        <button onClick={()=>setCurrentStep(6)}>Click Here</button>
         <Progress {...{ currentStep }} />
       </CardBody>
     </Card>
   );
 };
 
-export default Form5;
+export default Form6;
