@@ -33,7 +33,7 @@ const accountSettings = () => {
   return (
       <Card>
         <CardBody>
-          <div className="row justify-content-center">
+          <div className="row justify-content-center pb-4">
             <div className="col-lg-11">
               <Formik
                 enableReinitialize
@@ -139,10 +139,10 @@ const accountSettings = () => {
                   );
                 }}
               </Formik>
-              <hr />
+              {/* <hr /> */}
             </div>
           </div>
-          <div className="row justify-content-center">
+          {/* <div className="row justify-content-center">
             <div className="col-lg-11">
               <Formik
                 enableReinitialize
@@ -428,6 +428,7 @@ const accountSettings = () => {
               </Formik>
             </div>
           </div>
+         */}
         </CardBody>
       </Card>
   );

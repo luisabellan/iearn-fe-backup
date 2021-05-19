@@ -95,7 +95,7 @@ const Deals = (props) => {
           </Card>
         </Col>
       </Row>
-      <Row className="page-courses">
+      {/* <Row className="page-courses">
         <Col>
           <Card>
             <CardBody className="pb-0 courses-container">
@@ -231,6 +231,7 @@ const Deals = (props) => {
           </Card>
         </Col>
       </Row>
+     */}
     </>
   );
 };

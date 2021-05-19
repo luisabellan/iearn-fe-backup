@@ -168,7 +168,7 @@ const Router = ({ user, setUser }) => {
           )}
         />
 
-        <MainLayoutRoutes
+        {/* <MainLayoutRoutes
           exact
           path="/content/files"
           render={(matchprops) => (
@@ -176,7 +176,7 @@ const Router = ({ user, setUser }) => {
               <Files {...matchprops} />
             </Suspense>
           )}
-        />
+        /> */}
 
         <MainLayoutRoutes
           exact
