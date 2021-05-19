@@ -25,6 +25,7 @@ const SignUp = () => {
   const gatherValues = (val, form) => {
     let values = { ...formValues, ...val };
     setFormValues({ ...values });
+    console.log(values);
 
     if (form === 6) {
       let { confirmPassword, password, ...finalize } = values;
@@ -38,25 +39,24 @@ const SignUp = () => {
   };
 
   const signUp = (values, password) => {
-    // setIsLoading(true);
-    setCurrentStep(7);
+    setIsLoading(true);
 
-    // api
-    //   .post(`/users`, values)
-    //   .then((res) => {
-    //     api
-    //       .post(`/usersettings`, { user: res.data.id, password })
-    //       .then((res) => {
-    //         setIsLoading(false);
-    //         setCurrentStep(6);
-    //       })
-    //       .catch((err) => {
-    //         console.log(err);
-    //       });
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    api
+      .post(`/users`, values)
+      .then((res) => {
+        api
+          .post(`/usersettings`, { user: res.data.id, password })
+          .then((res) => {
+            setIsLoading(false);
+            setCurrentStep(6);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (

@@ -19,7 +19,7 @@ import classNames from "classnames";
 import Progress from "./Progress";
 
 //Assets
-import invited from "../invited.json";
+import invited from "../json/invited.json";
 
 const Form1 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
   const [error, setError] = useState(false);

@@ -14,10 +14,6 @@ import {
 import { Link, useLocation } from "react-router-dom";
 import SpinnerComponent from "../../../../components/spinner/spinner";
 
-//States
-import states from "../../SignUp/json/states_hash.json";
-//Source: https://gist.github.com/mshafrir/2646763
-
 //Assets
 // import profilePlaceholder from "../../../../assets/img/_main/profile-placeholder.jpg";
 
@@ -97,7 +93,7 @@ const UserProfile = ({ user, profile }) => {
         <Col>
           <Card>
             <CardBody>
-              <div className="row justify-content-center pb-4">
+              <div className="row justify-content-center">
                 <div className="col-11">
                   <Row>
                     <Col className="tablet-hidden tab-hidden desktop-hidden mb-0">
@@ -162,8 +158,8 @@ const UserProfile = ({ user, profile }) => {
                       <h1 className="sm-hidden mobile-hidden text-capitalize">
                         {currentProfile.firstName} {currentProfile.lastName}
                       </h1>
-                      <h5 className="mt-0 mt-md-3">
-                        <MapPin className="mr-1 mr-md-3" color="#464855" />{" "}
+                      <h3 className="mt-0 mt-md-3">
+                        <MapPin className="mr-1 mr-md-3" color="#DADADA" />{" "}
                         <span
                           className={
                             currentProfile.location ? "" : "opacity-50"
@@ -173,9 +169,9 @@ const UserProfile = ({ user, profile }) => {
                             ? currentProfile.location
                             : "Unset"}
                         </span>
-                      </h5>
-                      <h5 className="mt-0 mt-md-3">
-                        <PhoneCall className="mr-1 mr-md-3" color="#464855" />{" "}
+                      </h3>
+                      <h3 className="mt-0 mt-md-3">
+                        <PhoneCall className="mr-1 mr-md-3" color="#DADADA" />{" "}
                         <span
                           className={
                             currentProfile.businessPhone ? "" : "opacity-50"
@@ -185,12 +181,11 @@ const UserProfile = ({ user, profile }) => {
                             ? currentProfile.businessPhone
                             : "Unset"}
                         </span>
-                      </h5>
-                      <h5 className="mt-0 mt-md-3">
-                        <Mail className="mr-1 mr-md-3" color="#464855" />{" "}
+                      </h3>
+                      <h3 className="mt-0 mt-md-3">
+                        <Mail className="mr-1 mr-md-3" color="#DADADA" />{" "}
                         {currentProfile.email}
-                      </h5>
-                      <p className="mt-3">{mapSocialMedia()}</p>
+                      </h3>
                     </Col>
                   </Row>
                   <Row className="mt-md-3">
@@ -216,6 +211,9 @@ const UserProfile = ({ user, profile }) => {
                         </u>
                       </p> */}
                     </Col>
+                    <Col xs={{ order: 1, size: 12 }} md={{ size: 4, order: 2 }}>
+                      <p className="text-center">{mapSocialMedia()}</p>
+                    </Col>
                   </Row>
                   <hr />
                   <Row className="list-container">
@@ -240,39 +238,25 @@ const UserProfile = ({ user, profile }) => {
                   <hr />
                   <Row className="list-container">
                     <Col>
-                      <h2>Markets:</h2>
+                      <h2>Lessons Completed:</h2>
                       <Row>
                         <Col lg="12" xl="8">
                           <Row>
-                            {currentProfile.markets.map((market, index) => (
-                              <Col key={index} xs="6" md="4">
-                                <p className="mb-1 mb-md-2 text-capitalize">
-                                  {states[market]}
-                                </p>
-                              </Col>
-                            ))}
-                          </Row>
-                        </Col>
-                        <Col lg="0" xl="4"></Col>
-                      </Row>
-                    </Col>
-                  </Row>
-                  <hr />
-                  <Row className="list-container">
-                    <Col>
-                      <h2>Mentorships:</h2>
-                      <Row>
-                        <Col lg="12" xl="8">
-                          <Row>
-                            {currentProfile.mentorships.map(
-                              (mentorship, index) => (
-                                <Col key={index} xs="6" md="4">
-                                  <p className="mb-1 mb-md-2 text-capitalize">
-                                    {mentorship}
-                                  </p>
-                                </Col>
-                              )
-                            )}
+                            <Col xs="6" md="4">
+                              <p className="mb-1 mb-md-2">Lorem ipsum</p>
+                              <p className="mb-1 mb-md-2">Lorem ipsum</p>
+                              <p className="mb-1 mb-md-2">Lorem ipsum</p>
+                            </Col>
+                            <Col xs="6" md="4">
+                              <p className="mb-1 mb-md-2">Lorem ipsum</p>
+                              <p className="mb-1 mb-md-2">Lorem ipsum</p>
+                              <p className="mb-1 mb-md-2">Lorem ipsum</p>
+                            </Col>
+                            <Col xs="6" md="4">
+                              <p className="mb-1 mb-md-2">Lorem ipsum</p>
+                              <p className="mb-1 mb-md-2">Lorem ipsum</p>
+                              <p className="mb-1 mb-md-2">Lorem ipsum</p>
+                            </Col>
                           </Row>
                         </Col>
                         <Col lg="0" xl="4"></Col>
