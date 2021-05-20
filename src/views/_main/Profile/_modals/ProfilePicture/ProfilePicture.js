@@ -19,14 +19,14 @@ import * as Yup from "yup";
 import { BsUpload } from "react-icons/bs";
 
 //Context
-import withUser from "../../../../utility/withContexts/withUser";
+import withUser from "../../../../../utility/withContexts/withUser";
 
 //API
-import api from "../../../../api/api";
+import api from "../../../../../api/api";
 import {
   s3Upload,
   generateFilename,
-} from "../../../../utility/uploading/fileUpload";
+} from "../../../../../utility/uploading/fileUpload";
 
 const ProfilePicture = ({ user, isOpen, toggle }) => {
   const [src, setSrc] = useState(null);
@@ -81,8 +81,6 @@ const ProfilePicture = ({ user, isOpen, toggle }) => {
   }, [completedCrop]);
 
   useEffect(() => {
-    console.log(user);
-    console.log(`https://mentor-beast-nuclius.s3.us-east-2.amazonaws.com/${user.userImg}`)
     return () => {
       setSrc(null);
     };

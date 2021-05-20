@@ -10,6 +10,7 @@ import {
   Linkedin,
   Twitter,
   Edit,
+  Slack,
 } from "react-feather";
 import { Link, useLocation } from "react-router-dom";
 import SpinnerComponent from "../../../../components/spinner/spinner";
@@ -18,14 +19,12 @@ import SpinnerComponent from "../../../../components/spinner/spinner";
 import states from "../../SignUp/json/states_hash.json";
 //Source: https://gist.github.com/mshafrir/2646763
 
-//Assets
-// import profilePlaceholder from "../../../../assets/img/_main/profile-placeholder.jpg";
-
 //Context
 import withUserContext from "../../../../utility/withContexts/withUser";
 
 //Modals
-import ProfilePicture from "../_modals/ProfilePicture";
+import ProfilePicture from "../_modals/ProfilePicture/ProfilePicture";
+import EditProfile from "../_modals/EditProfile/EditProfile";
 
 //Notes
 //Circle taken from: https://codepen.io/cbracco/pen/qnduh
@@ -34,6 +33,7 @@ const UserProfile = ({ user, profile }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [currentProfile, setCurrentProfile] = useState(null);
   const [profilePicture, setProfilePicture] = useState(false);
+  const [editProfile, setEditProfile] = useState(false);
 
   // const location = useLocation();
 
@@ -69,6 +69,11 @@ const UserProfile = ({ user, profile }) => {
         link: currentProfile.linkedin,
         key: "linkedin",
       },
+      {
+        icon: <Slack className="mr-3" />,
+        link: currentProfile.slack,
+        key: "slack",
+      },
     ];
 
     return arr.map((item, index) => (
@@ -91,6 +96,12 @@ const UserProfile = ({ user, profile }) => {
         {...{
           isOpen: profilePicture,
           toggle: () => setProfilePicture(!profilePicture),
+        }}
+      />
+      <EditProfile
+        {...{
+          isOpen: editProfile,
+          toggle: () => setEditProfile(!editProfile),
         }}
       />
       <Row className="profile-container">
@@ -162,6 +173,14 @@ const UserProfile = ({ user, profile }) => {
                       <h1 className="sm-hidden mobile-hidden text-capitalize">
                         {currentProfile.firstName} {currentProfile.lastName}
                       </h1>
+                      <div className="edit-button">
+                        <button
+                          className="button-transparent"
+                          onClick={() => setEditProfile(!editProfile)}
+                        >
+                          <Edit size="22" />
+                        </button>
+                      </div>
                       <h5 className="mt-0 mt-md-3">
                         <MapPin className="mr-1 mr-md-3" color="#464855" />{" "}
                         <span
@@ -171,7 +190,7 @@ const UserProfile = ({ user, profile }) => {
                         >
                           {currentProfile.location
                             ? currentProfile.location
-                            : "Unset"}
+                            : ""}
                         </span>
                       </h5>
                       <h5 className="mt-0 mt-md-3">
@@ -183,7 +202,7 @@ const UserProfile = ({ user, profile }) => {
                         >
                           {currentProfile.businessPhone
                             ? currentProfile.businessPhone
-                            : "Unset"}
+                            : ""}
                         </span>
                       </h5>
                       <h5 className="mt-0 mt-md-3">
@@ -244,13 +263,15 @@ const UserProfile = ({ user, profile }) => {
                       <Row>
                         <Col lg="12" xl="8">
                           <Row>
-                            {currentProfile.markets.map((market, index) => (
-                              <Col key={index} xs="6" md="4">
-                                <p className="mb-1 mb-md-2 text-capitalize">
-                                  {states[market]}
-                                </p>
-                              </Col>
-                            ))}
+                            {currentProfile.markets
+                              ? currentProfile.markets.map((market, index) => (
+                                  <Col key={index} xs="6" md="4">
+                                    <p className="mb-1 mb-md-2 text-capitalize">
+                                      {states[market]}
+                                    </p>
+                                  </Col>
+                                ))
+                              : ""}
                           </Row>
                         </Col>
                         <Col lg="0" xl="4"></Col>
@@ -264,15 +285,17 @@ const UserProfile = ({ user, profile }) => {
                       <Row>
                         <Col lg="12" xl="8">
                           <Row>
-                            {currentProfile.mentorships.map(
-                              (mentorship, index) => (
-                                <Col key={index} xs="6" md="4">
-                                  <p className="mb-1 mb-md-2 text-capitalize">
-                                    {mentorship}
-                                  </p>
-                                </Col>
-                              )
-                            )}
+                            {currentProfile.mentorShips
+                              ? currentProfile.mentorships.map(
+                                  (mentorship, index) => (
+                                    <Col key={index} xs="6" md="4">
+                                      <p className="mb-1 mb-md-2 text-capitalize">
+                                        {mentorship}
+                                      </p>
+                                    </Col>
+                                  )
+                                )
+                              : ""}
                           </Row>
                         </Col>
                         <Col lg="0" xl="4"></Col>
