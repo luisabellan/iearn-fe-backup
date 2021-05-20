@@ -93,7 +93,7 @@ const SideMenuContent = (props) => {
             </i>{" "}
             <span className="menu-item-text">Directory</span>
           </NavLink>
-          <NavLink
+          {/* <NavLink
             to="/people/resources"
             exact
             className="item"
@@ -103,7 +103,7 @@ const SideMenuContent = (props) => {
               <FolderPlus size={22} />
             </i>{" "}
             <span className="menu-item-text">Resources</span>
-          </NavLink>
+          </NavLink> */}
           <NavLink
             to="/people/deals"
             exact

@@ -219,7 +219,7 @@ const Router = ({ user, setUser }) => {
           )}
         />
 
-        <MainLayoutRoutes
+        {/* <MainLayoutRoutes
           exact
           path="/people/resources"
           render={(matchprops) => (
@@ -227,7 +227,7 @@ const Router = ({ user, setUser }) => {
               <Resources {...matchprops} />
             </Suspense>
           )}
-        />
+        /> */}
 
         <MainLayoutRoutes
           exact
