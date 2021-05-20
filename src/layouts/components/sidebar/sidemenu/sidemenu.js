@@ -115,7 +115,7 @@ const SideMenuContent = (props) => {
             <i className="menu-icon">
               <Award size={22} />
             </i>{" "}
-            <span className="menu-item-text">Deals</span>
+            <span className="menu-item-text">My Deals</span>
           </NavLink>
         </SideMenu.MenuMultiItems>
 
@@ -132,7 +132,7 @@ const SideMenuContent = (props) => {
             <NavLink to="/content/videos" exact className="item" activeclassname="active">
                <i className="menu-icon"><Film size={22} /></i> <span className="menu-item-text">Videos</span>
             </NavLink> */}
-          <NavLink
+          {/* <NavLink
             to="/content/files"
             exact
             className="item"
@@ -142,7 +142,7 @@ const SideMenuContent = (props) => {
               <File size={22} />
             </i>{" "}
             <span className="menu-item-text">Files</span>
-          </NavLink>
+          </NavLink> */}
           <NavLink
             to="/content/faqs"
             exact

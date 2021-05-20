@@ -1,26 +1,15 @@
 import React, { useState } from "react";
 import "../signup.scss";
-import {
-  Row,
-  Col,
-  FormGroup,
-  Label,
-  Card,
-  CardBody,
-} from "reactstrap";
-
-//States
-import states from "../json/states.json";
-//Source: https://gist.github.com/mshafrir/2646763
+import { Row, Col, FormGroup, Label, Card, CardBody } from "reactstrap";
 
 //Components
 import Progress from "./Progress";
 
-const Form5 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
-  const [markets, setMarkets] = useState([]);
+const Form6 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
+  const [mentorships, setMentorships] = useState([]);
 
-  const updateMarkets = (name) => {
-    let arr = [...markets];
+  const updateMentorships = (name) => {
+    let arr = [...mentorships];
 
     if (arr.includes(name)) {
       let i = arr.indexOf(name);
@@ -29,43 +18,50 @@ const Form5 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
       arr.push(name);
     }
 
-    setMarkets(arr);
+    setMentorships(arr);
   };
 
   const onSubmit = () => {
-    gatherValues({ markets }, 5);
-    setCurrentStep(5);
+    gatherValues({ mentorships }, 6);
   };
 
-  const mapStates = () => {
+  const mapMentorships = () => {
+    const mentors = [
+      "Astroflipping",
+      "SubTo",
+      "Chris Chico",
+      "TTP",
+      "Flip2Freedom",
+    ];
+
     return (
-      <Row className="markets-container">
+      <Row className="mentorships-container">
         <Col>
-          {states.map((state, index) => {
-            return index <= 29 ? (
+          {mentors.map((mentor, index) => {
+            return index <= 2 ? (
               <label key={index}>
                 <input
                   type="checkbox"
-                  name={state.name}
-                  onClick={() => updateMarkets(state.abbreviation)}
+                  name={mentor}
+                  onClick={() => updateMentorships(mentor)}
                 />
                 &ensp;
-                {state.name}
+                {mentor}
               </label>
             ) : null;
           })}
         </Col>
         <Col>
-          {states.map((state, index) => {
-            return index >= 30 ? (
+          {mentors.map((mentor, index) => {
+            return index >= 3 ? (
               <label key={index}>
                 <input
                   type="checkbox"
-                  name={state.name}
-                  onClick={() => updateMarkets(state.abbreviation)}
+                  name={mentor}
+                  onClick={() => updateMentorships(mentor)}
                 />
                 &ensp;
-                {state.name}
+                {mentor}
               </label>
             ) : null;
           })}
@@ -75,14 +71,14 @@ const Form5 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
   };
 
   return (
-    <Card className="card-signup markets">
+    <Card className="card-signup mentorships">
       <h1 className="text-center">Sign Up</h1>
       <CardBody>
         <p className="text-center">What markets do you work in?</p>
         <Label className="text-center w-100">
           You may select multiple options.
         </Label>
-        {mapStates()}
+        {mapMentorships()}
         <FormGroup>
           <Col md="12" className="text-center">
             <button
@@ -114,4 +110,4 @@ const Form5 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
   );
 };
 
-export default Form5;
+export default Form6;
