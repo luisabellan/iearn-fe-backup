@@ -146,7 +146,7 @@ const Deals = (props) => {
         <Col>
           <Card>
             <CardBody className="pb-0 directory-container">
-              <Row className="pt-2 table-header">
+              {/* <Row className="pt-2 table-header">
                 <Col
                   xs="4 pr-0"
                   sm="4"
@@ -201,6 +201,7 @@ const Deals = (props) => {
                   </UncontrolledDropdown>
                 </Col>
               </Row>
+               */}
               <Row className="table-directory">
                 <Col className="px-0 pt-0">
                   <Table hover>
@@ -218,7 +219,7 @@ const Deals = (props) => {
                     </thead>
                     <tbody>
                       {mapDeals()}
-                      <tr>
+                      {/* <tr>
                         <td className="pb-0">
                           <div className="row justify-content-end pagination-options">
                             <div className="col-6 col-md-3 col-lg-4 col-xl-3 text-right">
@@ -240,7 +241,7 @@ const Deals = (props) => {
                             </div>
                           </div>
                         </td>
-                      </tr>
+                      </tr> */}
                     </tbody>
                   </Table>
                 </Col>

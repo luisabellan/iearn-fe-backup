@@ -81,8 +81,6 @@ const ProfilePicture = ({ user, isOpen, toggle }) => {
   }, [completedCrop]);
 
   useEffect(() => {
-    console.log(user);
-    console.log(`https://mentor-beast-nuclius.s3.us-east-2.amazonaws.com/${user.userImg}`)
     return () => {
       setSrc(null);
     };

@@ -42,7 +42,7 @@ const Support = () => {
               <Col xs="4 pr-0" sm="4" md="6" lg="8" className="pl-lg-3">
                 <h4>Support</h4>
               </Col>
-              <Col xs="4 px-0" sm="4" md="3" lg="2" className="text-right">
+              {/* <Col xs="4 px-0" sm="4" md="3" lg="2" className="text-right">
                 <UncontrolledDropdown className="pr-1">
                   <DropdownToggle className="button-sort button-transparent-2">
                     <List size={20} color="#333" />
@@ -52,8 +52,8 @@ const Support = () => {
                     <DropdownItem>Hello</DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
-              </Col>
-              <Col xs="4 px-0" sm="4" md="3" lg="2">
+              </Col> */}
+              {/* <Col xs="4 px-0" sm="4" md="3" lg="2">
                 <UncontrolledDropdown className="pr-1">
                   <DropdownToggle className="button-sort button-transparent-2">
                     <Filter size={20} color="#333" />
@@ -63,7 +63,7 @@ const Support = () => {
                     <DropdownItem>Hello</DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
-              </Col>
+              </Col> */}
             </Row>
             <Row className="table-support">
               <Col className="px-0 pt-0 pt-lg-4">
@@ -172,7 +172,7 @@ const Support = () => {
                         </Row>
                       </td>
                     </tr>
-
+{/* 
                     <tr>
                       <td className="pb-0">
                         <div className="row justify-content-end pagination-options">
@@ -195,7 +195,7 @@ const Support = () => {
                           </div>
                         </div>
                       </td>
-                    </tr>
+                    </tr> */}
                   </tbody>
                 </Table>
               </Col>

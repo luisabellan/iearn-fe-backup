@@ -244,13 +244,15 @@ const UserProfile = ({ user, profile }) => {
                       <Row>
                         <Col lg="12" xl="8">
                           <Row>
-                            {currentProfile.markets.map((market, index) => (
-                              <Col key={index} xs="6" md="4">
-                                <p className="mb-1 mb-md-2 text-capitalize">
-                                  {states[market]}
-                                </p>
-                              </Col>
-                            ))}
+                            {currentProfile.markets
+                              ? currentProfile.markets.map((market, index) => (
+                                  <Col key={index} xs="6" md="4">
+                                    <p className="mb-1 mb-md-2 text-capitalize">
+                                      {states[market]}
+                                    </p>
+                                  </Col>
+                                ))
+                              : ""}
                           </Row>
                         </Col>
                         <Col lg="0" xl="4"></Col>
@@ -264,15 +266,17 @@ const UserProfile = ({ user, profile }) => {
                       <Row>
                         <Col lg="12" xl="8">
                           <Row>
-                            {currentProfile.mentorships.map(
-                              (mentorship, index) => (
-                                <Col key={index} xs="6" md="4">
-                                  <p className="mb-1 mb-md-2 text-capitalize">
-                                    {mentorship}
-                                  </p>
-                                </Col>
-                              )
-                            )}
+                            {currentProfile.mentorShips
+                              ? currentProfile.mentorships.map(
+                                  (mentorship, index) => (
+                                    <Col key={index} xs="6" md="4">
+                                      <p className="mb-1 mb-md-2 text-capitalize">
+                                        {mentorship}
+                                      </p>
+                                    </Col>
+                                  )
+                                )
+                              : ""}
                           </Row>
                         </Col>
                         <Col lg="0" xl="4"></Col>
