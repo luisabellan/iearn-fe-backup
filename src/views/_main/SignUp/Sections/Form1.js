@@ -58,7 +58,7 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
 
     let isInvited = false;
     invited.forEach((invite) => {
-      if (invite === values.email) isInvited = true;
+      if (invite.toLowerCase() === values.email.toLowerCase()) isInvited = true;
     });
 
     if (!isInvited) {
