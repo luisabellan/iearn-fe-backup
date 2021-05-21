@@ -25,6 +25,7 @@ import withUserContext from "../../../../utility/withContexts/withUser";
 //Modals
 import ProfilePicture from "../_modals/ProfilePicture/ProfilePicture";
 import EditProfile from "../_modals/EditProfile/EditProfile";
+import EditSkills from "../_modals/EditSkills/EditSkills";
 
 //Notes
 //Circle taken from: https://codepen.io/cbracco/pen/qnduh
@@ -34,6 +35,7 @@ const UserProfile = ({ user, profile }) => {
   const [currentProfile, setCurrentProfile] = useState(null);
   const [profilePicture, setProfilePicture] = useState(false);
   const [editProfile, setEditProfile] = useState(false);
+  const [editSkills, setEditSkills] = useState(false);
 
   // const location = useLocation();
 
@@ -102,6 +104,12 @@ const UserProfile = ({ user, profile }) => {
         {...{
           isOpen: editProfile,
           toggle: () => setEditProfile(!editProfile),
+        }}
+      />
+      <EditSkills
+        {...{
+          isOpen: editSkills,
+          toggle: () => setEditSkills(!editSkills),
         }}
       />
       <Row className="profile-container">

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import {
   Col,
   Form,
@@ -9,9 +9,6 @@ import {
   Row,
   Card,
   CardBody,
-  Toast,
-  ToastBody,
-  ToastHeader,
 } from "reactstrap";
 import classNames from "classnames";
 import { Formik } from "formik";
@@ -20,16 +17,37 @@ import "../settings.scss";
 import { updateContact } from "./constants";
 
 //Context
+import withUser from "../../../../utility/withContexts/withUser";
 
-const contactSettings = () => {
+//API
+import api from "../../../../api/api";
+
+//Components
+import ToastSuccess from "../../../../components/toasts/success";
+
+const contactSettings = ({ user, setUser }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
-  const onSubmitBilling = () => {
-    alert(`success billing`);
+  const onSubmitBilling = (values) => {
+    setIsLoading(true);
+
+    let { homeZip, businessZip, ...formValues } = values;
+    formValues.homeZip = parseInt(homeZip);
+    formValues.businessZip = parseInt(businessZip);
+
+    api.patch(`/users/${user.id}`, formValues).then((res) => {
+      setUser(res.data);
+      setSuccess(true);
+      setIsLoading(false);
+      setTimeout(() => {
+        setSuccess(false);
+      }, 4000);
+    });
   };
-
   return (
     <Fragment>
+      <ToastSuccess {...{ isOpen: success }} />
       <Card>
         <CardBody>
           <div className="row justify-content-center">
@@ -37,24 +55,24 @@ const contactSettings = () => {
               <Formik
                 enableReinitialize
                 initialValues={{
-                  homeAddress: "",
-                  homeCity: "",
-                  homeState: "",
-                  homeZip: "",
-                  homePhone: "",
-                  homeEmail: "",
-                  businessAddress: "",
-                  businessCity: "",
-                  businessState: "",
-                  businessZip: "",
-                  businessPhone: "",
-                  businessEmail: "",
-                  linkedin: "",
-                  facebook: "",
-                  instagram: "",
-                  twitter: "",
-                  slack: "",
-                  discord: "",
+                  homeAddress: user.homeAddress || "",
+                  homeCity: user.homeCity || "",
+                  homeState: user.homeState || "",
+                  homeZip: user.homeZip || "",
+                  homePhone: user.homePhone || "",
+                  homeEmail: user.homeEmail || "",
+                  businessAddress: user.businessAddress || "",
+                  businessCity: user.businessCity || "",
+                  businessState: user.businessState || "",
+                  businessZip: user.businessZip || "",
+                  businessPhone: user.businessPhone || "",
+                  businessEmail: user.businessEmail || "",
+                  linkedin: user.linkedin || "",
+                  facebook: user.facebook || "",
+                  instagram: user.instagram || "",
+                  twitter: user.twitter || "",
+                  slack: user.slack || "",
+                  discord: user.discord || "",
                 }}
                 validationSchema={updateContact}
                 onSubmit={onSubmitBilling}
@@ -193,7 +211,7 @@ const contactSettings = () => {
                                     id="homePhone"
                                     name="homePhone"
                                     type="text"
-                                    placeholder="(555) 555-5555"
+                                    placeholder="+1 (555) 555-5555"
                                     required
                                     className={classNames("form-control", {
                                       "login-warning":
@@ -426,24 +444,24 @@ const contactSettings = () => {
                                 <FormGroup>
                                   <Label className="mt-1">LinkedIn</Label>
                                   <Input
-                                    id="linkedIn"
-                                    name="linkedIn"
+                                    id="linkedin"
+                                    name="linkedin"
                                     type="text"
                                     placeholder="linkedin.com/in/profile"
                                     required
                                     className={classNames("form-control", {
                                       "login-warning":
-                                        !!errors.linkedIn && !!touched.linkedIn,
+                                        !!errors.linkedin && !!touched.linkedin,
                                     })}
-                                    value={values.linkedIn}
-                                    onBlur={handleBlur("linkedIn")}
-                                    onChange={handleChange("linkedIn")}
+                                    value={values.linkedin}
+                                    onBlur={handleBlur("linkedin")}
+                                    onChange={handleChange("linkedin")}
                                     invalid={
-                                      !!touched.linkedIn && !!errors.linkedIn
+                                      !!touched.linkedin && !!errors.linkedin
                                     }
                                   />
                                   <FormFeedback>
-                                    {touched.linkedIn && errors.linkedIn}
+                                    {touched.linkedin && errors.linkedin}
                                   </FormFeedback>
 
                                   <Label className="mt-1">Facebook</Label>
@@ -589,4 +607,4 @@ const contactSettings = () => {
   );
 };
 
-export default contactSettings;
+export default withUser(contactSettings);
