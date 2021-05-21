@@ -54,7 +54,7 @@ const Deals = (props) => {
       .catch((err) => console.log(err));
   };
 
-  const mapDeals = () => {
+  const mapUsers = () => {
     let arr = [...people];
 
     if (isLoading)
@@ -88,15 +88,23 @@ const Deals = (props) => {
         >
           <td>
             <Row>
-              <Col xl={{ size: 3 }} className="people-wrapper">
+              <Col xl={{ size: 3 }}
+                md="5"
+                sm="5"
+                xs="5"
+                className="people-wrapper"
+              >
                 {person.userImg ? (
                   <img
-                    src={person.userImg}
+                    src={
+                      `https://mentor-beast-nuclius.s3.us-east-2.amazonaws.com/` +
+                      person.userImg
+                    }
                     alt="logged-in-user"
-                    className="rounded-circle width-35"
+                    className="rounded-circle width-35 height-35"
                   />
                 ) : (
-                  <div className="ml-2 width-35">
+                  <div className="width-35">
                     <div className="circle">
                       <div className="circle__inner">
                         <div className="circle__wrapper">
@@ -114,13 +122,15 @@ const Deals = (props) => {
                   </p>
                 </div>
               </Col>
-              <Col xl={{ size: 3 }}>
+              <Col xl={{ size: 3 }} md="4" sm="4" xs="4">
                 <span className={person.location ? "" : "opacity-50"}>
                   {person.location ? person.location : "Unset"}
                 </span>
               </Col>
-              <Col xl={{ size: 4 }}>{mapSkills(person.skills)}</Col>
-              <Col xl={{ size: 2 }}>
+              <Col xl={{ size: 4 }} className="tab-below-hidden">
+                {mapSkills(person.skills)}
+              </Col>
+              <Col xl={{ size: 2 }} md="3" sm="3" xs="3">
                 <Link
                   to={{
                     pathname: "/people/user",
@@ -209,16 +219,25 @@ const Deals = (props) => {
                       <tr>
                         <th>
                           <Row>
-                            <Col xl={{ size: 3 }}>People</Col>
-                            <Col xl={{ size: 3 }}>Location</Col>
-                            <Col xl={{ size: 4 }}>Skills</Col>
-                            <Col xl={{ size: 2 }}></Col>
+                            <Col xl={{ size: 3 }} md="5" sm="5" xs="5">
+                              People
+                            </Col>
+                            <Col xl={{ size: 3 }} md="4" sm="4" xs="4">
+                              Location
+                            </Col>
+                            <Col
+                              xl={{ size: 4 }}
+                              className="tab-below-hidden"
+                            >
+                              Skills
+                            </Col>
+                            <Col xl={{ size: 2 }} md="3" sm="3" xs="3"></Col>
                           </Row>
                         </th>
                       </tr>
                     </thead>
                     <tbody>
-                      {mapDeals()}
+                      {mapUsers()}
                       {/* <tr>
                         <td className="pb-0">
                           <div className="row justify-content-end pagination-options">

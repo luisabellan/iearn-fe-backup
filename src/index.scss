@@ -202,3 +202,16 @@ img {
 .font-weight-600 {
   font-weight: 600;
 }
+
+.toaster-container {
+  position: fixed;
+  top: 100px;
+  right: 50px;
+  z-index: 2000;
+
+  .toast-success {
+    .toast-body {
+      color: white;
+    }
+  }
+}
