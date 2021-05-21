@@ -90,7 +90,7 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
                 {error && (
                   <Alert color="info" fade={false}>
                     <span style={{ fontWeight: `500` }}>
-                      This platform is invite only for now!
+                      This platform is invite only for now! To request an invitation, visit GetSubtotal.com/contact and submit a form.
                     </span>
                   </Alert>
                 )}
