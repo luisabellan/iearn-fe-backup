@@ -14,7 +14,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { DollarSign, Search, Plus } from "react-feather";
 import classNames from "classnames";
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 
 //Utils
 // import { useWindowDimensions } from "../../Utils/utils";
@@ -312,7 +312,11 @@ const NewDeal = (props) => {
                                 disabled={isLoading}
                                 onClick={handleSubmit}
                               >
-                                Submit
+                                
+                                <NavLink to="/pages/deals" >
+                                    Submit
+                                </NavLink>
+                                
                               </button>
                             </Col>
                           </FormGroup>
