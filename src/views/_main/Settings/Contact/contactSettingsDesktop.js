@@ -9,6 +9,9 @@ import {
   Row,
   Card,
   CardBody,
+  Toast,
+  ToastBody,
+  ToastHeader,
 } from "reactstrap";
 import classNames from "classnames";
 import { Formik } from "formik";
@@ -16,6 +19,7 @@ import "../settings.scss";
 
 import { updateContact } from "./constants";
 
+//Context
 
 const contactSettings = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -560,16 +564,8 @@ const contactSettings = () => {
                               </Col>
                             </Row>
 
-                            <Row>
-                              <Col sm="4">
-                                <button
-                                  className="button-submain"
-                                  onClick={handleSubmit}
-                                >
-                                  Back
-                                </button>
-                              </Col>
-                              <Col sm={{ size: 4, offset: 4 }}>
+                            <Row className="mt-3">
+                              <Col sm={{ size: 4, offset: 8 }}>
                                 <button
                                   className="button-submain"
                                   onClick={handleSubmit}
