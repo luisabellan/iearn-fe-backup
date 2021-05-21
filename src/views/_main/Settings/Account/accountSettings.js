@@ -9,6 +9,7 @@ import {
   Row,
   Card,
   CardBody,
+  Alert,
 } from "reactstrap";
 import classNames from "classnames";
 import { Formik } from "formik";
@@ -16,21 +17,60 @@ import "../settings.scss";
 
 import { updatePasswordSchema, updateBillingSchema } from "./constants";
 
-//Assets
-import cards from "../_assets/images/cards.png";
+//Context
+import withUser from "../../../../utility/withContexts/withUser";
 
-const accountSettings = () => {
+//API
+import api from "../../../../api/api";
+
+//Components
+import ToastSuccess from "../../../../components/toasts/success";
+
+const accountSettings = ({ user }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
 
-  const onSubmitPassword = () => {
-    alert("success");
+  const onSubmitPassword = (values) => {
+    setIsLoading(true);
+
+    api
+      .post(`/users/login`, {
+        email: user.email,
+        password: values.currentPassword,
+      })
+      .then(() => {
+        api
+          .patch(`/usersettings/${user.id}`, {
+            id: user.id,
+            password: values.password,
+          })
+          .then(() => {
+            setSuccess(true);
+
+            setTimeout(() => {
+              setSuccess(false);
+            }, 4000);
+          })
+          .catch(() => {
+            setError(
+              `There was an error while saving. Please try again later.`
+            );
+          });
+      })
+      .catch(() => {
+        setError("The current password you entered was incorrect.");
+        setIsLoading(false);
+      });
   };
 
-  const onSubmitBilling = () => {
-    alert(`success billing`);
-  };
+  // const onSubmitBilling = () => {
+  //   alert(`success billing`);
+  // };
 
   return (
+    <>
+      <ToastSuccess {...{ isOpen: success }} />
       <Card>
         <CardBody>
           <div className="row justify-content-center pb-4">
@@ -38,6 +78,7 @@ const accountSettings = () => {
               <Formik
                 enableReinitialize
                 initialValues={{
+                  currentPassword: "",
                   password: "",
                   confirmPassword: "",
                 }}
@@ -66,13 +107,49 @@ const accountSettings = () => {
                             </Row>
                             <Row className="mt-2">
                               <Col xl="6">
+                                {error && (
+                                  <Alert color="warning" fade={true}>
+                                    {error}
+                                  </Alert>
+                                )}
+                                <FormGroup className="mb-1 mt-4">
+                                  <Label>Current Password</Label>
+                                  <Input
+                                    id="currentPassword"
+                                    name="currentPassword"
+                                    type="password"
+                                    required
+                                    className={classNames("form-control", {
+                                      "login-warning":
+                                        !!errors.currentPassword &&
+                                        !!touched.currentPassword,
+                                    })}
+                                    value={values.currentPassword}
+                                    onBlur={handleBlur("currentPassword")}
+                                    onChange={(e) => {
+                                      handleChange("currentPassword")(e);
+                                      setError("");
+                                    }}
+                                    invalid={
+                                      !!touched.currentPassword &&
+                                      !!errors.currentPassword
+                                    }
+                                  />
+                                  <FormFeedback>
+                                    {touched.currentPassword &&
+                                      errors.currentPassword}
+                                  </FormFeedback>
+                                </FormGroup>
+                              </Col>
+                            </Row>
+                            <Row className="mt-2">
+                              <Col xl="6">
                                 <FormGroup className="mb-1">
                                   <Label>New Password</Label>
                                   <Input
                                     id="password"
                                     name="password"
                                     type="password"
-                                    placeholder="********"
                                     required
                                     className={classNames("form-control", {
                                       "login-warning":
@@ -80,7 +157,10 @@ const accountSettings = () => {
                                     })}
                                     value={values.password}
                                     onBlur={handleBlur("password")}
-                                    onChange={handleChange("password")}
+                                    onChange={(e) => {
+                                      handleChange("password")(e);
+                                      setError("");
+                                    }}
                                     invalid={
                                       !!touched.password && !!errors.password
                                     }
@@ -93,13 +173,12 @@ const accountSettings = () => {
                             </Row>
                             <Row>
                               <Col xl="6">
-                                <FormGroup className="mb-0">
+                                <FormGroup className="mb-0 mt-2">
                                   <Label>Confirm New Password</Label>
                                   <Input
                                     id="confirmPassword"
                                     name="confirmPassword"
                                     type="password"
-                                    placeholder="********"
                                     required
                                     className={classNames("form-control", {
                                       "login-warning":
@@ -108,7 +187,10 @@ const accountSettings = () => {
                                     })}
                                     value={values.confirmPassword}
                                     onBlur={handleBlur("confirmPassword")}
-                                    onChange={handleChange("confirmPassword")}
+                                    onChange={(e) => {
+                                      handleChange("confirmPassword")(e);
+                                      setError("");
+                                    }}
                                     invalid={
                                       !!touched.confirmPassword &&
                                       !!errors.confirmPassword
@@ -123,7 +205,7 @@ const accountSettings = () => {
                               <Col
                                 xl={{ size: 3, offset: 2 }}
                                 xs={{ size: 6, offset: 6 }}
-                              >       
+                              >
                                 <button
                                   className="button-submain mt-3"
                                   onClick={handleSubmit}
@@ -431,7 +513,8 @@ const accountSettings = () => {
          */}
         </CardBody>
       </Card>
+    </>
   );
 };
 
-export default accountSettings;
+export default withUser(accountSettings);

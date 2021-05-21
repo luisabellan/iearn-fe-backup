@@ -209,6 +209,10 @@ img {
   right: 50px;
   z-index: 2000;
 
+  @media (max-width: 568px) {
+    right: 20px;
+  }
+
   .toast-success {
     .toast-body {
       color: white;

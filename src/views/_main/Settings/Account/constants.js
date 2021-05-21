@@ -23,14 +23,15 @@ export const updateBillingSchema = Yup.object().shape({
 });
 
 export const updatePasswordSchema = Yup.object().shape({
-  password: Yup.string().required("Password field is requred"),
+  currentPassword: Yup.string().required("Please enter your current password."),
+  password: Yup.string().required("Enter your new password."),
   confirmPassword: Yup.string()
     .when("password", {
       is: (val) => (val && val.length > 0 ? true : false),
       then: Yup.string().oneOf(
         [Yup.ref("password")],
-        "Password and Confirm Password must match"
+        "Password and Confirm New Password must match."
       ),
     })
-    .required("Confirm Password is required"),
+    .required("Please confirm your new password."),
 });

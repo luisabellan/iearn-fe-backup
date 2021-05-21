@@ -16,16 +16,44 @@ import "../settings.scss";
 
 import { updateContact } from "./constants";
 
-const contactSettings = () => {
+//Context
+import withUser from "../../../../utility/withContexts/withUser";
+
+//API
+import api from "../../../../api/api";
+
+//Components
+import ToastSuccess from "../../../../components/toasts/success";
+
+//States
+import states from "../../SignUp/json/states.json";
+//Source: https://gist.github.com/mshafrir/2646763
+
+const contactSettings = ({ user, setUser }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState("active");
+  const [success, setSuccess] = useState(false);
 
-  const onSubmitBilling = () => {
-    alert(`success billing`);
+  const onSubmitBilling = (values) => {
+    setIsLoading(true);
+
+    let { homeZip, businessZip, ...formValues } = values;
+    formValues.homeZip = parseInt(homeZip);
+    formValues.businessZip = parseInt(businessZip);
+
+    api.patch(`/users/${user.id}`, formValues).then((res) => {
+      setUser(res.data);
+      setSuccess(true);
+      setIsLoading(false);
+      setTimeout(() => {
+        setSuccess(false);
+      }, 4000);
+    });
   };
 
   return (
     <Fragment>
+      <ToastSuccess {...{ isOpen: success }} />
       <Card>
         <CardBody>
           <div className="row justify-content-center">
@@ -33,24 +61,24 @@ const contactSettings = () => {
               <Formik
                 enableReinitialize
                 initialValues={{
-                  homeAddress: "",
-                  homeCity: "",
-                  homeState: "",
-                  homeZip: "",
-                  homePhone: "",
-                  homeEmail: "",
-                  businessAddress: "",
-                  businessCity: "",
-                  businessState: "",
-                  businessZip: "",
-                  businessPhone: "",
-                  businessEmail: "",
-                  linkedin: "",
-                  facebook: "",
-                  instagram: "",
-                  twitter: "",
-                  slack: "",
-                  discord: "",
+                  homeAddress: user.homeAddress || "",
+                  homeCity: user.homeCity || "",
+                  homeState: user.homeState || "",
+                  homeZip: user.homeZip || "",
+                  homePhone: user.homePhone || "",
+                  homeEmail: user.homeEmail || "",
+                  businessAddress: user.businessAddress || "",
+                  businessCity: user.businessCity || "",
+                  businessState: user.businessState || "",
+                  businessZip: user.businessZip || "",
+                  businessPhone: user.businessPhone || "",
+                  businessEmail: user.businessEmail || "",
+                  linkedin: user.linkedin || "",
+                  facebook: user.facebook || "",
+                  instagram: user.instagram || "",
+                  twitter: user.twitter || "",
+                  slack: user.slack || "",
+                  discord: user.discord || "",
                 }}
                 validationSchema={updateContact}
                 onSubmit={onSubmitBilling}
@@ -190,7 +218,14 @@ const contactSettings = () => {
                                           }
                                         >
                                           <option value="">-</option>
-                                          <option value="AK">AK</option>
+                                          {states.map((state, index) => (
+                                            <option
+                                              key={index}
+                                              value={state.abbreviation}
+                                            >
+                                              {state.name}
+                                            </option>
+                                          ))}
                                         </Input>
                                         <FormFeedback>
                                           {touched.state && errors.state}
@@ -372,7 +407,14 @@ const contactSettings = () => {
                                           }
                                         >
                                           <option value="">-</option>
-                                          <option value="AK">AK</option>
+                                          {states.map((state, index) => (
+                                            <option
+                                              key={index}
+                                              value={state.abbreviation}
+                                            >
+                                              {state.name}
+                                            </option>
+                                          ))}
                                         </Input>
                                         <FormFeedback>
                                           {touched.businessState &&
@@ -440,7 +482,9 @@ const contactSettings = () => {
                                         errors.businessPhone}
                                     </FormFeedback>
 
-                                    <Label className="mt-1">Business Email</Label>
+                                    <Label className="mt-1">
+                                      Business Email
+                                    </Label>
                                     <Input
                                       id="businessEmail"
                                       name="businessEmail"
@@ -623,16 +667,8 @@ const contactSettings = () => {
                               ""
                             )}
 
-                            <Row>
-                              <Col sm="4" xs="6">
-                                <button
-                                  className="button-submain"
-                                  onClick={handleSubmit}
-                                >
-                                  Back
-                                </button>
-                              </Col>
-                              <Col sm={{ size: 4, offset: 4 }} xs="6">
+                            <Row className="justify-content-center">
+                              <Col sm={{ size: 4 }} xs="6">
                                 <button
                                   className="button-submain"
                                   onClick={handleSubmit}
@@ -656,4 +692,4 @@ const contactSettings = () => {
   );
 };
 
-export default contactSettings;
+export default withUser(contactSettings);

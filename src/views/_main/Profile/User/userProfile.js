@@ -10,7 +10,7 @@ import {
   Linkedin,
   Twitter,
   Edit,
-  Slack
+  Slack,
 } from "react-feather";
 import { Link, useLocation } from "react-router-dom";
 import SpinnerComponent from "../../../../components/spinner/spinner";
@@ -99,8 +99,8 @@ const UserProfile = () => {
                       <hr className="tablet-hidden tab-hidden desktop-hidden mb-0" />
                     </Col>
                   </Row>
-                  <Row>
-                    <Col className="profile-picture" xs="5" sm="4" md="4">
+                  <Row className="justify-content-center">
+                    <Col className="profile-picture mt-3" md="4" sm="8" xs="8">
                       <Row>
                         <Col className="px-0 px-md-2">
                           {currentProfile.userImg ? (
@@ -140,7 +140,7 @@ const UserProfile = () => {
                         </Col>
                       </Row>
                     </Col>
-                    <Col className="profile-info pr-0" xs="7" sm="8" md="8">
+                    <Col className="profile-info pr-0" md="8" sm="11" xs="12">
                       <h1 className="sm-hidden mobile-hidden text-capitalize">
                         {currentProfile.firstName} {currentProfile.lastName}
                       </h1>

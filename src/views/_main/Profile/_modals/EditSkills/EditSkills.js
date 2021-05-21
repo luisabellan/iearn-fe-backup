@@ -18,11 +18,12 @@ const EditProfile = ({ user, setUser, isOpen, toggle }) => {
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [skills, setSkills] = useState([]);
+  const [currentSkill, setCurrentSkill] = useState("");
 
-  const onSubmit = async (values) => {
+  const onSubmit = async () => {
     setIsLoading(true);
     api
-      .patch(`/users/${user.id}`, values)
+      .patch(`/users/${user.id}`, { skills })
       .then((res) => {
         setIsLoading(false);
         setUser(res.data);
@@ -35,7 +36,7 @@ const EditProfile = ({ user, setUser, isOpen, toggle }) => {
       .catch((err) => console.log(err));
   };
 
-  const addModule = (newSkill) => {
+  const addSkill = (newSkill) => {
     if (!skills.includes(newSkill)) {
       setSkills([...skills, newSkill]);
     }
@@ -45,6 +46,17 @@ const EditProfile = ({ user, setUser, isOpen, toggle }) => {
     //   hidden.focus();
     // }, 100);
   };
+
+  const handleEnter = (e) => {
+    if (e.key === "Enter") {
+      addSkill(currentSkill);
+      setCurrentSkill("");
+    }
+  };
+
+  useEffect(() => {
+    setSkills(user.skills);
+  }, []);
 
   const mapSkills = (arr) => {
     if (arr.length) {
@@ -90,14 +102,37 @@ const EditProfile = ({ user, setUser, isOpen, toggle }) => {
           <div className="row">
             <div className="col-12">
               <p>
-                Type your skill and hit{" "}
+                Type your skill and click{" "}
+                <span className="font-weight-bold">Add</span> or hit{" "}
                 <span className="font-weight-bold">Enter</span> to add.
               </p>
-              <input type="text" name="" id="" />
             </div>
-            <div className="col-12 mt-2">{mapSkills(skills)}</div>
           </div>
           <div className="row">
+            <div className="col-9">
+              <input
+                type="text"
+                value={currentSkill}
+                onChange={(e) => setCurrentSkill(e.target.value)}
+                onKeyPress={(e) => handleEnter(e)}
+              />
+            </div>
+            <div className="col-3 pl-0">
+              <button
+                className="button-add"
+                onClick={() => {
+                  addSkill(currentSkill);
+                  setCurrentSkill("");
+                }}
+              >
+                Add
+              </button>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-12 mt-2">{mapSkills(skills)}</div>
+          </div>
+          <div className="row mt-3">
             <div className="col-6">
               <Button
                 className="mt-2 mb-2"
