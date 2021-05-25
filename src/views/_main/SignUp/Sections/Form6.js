@@ -74,7 +74,7 @@ const Form6 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
     <Card className="card-signup mentorships">
       <h1 className="text-center">Sign Up</h1>
       <CardBody>
-        <p className="text-center">What markets do you work in?</p>
+        <p className="text-center">What Mentorships are you a member of?</p>
         <Label className="text-center w-100">
           You may select multiple options.
         </Label>
