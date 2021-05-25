@@ -9,6 +9,8 @@ import Form2 from "./Sections/Form2";
 import Form3 from "./Sections/Form3";
 import Form4 from "./Sections/Form4";
 import Form5 from "./Sections/Form5";
+import Form6 from "./Sections/Form6";
+import Form7 from "./Sections/Form7";
 
 //API
 import api from "../../../api/api";
@@ -23,8 +25,9 @@ const SignUp = () => {
   const gatherValues = (val, form) => {
     let values = { ...formValues, ...val };
     setFormValues({ ...values });
+    console.log(values);
 
-    if (form === 3) {
+    if (form === 6) {
       let { confirmPassword, password, ...finalize } = values;
 
       let body = Object.fromEntries(
@@ -45,7 +48,7 @@ const SignUp = () => {
           .post(`/usersettings`, { user: res.data.id, password })
           .then((res) => {
             setIsLoading(false);
-            setCurrentStep(4);
+            setCurrentStep(6);
           })
           .catch((err) => {
             console.log(err);
@@ -82,7 +85,13 @@ const SignUp = () => {
             <Form4
               {...{ isLoading, currentStep, setCurrentStep, gatherValues }}
             />
-            <Form5 {...{ currentStep }} />
+            <Form5
+              {...{ isLoading, currentStep, setCurrentStep, gatherValues }}
+            />
+            <Form6
+              {...{ isLoading, currentStep, setCurrentStep, gatherValues }}
+            />
+            <Form7 {...{ currentStep }} />
           </SwipeableViews>
         </Col>
       </Row>

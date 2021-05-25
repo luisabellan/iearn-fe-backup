@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./files.scss";
 import { useHistory } from "react-router-dom";
 import {
@@ -29,10 +29,12 @@ import placeholder from "../_temp/pdf_icon.png";
 //Utils
 import { useWindowDimensions } from "../../Utils/utils";
 import withTitleContext from "../../../../utility/withContexts/withTitle";
+import { useFilters } from "react-table";
 
 const Files = (props) => {
   const history = useHistory();
   const { width } = useWindowDimensions();
+  const [files, setFiles] = useState([]);
 
   useEffect(() => {
     props.setPageTitle("Files");
@@ -43,6 +45,82 @@ const Files = (props) => {
     if (width < 1200) {
       history.push(`/courses/asdasd`);
     }
+  };
+
+  const mapFiles = () => {
+    if (!files.length) {
+      return;
+    }
+
+    return files.map((file, index) => {
+      return (
+        <tr
+          onClick={() => {
+            handleClick();
+          }}
+        >
+          <td>
+            <Row>
+              <Col xl={{ size: 4 }} className="pl-2 pl-xl-4">
+                <Row>
+                  <Col sm="3" className="text-center tab-below-hidden">
+                    <img
+                      src={placeholder}
+                      alt="logged-in-user"
+                      className="width-50"
+                    />
+                  </Col>
+                  <Col xs="12" xl="9" className="pr-1 pl-2 pl-xl-0">
+                    <p className="title">No Agency Relationship Disclosure</p>
+                    <p className="history">Updated 1 day ago</p>
+                  </Col>
+                </Row>
+              </Col>
+              <Col xl={{ size: 1 }}>
+                <p className="title">PDF</p>
+              </Col>
+              <Col xl={{ size: 1 }} className="text-center">
+                <p className="title">
+                  <button className="button-transparent-2">
+                    <ArrowDown size="22" color="#c5c7cd" />
+                  </button>
+                  &ensp;18&ensp;
+                  <button className="button-transparent-2">
+                    <ArrowUp size="22" color="#0c2340" />
+                  </button>
+                </p>
+              </Col>
+              <Col
+                xl={{ size: 2 }}
+                className="xs-hidden tab-below-hidden text-center"
+              >
+                <p className="title">May 12, 2019</p>
+                <p className="history">6:30 PM</p>
+              </Col>
+              <Col xl={{ size: 3 }} className="pr-0">
+                <Row>
+                  <Col className="text-right tab-below-hidden" xl={{ size: 5 }}>
+                    <img
+                      src={userImage}
+                      alt="logged-in-user"
+                      className="rounded-circle width-50"
+                    />
+                  </Col>
+                  <Col className="pr-1 pl-2 pl-xl-0" xl={{ size: 7 }}>
+                    <p className="title">Barnes, Elle</p>
+                  </Col>
+                </Row>
+              </Col>
+              <Col xl={{ size: 1 }} className="xs-hidden tab-below-hidden">
+                <button className="button-transparent-2">
+                  <MoreVertical size={20} color="#000" />
+                </button>
+              </Col>
+            </Row>
+          </td>
+        </tr>
+      );
+    });
   };
 
   return (
@@ -118,85 +196,7 @@ const Files = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr
-                      onClick={() => {
-                        handleClick();
-                      }}
-                    >
-                      <td>
-                        <Row>
-                          <Col xl={{ size: 4 }} className="pl-2 pl-xl-4">
-                            <Row>
-                              <Col
-                                sm="3"
-                                className="text-center tab-below-hidden"
-                              >
-                                <img
-                                  src={placeholder}
-                                  alt="logged-in-user"
-                                  className="width-50"
-                                />
-                              </Col>
-                              <Col xs="12" xl="9" className="pr-1 pl-2 pl-xl-0">
-                                <p className="title">
-                                  No Agency Relationship Disclosure
-                                </p>
-                                <p className="history">Updated 1 day ago</p>
-                              </Col>
-                            </Row>
-                          </Col>
-                          <Col xl={{ size: 1 }}>
-                            <p className="title">PDF</p>
-                          </Col>
-                          <Col xl={{ size: 1 }} className="text-center">
-                            <p className="title">
-                              <button className="button-transparent-2">
-                                <ArrowDown size="22" color="#c5c7cd" />
-                              </button>
-                              &ensp;18&ensp;
-                              <button className="button-transparent-2">
-                                <ArrowUp size="22" color="#0c2340" />
-                              </button>
-                            </p>
-                          </Col>
-                          <Col
-                            xl={{ size: 2 }}
-                            className="xs-hidden tab-below-hidden text-center"
-                          >
-                            <p className="title">May 12, 2019</p>
-                            <p className="history">6:30 PM</p>
-                          </Col>
-                          <Col xl={{ size: 3 }} className="pr-0">
-                            <Row>
-                              <Col
-                                className="text-right tab-below-hidden"
-                                xl={{ size: 5 }}
-                              >
-                                <img
-                                  src={userImage}
-                                  alt="logged-in-user"
-                                  className="rounded-circle width-50"
-                                />
-                              </Col>
-                              <Col
-                                className="pr-1 pl-2 pl-xl-0"
-                                xl={{ size: 7 }}
-                              >
-                                <p className="title">Barnes, Elle</p>
-                              </Col>
-                            </Row>
-                          </Col>
-                          <Col
-                            xl={{ size: 1 }}
-                            className="xs-hidden tab-below-hidden"
-                          >
-                            <button className="button-transparent-2">
-                              <MoreVertical size={20} color="#000" />
-                            </button>
-                          </Col>
-                        </Row>
-                      </td>
-                    </tr>
+                    {mapFiles()}
 
                     <tr>
                       <td className="pb-0">

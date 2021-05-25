@@ -54,7 +54,7 @@ const Faqs = (props) => {
               <Col xs="4 pr-0" sm="4" md="6" lg="8" xl="10" className="pl-lg-3">
                 <h4>FAQs</h4>
               </Col>
-              <Col
+              {/* <Col
                 xs="4 px-0"
                 sm="4"
                 md="3"
@@ -82,7 +82,7 @@ const Faqs = (props) => {
                     <DropdownItem>Hello</DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
-              </Col>
+              </Col> */}
             </Row>
             <Row className="table-courses">
               <Col className="px-0 pt-0 pt-lg-4">
@@ -186,7 +186,7 @@ const Faqs = (props) => {
                       </td>
                     </tr>
 
-                    <tr>
+                    {/* <tr>
                       <td className="pb-0">
                         <div className="row justify-content-end pagination-options">
                           <div className="col-6 col-md-3 col-lg-4 col-xl-3 text-right">
@@ -208,7 +208,7 @@ const Faqs = (props) => {
                           </div>
                         </div>
                       </td>
-                    </tr>
+                    </tr> */}
                   </tbody>
                 </Table>
               </Col>

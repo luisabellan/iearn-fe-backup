@@ -10,14 +10,9 @@ import {
   Linkedin,
   Twitter,
   Edit,
-  Slack
 } from "react-feather";
 import { Link, useLocation } from "react-router-dom";
 import SpinnerComponent from "../../../../components/spinner/spinner";
-
-//States
-import states from "../../SignUp/json/states_hash.json";
-//Source: https://gist.github.com/mshafrir/2646763
 
 //Assets
 // import profilePlaceholder from "../../../../assets/img/_main/profile-placeholder.jpg";
@@ -25,19 +20,28 @@ import states from "../../SignUp/json/states_hash.json";
 //Context
 import withUserContext from "../../../../utility/withContexts/withUser";
 
+//Modals
+import ProfilePicture from "../_modals/ProfilePicture";
+
 //Notes
 //Circle taken from: https://codepen.io/cbracco/pen/qnduh
 
-const UserProfile = () => {
+const UserProfile = ({ user, profile }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [currentProfile, setCurrentProfile] = useState(null);
+  const [profilePicture, setProfilePicture] = useState(false);
 
-  const location = useLocation();
+  // const location = useLocation();
 
   useEffect(() => {
-    setCurrentProfile(location.state);
-    setIsLoading(false);
-  }, []);
+    if (profile) {
+      setCurrentProfile(profile);
+      setIsLoading(false);
+    } else if (user) {
+      setCurrentProfile(user);
+      setIsLoading(false);
+    }
+  }, [user]);
 
   const mapSocialMedia = () => {
     const arr = [
@@ -61,11 +65,6 @@ const UserProfile = () => {
         link: currentProfile.linkedin,
         key: "linkedin",
       },
-      {
-        icon: <Slack className="mr-3" />,
-        link: currentProfile.slack,
-        key: "slack",
-      },
     ];
 
     return arr.map((item, index) => (
@@ -84,11 +83,17 @@ const UserProfile = () => {
 
   return (
     <>
+      <ProfilePicture
+        {...{
+          isOpen: profilePicture,
+          toggle: () => setProfilePicture(!profilePicture),
+        }}
+      />
       <Row className="profile-container">
         <Col>
           <Card>
             <CardBody>
-              <div className="row justify-content-center pb-4">
+              <div className="row justify-content-center">
                 <div className="col-11">
                   <Row>
                     <Col className="tablet-hidden tab-hidden desktop-hidden mb-0">
@@ -103,6 +108,15 @@ const UserProfile = () => {
                     <Col className="profile-picture" xs="5" sm="4" md="4">
                       <Row>
                         <Col className="px-0 px-md-2">
+                          <div
+                            className="edit-profile"
+                            onClick={() => setProfilePicture(!profilePicture)}
+                          >
+                            <div className="edit-icon">
+                              <Edit size="100" color="#0C2340" />
+                              <p className="mt-2">Update Profile Picture</p>
+                            </div>
+                          </div>
                           {currentProfile.userImg ? (
                             <img
                               src={`https://mentor-beast-nuclius.s3.us-east-2.amazonaws.com/${currentProfile.userImg}`}
@@ -144,8 +158,8 @@ const UserProfile = () => {
                       <h1 className="sm-hidden mobile-hidden text-capitalize">
                         {currentProfile.firstName} {currentProfile.lastName}
                       </h1>
-                      <h5 className="mt-0 mt-md-3">
-                        <MapPin className="mr-1 mr-md-3" color="#464855" />{" "}
+                      <h3 className="mt-0 mt-md-3">
+                        <MapPin className="mr-1 mr-md-3" color="#DADADA" />{" "}
                         <span
                           className={
                             currentProfile.location ? "" : "opacity-50"
@@ -153,11 +167,11 @@ const UserProfile = () => {
                         >
                           {currentProfile.location
                             ? currentProfile.location
-                            : ""}
+                            : "Unset"}
                         </span>
-                      </h5>
-                      <h5 className="mt-0 mt-md-3">
-                        <PhoneCall className="mr-1 mr-md-3" color="#464855" />{" "}
+                      </h3>
+                      <h3 className="mt-0 mt-md-3">
+                        <PhoneCall className="mr-1 mr-md-3" color="#DADADA" />{" "}
                         <span
                           className={
                             currentProfile.businessPhone ? "" : "opacity-50"
@@ -165,14 +179,13 @@ const UserProfile = () => {
                         >
                           {currentProfile.businessPhone
                             ? currentProfile.businessPhone
-                            : ""}
+                            : "Unset"}
                         </span>
-                      </h5>
-                      <h5 className="mt-0 mt-md-3">
-                        <Mail className="mr-1 mr-md-3" color="#464855" />{" "}
+                      </h3>
+                      <h3 className="mt-0 mt-md-3">
+                        <Mail className="mr-1 mr-md-3" color="#DADADA" />{" "}
                         {currentProfile.email}
-                      </h5>
-                      <p className="mt-3">{mapSocialMedia()}</p>
+                      </h3>
                     </Col>
                   </Row>
                   <Row className="mt-md-3">
@@ -198,6 +211,9 @@ const UserProfile = () => {
                         </u>
                       </p> */}
                     </Col>
+                    <Col xs={{ order: 1, size: 12 }} md={{ size: 4, order: 2 }}>
+                      <p className="text-center">{mapSocialMedia()}</p>
+                    </Col>
                   </Row>
                   <hr />
                   <Row className="list-container">
@@ -222,43 +238,25 @@ const UserProfile = () => {
                   <hr />
                   <Row className="list-container">
                     <Col>
-                      <h2>Markets:</h2>
+                      <h2>Lessons Completed:</h2>
                       <Row>
                         <Col lg="12" xl="8">
                           <Row>
-                            {currentProfile.markets
-                              ? currentProfile.markets.map((market, index) => (
-                                  <Col key={index} xs="6" md="4">
-                                    <p className="mb-1 mb-md-2 text-capitalize">
-                                      {states[market]}
-                                    </p>
-                                  </Col>
-                                ))
-                              : ""}
-                          </Row>
-                        </Col>
-                        <Col lg="0" xl="4"></Col>
-                      </Row>
-                    </Col>
-                  </Row>
-                  <hr />
-                  <Row className="list-container">
-                    <Col>
-                      <h2>Mentorships:</h2>
-                      <Row>
-                        <Col lg="12" xl="8">
-                          <Row>
-                            {currentProfile.mentorShips
-                              ? currentProfile.mentorships.map(
-                                  (mentorship, index) => (
-                                    <Col key={index} xs="6" md="4">
-                                      <p className="mb-1 mb-md-2 text-capitalize">
-                                        {mentorship}
-                                      </p>
-                                    </Col>
-                                  )
-                                )
-                              : ""}
+                            <Col xs="6" md="4">
+                              <p className="mb-1 mb-md-2">Lorem ipsum</p>
+                              <p className="mb-1 mb-md-2">Lorem ipsum</p>
+                              <p className="mb-1 mb-md-2">Lorem ipsum</p>
+                            </Col>
+                            <Col xs="6" md="4">
+                              <p className="mb-1 mb-md-2">Lorem ipsum</p>
+                              <p className="mb-1 mb-md-2">Lorem ipsum</p>
+                              <p className="mb-1 mb-md-2">Lorem ipsum</p>
+                            </Col>
+                            <Col xs="6" md="4">
+                              <p className="mb-1 mb-md-2">Lorem ipsum</p>
+                              <p className="mb-1 mb-md-2">Lorem ipsum</p>
+                              <p className="mb-1 mb-md-2">Lorem ipsum</p>
+                            </Col>
                           </Row>
                         </Col>
                         <Col lg="0" xl="4"></Col>

@@ -33,6 +33,7 @@ const Deals = lazy(() => import("../views/_main/Deals/Main"));
 const DecisionTree = lazy(() => import("../views/_main/Deals/DecisionTree"));
 const NewDeal = lazy(() => import("../views/_main/Deals/NewDeal"));
 const Directory = lazy(() => import("../views/_main/Directory"));
+const Resources = lazy(() => import("../views/_main/Resources"));
 
 // Full Layout
 const Login = lazy(() => import("../views/_main/Login"));
@@ -168,7 +169,7 @@ const Router = ({ user, setUser }) => {
           )}
         />
 
-        <MainLayoutRoutes
+        {/* <MainLayoutRoutes
           exact
           path="/content/files"
           render={(matchprops) => (
@@ -176,7 +177,7 @@ const Router = ({ user, setUser }) => {
               <Files {...matchprops} />
             </Suspense>
           )}
-        />
+        /> */}
 
         <MainLayoutRoutes
           exact
@@ -217,6 +218,16 @@ const Router = ({ user, setUser }) => {
             </Suspense>
           )}
         />
+
+        {/* <MainLayoutRoutes
+          exact
+          path="/people/resources"
+          render={(matchprops) => (
+            <Suspense fallback={<Spinner />}>
+              <Resources {...matchprops} />
+            </Suspense>
+          )}
+        /> */}
 
         <MainLayoutRoutes
           exact

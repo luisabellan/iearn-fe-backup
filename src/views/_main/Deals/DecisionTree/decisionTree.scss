@@ -82,6 +82,14 @@
       color: black;
       text-transform: uppercase;
       font-weight: 700;
+
+      @media (max-width: 1500px) {
+        font-size: 70px;
+      }
+
+      @media (max-width: 576px) {
+        font-size: 32px;
+      }
     }
   }
 
@@ -114,6 +122,7 @@
     @media (max-width: 576px) {
       font-size: 13px;
       padding: 5px 10px;
+      margin-top: 20px;
     }
   }
 }

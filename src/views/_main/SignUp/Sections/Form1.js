@@ -19,7 +19,7 @@ import classNames from "classnames";
 import Progress from "./Progress";
 
 //Assets
-import invited from "../invited.json";
+import invited from "../json/invited.json";
 
 const Form1 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
   const [error, setError] = useState(false);
@@ -58,7 +58,7 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
 
     let isInvited = false;
     invited.forEach((invite) => {
-      if (invite === values.email) isInvited = true;
+      if (invite.toLowerCase() === values.email.toLowerCase()) isInvited = true;
     });
 
     if (!isInvited) {
@@ -90,7 +90,7 @@ const Form1 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
                 {error && (
                   <Alert color="info" fade={false}>
                     <span style={{ fontWeight: `500` }}>
-                      This platform is invite only for now!
+                      This platform is invite only for now! To request an invitation, visit GetSubtotal.com/contact and submit a form.
                     </span>
                   </Alert>
                 )}
