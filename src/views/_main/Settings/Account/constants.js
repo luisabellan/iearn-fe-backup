@@ -23,7 +23,7 @@ export const updateBillingSchema = Yup.object().shape({
 });
 
 export const updatePasswordSchema = Yup.object().shape({
-  password: Yup.string().required("Password field is requred"),
+  password: Yup.string().required("Password field is required"),
   confirmPassword: Yup.string()
     .when("password", {
       is: (val) => (val && val.length > 0 ? true : false),
