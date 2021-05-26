@@ -166,13 +166,11 @@ const NewDeal = (props) => {
                                   invalid={!!touched.state && !!errors.state}
                                 >
                                   <option value="">-</option>
-
                                   {states.map((state, index) => {
                                     return index >= 30 ? (
                                       <option value={state}>{state}</option>
                                     ) : null;
                                   })}
-
                                   <option value="international">International</option>
 
                                 </Input>
