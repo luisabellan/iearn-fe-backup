@@ -21,6 +21,10 @@ import { useHistory, NavLink } from "react-router-dom";
 import withTitleContext from "../../../../utility/withContexts/withTitle";
 import withDealContext from "../../../../utility/withContexts/withDeals";
 
+//States
+import states from "../json/states.json";
+//Source: https://gist.github.com/mshafrir/2646763
+
 const NewDeal = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
@@ -155,14 +159,20 @@ const NewDeal = (props) => {
                                     "login-warning":
                                       !!errors.state && !!touched.state,
                                   })}
-                                  placeholder="123 Winding Way"
+                                  placeholder="TN"
                                   value={values.state}
                                   onBlur={handleBlur("state")}
                                   onChange={handleChange("state")}
                                   invalid={!!touched.state && !!errors.state}
                                 >
                                   <option value="">-</option>
-                                  <option value="AK">AK</option>
+                                  {states.map((state, index) => {
+                                    return index >= 30 ? (
+                                      <option value={state}>{state}</option>
+                                    ) : null;
+                                  })}
+                                  <option value="international">International</option>
+
                                 </Input>
                                 <FormFeedback>
                                   {touched.state && errors.state}
