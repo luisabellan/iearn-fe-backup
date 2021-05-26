@@ -22,7 +22,7 @@ import withTitleContext from "../../../../utility/withContexts/withTitle";
 import withDealContext from "../../../../utility/withContexts/withDeals";
 
 //States
-import states from "../json/states.json";
+import states from "../../SignUp/json/states.json";
 //Source: https://gist.github.com/mshafrir/2646763
 
 const NewDeal = (props) => {
