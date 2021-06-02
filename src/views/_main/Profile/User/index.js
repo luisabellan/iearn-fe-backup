@@ -51,6 +51,7 @@ const UserProfile = ({ user, profile }) => {
       setCurrentProfile(user);
       setIsLoading(false);
     }
+    console.log(user);
   }, [user]);
 
   const mapSocialMedia = () => {
