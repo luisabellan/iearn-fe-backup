@@ -95,11 +95,11 @@ const Deals = (props) => {
           </Card>
         </Col>
       </Row>
-      {/* <Row className="page-courses">
+      <Row className="page-courses">
         <Col>
           <Card>
             <CardBody className="pb-0 courses-container">
-              <Row className="pt-2 table-header">
+              {/* <Row className="pt-2 table-header">
                 <Col
                   xs="4 pr-0"
                   sm="4"
@@ -153,7 +153,7 @@ const Deals = (props) => {
                     </DropdownMenu>
                   </UncontrolledDropdown>
                 </Col>
-              </Row>
+              </Row> */}
               <Row className="table-courses">
                 <Col className="px-0 pt-0">
                   <Table hover>
@@ -200,7 +200,7 @@ const Deals = (props) => {
                         <td>{mapDeals()}</td>
                       </tr>
 
-                      <tr>
+                      {/* <tr>
                         <td className="pb-0">
                           <div className="row justify-content-end pagination-options">
                             <div className="col-6 col-md-3 col-lg-4 col-xl-3 text-right">
@@ -222,7 +222,7 @@ const Deals = (props) => {
                             </div>
                           </div>
                         </td>
-                      </tr>
+                      </tr> */}
                     </tbody>
                   </Table>
                 </Col>
@@ -231,7 +231,7 @@ const Deals = (props) => {
           </Card>
         </Col>
       </Row>
-     */}
+    
     </>
   );
 };

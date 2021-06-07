@@ -10,7 +10,7 @@ import {
   FormFeedback,
   Alert,
 } from "reactstrap";
-import { Formik, useFormik } from "formik";
+import { Formik } from "formik";
 import * as Yup from "yup";
 import { DollarSign, Search, Plus } from "react-feather";
 import classNames from "classnames";
@@ -31,7 +31,7 @@ const NewDeal = (props) => {
     props.setActiveSubPage("Deals");
   });
 
-  const dealsSchema = Yup.object().shape({
+  const LoginSchema = Yup.object().shape({
     address: Yup.string().required("Address is required"),
     city: Yup.string().required("City is required"),
     state: Yup.string().required("State is required"),
@@ -41,10 +41,6 @@ const NewDeal = (props) => {
     tags: Yup.string(),
     notes: Yup.string(),
   });
-
-  const formik = useFormik({
-    
-  })
 
   const initialValues = {
     address: "",
@@ -58,11 +54,10 @@ const NewDeal = (props) => {
   };
 
   const onSubmit = (values) => {
-    // let deals = [...props.dealList];
-    // deals.push(values);
-    // props.setDealList(deals);
-    // history.push(`/people/deals`);
-    console.log(values);
+    let deals = [...props.dealList];
+    deals.push(values);
+    props.setDealList(deals);
+    history.push(`/people/deals`);
   };
 
   return (
@@ -79,7 +74,7 @@ const NewDeal = (props) => {
                 <form>
                   <Formik
                     initialValues={initialValues}
-                    validationSchema={dealsSchema}
+                    validationSchema={LoginSchema}
                     onSubmit={onSubmit}
                   >
                     {({
