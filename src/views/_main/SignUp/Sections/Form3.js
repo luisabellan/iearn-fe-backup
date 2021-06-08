@@ -12,13 +12,12 @@ import {
 } from "reactstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import classNames from "classnames";
 
 //Components
 import Progress from "./Progress";
 
 const Form2 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
-  const [error, setError] = useState("");
+  const [error] = useState("");
 
   let experienceSchema = Yup.object().shape({
     fixflip: Yup.string().required(),

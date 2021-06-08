@@ -1,9 +1,16 @@
 // import external modules
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import {
+  NavLink,
+  //  Link
+} from "react-router-dom";
 
 // import internal(own) modules
-import { Row, Col, Button } from "reactstrap";
+import {
+  Row,
+  Col,
+  // Button
+} from "reactstrap";
 
 const Error = (props) => {
   return (

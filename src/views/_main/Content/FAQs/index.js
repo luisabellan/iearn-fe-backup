@@ -6,17 +6,17 @@ import {
   Col,
   Card,
   CardBody,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
+  // UncontrolledDropdown,
+  // DropdownToggle,
+  // DropdownMenu,
+  // DropdownItem,
   Table,
 } from "reactstrap";
 import {
-  List,
-  Filter,
-  ChevronLeft,
-  ChevronRight,
+  // List,
+  // Filter,
+  // ChevronLeft,
+  // ChevronRight,
   ArrowDown,
   ArrowUp,
 } from "react-feather";
@@ -24,7 +24,7 @@ import { MoreVertical } from "react-feather";
 
 //Assets
 import userImage from "../../../../assets/img/portrait/small/avatar-s-1.png";
-import placeholder from "../_temp/placeholder.png";
+// import placeholder from "../_temp/placeholder.png";
 
 //Utils
 import { useWindowDimensions } from "../../Utils/utils";

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import "./EditSkills.scss";
 import "react-image-crop/dist/ReactCrop.css";
 import { Modal, ModalBody, ModalHeader, Alert, Button } from "reactstrap";
@@ -15,7 +15,7 @@ import ToastSuccess from "../../../../../components/toasts/success";
 
 const EditProfile = ({ user, setUser, isOpen, toggle }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error] = useState(false);
   const [success, setSuccess] = useState(false);
   const [skills, setSkills] = useState([]);
   const [currentSkill, setCurrentSkill] = useState("");

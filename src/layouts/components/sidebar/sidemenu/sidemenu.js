@@ -1,18 +1,18 @@
 // import external modules
-import React, { useEffect } from "react";
+import React from "react";
 import { useLocation } from "react-router-dom";
 
 import {
   ChevronRight,
   Users,
-  PieChart,
-  ShoppingBag,
+  // PieChart,
+  // ShoppingBag,
   Youtube,
-  Video,
-  Film,
-  File,
+  // Video,
+  // Film,
+  // File,
   HelpCircle,
-  Calendar,
+  // Calendar,
   MessageSquare,
   // Bell,
   // Star,
@@ -20,9 +20,9 @@ import {
   User,
   Settings,
   LogOut,
-  UserPlus,
+  // UserPlus,
   Bookmark,
-  FolderPlus,
+  // FolderPlus,
 } from "react-feather";
 import { NavLink } from "react-router-dom";
 

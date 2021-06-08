@@ -1,21 +1,21 @@
 import React, { useState, useEffect, Fragment } from "react";
 import "../deals.scss";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import {
   Row,
   Col,
   Card,
   CardBody,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
+  // UncontrolledDropdown,
+  // DropdownToggle,
+  // DropdownMenu,
+  // DropdownItem,
   Table,
-  FormGroup,
-  Input,
+  // FormGroup,
+  // Input,
   CustomInput,
 } from "reactstrap";
-import { List, Filter, ChevronLeft, ChevronRight, Search } from "react-feather";
+// import { List, Filter, ChevronLeft, ChevronRight, Search } from "react-feather";
 import { Link } from "react-router-dom";
 
 //Assets
@@ -25,13 +25,16 @@ import { Link } from "react-router-dom";
 import api from "../../../../api/api";
 
 //Utils
-import { useWindowDimensions, formatNumberWithCommas } from "../../Utils/utils";
+import {
+  //  useWindowDimensions,
+  formatNumberWithCommas,
+} from "../../Utils/utils";
 import withTitleContext from "../../../../utility/withContexts/withTitle";
 import withUserContext from "../../../../utility/withContexts/withUser";
 
 const Deals = (props) => {
-  const history = useHistory();
-  const { width } = useWindowDimensions();
+  // const history = useHistory();
+  // const { width } = useWindowDimensions();
   const [deals, setDeals] = useState([]);
 
   //Get Deals
@@ -49,11 +52,11 @@ const Deals = (props) => {
     props.setActiveSubPage("");
   });
 
-  const handleClick = () => {
-    if (width < 1200) {
-      history.push(`/decision-tree/asdasd`);
-    }
-  };
+  // const handleClick = () => {
+  //   if (width < 1200) {
+  //     history.push(`/decision-tree/asdasd`);
+  //   }
+  // };
 
   const mapCollabs = (arr) => {
     return arr.map((col, index) => {

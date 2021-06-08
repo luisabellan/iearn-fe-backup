@@ -12,7 +12,7 @@ import {
   Edit,
   Slack,
 } from "react-feather";
-import { Link, useLocation } from "react-router-dom";
+// import { Link, useLocation } from "react-router-dom";
 import SpinnerComponent from "../../../../components/spinner/spinner";
 
 //States

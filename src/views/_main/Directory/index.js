@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 import "./directory.scss";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import {
   Row,
   Col,
   Card,
   CardBody,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
   Table,
-  FormGroup,
-  Input,
+  // UncontrolledDropdown,
+  // DropdownToggle,
+  // DropdownMenu,
+  // DropdownItem,
+  // FormGroup,
+  // Input,
 } from "reactstrap";
-import { List, Filter, ChevronLeft, ChevronRight, Search } from "react-feather";
+// import { List, Filter, ChevronLeft, ChevronRight, Search } from "react-feather";
 import Spinner from "../../../components/spinner/spinner";
 import { Link } from "react-router-dom";
 

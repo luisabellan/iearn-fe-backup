@@ -1,26 +1,26 @@
 import React, { useEffect } from "react";
 import "./resources.scss";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import {
   Row,
   Col,
   Card,
   CardBody,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
+  // UncontrolledDropdown,
+  // DropdownToggle,
+  // DropdownMenu,
+  // DropdownItem,
   Table,
 } from "reactstrap";
 import {
-  List,
-  Filter,
-  ChevronLeft,
-  ChevronRight,
+  // List,
+  // Filter,
+  // ChevronLeft,
+  // ChevronRight,
   ArrowDown,
   ArrowUp,
 } from "react-feather";
-import { MoreVertical } from "react-feather";
+// import { MoreVertical } from "react-feather";
 
 //Assets
 import userImage from "../../../assets/img/portrait/small/avatar-s-1.png";
@@ -28,15 +28,15 @@ import userImage2 from "../../../assets/img/portrait/small/avatar-s-2.png";
 import userImage3 from "../../../assets/img/portrait/small/avatar-s-3.png";
 import userImage4 from "../../../assets/img/portrait/small/avatar-s-4.png";
 import userImage5 from "../../../assets/img/portrait/small/avatar-s-5.png";
-import placeholder from "../Content/_temp/placeholder.png";
+// import placeholder from "../Content/_temp/placeholder.png";
 
 //Utils
-import { useWindowDimensions } from "../Utils/utils";
+// import { useWindowDimensions } from "../Utils/utils";
 import withTitleContext from "../../../utility/withContexts/withTitle";
 
 const Resources = (props) => {
-  const history = useHistory();
-  const { width } = useWindowDimensions();
+  // const history = useHistory();
+  // const { width } = useWindowDimensions();
 
   const resourcesList = [
     {
