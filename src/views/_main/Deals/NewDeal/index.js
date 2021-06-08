@@ -14,7 +14,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { DollarSign, Plus, X } from "react-feather";
 import classNames from "classnames";
-import { setHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import SelectSearch from "react-select-search";
 import fuzzySearch from "./fuzzySearch";
 
@@ -184,7 +184,7 @@ const NewDeal = (props) => {
         setCollaborators([]);
         setTags([]);
         setIsLoading(false);
-        setHistory(`/people/deals`);
+        useHistory(`/people/deals`);
 
         setTimeout(() => {
           setIsSuccess(false);
