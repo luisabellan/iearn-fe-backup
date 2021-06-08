@@ -1,6 +1,8 @@
 
 # subtotal-fe
-Project name was changed to MentorBeast after repository creation. 
+**Project name was changed to MentorBeast after repository creation. 
+Production Deployment: https://getsubtotal.com 
+Dev Deployment: https://mentorbeast-dev.netlify.app/
 
 ## Basic Info
  **Project Manager:** Christine Carpenter
