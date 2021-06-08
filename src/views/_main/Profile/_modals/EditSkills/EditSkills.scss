@@ -1,10 +1,26 @@
 .edit-skills {
   input[type="text"] {
     width: 100%;
+    padding: 4px 8px;
+  }
+
+  .button-add {
+    width: 100%;
+    border-radius: 5px;
+    padding: 6px;
+    color: white;
+    border: 0;
+    background: #0c2340;
+    transition: 0.2s ease-in-out all;
+
+    &:hover {
+      background: #18457c;
+      transition: 0.2s ease-in-out all;
+    }
   }
 
   .choice {
-    font-size: 17px;
+    font-size: 16px;
     border: 1px solid #ccc;
     margin: 5px 5px 0 0;
     padding: 3px 0px 3px 7px;

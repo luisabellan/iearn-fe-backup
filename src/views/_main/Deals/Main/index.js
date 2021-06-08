@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import "../deals.scss";
 import { useHistory } from "react-router-dom";
 import {
@@ -21,14 +21,28 @@ import { Link } from "react-router-dom";
 //Assets
 // import placeholder from "../_temp/pdf_icon.png";
 
+//API
+import api from "../../../../api/api";
+
 //Utils
 import { useWindowDimensions, formatNumberWithCommas } from "../../Utils/utils";
 import withTitleContext from "../../../../utility/withContexts/withTitle";
-import withDealsContext from "../../../../utility/withContexts/withDeals";
+import withUserContext from "../../../../utility/withContexts/withUser";
 
 const Deals = (props) => {
   const history = useHistory();
   const { width } = useWindowDimensions();
+  const [deals, setDeals] = useState([]);
+
+  //Get Deals
+  useEffect(() => {
+    api
+      .get(`/deals?user=${props.user.id}`)
+      .then((res) => {
+        setDeals(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   useEffect(() => {
     props.setPageTitle("My Deals");
@@ -37,46 +51,63 @@ const Deals = (props) => {
 
   const handleClick = () => {
     if (width < 1200) {
-      history.push(`/courses/asdasd`);
+      history.push(`/decision-tree/asdasd`);
     }
   };
 
-  const mapDeals = () => {
-    let deals = [...props.dealList];
-
-    return deals.map((deal, index) => {
-      return (
-        <Row key={index}>
-          <Col xl={{ size: 2 }} className="pl-2 pl-xl-4">
-            <p className="mb-0">{deal.collaborators}</p>
-          </Col>
-          <Col xl={{ size: 1 }}>{formatNumberWithCommas(deal.price)}</Col>
-          <Col xl={{ size: 2 }}>
-            {deal.address}, {deal.city}, {deal.state} {deal.zip}
-          </Col>
-          <Col xl={{ size: 2 }} className="xs-hidden tab-below-hidden">
-            {deal.notes}
-          </Col>
-          <Col xl={{ size: 2 }} className="pr-0 text-center">
-            <Link to="/">Resources</Link>
-          </Col>
-          <Col xl={{ size: 2 }} className="xs-hidden tab-below-hidden">
-            <Link to="/">Images</Link>
-          </Col>
-          <Col
-            xl={{ size: 1 }}
-            className="xs-hidden tab-below-hidden text-center"
-          >
-            <CustomInput
-              type="checkbox"
-              id="exampleCustomCheckbox"
-              label=""
-              defaultChecked
-            />
-          </Col>
-        </Row>
+  const mapCollabs = (arr) => {
+    return arr.map((col, index) => {
+      return index === 0 ? (
+        <Fragment key={index}>{col.name}</Fragment>
+      ) : (
+        <Fragment key={index}>
+          ,<br />
+          {col.name}
+        </Fragment>
       );
     });
+  };
+
+  const mapDeals = () => {
+    if (deals.length) {
+      return deals.map((deal, index) => {
+        return (
+          <tr key={index}>
+            <td>
+              <Row>
+                <Col xl={{ size: 2 }} className="pl-2 pl-xl-4">
+                  <p className="mb-0">{mapCollabs(deal.collaborators)}</p>
+                </Col>
+                <Col xl={{ size: 1 }}>{formatNumberWithCommas(deal.price)}</Col>
+                <Col xl={{ size: 2 }}>
+                  {deal.address}, {deal.city}, {deal.state} {deal.zip}
+                </Col>
+                <Col xl={{ size: 2 }} className="xs-hidden tab-below-hidden">
+                  {deal.notes}
+                </Col>
+                <Col xl={{ size: 2 }} className="pr-0 text-center">
+                  <Link to="/">Resources</Link>
+                </Col>
+                <Col xl={{ size: 2 }} className="xs-hidden tab-below-hidden">
+                  <Link to="/">Images</Link>
+                </Col>
+                <Col
+                  xl={{ size: 1 }}
+                  className="xs-hidden tab-below-hidden text-center"
+                >
+                  <CustomInput
+                    type="checkbox"
+                    id="exampleCustomCheckbox"
+                    label=""
+                    defaultChecked
+                  />
+                </Col>
+              </Row>
+            </td>
+          </tr>
+        );
+      });
+    }
   };
 
   return (
@@ -95,11 +126,11 @@ const Deals = (props) => {
           </Card>
         </Col>
       </Row>
-      {/* <Row className="page-courses">
+      <Row className="page-decision-tree">
         <Col>
           <Card>
-            <CardBody className="pb-0 courses-container">
-              <Row className="pt-2 table-header">
+            <CardBody className="pb-0 decision-tree-container">
+              {/* <Row className="pt-2 table-header">
                 <Col
                   xs="4 pr-0"
                   sm="4"
@@ -153,8 +184,8 @@ const Deals = (props) => {
                     </DropdownMenu>
                   </UncontrolledDropdown>
                 </Col>
-              </Row>
-              <Row className="table-courses">
+              </Row> */}
+              <Row className="table-decision-tree">
                 <Col className="px-0 pt-0">
                   <Table hover>
                     <thead>
@@ -192,15 +223,9 @@ const Deals = (props) => {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr
-                        onClick={() => {
-                          handleClick();
-                        }}
-                      >
-                        <td>{mapDeals()}</td>
-                      </tr>
-
-                      <tr>
+                      {mapDeals()}
+                      <tr></tr>
+                      {/* <tr>
                         <td className="pb-0">
                           <div className="row justify-content-end pagination-options">
                             <div className="col-6 col-md-3 col-lg-4 col-xl-3 text-right">
@@ -222,7 +247,7 @@ const Deals = (props) => {
                             </div>
                           </div>
                         </td>
-                      </tr>
+                      </tr> */}
                     </tbody>
                   </Table>
                 </Col>
@@ -231,9 +256,8 @@ const Deals = (props) => {
           </Card>
         </Col>
       </Row>
-     */}
     </>
   );
 };
 
-export default withTitleContext(withDealsContext(Deals));
+export default withTitleContext(withUserContext(Deals));

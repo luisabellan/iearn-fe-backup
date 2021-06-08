@@ -85,7 +85,7 @@ const ThemeNavbar = (props) => {
 
     if (!mobileActive) {
       return (
-        <h2 className="text-capitalize text-blue font-weight-bold text-center text-md-left sm-hidden">
+        <h2 className="text-capitalize text-blue font-weight-bold text-center text-md-left sm-hidden mobile-hidden">
           {header}
         </h2>
       );

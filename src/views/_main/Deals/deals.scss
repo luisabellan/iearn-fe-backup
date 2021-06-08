@@ -2,8 +2,8 @@ $main-color: #0c2340;
 $secondary-color: #4b506d;
 $light-gray: #c5c7cd;
 
-.page-courses {
-  // .courses-container {
+.page-decision-tree {
+  // .decision-tree-container {
   //   @media (max-width: 575px) {
   //     padding: 20px 15px;
   //   }
@@ -80,7 +80,7 @@ $light-gray: #c5c7cd;
     }
   }
 
-  .table-courses {
+  .table-decision-tree {
     margin-left: -20px;
     margin-right: -20px;
   }
@@ -127,7 +127,7 @@ $light-gray: #c5c7cd;
     background: #f12b2c;
   }
 
-  .courses-details {
+  .decision-tree-details {
     padding: 20px 15px;
 
     .details-header {

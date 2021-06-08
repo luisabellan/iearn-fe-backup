@@ -79,6 +79,10 @@
         .edit-icon {
           opacity: 1;
           transition: $transition;
+          p {
+            color: #0c2340;
+            font-weight: 500;
+          }
         }
       }
 
@@ -111,24 +115,17 @@
       padding-top: 50px;
     }
 
-    h3 {
+    h5 {
       @media (max-width: 767px) {
         font-size: 20px;
       }
 
       @media (max-width: 576px) {
-        font-size: 12px;
+        font-size: 16px;
       }
-    }
 
-    .edit-button {
-      position: absolute;
-      right: 15px;
-      top: 15px;
-      opacity: 0.5;
-
-      &:hover {
-        opacity: 1;
+      @media (max-width: 400px) {
+        font-size: 14px;
       }
     }
   }
@@ -136,6 +133,17 @@
   p {
     @media (max-width: 576px) {
       font-size: 12px;
+    }
+  }
+
+  .edit-button {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 1;
     }
   }
 }

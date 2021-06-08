@@ -26,6 +26,8 @@ import withUserContext from "../../../../utility/withContexts/withUser";
 import ProfilePicture from "../_modals/ProfilePicture/ProfilePicture";
 import EditProfile from "../_modals/EditProfile/EditProfile";
 import EditSkills from "../_modals/EditSkills/EditSkills";
+import EditMarket from "../_modals/EditMarket/EditMarket";
+import EditMentorships from "../_modals/EditMentorships/EditMentorships";
 
 //Notes
 //Circle taken from: https://codepen.io/cbracco/pen/qnduh
@@ -36,6 +38,8 @@ const UserProfile = ({ user, profile }) => {
   const [profilePicture, setProfilePicture] = useState(false);
   const [editProfile, setEditProfile] = useState(false);
   const [editSkills, setEditSkills] = useState(false);
+  const [editMarket, setEditMarket] = useState(false);
+  const [editMentorships, setEditMentorships] = useState(false);
 
   // const location = useLocation();
 
@@ -47,6 +51,7 @@ const UserProfile = ({ user, profile }) => {
       setCurrentProfile(user);
       setIsLoading(false);
     }
+    console.log(user);
   }, [user]);
 
   const mapSocialMedia = () => {
@@ -112,6 +117,18 @@ const UserProfile = ({ user, profile }) => {
           toggle: () => setEditSkills(!editSkills),
         }}
       />
+      <EditMarket
+        {...{
+          isOpen: editMarket,
+          toggle: () => setEditMarket(!editMarket),
+        }}
+      />
+      <EditMentorships
+        {...{
+          isOpen: editMentorships,
+          toggle: () => setEditMentorships(!editMentorships),
+        }}
+      />
       <Row className="profile-container">
         <Col>
           <Card>
@@ -127,8 +144,8 @@ const UserProfile = ({ user, profile }) => {
                       <hr className="tablet-hidden tab-hidden desktop-hidden mb-0" />
                     </Col>
                   </Row>
-                  <Row>
-                    <Col className="profile-picture" xs="5" sm="4" md="4">
+                  <Row className="justify-content-center">
+                    <Col className="profile-picture mt-3" md="4" sm="8" xs="8">
                       <Row>
                         <Col className="px-0 px-md-2">
                           <div
@@ -136,7 +153,7 @@ const UserProfile = ({ user, profile }) => {
                             onClick={() => setProfilePicture(!profilePicture)}
                           >
                             <div className="edit-icon">
-                              <Edit size="100" color="#0C2340" />
+                              <Edit size="30" color="#0C2340" />
                               <p className="mt-2">Update Profile Picture</p>
                             </div>
                           </div>
@@ -177,7 +194,7 @@ const UserProfile = ({ user, profile }) => {
                         </Col>
                       </Row>
                     </Col>
-                    <Col className="profile-info pr-0" xs="7" sm="8" md="8">
+                    <Col className="profile-info pr-0" md="8" sm="11" xs="12">
                       <h1 className="sm-hidden mobile-hidden text-capitalize">
                         {currentProfile.firstName} {currentProfile.lastName}
                       </h1>
@@ -248,6 +265,14 @@ const UserProfile = ({ user, profile }) => {
                   <Row className="list-container">
                     <Col>
                       <h2>Skills:</h2>
+                      <div className="edit-button">
+                        <button
+                          className="button-transparent"
+                          onClick={() => setEditSkills(!editSkills)}
+                        >
+                          <Edit size="22" />
+                        </button>
+                      </div>
                       <Row>
                         <Col lg="12" xl="8">
                           <Row>
@@ -268,6 +293,14 @@ const UserProfile = ({ user, profile }) => {
                   <Row className="list-container">
                     <Col>
                       <h2>Markets:</h2>
+                      <div className="edit-button">
+                        <button
+                          className="button-transparent"
+                          onClick={() => setEditMarket(!editMarket)}
+                        >
+                          <Edit size="22" />
+                        </button>
+                      </div>
                       <Row>
                         <Col lg="12" xl="8">
                           <Row>
@@ -290,10 +323,18 @@ const UserProfile = ({ user, profile }) => {
                   <Row className="list-container">
                     <Col>
                       <h2>Mentorships:</h2>
+                      <div className="edit-button">
+                        <button
+                          className="button-transparent"
+                          onClick={() => setEditMentorships(!editMentorships)}
+                        >
+                          <Edit size="22" />
+                        </button>
+                      </div>
                       <Row>
                         <Col lg="12" xl="8">
                           <Row>
-                            {currentProfile.mentorShips
+                            {currentProfile.mentorships
                               ? currentProfile.mentorships.map(
                                   (mentorship, index) => (
                                     <Col key={index} xs="6" md="4">
