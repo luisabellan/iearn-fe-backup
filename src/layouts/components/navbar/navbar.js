@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useLocation, withRouter, useHistory } from "react-router-dom";
+import { useLocation, withRouter, useHistory } from "react-router-dom";
 import {
   Media,
   Navbar,
@@ -14,8 +14,6 @@ import {
   MoreVertical,
   Check,
   Bell,
-  AlertTriangle,
-  X,
   Search,
 } from "react-feather";
 // import NavbarSearch from "../../../components/search/Search";
@@ -25,11 +23,7 @@ import "./custom-navbar.scss";
 import { useWindowDimensions } from "../../utils/utils";
 
 //Assets
-import userImage2 from "../../../assets/img/portrait/small/avatar-s-2.png";
-import userImage3 from "../../../assets/img/portrait/small/avatar-s-3.png";
-import userImage4 from "../../../assets/img/portrait/small/avatar-s-4.png";
 import logo from "../../../assets/img/_main/logo.svg";
-import profilePlaceholder from "../../../assets/img/_main/profile-placeholder.jpg";
 
 //Utils
 import withTitleContext from "../../../utility/withContexts/withTitle";

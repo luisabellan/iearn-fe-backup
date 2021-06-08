@@ -9,10 +9,9 @@ import {
   Instagram,
   Linkedin,
   Twitter,
-  Edit,
   Slack,
 } from "react-feather";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import SpinnerComponent from "../../../../components/spinner/spinner";
 
 //States

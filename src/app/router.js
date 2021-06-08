@@ -1,6 +1,6 @@
 // import external modules
 import React, { Suspense, lazy, useEffect, useState } from "react";
-import { BrowserRouter, Switch, Redirect, useHistory } from "react-router-dom";
+import { Switch, useHistory } from "react-router-dom";
 import Spinner from "../components/spinner/spinner";
 
 // import internal(own) modules
@@ -25,7 +25,7 @@ const Settings = lazy(() => import("../views/_main/Settings"));
 const Calendar = lazy(() => import("../views/_main/Calendar"));
 const Courses = lazy(() => import("../views/_main/Content/Courses"));
 const Videos = lazy(() => import("../views/_main/Content/Videos"));
-const Files = lazy(() => import("../views/_main/Content/Files"));
+// const Files = lazy(() => import("../views/_main/Content/Files"));
 const FAQs = lazy(() => import("../views/_main/Content/FAQs"));
 const Profile = lazy(() => import("../views/_main/Profile"));
 const User = lazy(() => import("../views/_main/Profile/User/userProfile"));
@@ -33,7 +33,7 @@ const Deals = lazy(() => import("../views/_main/Deals/Main"));
 const DecisionTree = lazy(() => import("../views/_main/Deals/DecisionTree"));
 const NewDeal = lazy(() => import("../views/_main/Deals/NewDeal"));
 const Directory = lazy(() => import("../views/_main/Directory"));
-const Resources = lazy(() => import("../views/_main/Resources"));
+// const Resources = lazy(() => import("../views/_main/Resources"));
 
 // Full Layout
 const Login = lazy(() => import("../views/_main/Login"));

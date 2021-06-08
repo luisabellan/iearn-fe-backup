@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import "./EditMentorships.scss";
 import "react-image-crop/dist/ReactCrop.css";
 import {
@@ -22,12 +22,12 @@ import api from "../../../../../api/api";
 import ToastSuccess from "../../../../../components/toasts/success";
 
 //States
-import states from "../../../SignUp/json/states.json";
+// import states from "../../../SignUp/json/states.json";
 //Source: https://gist.github.com/mshafrir/2646763
 
 const EditMentorships = ({ user, setUser, isOpen, toggle }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error] = useState(false);
   const [success, setSuccess] = useState(false);
   const [mentorships, setMentorships] = useState([]);
 

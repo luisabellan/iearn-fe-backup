@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import "./EditMarket.scss";
 import "react-image-crop/dist/ReactCrop.css";
 import {
@@ -27,7 +27,7 @@ import states from "../../../SignUp/json/states.json";
 
 const EditMarket = ({ user, setUser, isOpen, toggle }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error] = useState(false);
   const [success, setSuccess] = useState(false);
   const [markets, setMarkets] = useState([]);
 

@@ -15,7 +15,7 @@ import classNames from "classnames";
 import { Formik } from "formik";
 import "../settings.scss";
 
-import { updatePasswordSchema, updateBillingSchema } from "./constants";
+import { updatePasswordSchema } from "./constants";
 
 //Context
 import withUser from "../../../../utility/withContexts/withUser";

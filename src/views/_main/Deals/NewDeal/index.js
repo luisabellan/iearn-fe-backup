@@ -12,9 +12,9 @@ import {
 } from "reactstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { DollarSign, Search, Plus, X } from "react-feather";
+import { DollarSign, Plus, X } from "react-feather";
 import classNames from "classnames";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import SelectSearch from "react-select-search";
 import fuzzySearch from "./fuzzySearch";
 
@@ -25,8 +25,8 @@ import withUserContext from "../../../../utility/withContexts/withUser"; //Compo
 import ToastSuccess from "../../../../components/toasts/success";
 import ToastFail from "../../../../components/toasts/fail";
 
-//States
-import states from "../../SignUp/json/states.json";
+//StatesList
+import statesList from "../../SignUp/json/states.json";
 //Source: https://gist.github.com/mshafrir/2646763
 
 //API
@@ -34,7 +34,7 @@ import api from "../../../../api/api";
 
 const NewDeal = (props) => {
   const [isLoading, setIsLoading] = useState(false);
-  const history = useHistory();
+  // const history = useHistory();
   const [currentTag, setCurrentTag] = useState("");
   const [collaborators, setCollaborators] = useState([]);
   const [tags, setTags] = useState([]);
@@ -365,7 +365,7 @@ const NewDeal = (props) => {
                                         }
                                       >
                                         <option value="">-</option>
-                                        {states.map((state, index) => {
+                                        {statesList.map((state, index) => {
                                           return (
                                             <option
                                               key={index}
