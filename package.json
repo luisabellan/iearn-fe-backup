@@ -43,6 +43,7 @@
       "react-router-dom": "^5.2.0",
       "react-scripts": "2.1.1",
       "react-select": "^2.0.0",
+      "react-select-search": "^3.0.7",
       "react-spinners": "^0.4.7",
       "react-stepzilla": "^4.7.2",
       "react-swipeable-views": "^0.12.16",

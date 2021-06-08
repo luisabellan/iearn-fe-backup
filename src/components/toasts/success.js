@@ -1,12 +1,12 @@
 import React from "react";
 import { Toast, ToastHeader, ToastBody } from "reactstrap";
 
-const toast = ({ isOpen }) => {
+const toast = ({ isOpen, message = "Your data has been saved." }) => {
   return (
     <div className="toaster-container">
       <Toast className="toast-success" isOpen={isOpen}>
         <ToastHeader>Success</ToastHeader>
-        <ToastBody>Your data has been saved.</ToastBody>
+        <ToastBody>{message}</ToastBody>
       </Toast>
     </div>
   );
