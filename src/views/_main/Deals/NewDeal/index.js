@@ -14,7 +14,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { DollarSign, Plus, X } from "react-feather";
 import classNames from "classnames";
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import SelectSearch from "react-select-search";
 import fuzzySearch from "./fuzzySearch";
 
@@ -32,13 +32,9 @@ import statesList from "../../SignUp/json/states.json";
 //API
 import api from "../../../../api/api";
 
-//States
-import states from "../../SignUp/json/states.json";
-//Source: https://gist.github.com/mshafrir/2646763
-
 const NewDeal = (props) => {
   const [isLoading, setIsLoading] = useState(false);
-  // const history = useHistory();
+  const history = useHistory();
   const [currentTag, setCurrentTag] = useState("");
   const [collaborators, setCollaborators] = useState([]);
   const [tags, setTags] = useState([]);
@@ -188,6 +184,7 @@ const NewDeal = (props) => {
         setCollaborators([]);
         setTags([]);
         setIsLoading(false);
+        history.push(`/people/deals`);
 
         setTimeout(() => {
           setIsSuccess(false);
