@@ -208,6 +208,15 @@ img {
   top: 100px;
   right: 50px;
   z-index: 2000;
+  border-radius: 5px;
+
+  .toast {
+    border: none;
+  }
+
+  @media (max-width: 568px) {
+    right: 20px;
+  }
 
   .toast-success {
     .toast-body {

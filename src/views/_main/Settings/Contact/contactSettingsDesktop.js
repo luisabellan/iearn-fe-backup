@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState } from "react";
 import {
   Col,
   Form,
@@ -24,6 +24,10 @@ import api from "../../../../api/api";
 
 //Components
 import ToastSuccess from "../../../../components/toasts/success";
+
+//States
+import states from "../../SignUp/json/states.json";
+//Source: https://gist.github.com/mshafrir/2646763
 
 const contactSettings = ({ user, setUser }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -171,7 +175,14 @@ const contactSettings = ({ user, setUser }) => {
                                         }
                                       >
                                         <option value="">-</option>
-                                        <option value="AK">AK</option>
+                                        {states.map((state, index) => (
+                                          <option
+                                            key={index}
+                                            value={state.abbreviation}
+                                          >
+                                            {state.name}
+                                          </option>
+                                        ))}
                                       </Input>
                                       <FormFeedback>
                                         {touched.state && errors.state}
@@ -339,7 +350,14 @@ const contactSettings = ({ user, setUser }) => {
                                         }
                                       >
                                         <option value="">-</option>
-                                        <option value="AK">AK</option>
+                                        {states.map((state, index) => (
+                                          <option
+                                            key={index}
+                                            value={state.abbreviation}
+                                          >
+                                            {state.name}
+                                          </option>
+                                        ))}
                                       </Input>
                                       <FormFeedback>
                                         {touched.businessState &&

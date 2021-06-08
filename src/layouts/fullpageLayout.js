@@ -1,7 +1,7 @@
 import React from "react";
 import templateConfig from "../templateConfig";
 import classnames from "classnames";
-import { Row, Col } from "reactstrap";
+// import { Row, Col } from "reactstrap";
 import "./layouts.scss";
 
 //Assets

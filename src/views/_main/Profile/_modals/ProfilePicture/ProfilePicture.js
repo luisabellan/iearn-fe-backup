@@ -10,7 +10,6 @@ import {
   Modal,
   ModalBody,
   ModalHeader,
-  Label,
   Alert,
 } from "reactstrap";
 import classNames from "classnames";
