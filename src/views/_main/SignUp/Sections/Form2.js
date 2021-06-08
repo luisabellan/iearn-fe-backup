@@ -18,10 +18,16 @@ import Progress from "./Progress";
 
 const Form2 = ({ currentStep, setCurrentStep, isLoading, gatherValues }) => {
   const socialSchema = Yup.object().shape({
-    facebook: Yup.string().matches(
-      /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
-      "Invalid URL"
-    ),
+    /*
+     * This section needs to be reworked. Currently users
+     * with dashes or periods in their FB URL are unable 
+     * to register
+     */
+    
+    // facebook: Yup.string().matches(
+    //   /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+    //   "Invalid URL"
+    // ),
     instagram: Yup.string().matches(
       /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
       "Invalid URL"

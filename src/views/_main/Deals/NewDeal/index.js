@@ -32,6 +32,10 @@ import states from "../../SignUp/json/states.json";
 //API
 import api from "../../../../api/api";
 
+//States
+import states from "../../SignUp/json/states.json";
+//Source: https://gist.github.com/mshafrir/2646763
+
 const NewDeal = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
