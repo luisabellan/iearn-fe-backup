@@ -61,7 +61,8 @@ const NewDeal = (props) => {
     let deals = [...props.dealList];
     deals.push(values);
     props.setDealList(deals);
-    history.push(`/people/deals`);
+    // had to comment out below line due to netlify error with deployment
+    // history.push(`/people/deals`);
   };
 
   return (
