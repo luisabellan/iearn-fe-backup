@@ -13,7 +13,7 @@
       "classnames": "^2.2.6",
       "draft-js": "^0.10.5",
       "font-awesome": "^4.7.0",
-      "formik": "^1.5.8",
+      "formik": "^2.2.9",
       "google-map-react": "^1.0.9",
       "history": "^4.7.2",
       "lodash": "^4.17.10",

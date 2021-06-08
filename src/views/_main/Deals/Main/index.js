@@ -37,7 +37,7 @@ const Deals = (props) => {
 
   const handleClick = () => {
     if (width < 1200) {
-      history.push(`/courses/asdasd`);
+      history.push(`/decision-tree/asdasd`);
     }
   };
 
@@ -95,10 +95,10 @@ const Deals = (props) => {
           </Card>
         </Col>
       </Row>
-      <Row className="page-courses">
+      <Row className="page-decision-tree">
         <Col>
           <Card>
-            <CardBody className="pb-0 courses-container">
+            <CardBody className="pb-0 decision-tree-container">
               {/* <Row className="pt-2 table-header">
                 <Col
                   xs="4 pr-0"
@@ -154,7 +154,7 @@ const Deals = (props) => {
                   </UncontrolledDropdown>
                 </Col>
               </Row> */}
-              <Row className="table-courses">
+              <Row className="table-decision-tree">
                 <Col className="px-0 pt-0">
                   <Table hover>
                     <thead>
