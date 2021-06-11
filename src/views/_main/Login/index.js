@@ -50,24 +50,23 @@ const Login = ({ setUser }) => {
       ...formValues,
       email: email.toLowerCase(),
     };
-    console.log(formValues);
 
-    // api
-    //   .post(`/users/login`, formValues)
-    //   .then(({ data }) => {
-    //     setIsLoading(false);
-    //     localStorage.setItem("token", `JWT ${data.token}`);
-    //     handleAuthorizationHeader();
+    api
+      .post(`/users/login`, formValues)
+      .then(({ data }) => {
+        setIsLoading(false);
+        localStorage.setItem("token", `JWT ${data.token}`);
+        handleAuthorizationHeader();
 
-    //     api.get(`/users/current`).then(({ data }) => {
-    //       setUser(data);
-    //       history.push(`/people/profile`);
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     setIsLoading(false);
-    //     setError(true);
-    //   });
+        api.get(`/users/current`).then(({ data }) => {
+          setUser(data);
+          history.push(`/people/profile`);
+        });
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        setError(true);
+      });
   };
 
   //   const { error, loading, login } = useAuth();
