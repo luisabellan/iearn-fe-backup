@@ -45,22 +45,29 @@ const Login = ({ setUser }) => {
   const onSubmit = (values) => {
     setIsLoading(true);
 
-    api
-      .post(`/users/login`, values)
-      .then(({ data }) => {
-        setIsLoading(false);
-        localStorage.setItem("token", `JWT ${data.token}`);
-        handleAuthorizationHeader();
+    let { email, ...formValues } = values;
+    formValues = {
+      ...formValues,
+      email: email.toLowerCase(),
+    };
+    console.log(formValues);
 
-        api.get(`/users/current`).then(({ data }) => {
-          setUser(data);
-          history.push(`/people/profile`);
-        });
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        setError(true);
-      });
+    // api
+    //   .post(`/users/login`, formValues)
+    //   .then(({ data }) => {
+    //     setIsLoading(false);
+    //     localStorage.setItem("token", `JWT ${data.token}`);
+    //     handleAuthorizationHeader();
+
+    //     api.get(`/users/current`).then(({ data }) => {
+    //       setUser(data);
+    //       history.push(`/people/profile`);
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     setIsLoading(false);
+    //     setError(true);
+    //   });
   };
 
   //   const { error, loading, login } = useAuth();
