@@ -14,6 +14,7 @@ import {
   // FormGroup,
   // Input,
 } from "reactstrap";
+import { X } from "react-feather";
 // import { List, Filter, ChevronLeft, ChevronRight, Search } from "react-feather";
 import Spinner from "../../../components/spinner/spinner";
 import { Link } from "react-router-dom";
@@ -26,6 +27,7 @@ import api from "../../../api/api";
 
 //Context
 import withTitleContext from "../../../utility/withContexts/withTitle";
+import withUser from "../../../utility/withContexts/withUser";
 
 const Deals = (props) => {
   const [people, setPeople] = useState([]);
@@ -54,10 +56,24 @@ const Deals = (props) => {
       .catch((err) => console.log(err));
   };
 
+  const handleDelete = (id, name) => {
+    if (window.confirm(`Are you sure you want to delete ${name}?`)) {
+      setIsLoading(true);
+      api
+        .delete(`/users/${id}`)
+        .then(() => {
+          populatePeople();
+        })
+        .catch((err) => console.log(err));
+    }
+  };
+
   const mapUsers = () => {
     const arr = [...people];
 
-    const sortedArr = arr.sort((a, b) => (a.lastName.toLowerCase() > b.lastName.toLowerCase()) ? 1 : -1)
+    const sortedArr = arr.sort((a, b) =>
+      a.lastName.toLowerCase() > b.lastName.toLowerCase() ? 1 : -1
+    );
 
     if (isLoading)
       return (
@@ -90,13 +106,7 @@ const Deals = (props) => {
         >
           <td>
             <Row>
-              <Col
-                xl={{ size: 3 }}
-                md="5"
-                sm="5"
-                xs="5"
-                className="people-wrapper"
-              >
+              <Col xl="3" md="5" sm="5" xs="5" className="people-wrapper">
                 {person.userImg ? (
                   <img
                     src={
@@ -125,27 +135,48 @@ const Deals = (props) => {
                   </p>
                 </div>
               </Col>
-              <Col xl={{ size: 3 }} md="4" sm="4" xs="4">
-                <span className={person.location ? "" : "opacity-50"}>
-                  {person.location ? person.location : "Unset"}
-                </span>
+              <Col xl="3" md="4" sm="4" xs="4">
+                <p className={person.location ? "" : "opacity-50"}>
+                  {person.location ? person.location : ""}
+                </p>
               </Col>
-              <Col xl={{ size: 4 }} className="tab-below-hidden">
-                {mapSkills(person.skills)}
+              <Col xl="4" className="tab-below-hidden">
+                <p>{mapSkills(person.skills)}</p>
               </Col>
-              <Col xl={{ size: 2 }} md="3" sm="3" xs="3">
-                <Link
-                  to={{
-                    pathname: "/people/user",
-                    state: {
-                      ...person,
-                    },
-                  }}
-                  className="text-light-blue font-weight-500"
-                >
-                  View Profile
-                </Link>
+              <Col xl="1" md="2" sm="2" xs="2" className="px-0">
+                <p className="text-center">
+                  <Link
+                    to={{
+                      pathname: "/people/user",
+                      state: {
+                        ...person,
+                      },
+                    }}
+                    className="text-light-blue font-weight-500"
+                  >
+                    View<span className="tab-below-hidden"> Profile</span>
+                  </Link>
+                </p>
               </Col>
+              {(props.user.id === "60a77abfb85d5a0015fd8527" ||
+                props.user.id === "60b7b51fd4ca380015473f7c") &&
+              props.user.id !== person.id ? (
+                <Col xs="1" className="text-center px-0">
+                  <button
+                    className="button-transparent text-red"
+                    onClick={() => {
+                      handleDelete(
+                        person.id,
+                        `${person.firstName} ${person.lastName}`
+                      );
+                    }}
+                  >
+                    <X />
+                  </button>
+                </Col>
+              ) : (
+                ""
+              )}
             </Row>
           </td>
         </tr>
@@ -273,4 +304,4 @@ const Deals = (props) => {
   );
 };
 
-export default withTitleContext(Deals);
+export default withTitleContext(withUser(Deals));
