@@ -55,7 +55,9 @@ const Deals = (props) => {
   };
 
   const mapUsers = () => {
-    let arr = [...people];
+    const arr = [...people];
+
+    const sortedArr = arr.sort((a, b) => (a.lastName.toLowerCase() > b.lastName.toLowerCase()) ? 1 : -1)
 
     if (isLoading)
       return (
@@ -78,7 +80,7 @@ const Deals = (props) => {
       });
     };
 
-    return arr.map((person, index) => {
+    return sortedArr.map((person, index) => {
       return (
         <tr
           onClick={() => {
@@ -88,7 +90,8 @@ const Deals = (props) => {
         >
           <td>
             <Row>
-              <Col xl={{ size: 3 }}
+              <Col
+                xl={{ size: 3 }}
                 md="5"
                 sm="5"
                 xs="5"
@@ -225,10 +228,7 @@ const Deals = (props) => {
                             <Col xl={{ size: 3 }} md="4" sm="4" xs="4">
                               Location
                             </Col>
-                            <Col
-                              xl={{ size: 4 }}
-                              className="tab-below-hidden"
-                            >
+                            <Col xl={{ size: 4 }} className="tab-below-hidden">
                               Skills
                             </Col>
                             <Col xl={{ size: 2 }} md="3" sm="3" xs="3"></Col>
