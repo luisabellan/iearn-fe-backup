@@ -25,7 +25,6 @@ const SignUp = () => {
   const gatherValues = (val, form) => {
     let values = { ...formValues, ...val };
     setFormValues({ ...values });
-    console.log(values);
 
     if (form === 6) {
       let { confirmPassword, password, ...finalize } = values;

@@ -45,8 +45,14 @@ const Login = ({ setUser }) => {
   const onSubmit = (values) => {
     setIsLoading(true);
 
+    let { email, ...formValues } = values;
+    formValues = {
+      ...formValues,
+      email: email.toLowerCase(),
+    };
+
     api
-      .post(`/users/login`, values)
+      .post(`/users/login`, formValues)
       .then(({ data }) => {
         setIsLoading(false);
         localStorage.setItem("token", `JWT ${data.token}`);
