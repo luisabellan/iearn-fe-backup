@@ -68,7 +68,7 @@ img {
   }
 
   &:disabled {
-    opacity: 50% !important;
+    opacity: 0.5;
     cursor: default;
   }
 }
@@ -191,11 +191,11 @@ img {
 
 //Opacity
 .opacity-10 {
-  opacity: 10%;
+  opacity: 0.1;
 }
 
 .opacity-50 {
-  opacity: 50%;
+  opacity: 0.5;
 }
 
 //Custom font-weight
