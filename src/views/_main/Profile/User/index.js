@@ -79,16 +79,25 @@ const UserProfile = ({ user, profile }) => {
       },
     ];
 
-    return arr.map((item, index) => (
-      <button
-        className="button-transparent btn-socials"
-        key={index}
-        disabled={!currentProfile[item.key]}
-        onClick={() => window.open(`http://${item.link}`, "_blank")}
-      >
-        <img src={item.icon} alt={item.key} />
-      </button>
-    ));
+    return arr.map((item, index) => {
+      if (currentProfile[item.key]) {
+        return (
+          <button
+            className="button-transparent btn-socials"
+            key={index}
+            onClick={() => window.open(`http://${item.link}`, "_blank")}
+          >
+            <img src={item.icon} alt={item.key} />
+          </button>
+        );
+      }
+
+      return (
+        <span className="button-transparent btn-socials opacity-50" key={index}>
+          <img src={item.icon} alt={item.key} />
+        </span>
+      );
+    });
   };
 
   if (isLoading) return <SpinnerComponent />;
