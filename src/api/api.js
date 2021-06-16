@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://mentorbeast-be-dev.herokuapp.com/api/v1",
+  // baseURL: "https://mentorbeast-be-dev.herokuapp.com/api/v1",
+  baseURL: "https://mentor-beast.herokuapp.com/api/v1",
 });
 
 // const api = axios.create({

@@ -5,11 +5,6 @@ import {
   MapPin,
   PhoneCall,
   Mail,
-  Facebook,
-  Instagram,
-  Linkedin,
-  Twitter,
-  Slack,
 } from "react-feather";
 import { useLocation } from "react-router-dom";
 import SpinnerComponent from "../../../../components/spinner/spinner";
@@ -27,6 +22,14 @@ import withUserContext from "../../../../utility/withContexts/withUser";
 //Notes
 //Circle taken from: https://codepen.io/cbracco/pen/qnduh
 
+
+//Assets
+import facebook from "../../../../assets/img/logos/logo-facebook.png";
+import twitter from "../../../../assets/img/logos/logo-twitter.png";
+import instagram from "../../../../assets/img/logos/logo-instagram.png";
+import slack from "../../../../assets/img/logos/logo-slack.png";
+import linkedin from "../../../../assets/img/logos/logo-linkedin.png";
+
 const UserProfile = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [currentProfile, setCurrentProfile] = useState(null);
@@ -41,27 +44,27 @@ const UserProfile = () => {
   const mapSocialMedia = () => {
     const arr = [
       {
-        icon: <Facebook className="mr-3" />,
+        icon: facebook,
         link: currentProfile.facebook,
         key: "facebook",
       },
       {
-        icon: <Instagram className="mr-3" />,
+        icon: instagram,
         link: currentProfile.instagram,
         key: "instagram",
       },
       {
-        icon: <Twitter className="mr-3" />,
+        icon: twitter,
         link: currentProfile.twitter,
         key: "twitter",
       },
       {
-        icon: <Linkedin className="mr-3" />,
+        icon: linkedin,
         link: currentProfile.linkedin,
         key: "linkedin",
       },
       {
-        icon: <Slack className="mr-3" />,
+        icon: slack,
         link: currentProfile.slack,
         key: "slack",
       },
@@ -69,12 +72,12 @@ const UserProfile = () => {
 
     return arr.map((item, index) => (
       <button
-        className="button-transparent"
+        className="button-transparent btn-socials"
         key={index}
         disabled={!currentProfile[item.key]}
         onClick={() => window.open(`http://${item.link}`, "_blank")}
       >
-        {item.icon}
+        <img src={item.icon} alt={item.key} />
       </button>
     ));
   };

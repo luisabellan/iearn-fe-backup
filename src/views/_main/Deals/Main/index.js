@@ -32,10 +32,14 @@ import {
 import withTitleContext from "../../../../utility/withContexts/withTitle";
 import withUserContext from "../../../../utility/withContexts/withUser";
 
+//Modals
+import ImagesModal from "../_modals/Images";
+
 const Deals = (props) => {
   // const history = useHistory();
   // const { width } = useWindowDimensions();
   const [deals, setDeals] = useState([]);
+  const [imgOpen, setImgOpen] = useState(false);
 
   //Get Deals
   useEffect(() => {
@@ -115,6 +119,9 @@ const Deals = (props) => {
 
   return (
     <>
+      <ImagesModal
+        {...{ isOpen: imgOpen, toggle: () => setImgOpen(!imgOpen) }}
+      />
       <Row>
         <Col>
           <Card>
