@@ -68,7 +68,7 @@ img {
   }
 
   &:disabled {
-    opacity: 50%;
+    opacity: 50% !important;
     cursor: default;
   }
 }

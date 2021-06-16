@@ -129,7 +129,7 @@ export const multipleFilesUpload = async function(
   // let filesUploaded = [];
   // let errors = [];
   let uploadPromises = [];
-  Array.from(files).forEach(async (file, key) => {
+  files.forEach(async (file, key) => {
     const randomChar = `${credentials.Randomchar}_${key}`;
     const filename = generateFilename(file.name, category, randomChar);
     uploadPromises.push(
