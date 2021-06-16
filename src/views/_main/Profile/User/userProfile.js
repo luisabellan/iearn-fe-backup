@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Row, Col, Card, CardBody } from "reactstrap";
 import "../profile.scss";
-import {
-  MapPin,
-  PhoneCall,
-  Mail,
-} from "react-feather";
+import { MapPin, PhoneCall, Mail } from "react-feather";
+
 import { useLocation } from "react-router-dom";
 import SpinnerComponent from "../../../../components/spinner/spinner";
 
@@ -21,7 +18,6 @@ import withUserContext from "../../../../utility/withContexts/withUser";
 
 //Notes
 //Circle taken from: https://codepen.io/cbracco/pen/qnduh
-
 
 //Assets
 import facebook from "../../../../assets/img/logos/logo-facebook.png";
@@ -70,16 +66,25 @@ const UserProfile = () => {
       },
     ];
 
-    return arr.map((item, index) => (
-      <button
-        className="button-transparent btn-socials"
-        key={index}
-        disabled={!currentProfile[item.key]}
-        onClick={() => window.open(`http://${item.link}`, "_blank")}
-      >
-        <img src={item.icon} alt={item.key} />
-      </button>
-    ));
+    return arr.map((item, index) => {
+      if (currentProfile[item.key]) {
+        return (
+          <button
+            className="button-transparent btn-socials"
+            key={index}
+            onClick={() => window.open(`http://${item.link}`, "_blank")}
+          >
+            <img src={item.icon} alt={item.key} />
+          </button>
+        );
+      }
+
+      return (
+        <span className="button-transparent btn-socials opacity-50" key={index}>
+          <img src={item.icon} alt={item.key} />
+        </span>
+      );
+    });
   };
 
   if (isLoading) return <SpinnerComponent />;
