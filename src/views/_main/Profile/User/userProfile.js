@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Row, Col, Card, CardBody } from "reactstrap";
 import "../profile.scss";
 import { MapPin, PhoneCall, Mail } from "react-feather";
+
 import { useLocation } from "react-router-dom";
 import SpinnerComponent from "../../../../components/spinner/spinner";
 
