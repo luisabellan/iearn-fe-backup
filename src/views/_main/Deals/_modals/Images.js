@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./EditMarket.scss";
 import "react-image-crop/dist/ReactCrop.css";
 import {
   Modal,
@@ -10,27 +9,31 @@ import {
   Row,
   Col,
   Label,
+  Input,
 } from "reactstrap";
 import Dropzone from "react-dropzone";
 import { BsUpload } from "react-icons/bs";
 
 //Context
-import withUser from "../../../../../utility/withContexts/withUser";
+import withUser from "../../../../utility/withContexts/withUser";
 
 //API
-import api from "../../../../../api/api";
+import api from "../../../../api/api";
 
 //Components
-import ToastSuccess from "../../../../../components/toasts/success";
+import ToastSuccess from "../../../../components/toasts/success";
 
 const EditMarket = ({ user, setUser, isOpen, toggle }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [src, setSrc] = useState([]);
 
-  const handleDrop = (files, allFiles) => {
-    
-  }
+  const handleDrop = (files, allFiles) => {};
+
+  const handleUpload = (e) => {
+    const files = e.target.files;
+    console.log(files);
+  };
 
   return (
     <>
@@ -47,17 +50,20 @@ const EditMarket = ({ user, setUser, isOpen, toggle }) => {
               There was an error while saving. Please retry after a while.
             </Alert>
           )}
-          <Label className="w-100">Select the markets that you work in.</Label>
           <Dropzone
             onDrop={(files) => {
               if (files && files.length > 0) {
-                const reader = new FileReader();
-                reader.addEventListener("load", () => {
-                  setSrc(reader.result);
+                console.log(files);
+                files.forEach((file) => {
+                  console.log(file.file);
                 });
-                reader.readAsDataURL(files[0]);
-                setRawFile(files[0]);
-                setError(false);
+                // const reader = new FileReader();
+                // reader.addEventListener("load", () => {
+                //   setSrc(reader.result);
+                // });
+                // reader.readAsDataURL(files[0]);
+                // setRawFile(files[0]);
+                // setError(false);
               }
             }}
           >
@@ -73,6 +79,13 @@ const EditMarket = ({ user, setUser, isOpen, toggle }) => {
               );
             }}
           </Dropzone>
+          <Input
+            type="file"
+            name="file"
+            id="uploadedFile"
+            onChange={(e) => handleUpload(e)}
+            multiple
+          />
           <div className="row mt-3">
             <div className="col-6">
               <Button
@@ -93,7 +106,6 @@ const EditMarket = ({ user, setUser, isOpen, toggle }) => {
                 size="md"
                 color="primary"
                 type="submit"
-                onClick={onSubmit}
                 disabled={isLoading}
               >
                 SAVE
