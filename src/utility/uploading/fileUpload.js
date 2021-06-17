@@ -124,7 +124,10 @@ export const toolBoxTalksUpload = function(
 export const multipleFilesUpload = async function(
   files,
   category,
-  credentials
+  credentials,
+  successCallback,
+  errorCallback,
+  finallyCallback
 ) {
   // let filesUploaded = [];
   // let errors = [];

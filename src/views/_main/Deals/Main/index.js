@@ -35,13 +35,16 @@ import withUserContext from "../../../../utility/withContexts/withUser";
 
 //Modals
 import ImagesModal from "../_modals/Images/Images";
+import ResourcesModal from "../_modals/Resources/Resources";
 
 const Deals = (props) => {
   // const history = useHistory();
   // const { width } = useWindowDimensions();
   const [deals, setDeals] = useState([]);
-  const [imgOpen, setImgOpen] = useState(true);
+  const [imgOpen, setImgOpen] = useState(false);
+  const [resOpen, setResOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [deal, setDeal] = useState("");
 
   //Get Deals
   useEffect(() => {
@@ -100,11 +103,22 @@ const Deals = (props) => {
                   {deal.notes}
                 </Col>
                 <Col xl={{ size: 2 }} className="pr-0 text-center">
-                  <button className="deal-button">Resources</button>
+                  <button
+                    onClick={() => {
+                      setResOpen(!resOpen);
+                      setDeal(deal.id);
+                    }}
+                    className="deal-button"
+                  >
+                    Resources
+                  </button>
                 </Col>
                 <Col xl={{ size: 2 }} className="xs-hidden tab-below-hidden">
                   <button
-                    onClick={() => setImgOpen(!imgOpen)}
+                    onClick={() => {
+                      setImgOpen(!imgOpen);
+                      setDeal(deal.id);
+                    }}
                     className="deal-button"
                   >
                     Images
@@ -132,7 +146,18 @@ const Deals = (props) => {
   return (
     <>
       <ImagesModal
-        {...{ isOpen: imgOpen, toggle: () => setImgOpen(!imgOpen) }}
+        {...{
+          isOpen: imgOpen,
+          toggle: () => setImgOpen(!imgOpen),
+          dealID: deal,
+        }}
+      />
+      <ResourcesModal
+        {...{
+          isOpen: resOpen,
+          toggle: () => setResOpen(!resOpen),
+          dealID: deal,
+        }}
       />
       <Row>
         <Col>

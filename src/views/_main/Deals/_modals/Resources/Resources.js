@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./images.scss";
+import "./resources.scss";
 import "react-image-crop/dist/ReactCrop.css";
 import {
   Modal,
@@ -12,6 +12,7 @@ import {
   Label,
   Input,
 } from "reactstrap";
+import { File } from "react-feather";
 import Dropzone from "react-dropzone";
 import { BsUpload } from "react-icons/bs";
 
@@ -26,10 +27,10 @@ import { multipleFilesUpload } from "../../../../../utility/uploading/fileUpload
 import ToastSuccess from "../../../../../components/toasts/success";
 import Spinner from "../../../../../components/spinner/spinner";
 
-const UploadedImages = ({ user, setUser, isOpen, toggle, dealID }) => {
+const UploadedResources = ({ user, setUser, isOpen, toggle, dealID }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const [currentImages, setCurrentImages] = useState([]);
+  const [currentFiles, setCurrentFiles] = useState([]);
   const [deal, setDeal] = useState({});
 
   const handleUpload = async (files) => {
@@ -46,9 +47,20 @@ const UploadedImages = ({ user, setUser, isOpen, toggle, dealID }) => {
           credentials
         );
         if (res) {
-          let arr = [...currentImages, ...res];
+          let sources = [...res];
+          let newFiles = [];
+
+          for (let x = 0; x < files.length; x++) {
+            newFiles.push({
+              file: sources[x],
+              name: files[x].name,
+            });
+          }
+
+          const combinedFiles = [...currentFiles, ...newFiles];
+
           api
-            .patch(`/deals/${deal.id}`, { images: arr })
+            .patch(`/deals/${deal.id}`, { resources: combinedFiles })
             .then((res) => {
               queryDeal();
             })
@@ -65,15 +77,16 @@ const UploadedImages = ({ user, setUser, isOpen, toggle, dealID }) => {
     api
       .get(`/deals/${dealID}`)
       .then((res) => {
-        console.log(res.data);
         setDeal(res.data);
-        setCurrentImages(res.data.images);
+        if (res.data.resources) {
+          setCurrentFiles(res.data.resources);
+        }
         setIsLoading(false);
       })
       .catch((err) => console.log(err));
   };
 
-  const mapImages = () => {
+  const mapFiles = () => {
     if (isLoading) {
       return (
         <div className="col-12 text-center py-4">
@@ -82,22 +95,31 @@ const UploadedImages = ({ user, setUser, isOpen, toggle, dealID }) => {
       );
     }
 
-    if (currentImages.length) {
-      return currentImages.map((img, index) => {
+    if (currentFiles.length) {
+      return currentFiles.map((file, index) => {
         return (
-          <div className="col-4 text-center img-container mb-3" key={index}>
-            <img
-              src={`https://mentor-beast-nuclius.s3.us-east-2.amazonaws.com/${img}`}
-              alt="Deal"
-            />
+          <div className="col-4 text-center mb-3" key={index}>
+            <div className="file-container">
+              <p>
+                <File size="60" color="#ccc" />
+              </p>
+              <p className="mb-0 text-capitalize">
+                <a
+                  href={`https://mentor-beast-nuclius.s3.us-east-2.amazonaws.com/${file.file}`}
+                  download
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {file.name}
+                </a>
+              </p>
+            </div>
           </div>
         );
       });
     }
 
-    return (
-      <p className="text-center my-3 mx-auto opacity-50">No images yet.</p>
-    );
+    return <p className="text-center my-3 mx-auto opacity-50">No files yet.</p>;
   };
 
   useEffect(() => {
@@ -114,7 +136,7 @@ const UploadedImages = ({ user, setUser, isOpen, toggle, dealID }) => {
         centered={true}
         className="edit-market"
       >
-        <ModalHeader toggle={() => toggle()}>Deal Images</ModalHeader>
+        <ModalHeader toggle={() => toggle()}>Deal Resources</ModalHeader>
         <ModalBody className="images-container">
           {error && (
             <Alert color="warning" fade={false}>
@@ -135,13 +157,13 @@ const UploadedImages = ({ user, setUser, isOpen, toggle, dealID }) => {
                   <BsUpload color="gray" size={30} />
                   <p>Drag and Drop </p>
                   <p>Or</p>
-                  <p>Click to select an image here</p>
+                  <p>Click to select files here</p>
                 </div>
               );
             }}
           </Dropzone>
-          <p className="mt-3 mb-0">Uploaded images:</p>
-          <div className="previews-container row">{mapImages()}</div>
+          <p className="mt-3 mb-0">Uploaded files:</p>
+          <div className="previews-container row">{mapFiles()}</div>
           <div className="row justify-content-center mt-3">
             <div className="col-6">
               <Button
@@ -162,4 +184,4 @@ const UploadedImages = ({ user, setUser, isOpen, toggle, dealID }) => {
   );
 };
 
-export default withUser(UploadedImages);
+export default withUser(UploadedResources);
