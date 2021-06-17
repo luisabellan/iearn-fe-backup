@@ -82,7 +82,7 @@ const UploadedImages = ({ user, setUser, isOpen, toggle, dealID }) => {
       );
     }
 
-    if (currentImages.length) {
+    if (currentImages.length > 0) {
       return currentImages.map((img, index) => {
         return (
           <div className="col-4 text-center img-container mb-3" key={index}>
