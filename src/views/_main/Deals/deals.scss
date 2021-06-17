@@ -1,6 +1,7 @@
 $main-color: #0c2340;
 $secondary-color: #4b506d;
 $light-gray: #c5c7cd;
+$mint: #009DA0;
 
 .page-decision-tree {
   // .decision-tree-container {
@@ -236,27 +237,11 @@ $light-gray: #c5c7cd;
   }
 }
 
-.course-details {
-  .video-container {
-    margin-top: 20px;
 
-    img {
-      width: 100%;
-    }
-  }
-
-  .related-documents {
-    margin-top: 20px;
-
-    hr {
-      opacity: 0.3;
-    }
-  }
-
-  .video-faqs {
-    hr {
-      margin-left: -36px;
-      margin-right: -36px;
-    }
+.page-deals {
+  .deal-button {
+    border: none;
+    background: transparent;
+    color: $mint;
   }
 }

@@ -1,0 +1,55 @@
+.images-container {
+
+  
+  .image-crop-container {
+    width: 100%;
+    //max = everything below the amount - min everything above the amount
+    // @media screen and (max-width: 768px) {
+    //   width: 95%;
+    // }
+    // @media screen and (max-width: 576px) {
+    //   width: 86%;
+    // }
+    // @media screen and (max-width: 530px) {
+    //   width: 98%;
+    // }
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    p {
+      font-size: 16px;
+      text-align: center;
+      margin-bottom: 6px;
+      margin-top: 6px;
+    }
+  }
+}
+.picture-border {
+  border: dashed gray 2px;
+}
+.picture-warning {
+  border: dashed red 2px !important;
+}
+.picture-error-message {
+  font-size: 80%;
+  margin-top: 0.5rem;
+  font-weight: 300;
+  line-height: 1.5em;
+}
+.select-profile-picture-top-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .buttons-section {
+    display: flex;
+  }
+}
+
+.ReactCrop__crop-selection {
+  border-radius: 50%;
+}
+.ReactCrop__image {
+  height: unset !important;  
+}

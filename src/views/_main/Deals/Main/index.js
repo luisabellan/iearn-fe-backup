@@ -20,6 +20,7 @@ import { Link } from "react-router-dom";
 
 //Assets
 // import placeholder from "../_temp/pdf_icon.png";
+import Spinner from "../../../../components/spinner/spinner";
 
 //API
 import api from "../../../../api/api";
@@ -33,22 +34,28 @@ import withTitleContext from "../../../../utility/withContexts/withTitle";
 import withUserContext from "../../../../utility/withContexts/withUser";
 
 //Modals
-import ImagesModal from "../_modals/Images";
+import ImagesModal from "../_modals/Images/Images";
 
 const Deals = (props) => {
   // const history = useHistory();
   // const { width } = useWindowDimensions();
   const [deals, setDeals] = useState([]);
-  const [imgOpen, setImgOpen] = useState(false);
+  const [imgOpen, setImgOpen] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   //Get Deals
   useEffect(() => {
+    setIsLoading(true);
     api
       .get(`/deals?user=${props.user.id}`)
       .then((res) => {
         setDeals(res.data);
+        setIsLoading(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setIsLoading(false);
+      });
   }, []);
 
   useEffect(() => {
@@ -93,10 +100,15 @@ const Deals = (props) => {
                   {deal.notes}
                 </Col>
                 <Col xl={{ size: 2 }} className="pr-0 text-center">
-                  <Link to="/">Resources</Link>
+                  <button className="deal-button">Resources</button>
                 </Col>
                 <Col xl={{ size: 2 }} className="xs-hidden tab-below-hidden">
-                  <Link to="/">Images</Link>
+                  <button
+                    onClick={() => setImgOpen(!imgOpen)}
+                    className="deal-button"
+                  >
+                    Images
+                  </button>
                 </Col>
                 <Col
                   xl={{ size: 1 }}
@@ -136,7 +148,7 @@ const Deals = (props) => {
           </Card>
         </Col>
       </Row>
-      <Row className="page-decision-tree">
+      <Row className="page-deals">
         <Col>
           <Card>
             <CardBody className="pb-0 decision-tree-container">
@@ -233,7 +245,19 @@ const Deals = (props) => {
                       </tr>
                     </thead>
                     <tbody>
-                      {mapDeals()}
+                      {isLoading ? (
+                        <tr>
+                          <td>
+                            <div className="row">
+                              <div className="col my-4">
+                                <Spinner />
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      ) : (
+                        <>{mapDeals()}</>
+                      )}
                       <tr></tr>
                       {/* <tr>
                         <td className="pb-0">
