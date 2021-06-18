@@ -53,15 +53,36 @@
   max-height: 320px;
   overflow-y: auto;
 
-  .img-container {
+  .img-container,
+  .file-container {
+    border: 1px solid #cccccc75;
+    border-radius: 5px;
+    padding: 12px 8px;
+    transition: 0.2s ease-in-out all;
+
     img {
       max-height: 100px;
     }
+
+    &:hover {
+      transform: translateY(-5px);
+      transition: 0.2s ease-in-out all;
+    }
   }
 
-  .file-container {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 12px 8px;
+  .delete-button {
+    position: absolute;
+    top: -10px;
+    right: 0;
+    border-radius: 50%;
+    border: 0;
+    padding: 0 6px 2px;
+    opacity: 0.3;
+    transition: 0.2s ease-in-out all;
+
+    &:hover {
+      transition: 0.2s ease-in-out all;
+      opacity: 1;
+    }
   }
 }

@@ -14,13 +14,17 @@ import {
 } from "reactstrap";
 import Dropzone from "react-dropzone";
 import { BsUpload } from "react-icons/bs";
+import { X } from "react-feather";
 
 //Context
 import withUser from "../../../../../utility/withContexts/withUser";
 
 //API
 import api from "../../../../../api/api";
-import { multipleFilesUpload } from "../../../../../utility/uploading/fileUpload";
+import {
+  multipleFilesUpload,
+  s3DeleteFile,
+} from "../../../../../utility/uploading/fileUpload";
 
 //Components
 import ToastSuccess from "../../../../../components/toasts/success";
@@ -60,14 +64,42 @@ const UploadedImages = ({ user, setUser, isOpen, toggle, dealID }) => {
       });
   };
 
+  const handleDelete = (name, index) => {
+    setIsLoading(true);
+
+    api
+      .get("/file-storage/credentials") // get credentials
+      .then(async (response) => {
+        // s3 client
+        const credentials = response.data;
+        const res = await s3DeleteFile(name.split("/")[1], credentials);
+
+        if (res) {
+          let arr = currentImages;
+          arr.splice(index, 1);
+
+          api
+            .patch(`/deals/${deal.id}`, { images: arr })
+            .then((res) => {
+              queryDeal();
+            })
+            .catch((err) => {
+              console.log(err);
+              setIsLoading(false);
+            });
+        }
+      });
+  };
+
   const queryDeal = () => {
     setIsLoading(true);
     api
       .get(`/deals/${dealID}`)
       .then((res) => {
-        console.log(res.data);
         setDeal(res.data);
-        setCurrentImages(res.data.images);
+        if (res.data.images) {
+          setCurrentImages(res.data.images);
+        }
         setIsLoading(false);
       })
       .catch((err) => console.log(err));
@@ -85,11 +117,26 @@ const UploadedImages = ({ user, setUser, isOpen, toggle, dealID }) => {
     if (currentImages.length) {
       return currentImages.map((img, index) => {
         return (
-          <div className="col-4 text-center img-container mb-3" key={index}>
-            <img
-              src={`https://mentor-beast-nuclius.s3.us-east-2.amazonaws.com/${img}`}
-              alt="Deal"
-            />
+          <div className="col-lg-4 col-sm-6 text-center mb-3" key={index}>
+            <button
+              className="delete-button"
+              onClick={() => handleDelete(img, index)}
+            >
+              <X size="14" />
+            </button>
+            <div className="img-container">
+              <a
+                href={`https://mentor-beast-nuclius.s3.us-east-2.amazonaws.com/${img}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+              >
+                <img
+                  src={`https://mentor-beast-nuclius.s3.us-east-2.amazonaws.com/${img}`}
+                  alt="Deal"
+                />
+              </a>
+            </div>
           </div>
         );
       });
@@ -149,7 +196,7 @@ const UploadedImages = ({ user, setUser, isOpen, toggle, dealID }) => {
                 block
                 size="md"
                 color="primary"
-                type="submit"
+                onClick={() => toggle()}
                 disabled={isLoading}
               >
                 BACK
