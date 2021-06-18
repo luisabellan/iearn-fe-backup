@@ -27,14 +27,16 @@ import {
 } from "../../../../../utility/uploading/fileUpload";
 
 //Components
-import ToastSuccess from "../../../../../components/toasts/success";
 import Spinner from "../../../../../components/spinner/spinner";
+import Confirm from "../../_modals/confirmDelete";
 
 const UploadedImages = ({ user, setUser, isOpen, toggle, dealID }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [currentImages, setCurrentImages] = useState([]);
   const [deal, setDeal] = useState({});
+  const [chosenFile, setChosenFile] = useState({});
+  const [confirm, setConfirm] = useState(false);
 
   const handleUpload = async (files) => {
     setIsLoading(true);
@@ -64,7 +66,7 @@ const UploadedImages = ({ user, setUser, isOpen, toggle, dealID }) => {
       });
   };
 
-  const handleDelete = (name, index) => {
+  const handleDelete = () => {
     setIsLoading(true);
 
     api
@@ -72,11 +74,11 @@ const UploadedImages = ({ user, setUser, isOpen, toggle, dealID }) => {
       .then(async (response) => {
         // s3 client
         const credentials = response.data;
-        const res = await s3DeleteFile(name.split("/")[1], credentials);
+        const res = await s3DeleteFile(chosenFile.img.split("/")[1], credentials);
 
         if (res) {
           let arr = currentImages;
-          arr.splice(index, 1);
+          arr.splice(chosenFile.index, 1);
 
           api
             .patch(`/deals/${deal.id}`, { images: arr })
@@ -120,7 +122,10 @@ const UploadedImages = ({ user, setUser, isOpen, toggle, dealID }) => {
           <div className="col-lg-4 col-sm-6 text-center mb-3" key={index}>
             <button
               className="delete-button"
-              onClick={() => handleDelete(img, index)}
+              onClick={() => {
+                setChosenFile({ img, index });
+                setConfirm(true);
+              }}
             >
               <X size="14" />
             </button>
@@ -155,6 +160,7 @@ const UploadedImages = ({ user, setUser, isOpen, toggle, dealID }) => {
 
   return (
     <>
+      <Confirm {...{ isOpen: confirm, toggle: () => setConfirm(!confirm), handleDelete }} />
       <Modal
         {...{ isOpen, toggle }}
         size="lg"
