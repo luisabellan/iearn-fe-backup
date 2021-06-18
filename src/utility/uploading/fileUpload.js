@@ -155,6 +155,16 @@ export const multipleFilesUpload = async function(
   });
 };
 
+export const s3DeleteFile = function(filename, credentials) {
+  const params = {
+    Bucket: credentials.Bucket,
+    Key: filename,
+  };
+  const s3 = getS3Client(credentials);
+  // upload to s3
+  return s3.deleteObject(params).promise();
+};
+
 // export const multipleFilesUpload = async function(files, category, credentials) {
 //   return new Promise( async (resolve, reject) => {
 //     let filesUploaded = [];

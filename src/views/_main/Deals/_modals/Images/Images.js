@@ -14,23 +14,29 @@ import {
 } from "reactstrap";
 import Dropzone from "react-dropzone";
 import { BsUpload } from "react-icons/bs";
+import { X } from "react-feather";
 
 //Context
 import withUser from "../../../../../utility/withContexts/withUser";
 
 //API
 import api from "../../../../../api/api";
-import { multipleFilesUpload } from "../../../../../utility/uploading/fileUpload";
+import {
+  multipleFilesUpload,
+  s3DeleteFile,
+} from "../../../../../utility/uploading/fileUpload";
 
 //Components
-import ToastSuccess from "../../../../../components/toasts/success";
 import Spinner from "../../../../../components/spinner/spinner";
+import Confirm from "../../_modals/confirmDelete";
 
 const UploadedImages = ({ user, setUser, isOpen, toggle, dealID }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [currentImages, setCurrentImages] = useState([]);
   const [deal, setDeal] = useState({});
+  const [chosenFile, setChosenFile] = useState({});
+  const [confirm, setConfirm] = useState(false);
 
   const handleUpload = async (files) => {
     setIsLoading(true);
@@ -60,14 +66,42 @@ const UploadedImages = ({ user, setUser, isOpen, toggle, dealID }) => {
       });
   };
 
+  const handleDelete = () => {
+    setIsLoading(true);
+
+    api
+      .get("/file-storage/credentials") // get credentials
+      .then(async (response) => {
+        // s3 client
+        const credentials = response.data;
+        const res = await s3DeleteFile(chosenFile.img.split("/")[1], credentials);
+
+        if (res) {
+          let arr = currentImages;
+          arr.splice(chosenFile.index, 1);
+
+          api
+            .patch(`/deals/${deal.id}`, { images: arr })
+            .then((res) => {
+              queryDeal();
+            })
+            .catch((err) => {
+              console.log(err);
+              setIsLoading(false);
+            });
+        }
+      });
+  };
+
   const queryDeal = () => {
     setIsLoading(true);
     api
       .get(`/deals/${dealID}`)
       .then((res) => {
-        console.log(res.data);
         setDeal(res.data);
-        setCurrentImages(res.data.images);
+        if (res.data.images) {
+          setCurrentImages(res.data.images);
+        }
         setIsLoading(false);
       })
       .catch((err) => console.log(err));
@@ -85,11 +119,29 @@ const UploadedImages = ({ user, setUser, isOpen, toggle, dealID }) => {
     if (currentImages.length !== 0) {
       return currentImages.map((img, index) => {
         return (
-          <div className="col-4 text-center img-container mb-3" key={index}>
-            <img
-              src={`https://mentor-beast-nuclius.s3.us-east-2.amazonaws.com/${img}`}
-              alt="Deal"
-            />
+          <div className="col-lg-4 col-sm-6 text-center mb-3" key={index}>
+            <button
+              className="delete-button"
+              onClick={() => {
+                setChosenFile({ img, index });
+                setConfirm(true);
+              }}
+            >
+              <X size="14" />
+            </button>
+            <div className="img-container">
+              <a
+                href={`https://mentor-beast-nuclius.s3.us-east-2.amazonaws.com/${img}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+              >
+                <img
+                  src={`https://mentor-beast-nuclius.s3.us-east-2.amazonaws.com/${img}`}
+                  alt="Deal"
+                />
+              </a>
+            </div>
           </div>
         );
       });
@@ -108,6 +160,7 @@ const UploadedImages = ({ user, setUser, isOpen, toggle, dealID }) => {
 
   return (
     <>
+      <Confirm {...{ isOpen: confirm, toggle: () => setConfirm(!confirm), handleDelete }} />
       <Modal
         {...{ isOpen, toggle }}
         size="lg"
@@ -149,7 +202,7 @@ const UploadedImages = ({ user, setUser, isOpen, toggle, dealID }) => {
                 block
                 size="md"
                 color="primary"
-                type="submit"
+                onClick={() => toggle()}
                 disabled={isLoading}
               >
                 BACK
