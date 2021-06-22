@@ -124,7 +124,10 @@ export const toolBoxTalksUpload = function(
 export const multipleFilesUpload = async function(
   files,
   category,
-  credentials
+  credentials,
+  successCallback,
+  errorCallback,
+  finallyCallback
 ) {
   // let filesUploaded = [];
   // let errors = [];
@@ -150,6 +153,16 @@ export const multipleFilesUpload = async function(
       resolve(values);
     });
   });
+};
+
+export const s3DeleteFile = function(filename, credentials) {
+  const params = {
+    Bucket: credentials.Bucket,
+    Key: filename,
+  };
+  const s3 = getS3Client(credentials);
+  // upload to s3
+  return s3.deleteObject(params).promise();
 };
 
 // export const multipleFilesUpload = async function(files, category, credentials) {

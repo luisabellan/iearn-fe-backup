@@ -1,0 +1,88 @@
+.images-container {
+  .image-crop-container {
+    width: 100%;
+    cursor: pointer;
+    border: 1px dashed #ccc;
+    border-radius: 5px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    p {
+      font-size: 16px;
+      text-align: center;
+      margin-bottom: 6px;
+      margin-top: 6px;
+    }
+  }
+}
+.picture-border {
+  border: dashed gray 2px;
+}
+.picture-warning {
+  border: dashed red 2px !important;
+}
+.picture-error-message {
+  font-size: 80%;
+  margin-top: 0.5rem;
+  font-weight: 300;
+  line-height: 1.5em;
+}
+.select-profile-picture-top-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .buttons-section {
+    display: flex;
+  }
+}
+
+.ReactCrop__crop-selection {
+  border-radius: 50%;
+}
+.ReactCrop__image {
+  height: unset !important;
+}
+
+.previews-container {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 10px 0 0;
+  max-height: 320px;
+  overflow-y: auto;
+
+  .img-container,
+  .file-container {
+    border: 1px solid #cccccc75;
+    border-radius: 5px;
+    padding: 12px 8px;
+    transition: 0.2s ease-in-out all;
+
+    img {
+      max-height: 100px;
+    }
+
+    &:hover {
+      transform: translateY(-5px);
+      transition: 0.2s ease-in-out all;
+    }
+  }
+
+  .delete-button {
+    position: absolute;
+    top: -10px;
+    right: 0;
+    border-radius: 50%;
+    border: 0;
+    padding: 0 6px 2px;
+    opacity: 0.3;
+    transition: 0.2s ease-in-out all;
+
+    &:hover {
+      transition: 0.2s ease-in-out all;
+      opacity: 1;
+    }
+  }
+}
