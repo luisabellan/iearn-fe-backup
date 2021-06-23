@@ -146,12 +146,16 @@ const Deals = (props) => {
               <Col xl="1" md="2" sm="2" xs="2" className="px-0">
                 <p className="text-center">
                   <Link
-                    to={{
-                      pathname: "/people/user",
-                      state: {
-                        ...person,
-                      },
-                    }}
+                    to={
+                      person.id === props.user.id
+                        ? "/people/profile"
+                        : {
+                            pathname: "/people/user",
+                            state: {
+                              ...person,
+                            },
+                          }
+                    }
                     className="text-light-blue font-weight-500"
                   >
                     View<span className="tab-below-hidden"> Profile</span>
@@ -159,11 +163,12 @@ const Deals = (props) => {
                 </p>
               </Col>
               {(props.user.id === "60a77abfb85d5a0015fd8527" ||
-                props.user.id === "60b7b51fd4ca380015473f7c") &&
+                props.user.id === "60b7b51fd4ca380015473f7c" ||
+                props.user.role === "administrator") &&
               props.user.id !== person.id ? (
                 <Col xs="1" className="text-center px-0">
                   <button
-                    className="button-transparent text-red"
+                    className="button-transparent text-blue"
                     onClick={() => {
                       handleDelete(
                         person.id,
@@ -171,7 +176,7 @@ const Deals = (props) => {
                       );
                     }}
                   >
-                    <X />
+                    <X size="14" />
                   </button>
                 </Col>
               ) : (

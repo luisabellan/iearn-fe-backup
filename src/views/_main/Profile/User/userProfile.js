@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Row, Col, Card, CardBody } from "reactstrap";
 import "../profile.scss";
-import { MapPin, PhoneCall, Mail } from "react-feather";
+import { MapPin, PhoneCall, Mail, Edit } from "react-feather";
 import { useLocation } from "react-router-dom";
 import SpinnerComponent from "../../../../components/spinner/spinner";
 
@@ -18,6 +18,9 @@ import withUserContext from "../../../../utility/withContexts/withUser";
 //Notes
 //Circle taken from: https://codepen.io/cbracco/pen/qnduh
 
+//API
+import api from "../../../../api/api";
+
 //Assets
 import facebook from "../../../../assets/img/logos/logo-facebook.png";
 import twitter from "../../../../assets/img/logos/logo-twitter.png";
@@ -25,15 +28,32 @@ import instagram from "../../../../assets/img/logos/logo-instagram.png";
 import slack from "../../../../assets/img/logos/logo-slack.png";
 import linkedin from "../../../../assets/img/logos/logo-linkedin.png";
 
-const UserProfile = () => {
+//Modals
+import ProfilePicture from "../_modals/ProfilePicture/ProfilePicture";
+import EditProfile from "../_modals/EditProfile/EditProfile";
+import EditSkills from "../_modals/EditSkills/EditSkills";
+import EditMarket from "../_modals/EditMarket/EditMarket";
+import EditMentorships from "../_modals/EditMentorships/EditMentorships";
+
+const UserProfile = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [currentProfile, setCurrentProfile] = useState(null);
+  const [profilePicture, setProfilePicture] = useState(false);
+  const [editProfile, setEditProfile] = useState(false);
+  const [editSkills, setEditSkills] = useState(false);
+  const [editMarket, setEditMarket] = useState(false);
+  const [editMentorships, setEditMentorships] = useState(false);
 
   const location = useLocation();
 
   useEffect(() => {
-    setCurrentProfile(location.state);
-    setIsLoading(false);
+    api
+      .get(`/users/${location.state.id}`)
+      .then((res) => {
+        setCurrentProfile(res.data);
+        setIsLoading(false);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   const mapSocialMedia = () => {
@@ -90,6 +110,41 @@ const UserProfile = () => {
 
   return (
     <>
+      <ProfilePicture
+        {...{
+          isOpen: profilePicture,
+          toggle: () => setProfilePicture(!profilePicture),
+          profile: currentProfile,
+        }}
+      />
+      <EditProfile
+        {...{
+          isOpen: editProfile,
+          toggle: () => setEditProfile(!editProfile),
+          profile: currentProfile,
+        }}
+      />
+      <EditSkills
+        {...{
+          isOpen: editSkills,
+          toggle: () => setEditSkills(!editSkills),
+          profile: currentProfile,
+        }}
+      />
+      <EditMarket
+        {...{
+          isOpen: editMarket,
+          toggle: () => setEditMarket(!editMarket),
+          profile: currentProfile,
+        }}
+      />
+      <EditMentorships
+        {...{
+          isOpen: editMentorships,
+          toggle: () => setEditMentorships(!editMentorships),
+          profile: currentProfile,
+        }}
+      />
       <Row className="profile-container">
         <Col>
           <Card>
@@ -109,6 +164,19 @@ const UserProfile = () => {
                     <Col className="profile-picture mt-3" md="4" sm="8" xs="8">
                       <Row>
                         <Col className="px-0 px-md-2">
+                          {props.user.role === "administrator" ? (
+                            <div
+                              className="edit-profile"
+                              onClick={() => setProfilePicture(!profilePicture)}
+                            >
+                              <div className="edit-icon">
+                                <Edit size="30" color="#0C2340" />
+                                <p className="mt-2">Update Profile Picture</p>
+                              </div>
+                            </div>
+                          ) : (
+                            ""
+                          )}
                           {currentProfile.userImg ? (
                             <img
                               src={`https://mentor-beast-nuclius.s3.us-east-2.amazonaws.com/${currentProfile.userImg}`}
@@ -150,6 +218,18 @@ const UserProfile = () => {
                       <h1 className="sm-hidden mobile-hidden text-capitalize">
                         {currentProfile.firstName} {currentProfile.lastName}
                       </h1>
+                      {props.user.role === "administrator" ? (
+                        <div className="edit-button">
+                          <button
+                            className="button-transparent"
+                            onClick={() => setEditProfile(!editProfile)}
+                          >
+                            <Edit size="22" />
+                          </button>
+                        </div>
+                      ) : (
+                        ""
+                      )}
                       <h5 className="mt-0 mt-md-3">
                         <MapPin className="mr-1 mr-md-3" color="#464855" />{" "}
                         <span
@@ -209,6 +289,18 @@ const UserProfile = () => {
                   <Row className="list-container">
                     <Col>
                       <h2>Skills:</h2>
+                      {props.user.role === "administrator" ? (
+                        <div className="edit-button">
+                          <button
+                            className="button-transparent"
+                            onClick={() => setEditSkills(!editSkills)}
+                          >
+                            <Edit size="22" />
+                          </button>
+                        </div>
+                      ) : (
+                        ""
+                      )}
                       <Row>
                         <Col lg="12" xl="8">
                           <Row>
@@ -229,6 +321,18 @@ const UserProfile = () => {
                   <Row className="list-container">
                     <Col>
                       <h2>Markets:</h2>
+                      {props.user.role === "administrator" ? (
+                        <div className="edit-button">
+                          <button
+                            className="button-transparent"
+                            onClick={() => setEditMarket(!editMarket)}
+                          >
+                            <Edit size="22" />
+                          </button>
+                        </div>
+                      ) : (
+                        ""
+                      )}
                       <Row>
                         <Col lg="12" xl="8">
                           <Row>
@@ -251,10 +355,22 @@ const UserProfile = () => {
                   <Row className="list-container">
                     <Col>
                       <h2>Mentorships:</h2>
+                      {props.user.role === "administrator" ? (
+                        <div className="edit-button">
+                          <button
+                            className="button-transparent"
+                            onClick={() => setEditMentorships(!editMentorships)}
+                          >
+                            <Edit size="22" />
+                          </button>
+                        </div>
+                      ) : (
+                        ""
+                      )}
                       <Row>
                         <Col lg="12" xl="8">
                           <Row>
-                            {currentProfile.mentorShips
+                            {currentProfile.mentorships
                               ? currentProfile.mentorships.map(
                                   (mentorship, index) => (
                                     <Col key={index} xs="6" md="4">

@@ -29,7 +29,7 @@ import linkedin from "../../../../assets/img/logos/logo-linkedin.png";
 //Notes
 //Circle taken from: https://codepen.io/cbracco/pen/qnduh
 
-const UserProfile = ({ user, profile }) => {
+const UserProfile = ({ user }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [currentProfile, setCurrentProfile] = useState(null);
   const [profilePicture, setProfilePicture] = useState(false);
@@ -41,13 +41,9 @@ const UserProfile = ({ user, profile }) => {
   // const location = useLocation();
 
   useEffect(() => {
-    if (profile) {
-      setCurrentProfile(profile);
-      setIsLoading(false);
-    } else if (user) {
-      setCurrentProfile(user);
-      setIsLoading(false);
-    }
+    setCurrentProfile(user);
+    setIsLoading(false);
+    console.log(user);
   }, [user]);
 
   const mapSocialMedia = () => {
@@ -108,30 +104,35 @@ const UserProfile = ({ user, profile }) => {
         {...{
           isOpen: profilePicture,
           toggle: () => setProfilePicture(!profilePicture),
+          profile: user,
         }}
       />
       <EditProfile
         {...{
           isOpen: editProfile,
           toggle: () => setEditProfile(!editProfile),
+          profile: user,
         }}
       />
       <EditSkills
         {...{
           isOpen: editSkills,
           toggle: () => setEditSkills(!editSkills),
+          profile: user,
         }}
       />
       <EditMarket
         {...{
           isOpen: editMarket,
           toggle: () => setEditMarket(!editMarket),
+          profile: user,
         }}
       />
       <EditMentorships
         {...{
           isOpen: editMentorships,
           toggle: () => setEditMentorships(!editMentorships),
+          profile: user,
         }}
       />
       <Row className="profile-container">
