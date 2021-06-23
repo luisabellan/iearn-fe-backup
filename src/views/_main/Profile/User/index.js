@@ -43,7 +43,6 @@ const UserProfile = ({ user }) => {
   useEffect(() => {
     setCurrentProfile(user);
     setIsLoading(false);
-    console.log(user);
   }, [user]);
 
   const mapSocialMedia = () => {

@@ -33,6 +33,7 @@ import SideMenu from "../sidemenuHelper";
 
 //Context
 import withTitleContext from "../../../../utility/withContexts/withTitle";
+import withUser from "../../../../utility/withContexts/withUser";
 
 const SideMenuContent = (props) => {
   const location = useLocation();
@@ -227,7 +228,10 @@ const SideMenuContent = (props) => {
           <NavLink
             to="/login"
             activeclassname="active"
-            onClick={() => localStorage.removeItem("token")}
+            onClick={() => {
+              localStorage.removeItem("token");
+              props.setUser(null);
+            }}
           >
             <i className="menu-icon">
               <LogOut size={22} />
@@ -240,4 +244,4 @@ const SideMenuContent = (props) => {
   );
 };
 
-export default withTitleContext(SideMenuContent);
+export default withTitleContext(withUser(SideMenuContent));

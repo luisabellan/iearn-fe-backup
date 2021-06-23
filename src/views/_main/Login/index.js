@@ -1,5 +1,5 @@
 // import external modules
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./login.scss";
 import { useHistory } from "react-router-dom";
 import {
@@ -24,11 +24,21 @@ import withUserContext from "../../../utility/withContexts/withUser";
 import { handleAuthorizationHeader } from "../../../api/helpers";
 import api from "../../../api/api";
 
-const Login = ({ setUser }) => {
+//Modals
+import ForgotPassword from "./_modals/ForgotPassword";
+
+const Login = ({ user, setUser }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [pass, setPass] = useState(false);
 
   let history = useHistory();
+
+  useEffect(() => {
+    if (user) {
+      history.push(`/`);
+    }
+  }, []);
 
   const LoginSchema = Yup.object().shape({
     email: Yup.string()
@@ -73,6 +83,7 @@ const Login = ({ setUser }) => {
 
   return (
     <div className="container page-login">
+      <ForgotPassword {...{ isOpen: pass, toggle: () => setPass(!pass) }} />
       <Row className="full-height-vh">
         <Col
           xs="12"
@@ -153,20 +164,30 @@ const Login = ({ setUser }) => {
                           </FormFeedback>
                         </FormGroup>
                       </Col>
+                      <Col md="12" className="text-center mt-0">
+                        <p>
+                          <button
+                            className="button-transparent"
+                            onClick={() => setPass(true)}
+                          >
+                            Forgot your password?
+                          </button>
+                        </p>
+                      </Col>
                       <FormGroup>
                         <Col md="12" className="text-center">
                           <button
                             type="submit"
                             color="primary"
                             block="true"
-                            className="button-main"
+                            className="button-main mt-2"
                             disabled={isLoading}
                             onClick={handleSubmit}
                           >
                             LOGIN
                           </button>
                         </Col>
-                        <Col md="12" className="text-center mt-3">
+                        <Col md="12" className="text-center mt-2">
                           <p>
                             Don't have an account yet?{" "}
                             <button
