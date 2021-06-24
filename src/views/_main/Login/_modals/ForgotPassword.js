@@ -14,8 +14,9 @@ import {
 import { Formik } from "formik";
 import * as Yup from "yup";
 import classNames from "classnames";
+import api from "../../../../api/api";
 
-const EditMarket = ({ isOpen, toggle }) => {
+const ForgotPassword = ({ isOpen, toggle, setForgotEmail, openRecover }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -25,7 +26,21 @@ const EditMarket = ({ isOpen, toggle }) => {
       .required("Email field is required"),
   });
 
-  const onSubmit = async () => {};
+  const onSubmit = async (values) => {
+    setIsLoading(true);
+    api
+      .post(`/users/recover`, values)
+      .then(() => {
+        setForgotEmail(values.email);
+        toggle();
+        openRecover();
+        setIsLoading(false);
+      })
+      .catch(() => {
+        setError(true);
+        setIsLoading(false);
+      });
+  };
 
   return (
     <>
@@ -37,11 +52,11 @@ const EditMarket = ({ isOpen, toggle }) => {
       >
         <ModalHeader toggle={() => toggle()}>Forgot Password</ModalHeader>
         <ModalBody>
-          {/* {error && (
-            <Alert color="warning" fade={false}>
-              There was an error while saving. Please retry after a while.
+          {error && (
+            <Alert color="warning" fade={false} style={{ fontSize: "14px" }}>
+              The email below does not exist. Please try again.
             </Alert>
-          )} */}
+          )}
           <Formik
             initialValues={{
               email: "",
@@ -59,11 +74,6 @@ const EditMarket = ({ isOpen, toggle }) => {
             }) => (
               <Formik className="pt-2">
                 <fieldset disabled={isLoading}>
-                  {error && (
-                    <Alert color="warning" fade={false}>
-                      Incorrect Email/Password
-                    </Alert>
-                  )}
                   <Col md="12">
                     <FormGroup>
                       <Label>Email</Label>
@@ -75,7 +85,7 @@ const EditMarket = ({ isOpen, toggle }) => {
                         className={classNames("form-control", {
                           "login-warning": !!errors.email && !!touched.email,
                         })}
-                        placeholder="john.doe@gmail.com"
+                        placeholder=""
                         value={values.email}
                         onBlur={handleBlur("email")}
                         onChange={(e) => {
@@ -89,10 +99,23 @@ const EditMarket = ({ isOpen, toggle }) => {
                       </FormFeedback>
                       <p className="mt-2" style={{ fontSize: "14px" }}>
                         <span className="font-weight-bold">Note:</span> This
-                        will send a code to the email you input above. Use that
-                        code to update your password in the next step.
+                        will send a recovery token to the email you input above.
+                        Use that token to update your password in the next step.
                       </p>
                     </FormGroup>
+                  </Col>
+                  <Col md="12" className="text-center mt-0">
+                    <p>
+                      <button
+                        className="button-transparent"
+                        onClick={() => {
+                          toggle();
+                          openRecover();
+                        }}
+                      >
+                        Already have your recovery token?
+                      </button>
+                    </p>
                   </Col>
                   <FormGroup>
                     <Col md="12" className="text-center">
@@ -118,4 +141,4 @@ const EditMarket = ({ isOpen, toggle }) => {
   );
 };
 
-export default EditMarket;
+export default ForgotPassword;
