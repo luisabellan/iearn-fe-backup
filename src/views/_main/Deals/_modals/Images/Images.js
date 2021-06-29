@@ -116,7 +116,7 @@ const UploadedImages = ({ user, setUser, isOpen, toggle, dealID }) => {
       );
     }
 
-    if (currentImages.length) {
+    if (currentImages.length !== 0) {
       return currentImages.map((img, index) => {
         return (
           <div className="col-lg-4 col-sm-6 text-center mb-3" key={index}>

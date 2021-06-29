@@ -34,7 +34,7 @@ import api from "../../../../api/api";
 
 const NewDeal = (props) => {
   const [isLoading, setIsLoading] = useState(false);
-  const history = useHistory();
+  // const history = useHistory();
   const [currentTag, setCurrentTag] = useState("");
   const [collaborators, setCollaborators] = useState([]);
   const [tags, setTags] = useState([]);
@@ -184,7 +184,7 @@ const NewDeal = (props) => {
         setCollaborators([]);
         setTags([]);
         setIsLoading(false);
-        history.push(`/people/deals`);
+        useHistory(`/people/deals`);
 
         setTimeout(() => {
           setIsSuccess(false);
