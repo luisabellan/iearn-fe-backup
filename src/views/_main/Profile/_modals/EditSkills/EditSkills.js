@@ -4,34 +4,22 @@ import "react-image-crop/dist/ReactCrop.css";
 import { Modal, ModalBody, ModalHeader, Alert, Button } from "reactstrap";
 import { X } from "react-feather";
 
-//Context
-import withUser from "../../../../../utility/withContexts/withUser";
-
 //API
 import api from "../../../../../api/api";
 
-//Components
-import ToastSuccess from "../../../../../components/toasts/success";
-
-const EditProfile = ({ user, setUser, isOpen, toggle }) => {
+const EditProfile = ({ isOpen, toggle, profile }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error] = useState(false);
-  const [success, setSuccess] = useState(false);
   const [skills, setSkills] = useState([]);
   const [currentSkill, setCurrentSkill] = useState("");
 
   const onSubmit = async () => {
     setIsLoading(true);
     api
-      .patch(`/users/${user.id}`, { skills })
+      .patch(`/users/${profile.id}`, { skills })
       .then((res) => {
         setIsLoading(false);
-        setUser(res.data);
-        setSuccess(true);
-
-        setTimeout(() => {
-          setSuccess(false);
-        }, 4000);
+        window.location.reload();
       })
       .catch((err) => console.log(err));
   };
@@ -55,7 +43,7 @@ const EditProfile = ({ user, setUser, isOpen, toggle }) => {
   };
 
   useEffect(() => {
-    setSkills(user.skills);
+    setSkills(profile.skills);
   }, []);
 
   const mapSkills = (arr) => {
@@ -90,7 +78,6 @@ const EditProfile = ({ user, setUser, isOpen, toggle }) => {
 
   return (
     <>
-      <ToastSuccess {...{ isOpen: success }} />
       <Modal {...{ isOpen, toggle }} centered={true} className="edit-skills">
         <ModalHeader toggle={() => toggle()}>Update Skills</ModalHeader>
         <ModalBody>
@@ -165,4 +152,4 @@ const EditProfile = ({ user, setUser, isOpen, toggle }) => {
   );
 };
 
-export default withUser(EditProfile);
+export default EditProfile;

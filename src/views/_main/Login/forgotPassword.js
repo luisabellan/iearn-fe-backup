@@ -24,18 +24,9 @@ import withUserContext from "../../../utility/withContexts/withUser";
 import { handleAuthorizationHeader } from "../../../api/helpers";
 import api from "../../../api/api";
 
-//Modals
-import ForgotPassword from "./_modals/ForgotPassword";
-import RecoverPassword from "./_modals/RecoverPassword";
-import PasswordUpdated from "./_modals/PasswordUpdated";
-
 const Login = ({ user, setUser }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [forgotEmail, setForgotEmail] = useState("");
-  const [pass, setPass] = useState(false);
-  const [recover, setRecover] = useState(false);
-  const [success, setSuccess] = useState(false);
 
   let history = useHistory();
 
@@ -88,28 +79,6 @@ const Login = ({ user, setUser }) => {
 
   return (
     <div className="container page-login">
-      <ForgotPassword
-        {...{
-          isOpen: pass,
-          toggle: () => setPass(!pass),
-          setForgotEmail,
-          openRecover: () => setRecover(true),
-        }}
-      />
-      <RecoverPassword
-        {...{
-          isOpen: recover,
-          toggle: () => setRecover(!recover),
-          forgotEmail,
-          openSuccess: () => setSuccess(true),
-        }}
-      />
-      <PasswordUpdated
-        {...{
-          isOpen: success,
-          toggle: () => setSuccess(!success),
-        }}
-      />
       <Row className="full-height-vh">
         <Col
           xs="12"
@@ -117,7 +86,7 @@ const Login = ({ user, setUser }) => {
         >
           <Card className="card-login">
             <CardBody>
-              <h1>Subto Resource Center</h1>
+              <h1>Forgot Password</h1>
               <Formik
                 initialValues={initialValues}
                 validationSchema={LoginSchema}
@@ -135,35 +104,9 @@ const Login = ({ user, setUser }) => {
                     <fieldset disabled={isLoading}>
                       {error && (
                         <Alert color="warning" fade={false}>
-                          Incorrect Email/Password
+                          Password is incorrect.
                         </Alert>
                       )}
-                      <Col md="12">
-                        <FormGroup>
-                          <Label>Email</Label>
-                          <Input
-                            id="email"
-                            name="email"
-                            type="text"
-                            required
-                            className={classNames("form-control", {
-                              "login-warning":
-                                !!errors.email && !!touched.email,
-                            })}
-                            placeholder=""
-                            value={values.email}
-                            onBlur={handleBlur("email")}
-                            onChange={(e) => {
-                              handleChange("email")(e);
-                              setError(false);
-                            }}
-                            invalid={!!touched.email && !!errors.email}
-                          />
-                          <FormFeedback>
-                            {touched.email && errors.email}
-                          </FormFeedback>
-                        </FormGroup>
-                      </Col>
                       <Col md="12">
                         <FormGroup>
                           <Label>Password</Label>
@@ -176,7 +119,7 @@ const Login = ({ user, setUser }) => {
                               "login-warning":
                                 !!errors.password && !!touched.password,
                             })}
-                            placeholder=""
+                            placeholder="************"
                             value={values.password}
                             onBlur={handleBlur("password")}
                             onChange={(e) => {
@@ -190,39 +133,18 @@ const Login = ({ user, setUser }) => {
                           </FormFeedback>
                         </FormGroup>
                       </Col>
-                      <Col md="12" className="text-center mt-0">
-                        <p>
-                          <button
-                            className="button-transparent"
-                            onClick={() => setPass(true)}
-                          >
-                            Forgot your password?
-                          </button>
-                        </p>
-                      </Col>
                       <FormGroup>
                         <Col md="12" className="text-center">
                           <button
                             type="submit"
                             color="primary"
                             block="true"
-                            className="button-main mt-2"
+                            className="button-main"
                             disabled={isLoading}
                             onClick={handleSubmit}
                           >
                             LOGIN
                           </button>
-                        </Col>
-                        <Col md="12" className="text-center mt-2">
-                          <p>
-                            Don't have an account yet?{" "}
-                            <button
-                              className="button-transparent"
-                              onClick={() => history.push("/signup")}
-                            >
-                              Sign Up
-                            </button>
-                          </p>
                         </Col>
                       </FormGroup>
                     </fieldset>
