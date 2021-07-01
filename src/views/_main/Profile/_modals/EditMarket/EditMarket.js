@@ -18,21 +18,17 @@ import withUser from "../../../../../utility/withContexts/withUser";
 //API
 import api from "../../../../../api/api";
 
-//Components
-import ToastSuccess from "../../../../../components/toasts/success";
-
 //States
 import states from "../../../SignUp/json/states.json";
 //Source: https://gist.github.com/mshafrir/2646763
 
-const EditMarket = ({ user, setUser, isOpen, toggle }) => {
+const EditMarket = ({ isOpen, toggle, profile }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error] = useState(false);
-  const [success, setSuccess] = useState(false);
   const [markets, setMarkets] = useState([]);
 
   useEffect(() => {
-    setMarkets(user.markets);
+    setMarkets(profile.markets);
   }, []);
 
   const updateMarkets = (name) => {
@@ -51,15 +47,10 @@ const EditMarket = ({ user, setUser, isOpen, toggle }) => {
   const onSubmit = async () => {
     setIsLoading(true);
     api
-      .patch(`/users/${user.id}`, { markets })
+      .patch(`/users/${profile.id}`, { markets })
       .then((res) => {
         setIsLoading(false);
-        setUser(res.data);
-        setSuccess(true);
-
-        setTimeout(() => {
-          setSuccess(false);
-        }, 4000);
+        window.location.reload();
       })
       .catch((err) => console.log(err));
   };
@@ -105,7 +96,6 @@ const EditMarket = ({ user, setUser, isOpen, toggle }) => {
 
   return (
     <>
-      <ToastSuccess {...{ isOpen: success }} />
       <Modal
         {...{ isOpen, toggle }}
         size="lg"

@@ -17,9 +17,6 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { BsUpload } from "react-icons/bs";
 
-//Context
-import withUser from "../../../../../utility/withContexts/withUser";
-
 //API
 import api from "../../../../../api/api";
 import {
@@ -27,7 +24,7 @@ import {
   generateFilename,
 } from "../../../../../utility/uploading/fileUpload";
 
-const ProfilePicture = ({ user, isOpen, toggle }) => {
+const ProfilePicture = ({ profile, isOpen, toggle }) => {
   const [src, setSrc] = useState(null);
   const imgRef = useRef(null);
   const [crop, setCrop] = useState({ height: 200, width: 200, aspect: 1 });
@@ -113,10 +110,12 @@ const ProfilePicture = ({ user, isOpen, toggle }) => {
           );
 
           s3Upload(file, filename, credentials).then((data) => {
-            api.patch(`/users/${user.id}`, { userImg: data.key }).then(() => {
-              toggle();
-              window.location.reload();
-            });
+            api
+              .patch(`/users/${profile.id}`, { userImg: data.key })
+              .then(() => {
+                toggle();
+                window.location.reload();
+              });
           });
         });
     } else {
@@ -273,4 +272,4 @@ const ProfilePicture = ({ user, isOpen, toggle }) => {
   );
 };
 
-export default withUser(ProfilePicture);
+export default ProfilePicture;

@@ -43,6 +43,8 @@ const NewDeal = (props) => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState(false);
 
+  const history = useHistory();
+
   //Get Users for Collaborators
   useEffect(() => {
     api
@@ -184,7 +186,7 @@ const NewDeal = (props) => {
         setCollaborators([]);
         setTags([]);
         setIsLoading(false);
-        useHistory(`/people/deals`);
+        history.push(`/people/deals`);
 
         setTimeout(() => {
           setIsSuccess(false);
@@ -202,7 +204,12 @@ const NewDeal = (props) => {
 
   return (
     <>
-      <ToastSuccess {...{ isOpen: isSuccess, message: "Deal details submitted successfully." }} />
+      <ToastSuccess
+        {...{
+          isOpen: isSuccess,
+          message: "Deal details submitted successfully.",
+        }}
+      />
       <ToastFail {...{ isOpen: error }} />
       <Row className="new-deal">
         <Col>

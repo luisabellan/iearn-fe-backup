@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "react-image-crop/dist/ReactCrop.css";
 import {
   Button,
@@ -24,13 +24,14 @@ import withUser from "../../../../../utility/withContexts/withUser";
 //API
 import api from "../../../../../api/api";
 
-//Components
-import ToastSuccess from "../../../../../components/toasts/success";
-
-const EditProfile = ({ user, setUser, isOpen, toggle }) => {
+const EditProfile = ({ isOpen, toggle, profile }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const [currentProfile, setCurrentProfile] = useState("");
+
+  useEffect(() => {
+    setCurrentProfile(profile);
+  }, [profile]);
 
   //Formik Properties
   const editProfileValidationSchema = Yup.object().shape({
@@ -65,37 +66,31 @@ const EditProfile = ({ user, setUser, isOpen, toggle }) => {
   });
 
   const editProfileInitialValues = {
-    firstName: user.firstName,
-    lastName: user.lastName,
-    location: user.location,
-    businessPhone: user.businessPhone,
-    facebook: user.facebook || "",
-    twitter: user.twitter || "",
-    instagram: user.instagram || "",
-    linkedin: user.linkedin || "",
-    slack: user.slack || "",
-    discord: user.discord || "",
+    firstName: currentProfile.firstName,
+    lastName: currentProfile.lastName,
+    location: currentProfile.location,
+    businessPhone: currentProfile.businessPhone,
+    facebook: currentProfile.facebook || "",
+    twitter: currentProfile.twitter || "",
+    instagram: currentProfile.instagram || "",
+    linkedin: currentProfile.linkedin || "",
+    slack: currentProfile.slack || "",
+    discord: currentProfile.discord || "",
   };
 
   const onSubmit = async (values) => {
     setIsLoading(true);
     api
-      .patch(`/users/${user.id}`, values)
+      .patch(`/users/${currentProfile.id}`, values)
       .then((res) => {
         setIsLoading(false);
-        setUser(res.data);
-        setSuccess(true);
-
-        setTimeout(() => {
-          setSuccess(false);
-        }, 4000);
+        window.location.reload();
       })
       .catch((err) => console.log(err));
   };
 
   return (
     <>
-      <ToastSuccess {...{ isOpen: success }} />
       <Modal {...{ isOpen, toggle }} size="lg" centered={true}>
         <ModalHeader toggle={() => toggle()}>
           Update Profile Information
@@ -257,7 +252,7 @@ const EditProfile = ({ user, setUser, isOpen, toggle }) => {
                               "login-warning":
                                 !!errors.facebook && !!touched.facebook,
                             })}
-                            placeholder={`facebook.com/${user.lastName}`}
+                            placeholder={`facebook.com/${currentProfile.lastName}`}
                             value={values.facebook}
                             onBlur={handleBlur("facebook")}
                             onChange={(e) => {
@@ -279,7 +274,7 @@ const EditProfile = ({ user, setUser, isOpen, toggle }) => {
                             name="twitter"
                             type="text"
                             required
-                            placeholder={`twitter.com/${user.lastName}`}
+                            placeholder={`twitter.com/${currentProfile.lastName}`}
                             className={classNames("form-control", {
                               "login-warning":
                                 !!errors.twitter && !!touched.twitter,
@@ -311,7 +306,7 @@ const EditProfile = ({ user, setUser, isOpen, toggle }) => {
                               "login-warning":
                                 !!errors.instagram && !!touched.instagram,
                             })}
-                            placeholder={`instagram.com/${user.lastName}`}
+                            placeholder={`instagram.com/${currentProfile.lastName}`}
                             value={values.instagram}
                             onBlur={handleBlur("instagram")}
                             onChange={(e) => {
@@ -333,7 +328,7 @@ const EditProfile = ({ user, setUser, isOpen, toggle }) => {
                             name="linkedin"
                             type="text"
                             required
-                            placeholder={`linkedin.com/${user.lastName}`}
+                            placeholder={`linkedin.com/${currentProfile.lastName}`}
                             className={classNames("form-control", {
                               "login-warning":
                                 !!errors.linkedin && !!touched.linkedin,
@@ -365,7 +360,7 @@ const EditProfile = ({ user, setUser, isOpen, toggle }) => {
                               "login-warning":
                                 !!errors.slack && !!touched.slack,
                             })}
-                            placeholder={`acmeco.slack.com/team/${user.lastName}`}
+                            placeholder={`acmeco.slack.com/team/${currentProfile.lastName}`}
                             value={values.slack}
                             onBlur={handleBlur("slack")}
                             onChange={(e) => {
@@ -387,7 +382,7 @@ const EditProfile = ({ user, setUser, isOpen, toggle }) => {
                             name="discord"
                             type="text"
                             required
-                            placeholder={`discord.gg/${user.lastName}`}
+                            placeholder={`discord.gg/${currentProfile.lastName}`}
                             className={classNames("form-control", {
                               "login-warning":
                                 !!errors.discord && !!touched.discord,
