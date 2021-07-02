@@ -45,6 +45,7 @@ const Deals = (props) => {
   const [resOpen, setResOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [deal, setDeal] = useState("");
+  const [updateLoading, setUpdateLoading] = useState(false);
 
   //Get Deals
   useEffect(() => {
@@ -71,6 +72,25 @@ const Deals = (props) => {
   //     history.push(`/decision-tree/asdasd`);
   //   }
   // };
+
+  const updateStatus = (index) => {
+    setUpdateLoading(true);
+    let tempDeals = [...deals];
+    const currentDeal = tempDeals[index];
+    const update = currentDeal.status === "active" ? "completed" : "active";
+    api
+      .patch(`/deals/${currentDeal.id}`, {
+        status: update,
+      })
+      .then(() => {
+        tempDeals[index].status = update;
+        setDeals(tempDeals);
+        setUpdateLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const mapCollabs = (arr) => {
     return arr.map((col, index) => {
@@ -130,9 +150,11 @@ const Deals = (props) => {
                 >
                   <CustomInput
                     type="checkbox"
-                    id="exampleCustomCheckbox"
-                    label=""
-                    defaultChecked
+                    id={`deal-${deal.id}`}
+                    value={deal.status === "active"}
+                    checked={deal.status === "active"}
+                    disabled={updateLoading}
+                    onChange={(e) => updateStatus(index)}
                   />
                 </Col>
               </Row>
@@ -166,9 +188,12 @@ const Deals = (props) => {
               <h3 className="text-center">
                 Start with the Decision Tree Tool to add a new deal.
               </h3>
-              <Link to="/people/deals/decision-tree">
-                <h1 className="text-center">Strategy Tool</h1>
-              </Link>
+              <h1
+                className="text-center"
+                style={{ width: "fit-content", margin: "0 auto" }}
+              >
+                <Link to="/people/deals/decision-tree">Strategy Tool</Link>
+              </h1>
             </CardBody>
           </Card>
         </Col>
