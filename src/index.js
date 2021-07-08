@@ -1,46 +1,17 @@
-// import external modules
-import React, { Suspense, lazy } from "react";
-import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-
-// import internal(own) modules
-import registerServiceWorker from "./registerServiceWorker";
-import { store } from "./redux/storeConfig/store";
-// import ReduxToastr from "react-redux-toastr";
-
-import "font-awesome/css/font-awesome.min.css";
-
-import "./index.scss";
-import Spinner from "./components/spinner/spinner";
-
-//Context Providers
-import Authentication from "./utility/context/user-context";
-import TitleContextProvider from "./utility/context/title-context";
-import DealsContextProvider from "./utility/context/deals-context";
-
-const LazyApp = lazy(() => import("./app/app"));
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Suspense fallback={<Spinner />}>
-      <Authentication>
-        <TitleContextProvider>
-          <DealsContextProvider>
-            <LazyApp />
-            {/* <ReduxToastr
-            timeOut={4000}
-            newestOnTop={false}
-            preventDuplicates
-            position="top-left"
-            transitionIn="fadeIn"
-            transitionOut="fadeOut"
-            progressBar
-            closeOnToastrClick/> */}
-          </DealsContextProvider>
-        </TitleContextProvider>
-      </Authentication>
-    </Suspense>
-  </Provider>,
-  document.getElementById("root")
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
 );
-registerServiceWorker();
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();

@@ -1,47 +1,43 @@
-# iEarn Nuclius
 
-\*\*Project name was changed to MentorBeast after repository creation.
+# subtotal-fe
+**Project name was changed to MentorBeast after repository creation. 
 
-Production Deployment: https://getsubtotal.com
+
+Production Deployment: https://getsubtotal.com 
 Dev Deployment: https://mentorbeast-dev.netlify.app/
 
 ## Basic Info
+ **Project Manager:** Christine Carpenter
 
-**Project Manager:** Christine Carpenter
-
-**PM Email:** christine@nuclius.com
+ **PM Email:** christine@nuclius.com
 
 ## Figma Design
-
-The design for this platform can be found [here](https://www.figma.com/file/MgtrpSs4NluFSrXSq4faGO/iEarn-Nuclius?node-id=0%3A1)
+The design for this platform can be found [here](https://www.figma.com/file/GYGzJSFk1yJUL9EPPV54P1/Subto-Flow?node-id=64%3A2)
 
 ## Database Design
-
 The dbdiagram design can be found [here](https://dbdiagram.io/d/60019a2480d742080a367f3a)
 
+ 
 ## Git Workflow
+When working on this project, developers should follow the Nuclius Git workflow. 
 
-When working on this project, developers should follow the Nuclius Git workflow.
-
-For a more detailed description of the Nuclius Workflow, see [this document](https://www.notion.so/christinecarpenter/Code-Reviews-Git-Workflow-30b72fb6bd874036b23d82c0b842859a).
+For a more detailed description of the Nuclius Workflow, see [this document](https://www.notion.so/christinecarpenter/Code-Reviews-Git-Workflow-30b72fb6bd874036b23d82c0b842859a). 
 
 **Workflow Overview:**
-
 1. Clone project from the `dev` branch, **NOT FROM THE MAIN BRANCH**
 2. Create a new branch for your task. If you were working on a feature task for creating a new header, your branch should be `feature/create-new-header`
-   `git checkout 'feature/create-new-header`
-3. Make your changes, committing frequently, and pulling recent changes from the `dev` branch before each commit. Make sure to use descriptive commit messages.
-   `git add .`
-   `git pull origin dev`
-   `git commit -m 'add positional styling to header'`
+    `git checkout 'feature/create-new-header`
+3. Make your changes, committing frequently, and pulling recent changes from the `dev` branch before each commit. Make sure to use descriptive commit messages. 
+    `git add .`
+    `git pull origin dev`
+    `git commit -m 'add positional styling to header'`
 4. Push changes up to your branch frequently.
-   `git push origin feature/your-branch`
-5. When you are finished with your task, create a pull request, comparing your branch to the `dev` branch.
+    `git push origin feature/your-branch`
+5. When you are finished with your task, create a pull request, comparing your branch to the `dev` branch. 
 6. Send your project manager a link to your pull request
 7. Update your clickup task
 
 ## React
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ### Available Scripts
@@ -86,3 +82,4 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
