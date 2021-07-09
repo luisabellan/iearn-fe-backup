@@ -8,6 +8,8 @@ const BrandContainer = styled.div`
 
   svg {
     display: block;
+    height: 100%;
+    width: auto;
   }
 
   svg:last-of-type {

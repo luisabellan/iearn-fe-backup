@@ -5,7 +5,7 @@ import Brand from "../../brand";
 const TopBar = styled.div`
   background-color: ${colors.black};
   padding: 1rem;
-  height: 70px;
+  height: 40px;
 `;
 
 const AuthLayout = ({ children }) => {
