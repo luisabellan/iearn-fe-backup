@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom";
 import GlobalStyle from "globalStyle";
-import Spinner from "modules/common/components/spinner";
+import Spinner from "modules/common/components/Spinner";
 import reportWebVitals from "reportWebVitals";
 
 const App = lazy(() => import("modules/app"));
