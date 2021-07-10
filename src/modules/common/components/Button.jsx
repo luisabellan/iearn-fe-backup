@@ -6,7 +6,7 @@ const Button = styled.button`
   border: 2px solid ${colors.darkBlue};
   box-sizing: border-box;
   border-radius: 10px;
-  color: ${colors.white};
+  color: ${(props) => props.color || colors.white};
   font-size: 3.6rem;
   text-transform: uppercase;
   padding: 0.2rem 5rem;

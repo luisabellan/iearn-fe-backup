@@ -7,6 +7,7 @@ const TopBar = styled.div`
   background-color: ${colors.black};
   padding: 1rem;
   height: 7rem;
+  width: 100vw;
 `;
 
 const AuthLayout = ({ children }) => {

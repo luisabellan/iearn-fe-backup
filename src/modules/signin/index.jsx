@@ -37,7 +37,7 @@ const Signin = () => {
         <InputField
           label="Email"
           type="email"
-          placeholder="john.doe@email.com"
+          placeholder="john.doe@gmail.com"
           required
         />
         <InputField
