@@ -12,16 +12,20 @@ const IntroText = styled.p`
   }
 `;
 
+const CenteredBtn = styled(Centered)`
+  margin: 6rem auto 3rem;
+`;
+
 const Confirmation = () => {
   return (
     <>
       <IntroText>
         <span>You're all set!</span>
-        <span>let's explore your dashboard!</span>
+        <span>Let's explore your dashboard!</span>
       </IntroText>
-      <Centered>
-        <Button background={colors.darkBlue}>Submit</Button>
-      </Centered>
+      <CenteredBtn>
+        <Button background={colors.blue}>Submit</Button>
+      </CenteredBtn>
     </>
   );
 };
