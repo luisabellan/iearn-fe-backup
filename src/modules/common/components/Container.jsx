@@ -8,7 +8,8 @@ const Container = styled.div`
   border-radius: 10px;
   padding: 2rem 6rem;
   margin: 10rem auto 2rem;
-  width: ${(props) => props.width || "640px"};
+  max-width: ${(props) => props.width || "640px"};
+  width: 90%;
   height: ${(props) => props.width || "auto"};
 `;
 

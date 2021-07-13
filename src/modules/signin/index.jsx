@@ -3,18 +3,12 @@ import InputField from "modules/common/components/InputField";
 import styled from "styled-components";
 import Button from "modules/common/components/Button";
 import Centered from "modules/common/components/Centered";
+import { useState } from "react/cjs/react.production.min";
 
 const Title = styled.h1`
   text-align: center;
   font-weight: bold;
   margin-bottom: 6rem;
-
-  /* p {
-    text-align: center;
-    display: inline-block;
-    width: 100%;
-    font-size: 1.7rem;
-  } */
 
   span {
     display: block;
@@ -27,23 +21,34 @@ const Title = styled.h1`
 `;
 
 const Signin = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <AuthLayout>
       <Title>
         <span>iEarn Nuclius</span>
         <span>Resource Center</span>
       </Title>
-      <form>
+      <form onSubmit={handleSubmit}>
         <InputField
           label="Email"
           type="email"
           placeholder="john.doe@gmail.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
         <InputField
           label="Password"
           type="password"
           placeholder="***********"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
         <Centered>

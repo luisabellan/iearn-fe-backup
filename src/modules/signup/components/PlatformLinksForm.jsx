@@ -1,8 +1,6 @@
-import colors from "constants/colors";
-import Button from "modules/common/components/Button";
-import Centered from "modules/common/components/Centered";
-import InputField from "modules/common/components/InputField";
 import styled from "styled-components";
+import InputField from "modules/common/components/InputField";
+import ButtonGroup from "modules/common/components/ButtonGroup";
 
 const IntroText = styled.p`
   font-size: 2.2rem;
@@ -54,12 +52,7 @@ const PlatformLinksForm = () => {
             />
           </div>
         </InputsContainer>
-        <Centered>
-          <Button background={colors.lightAsh} color={colors.ash}>
-            Back
-          </Button>
-          <Button background={colors.blue}>Next</Button>
-        </Centered>
+        <ButtonGroup />
       </form>
     </>
   );

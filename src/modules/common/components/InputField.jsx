@@ -25,7 +25,7 @@ const InputContainer = styled.div`
     width: 100%;
     background: transparent;
     font-size: 1.6rem;
-    font-weight: bold;
+    /* font-weight: bold; */
     transition: border 0.8s;
 
     &::placeholder {
