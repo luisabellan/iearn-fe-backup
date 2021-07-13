@@ -1,5 +1,6 @@
 import ButtonGroup from "modules/common/components/ButtonGroup";
 import styled from "styled-components";
+import useSkills from "../hooks/useSkills";
 
 const IntroText = styled.h2`
   font-size: 2.5rem;
@@ -53,22 +54,29 @@ const Experience = styled.div`
   }
 `;
 
-const Skill = ({ skill }) => {
+const Skill = ({ skill, updateSkillLevel }) => {
   return (
     <Experience>
-      <select name={skill} id={skill}>
+      <select
+        name={skill.name}
+        id={skill.name}
+        onChange={(ev) => updateSkillLevel(skill.name, ev.target.value)}
+        defaultValue={skill.level}
+      >
         <option value="None">None</option>
         <option value="1-3">1-3</option>
         <option value="4-6">4-6</option>
         <option value="7-9">7-9</option>
         <option value="10+">10+</option>
       </select>
-      <label htmlFor={skill}>{skill}</label>
+      <label htmlFor={skill.name}>{skill.name}</label>
     </Experience>
   );
 };
 
 const ExperienceForm = () => {
+  const { skills, updateSkillLevel } = useSkills();
+  console.log("SKILLS:", skills);
   return (
     <>
       <IntroText>
@@ -77,9 +85,13 @@ const ExperienceForm = () => {
       <Section>
         <form>
           <div>
-            <Skill skill="HTML" />
-            <Skill skill="CSS" />
-            <Skill skill="Project Management" />
+            {skills.map((skill) => (
+              <Skill
+                key={skill.name}
+                skill={skill}
+                updateSkillLevel={updateSkillLevel}
+              />
+            ))}
           </div>
           <ButtonGroup />
         </form>

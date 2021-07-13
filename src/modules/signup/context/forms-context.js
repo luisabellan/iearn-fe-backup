@@ -1,6 +1,5 @@
 import { createContext } from "react";
 import { useState } from "react";
-import { useMemo } from "react/cjs/react.production.min";
 
 const INITIAL_SIGNUP_FORM_VALUES = {
   firstName: "",
@@ -24,9 +23,11 @@ const INITIAL_LINKS_FORM_VALUES = {
 };
 
 const INITIAL_SKILLS = [
-  { name: "React", level: null },
-  { name: "JavaScript", level: null },
-  { name: "MongoDB", level: null },
+  { name: "React", level: "None" },
+  { name: "JavaScript", level: "4-6" },
+  { name: "MongoDB", level: "7-9" },
+  { name: "Project Management", level: "10+" },
+  { name: "DynamoDB", level: "1-3" },
 ];
 
 export const SignupFormContext = createContext({
@@ -42,17 +43,14 @@ export const SignupFormProvider = ({ children }) => {
   const [linksValues, setLinksValues] = useState(INITIAL_LINKS_FORM_VALUES);
   const [skills, setSkills] = useState(INITIAL_SKILLS);
 
-  const value = useMemo(
-    () => ({
-      signupFormValues,
-      setSignUpFormValues,
-      linksValues,
-      setLinksValues,
-      skills,
-      setSkills,
-    }),
-    [signupFormValues, linksValues, skills]
-  );
+  const value = {
+    signupFormValues,
+    setSignUpFormValues,
+    linksValues,
+    setLinksValues,
+    skills,
+    setSkills,
+  };
 
   return (
     <SignupFormContext.Provider value={value}>

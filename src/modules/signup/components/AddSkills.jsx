@@ -4,6 +4,7 @@ import colors from "constants/colors";
 import Button from "modules/common/components/Button";
 import InputField from "modules/common/components/InputField";
 import ButtonGroup from "modules/common/components/ButtonGroup";
+import useSkills from "../hooks/useSkills";
 
 const IntroText = styled.h2`
   font-size: 2.5rem;
@@ -63,26 +64,19 @@ const FormBox = styled.div`
 `;
 
 const AddSkills = () => {
-  const [skills, setSkills] = useState([
-    "HTML",
-    "CSS",
-    "React",
-    "JavaScript",
-    "Context API",
-    "Redux",
-    "MongoDB",
-  ]);
+  // const [skills, setSkills] = useState([
+  //   "HTML",
+  //   "CSS",
+  //   "React",
+  //   "JavaScript",
+  //   "Context API",
+  //   "Redux",
+  //   "MongoDB",
+  // ]);
+
+  const { skills, addSkill } = useSkills();
 
   const [inputValue, setInputValue] = useState("");
-
-  const addSkill = (skill) => {
-    if (skills.includes(skill) || skill.trim() === "") return;
-    setSkills((skills) => skills.concat(skill));
-  };
-
-  const removeSkill = (skill) => {
-    setSkills((skills) => skills.filter((s) => skill !== s));
-  };
 
   return (
     <>
@@ -91,7 +85,7 @@ const AddSkills = () => {
       </IntroText>
       <SkillsArea>
         {skills.map((skill) => (
-          <Skill key={skill}>{skill}</Skill>
+          <Skill key={skill.name}>{skill.name}</Skill>
         ))}
       </SkillsArea>
       <FormBox>
