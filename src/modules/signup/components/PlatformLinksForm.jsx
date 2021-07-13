@@ -24,7 +24,7 @@ const InputsContainer = styled.form`
     }
   }
 `;
-const PlatformLinksForm = () => {
+const PlatformLinksForm = ({ next, previous }) => {
   return (
     <>
       <IntroText>
@@ -52,7 +52,7 @@ const PlatformLinksForm = () => {
             />
           </div>
         </InputsContainer>
-        <ButtonGroup />
+        <ButtonGroup next={next} back={previous} />
       </form>
     </>
   );

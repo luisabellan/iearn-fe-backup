@@ -23,9 +23,9 @@ const Step = styled.span`
 
 const Progress = ({ currentStep, steps }) => {
   return (
-    <Container width={steps.length * 1.5}>
-      {steps.map((step) => (
-        <Step key={step.id} active={step.id <= currentStep} />
+    <Container width={steps * 1.5}>
+      {[...Array(steps).keys()].map((step) => (
+        <Step key={step} active={step <= currentStep} />
       ))}
     </Container>
   );

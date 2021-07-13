@@ -74,9 +74,9 @@ const Skill = ({ skill, updateSkillLevel }) => {
   );
 };
 
-const ExperienceForm = () => {
+const ExperienceForm = ({ next, previous }) => {
   const { skills, updateSkillLevel } = useSkills();
-  console.log("SKILLS:", skills);
+
   return (
     <>
       <IntroText>
@@ -93,7 +93,7 @@ const ExperienceForm = () => {
               />
             ))}
           </div>
-          <ButtonGroup />
+          <ButtonGroup back={previous} next={next} />
         </form>
       </Section>
     </>

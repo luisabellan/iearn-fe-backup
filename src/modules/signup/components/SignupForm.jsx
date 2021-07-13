@@ -3,10 +3,14 @@ import Button from "modules/common/components/Button";
 import Centered from "modules/common/components/Centered";
 import InputField from "modules/common/components/InputField";
 
-const SignupForm = () => {
+const SignupForm = ({ next }) => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    next();
+  };
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <InputField
           type="text"
           label="First name"

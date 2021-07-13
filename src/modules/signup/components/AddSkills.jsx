@@ -63,7 +63,7 @@ const FormBox = styled.div`
   }
 `;
 
-const AddSkills = () => {
+const AddSkills = ({ next, previous }) => {
   // const [skills, setSkills] = useState([
   //   "HTML",
   //   "CSS",
@@ -115,7 +115,7 @@ const AddSkills = () => {
         </form>
         <p>Press enter or press the “add” button to add multiple skills</p>
       </FormBox>
-      <ButtonGroup />
+      <ButtonGroup back={previous} next={next} />
     </>
   );
 };
