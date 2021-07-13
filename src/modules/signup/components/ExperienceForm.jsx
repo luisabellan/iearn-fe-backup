@@ -77,13 +77,18 @@ const Skill = ({ skill, updateSkillLevel }) => {
 const ExperienceForm = ({ next, previous }) => {
   const { skills, updateSkillLevel } = useSkills();
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    next();
+  };
+
   return (
     <>
       <IntroText>
         Enter your experience below <span>(select all that apply)</span>
       </IntroText>
       <Section>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div>
             {skills.map((skill) => (
               <Skill
@@ -93,7 +98,7 @@ const ExperienceForm = ({ next, previous }) => {
               />
             ))}
           </div>
-          <ButtonGroup back={previous} next={next} />
+          <ButtonGroup back={previous} />
         </form>
       </Section>
     </>

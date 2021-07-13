@@ -25,13 +25,17 @@ const InputsContainer = styled.form`
   }
 `;
 const PlatformLinksForm = ({ next, previous }) => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    next();
+  };
   return (
     <>
       <IntroText>
         <span>Please provide the link to your profile on the</span>
         <span>below platforms.</span>
       </IntroText>
-      <form>
+      <form onSubmit={handleSubmit}>
         <InputsContainer>
           <div>
             <InputField type="url" label="Facebook" />
@@ -52,7 +56,7 @@ const PlatformLinksForm = ({ next, previous }) => {
             />
           </div>
         </InputsContainer>
-        <ButtonGroup next={next} back={previous} />
+        <ButtonGroup back={previous} />
       </form>
     </>
   );
