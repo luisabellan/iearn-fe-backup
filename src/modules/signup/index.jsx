@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import AuthLayout from "modules/common/components/layouts/components/AuthLayout";
 import colors from "constants/colors";
+import AuthLayout from "modules/common/components/layouts/components/AuthLayout";
 import Progress from "./components/Progress";
 import AddSkills from "./components/AddSkills";
 import ExperienceForm from "./components/ExperienceForm";
@@ -19,7 +19,7 @@ const MainHeading = styled.h1`
 const STEPS = [
   { id: 1, component: SignupForm },
   { id: 2, component: PlatformLinksForm },
-  { id: 3, AddSkills },
+  { id: 3, component: AddSkills },
   { id: 4, component: ExperienceForm },
   { id: 5, component: Confirmation },
 ];
@@ -28,13 +28,13 @@ const Signup = () => {
   const { currentStep, previousStep, nextStep } = useSteps(STEPS.length);
   const { component: Step } = STEPS[currentStep];
   return (
-    <AuthLayout>
-      <MainHeading>Sign Up</MainHeading>
-      <SignupFormProvider>
+    <SignupFormProvider>
+      <AuthLayout>
+        <MainHeading>Sign Up</MainHeading>
         <Step previous={previousStep} next={nextStep} />
         <Progress currentStep={currentStep} steps={STEPS.length} />
-      </SignupFormProvider>
-    </AuthLayout>
+      </AuthLayout>
+    </SignupFormProvider>
   );
 };
 

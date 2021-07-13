@@ -64,16 +64,6 @@ const FormBox = styled.div`
 `;
 
 const AddSkills = ({ next, previous }) => {
-  // const [skills, setSkills] = useState([
-  //   "HTML",
-  //   "CSS",
-  //   "React",
-  //   "JavaScript",
-  //   "Context API",
-  //   "Redux",
-  //   "MongoDB",
-  // ]);
-
   const { skills, addSkill } = useSkills();
 
   const [inputValue, setInputValue] = useState("");

@@ -4,7 +4,7 @@ const { useContext } = require("react");
 const useSkills = () => {
   const { skills, setSkills } = useContext(SignupFormContext);
 
-  const AddSkill = (skillName) => {
+  const addSkill = (skillName) => {
     setSkills((skills) => skills.concat({ name: skillName, level: "None" }));
   };
 
@@ -20,7 +20,7 @@ const useSkills = () => {
     );
   };
 
-  return { skills, AddSkill, deleteSkill, updateSkillLevel };
+  return { skills, addSkill, deleteSkill, updateSkillLevel };
 };
 
 export default useSkills;
