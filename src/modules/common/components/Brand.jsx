@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as LogoIcon } from "assets/icons/logo-icon.svg";
-import { ReactComponent as LogoText } from "assets/icons/logo-text.svg";
+import { LogoText, LogoIcon } from "assets/icons";
 
 const BrandContainer = styled.div`
   display: flex;

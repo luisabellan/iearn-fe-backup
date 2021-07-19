@@ -1,0 +1,10 @@
+export { ReactComponent as CalendarIcon } from "assets/icons/calendar.svg";
+export { ReactComponent as CancelIcon } from "assets/icons/cancel.svg";
+export { ReactComponent as OverviewIcon } from "assets/icons/overview.svg";
+export { ReactComponent as PeopleIcon } from "assets/icons/people.svg";
+export { ReactComponent as SettingsIcon } from "assets/icons/settings.svg";
+export { ReactComponent as StoreIcon } from "assets/icons/store.svg";
+export { ReactComponent as SupportIcon } from "assets/icons/support.svg";
+export { ReactComponent as VideoIcon } from "assets/icons/video.svg";
+export { ReactComponent as LogoIcon } from "assets/icons/logo-icon.svg";
+export { ReactComponent as LogoText } from "assets/icons/logo-text.svg";
