@@ -4,6 +4,7 @@ import avatar from "assets/images/avatar.png";
 
 const Container = styled.div`
   display: flex;
+  margin-bottom: 20px;
 `;
 
 const ProfileCircle = styled.span`

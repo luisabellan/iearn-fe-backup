@@ -63,7 +63,7 @@ const EditProfile = () => {
               <InputField label="Skills" />
             </Grid>
           </fieldset>
-          <Grid>
+          <Grid padding="12px" gap="100px">
             <OutlinedButton>Back</OutlinedButton>
             <OutlinedButton>Save</OutlinedButton>
           </Grid>
