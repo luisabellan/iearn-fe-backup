@@ -12,16 +12,15 @@ const Form = styled.form`
     &:not(:last-of-type) {
       border-bottom: 1px solid rgba(0, 0, 0, 0.4);
     }
+
+    &:not(:first-of-type) {
+      margin-top: 20px;
+    }
   }
 
   legend {
     font-size: 3.6rem;
     margin-bottom: 20px;
-
-    &::first-of-type {
-      margin-top: 0;
-      padding-top: 0;
-    }
   }
 `;
 
