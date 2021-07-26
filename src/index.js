@@ -1,46 +1,22 @@
-// import external modules
-import React, { Suspense, lazy } from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
+import GlobalStyle from "globalStyle";
+import Spinner from "modules/common/components/Spinner";
+import reportWebVitals from "reportWebVitals";
 
-// import internal(own) modules
-import registerServiceWorker from "./registerServiceWorker";
-import { store } from "./redux/storeConfig/store";
-// import ReduxToastr from "react-redux-toastr";
-
-import "font-awesome/css/font-awesome.min.css";
-
-import "./index.scss";
-import Spinner from "./components/spinner/spinner";
-
-//Context Providers
-import Authentication from "./utility/context/user-context";
-import TitleContextProvider from "./utility/context/title-context";
-import DealsContextProvider from "./utility/context/deals-context";
-
-const LazyApp = lazy(() => import("./app/app"));
+const App = lazy(() => import("modules/app"));
 
 ReactDOM.render(
-  <Provider store={store}>
+  <React.StrictMode>
     <Suspense fallback={<Spinner />}>
-      <Authentication>
-        <TitleContextProvider>
-          <DealsContextProvider>
-            <LazyApp />
-            {/* <ReduxToastr
-            timeOut={4000}
-            newestOnTop={false}
-            preventDuplicates
-            position="top-left"
-            transitionIn="fadeIn"
-            transitionOut="fadeOut"
-            progressBar
-            closeOnToastrClick/> */}
-          </DealsContextProvider>
-        </TitleContextProvider>
-      </Authentication>
+      <GlobalStyle />
+      <App />
     </Suspense>
-  </Provider>,
+  </React.StrictMode>,
   document.getElementById("root")
 );
-registerServiceWorker();
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
