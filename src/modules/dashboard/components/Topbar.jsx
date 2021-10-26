@@ -1,6 +1,6 @@
 import colors from "constants/colors";
 import styled from "styled-components";
-import avatar from "assets/images/avatar.png";
+import avatar from "../../../assets/img/avatar.png";
 
 const Container = styled.div`
   display: flex;
