@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import ProtectedRoute from '../../common/hooks/ProtectedRoute'
+import ProtectedRoute from '../../../utility/ProtectedRoute'
 import Signin from "modules/signin";
 import Signup from "modules/signup";
 import Dashboard from "modules/dashboard";
