@@ -1,4 +1,4 @@
-import { AuthLayout } from "modules/common/components/layouts";
+import { AuthLayout } from "../common/components/layouts/components/AuthLayout";
 import InputField from "modules/common/components/InputField";
 import styled from "styled-components";
 import Button from "modules/common/components/Button";
