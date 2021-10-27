@@ -10,7 +10,7 @@ const TopBar = styled.div`
   width: 100vw;
 `;
 
-const AuthLayout = ({ children }) => {
+export const AuthLayout = ({ children }) => {
   return (
     <>
       <TopBar>
