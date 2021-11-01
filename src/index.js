@@ -2,6 +2,8 @@ import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom";
 import GlobalStyle from "globalStyle";
 import Spinner from "modules/common/components/Spinner";
+import Theme from "../src/theme";
+
 import reportWebVitals from "reportWebVitals";
 
 const App = lazy(() => import("modules/app"));
@@ -10,7 +12,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Suspense fallback={<Spinner />}>
       <GlobalStyle />
-      <App />
+      <Theme>
+        <App />
+      </Theme>
     </Suspense>
   </React.StrictMode>,
   document.getElementById("root")
