@@ -3,7 +3,8 @@ import styled from "styled-components";
 import search from '../../assets/icons/search.png';
 import notifications from '../../assets/icons/bell.png';
 import location from '../../assets/icons/location.png';
-import photo from '../../assets/icons/avatar.png';
+// import photo from '../../assets/icons/avatar.png';
+import photo from '../../assets/img/avatar.png';
 import email from '../../assets/icons/email.png';
 import phone from '../../assets/icons/phone.png';
 import facebook from '../../assets/icons/facebook.png';
@@ -280,6 +281,7 @@ const NotificationsIcon = styled.div`
     margin-right: 0;
     width: 16px;
     height: 14px;
+    width: 100%;
 
     @media (min-width: ${props => props.theme.breakpoints.tablet}) {
     }
@@ -352,10 +354,10 @@ const Avatar = styled.img`
   justify-content: center;
   align-self: center;
   margin-top: -8px;
-
+  border: 2px solid ${(props) => props.theme.colors.brokenWhite};
   border-radius: 50%;
-  width: 27.58px;
-  height: 27.58px;
+  width: 2.5187rem; // 40.3px
+  height: 1.7237rem; // 27.58px
   padding-right: 10px;
 `;
 
@@ -365,7 +367,6 @@ const ProfileInfoSection = styled.div`
   justify-content: center;
   align-items: center;
   align-self: center;
-  //width: calc(100%-17px * 2);
   width: 90%;
   margin-top: 1.0625rem; // 17px
   box-sizing: border-box;
@@ -401,7 +402,6 @@ const ProfilePhoto = styled.img`
   flex-direction: column;
   justify-content: center;
   align-self: center;
-  margin-top: 0px;
   border-radius: 50%;
 `;
 

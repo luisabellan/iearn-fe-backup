@@ -20,6 +20,7 @@ const ChangeDirection = styled.div`
 
 
 const PageContainer = styled.div`
+
   width: 100vw;
   background-color: ${(props) => props.theme.colors.bodyBackgroundColor};
   background-color: '#F7F8FC';
@@ -71,7 +72,7 @@ display: flex;
 flex-direction: column;
 justify-content: flex-start;
 justify-self: center;
-width: 100 %;
+width: 100%;
 height: 3.125rem; // 50px
 background-color: black;
 
