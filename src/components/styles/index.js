@@ -42,7 +42,7 @@ const Mobile = styled.div`
   
 `;
 
-const Desktop = styled.div`
+const Tablet = styled.div`
   display: flex;
   flex-direction: row;
   
@@ -421,5 +421,5 @@ export {
   PageContainer,
   TitleContainer,
   Mobile,
-  Desktop
+  Tablet
 };

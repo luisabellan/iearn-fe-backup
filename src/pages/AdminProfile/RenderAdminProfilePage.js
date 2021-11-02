@@ -19,7 +19,7 @@ import useWindowWidth from "../../hooks/useWindowWidth";
 import {
   PageContainer,
   Mobile,
-  Desktop
+  Tablet
 
 } from "../../components/styles";
 
@@ -76,63 +76,70 @@ function RenderAdminProfilePage(props) {
         <ProfileInfoSection>
           <ContactInfoSection>
             <Pencil src={pencil} alt="pencil" />
-            <ProfilePhoto src={photo} alt="me" />
-            <Name>Ferdinand Jones</Name>
-            <ProjectName>MentorBeast</ProjectName>
-            <LocationAndPhoneDiv>
-              <LocationDiv className='location'>
-                <LocationIcon src={location} alt="location" />
-                <Location>San Diego</Location>
-              </LocationDiv>
-              <PhoneDiv className='phone'>
-                <PhoneIcon src={phone} alt="phone" />
-                <Phone>555-555-5555</Phone>
-              </PhoneDiv>
-            </LocationAndPhoneDiv>
-            <EmailAndTimezoneDiv>
-              <EmailDiv className='email'>
-                <EmailIcon src={email} alt="email" />
-                <Email>email@email.com</Email>
-              </EmailDiv>
+            <div>
+              <ProfilePhoto src={photo} alt="me" />
+            </div>
+            <div>
+              <Name>Ferdinand Jones</Name>
+              <ProjectName>MentorBeast</ProjectName>
+              <LocationAndPhoneDiv>
+                <LocationDiv className='location'>
+                  <LocationIcon src={location} alt="location" />
+                  <Location>San Diego</Location>
+                </LocationDiv>
+                <PhoneDiv className='phone'>
+                  <PhoneIcon src={phone} alt="phone" />
+                  <Phone>555-555-5555</Phone>
+                </PhoneDiv>
+              </LocationAndPhoneDiv>
+              <EmailAndTimezoneDiv>
+                <EmailDiv className='email'>
+                  <EmailIcon src={email} alt="email" />
+                  <Email>email@email.com</Email>
+                </EmailDiv>
+                {
+
+                  useWindowWidth() >= 768 ?
+                    null
+                    :
+                    <TimezoneDiv className='timezone'>
+                      <Timezone>Time Zone:<span>GMT+8</span></Timezone>
+                    </TimezoneDiv>
+
+                }
+
+
+              </EmailAndTimezoneDiv>
               {
-
                 useWindowWidth() >= 768 ?
-                  null
+                  <Tablet>
+                    <TimezoneDiv className='timezone'>
+                      <Timezone>Time Zone:<span>GMT+8</span></Timezone>
+                    </TimezoneDiv>
+                    <PreferedCommunicationMethod>
+                      Prefered method of communication: <a href="https://facebook.com">Facebook</a>
+                    </PreferedCommunicationMethod>
+                    <SocialDiv>
+                      <FacebookIcon src={facebook} alt="facebook" />
+                      <InstagramIcon src={instagram} alt="instagram" />
+                      <LinkedInIcon src={linkedin} alt="linkedin" />
+                      <TwitterIcon src={twitter} alt="twitter" />
+                    </SocialDiv>
+                  </Tablet>
                   :
-                  <TimezoneDiv className='timezone'>
-                    <Timezone>Time Zone:<span>GMT+8</span></Timezone>
-                  </TimezoneDiv>
+                  <Mobile>
+                    <PreferedCommunicationMethod>
+                      Prefered method of communication: <a href="https://facebook.com">Facebook</a>
+                    </PreferedCommunicationMethod>
+                    <SocialDiv>
+                      <FacebookIcon src={facebook} alt="facebook" />
+                      <InstagramIcon src={instagram} alt="instagram" />
+                      <LinkedInIcon src={linkedin} alt="linkedin" />
+                      <TwitterIcon src={twitter} alt="twitter" />
+                    </SocialDiv>
+                  </Mobile>
               }
-
-
-            </EmailAndTimezoneDiv>
-            {
-              useWindowWidth() >= 768 ?
-                <Desktop>
-                  <PreferedCommunicationMethod>
-                    Prefered method of communication: <a href="https://facebook.com">Facebook</a>
-                  </PreferedCommunicationMethod>
-                  <SocialDiv>
-                    <FacebookIcon src={facebook} alt="facebook" />
-                    <InstagramIcon src={instagram} alt="instagram" />
-                    <LinkedInIcon src={linkedin} alt="linkedin" />
-                    <TwitterIcon src={twitter} alt="twitter" />
-                  </SocialDiv>
-                </Desktop>
-                :
-                <Mobile>
-                  <PreferedCommunicationMethod>
-                    Prefered method of communication: <a href="https://facebook.com">Facebook</a>
-                  </PreferedCommunicationMethod>
-                  <SocialDiv>
-                    <FacebookIcon src={facebook} alt="facebook" />
-                    <InstagramIcon src={instagram} alt="instagram" />
-                    <LinkedInIcon src={linkedin} alt="linkedin" />
-                    <TwitterIcon src={twitter} alt="twitter" />
-                  </SocialDiv>
-                </Mobile>
-            }
-
+            </div>
           </ContactInfoSection>
 
           {useWindowWidth() <= 768 && <Hr />}
@@ -308,6 +315,8 @@ h1{
       letter-spacing: 0.015625rem; // 0.3px
       width: 10.625rem; // 150px
       margin-left: 1.625rem; // 20px
+      margin-left: 50px;
+      margin-right: 400px;
     }
   }
   
@@ -398,6 +407,7 @@ const ContactInfoSection = styled.div`
 
   @media (min-width: ${props => props.theme.breakpoints.tablet}) {
     display: flex;
+    flex-direction: row;
     width: calc(100% - 17px * 2);
     margin-left: 17px;
     margin-right: 17px;
@@ -410,12 +420,22 @@ const ProfilePhoto = styled.img`
   justify-content: center;
   align-self: center;
   border-radius: 50%;
+
+  @media (min-width: ${props => props.theme.breakpoints.tablet}) {
+    width: 200px;
+    height: 200px;
+    margin-right: 100px;
+    margin-left:100px;
+    margin-top: -330px;
+    margin-bottom: 0px;
+  }
 `;
 
 const Name = styled.p`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+  align-self: center;
   font-family: ${(props) => props.theme.fonts.mulish};
   font-weight: 600;
   font-style: normal;
@@ -423,6 +443,7 @@ const Name = styled.p`
   line-height: 1.25rem; // 20px
   letter-spacing: 0.0125rem; // 0.2px
   color: ${(props) => props.theme.colors.profileFontColor};
+  width: max-content;
   //height: 2rem; // 32px
   margin-top: 1rem; // 16px
 
@@ -431,7 +452,8 @@ const Name = styled.p`
     line-height: 1.8825rem; // 30.12px
     letter-spacing: 0.015625rem; // 0.3px
     //height: 2.5rem; // 40px
-    margin-top: 1.5rem; // 20px
+    margin-top: 0px; // 100px
+    margin-right: 300px;
   }
 
 
@@ -451,6 +473,11 @@ const ProjectName = styled.p`
   color: ${(props) => props.theme.colors.profileFontColor};
   height: 2rem; // 32px
   margin-top: 0.75rem; // 12px
+
+  @media (min-width: ${props => props.theme.breakpoints.tablet}) {
+    display: none;
+  }
+
 
 `;
 
@@ -573,7 +600,7 @@ const EmailIcon = styled.img`
   padding-right: 10px; // 10px
 
   @media (min-width: ${props => props.theme.breakpoints.tablet}) {
-    margin-left: 34px;
+    margin-left: -2px;
     margin-right: -2px;
   }
 `;
@@ -603,6 +630,17 @@ const TimezoneDiv = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  @media (min-width: ${props => props.theme.breakpoints.tablet}) {
+    margin-top: 200px;
+    margin-left: -300px;
+    font-family: ${(props) => props.theme.fonts.mulish};
+    font-weight: 300;
+    font-style: normal;
+    font-size: 14px; // 14px
+    line-height: 1.25rem; // 20px
+    letter-spacing: 0.0125rem; // 0.2px
+  }
+
 `;
 const Timezone = styled.p`
 
@@ -616,6 +654,11 @@ const Timezone = styled.p`
   letter-spacing: 0.0125rem; // 0.2px
   color: ${(props) => props.theme.colors.profileFontColor};
   width: max-content;
+
+  @media (min-width: ${props => props.theme.breakpoints.tablet}) {
+    font-size: 14px; // 14px
+    margin-bottom: 300px;
+  }
 
   span {
     padding-left: 16px;
@@ -635,6 +678,7 @@ const PreferedCommunicationMethod = styled.p`
   color: ${(props) => props.theme.colors.profileFontColor};
   width: max-content;
   margin-top: 1.25rem; // 20px
+  margin-bottom: 300px;
 
   @media (min-width: ${props => props.theme.breakpoints.tablet}) {
     font-size: 0.875rem; // 14px
@@ -642,6 +686,8 @@ const PreferedCommunicationMethod = styled.p`
     letter-spacing: 0.0125rem; // 0.2px
     font-weight: 300;
     color: ${(props) => props.theme.colors.profileFontColor};
+    margin-top: -1450px;
+    margin-left: 100px;
   }
 
   a {
@@ -663,13 +709,13 @@ const SocialDiv = styled.div`
   align-items: baseline;
   margin-bottom: 1.25rem; // 16px
   margin-top: 1.1875rem; // 19px
+  margin-top: -280px;
   margin-left: 16px;
 
   @media (min-width: ${props => props.theme.breakpoints.tablet}) {
-    margin-top: 0;
     margin-bottom: 0;
     margin-left: 40px;
-    margin-top: 10px;
+    margin-top: -500px;
   } 
 
 
@@ -679,24 +725,34 @@ const FacebookIcon = styled.img`
   display: flex;
   align-items: center;
   padding-right: 6px;
-  width: 1.5625rem; // 25px
-  height: 1.3675rem; // 21.88px
+  width: 1.5625rem * 0.375; // 25px
+  height: 1.3675rem  * 0.375; // 21.88px
 
   @media (min-width: ${props => props.theme.breakpoints.tablet}) {
-    width: 3.125rem; // 50px
-    height: 2.7344rem; // 43.75px
+    width: 31px  * 0.375; // 31px
+    height: 27.13px  * 0.375; // 27.13px
   }
+
+  @media (min-width: ${props => props.theme.breakpoints.desktop}) {
+    width: 3.125rem * 0.375; // 50px
+    height: 2.7344rem * 0.375
 `;
 
 const InstagramIcon = styled.img`
   display: flex;
   align-items: center;
   padding-right: 6px;
-  width: 1.5631rem; // 25.01px
-  height: 1.3675rem; // 21.88px
+  width: 1.5631rem * 0.375; // 25.01px
+  height: 1.3675rem * 0.375; // 21.88px
+
   @media (min-width: ${props => props.theme.breakpoints.tablet}) {
-    width: 3.1269rem; // 50.03px
-    height: 2.735rem; // 43.76px
+    width: 31px * 0.375; // 31px
+    height: 27.13px * 0.375; // 27.13px
+  }
+
+  @media (min-width: ${props => props.theme.breakpoints.desktop}) {
+    width: 3.1269rem * 0.375; // 50.03px
+    height: 2.735rem * 0.375; // 43.76px
   }
 
 `;
@@ -705,12 +761,17 @@ const LinkedInIcon = styled.img`
   display: flex;
   align-items: center;
   padding-right: 6px;
-  width: 1.5625rem; // 25px
-  height: 1.5625rem; // 25px
+  width: 1.5625rem * 0.375; // 25px
+  height: 1.5625rem * 0.375; // 25px
 
   @media (min-width: ${props => props.theme.breakpoints.tablet}) {
-    width: 3.125rem; // 50px
-    height: 3.125rem; // 50px
+    width: 31px * 0.375; // 31px
+    height: 31px * 0.375; // 31px
+  }
+
+  @media (min-width: ${props => props.theme.breakpoints.desktop}) {
+    width: 3.125rem * 0.375; // 50px
+    height: 3.125rem * 0.375; // 50px
   }
 
 `;
@@ -718,12 +779,17 @@ const LinkedInIcon = styled.img`
 const TwitterIcon = styled.img`
   display: flex;
   align-items: center;
-  width: 1.5625rem; // 25px
-  height: 1.5625rem; // 25px
+  width: 1.5625rem * 0.375; // 25px
+  height: 1.5625rem * 0.375; // 25px
 
   @media (min-width: ${props => props.theme.breakpoints.tablet}) {
-    width: 3.125rem; // 50px
-    height: 2.5381rem; // 40.61px
+    width: 31px * 0.375; // 31px
+    height: 31px * 0.375; // 31px
+  }
+
+  @media (min-width: ${props => props.theme.breakpoints.desktop}) {
+    width: 3.125rem * 0.375; // 50px
+    height: 2.5381rem * 0.375; // 40.61px
   }
 
 `;
@@ -731,8 +797,8 @@ const TwitterIcon = styled.img`
 const Pencil = styled.img`
   position: absolute;
   display: block;
-  width: 32px; // 32px
-  height: 30px; // 30px
+  width: 32px * 0.375; // 32px
+  height: 30px * 0.375; // 30px
   right: 28px;
   top: 138px;
   color: ${(props) => props.theme.colors.pencil};
@@ -765,8 +831,8 @@ const MoreInfoSection = styled.div`
 const SecondPencil = styled.img`
   position: absolute;
   display: block;
-  width: 32px; // 32px
-  height: 30px; // 30px
+  width: 32px * 0.375; // 32px
+  height: 30px * 0.375; // 30px
   right: 25px;
   top: 510px;
   color: ${(props) => props.theme.colors.pencil};
@@ -827,7 +893,7 @@ const ArtifactsSection = styled.div`
   align-self: flex-start;
   align-items: flex-start;
   margin-top: 28px;
-  margin-left: 10px;
+  margin-left: 10px; * 0.375
   
   h2 {
     display: flex;
@@ -877,8 +943,7 @@ const CredentialsSection = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-self: flex-start;
-  align-items: flex-start;
-  margin-left: 30px;
+  align-items: center;
   margin-top: 24px;
   margin-left: 10px;
 
@@ -887,6 +952,7 @@ const CredentialsSection = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    align-self: flex-start;
     font-family: ${(props) => props.theme.fonts.mulish};
     font-weight: 600;
     font-style: normal;
@@ -894,15 +960,16 @@ const CredentialsSection = styled.div`
     line-height: 1.25rem; // 20px
     letter-spacing: 0.0125rem; // 0.2px
     color: ${(props) => props.theme.colors.profileFontColor};
-
+    margin-left: 0;
+    padding-left: 0;
 
   }
 
   div {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
     width: 100%;
     
@@ -914,6 +981,7 @@ const CredentialsSection = styled.div`
       flex-wrap: wrap;
       min-width: fit-content;
       padding-right: 8px;
+      padding-top: ;
 
       font-family: ${(props) => props.theme.fonts.mulish};
       font-weight: 400;
@@ -991,8 +1059,8 @@ color: ${(props) => props.theme.colors.profileFontColor};
 const AddIcon = styled.img`
 display: flex;
 
-width: 17x; // 17px
-height: 17x; // 17px
+width: 17x * 0.375; // 17px
+height: 17x * 0.375; // 17px
 color: ${(props) => props.theme.colors.pencil};
 
   &:hover {
@@ -1106,8 +1174,8 @@ const EditIcon = styled.img`
 /* display: flex;
 flex-direction: row;
 justify-content: flex-start; */
-width: 35px; // 20px
-height: 22px; // 20px
+width: 35px * 0.375; // 20px
+height: 22px * 0.375; // 20px
 color: ${(props) => props.theme.colors.pencil};
 ////padding-right: 10px;
 padding-left: 14px;
