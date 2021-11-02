@@ -198,14 +198,15 @@ function RenderAdminProfilePage(props) {
                           <DateFromNoteDiv>
                             <Date><span>{note.date}</span></Date>
                             <From className="from"><span>{note.from}</span></From>
+
+                          </DateFromNoteDiv>
+                          <EditDeleteIconsNoteDiv>
                             {noteShown ? <Note>{note.content}</Note> : <Note><button onClick={() => {
                               setNoteShown(true)
                             }}>VIEW</button></Note>}
-                          </DateFromNoteDiv>
-                          <EditAndDeleteIconsDiv>
                             <EditIcon src={pencil} alt="edit" />
                             <DeleteIcon src={remove} alt="remove" />
-                          </EditAndDeleteIconsDiv>
+                          </EditDeleteIconsNoteDiv>
                         </DateFromDiv>
                         <NotesHr />
                       </NoteDiv>
@@ -1255,7 +1256,7 @@ width: auto;
 max-width: max-content;
 `;
 
-const EditAndDeleteIconsDiv = styled.div`
+const EditDeleteIconsNoteDiv = styled.div`
 display: flex;
 flex-direction: row;
 `;
