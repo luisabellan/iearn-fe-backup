@@ -397,6 +397,7 @@ const ContactInfoSection = styled.div`
   background-color: ${(props) => props.theme.colors.profileBackgroundColor};
 
   @media (min-width: ${props => props.theme.breakpoints.tablet}) {
+    display: flex;
     width: calc(100% - 17px * 2);
     margin-left: 17px;
     margin-right: 17px;
@@ -473,9 +474,10 @@ const LocationDiv = styled.div`
 const LocationIcon = styled.img`
   display: flex;
   align-self: center;
-  width: 0.8387rem; // 13.42px
-  height: 1.1663rem; // 18.66px
-  padding-right: 0.5494rem; // 8.79px
+  width: 13.4192px * 0.375; // 13.42px
+  width: 13.4192px * 0.375; // 13.42px
+  height: 1.1663rem * 0.375; // 18.66px
+  padding-right: 12px; // 8.79px
 `;
 
 const Location = styled.p`
@@ -484,9 +486,9 @@ const Location = styled.p`
   font-family: ${(props) => props.theme.fonts.mulish};
   font-weight: 600;
   font-style: normal;
-  font-size: 0.875rem; // 14px
-  line-height: 1.25rem; // 20px
-  letter-spacing: 0.0125rem; // 0.2px
+  font-size: 0.875rem* 0.375; // 14px
+  line-height: 1.25rem* 0.375; // 20px
+  letter-spacing: 0.0125rem* 0.375; // 0.2px
   color: ${(props) => props.theme.colors.profileFontColor};
   width: max-content;
   padding-right: 22px; // 22px
@@ -494,10 +496,10 @@ const Location = styled.p`
   @media (min-width: ${props => props.theme.breakpoints.tablet}) {
     font-size: 1.125rem; // 18px
     line-height: 1.25rem; // 20px
-    letter-spacing: 0.0125rem; // 0.2px
+    letter-spacing: 0.0125rem* 0.375; // 0.2px
     font-weight: 600;
     color: ${(props) => props.theme.colors.profileFontColor};
-    margin-left: 4px; // 4px
+    margin-left: 4px* 0.375; // 4px
   }
 `;
 
@@ -514,8 +516,8 @@ const PhoneDiv = styled.div`
 const PhoneIcon = styled.img`
   display: flex;
   align-self: center;
-  width: 1.0781rem; // 17.25px
-  height: 1.0781rem; // 17.25px
+  width: 1.0781rem* 0.375; // 17.25px
+  height: 1.0781rem* 0.375; // 17.25px
   padding-right: 0.5494rem; // 8.79px
 `;
 
@@ -566,8 +568,8 @@ const EmailDiv = styled.div`
 const EmailIcon = styled.img`
   display: flex;
   align-self: center;
-  width: 1.2312rem; // 19.7px
-  height: 0.9581rem; // 15.33px
+  width: 1.2312rem * 0.375; // 19.7px
+  height: 0.9581rem * 0.375; // 15.33px
   padding-right: 10px; // 10px
 
   @media (min-width: ${props => props.theme.breakpoints.tablet}) {
