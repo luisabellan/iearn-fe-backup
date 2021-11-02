@@ -134,7 +134,7 @@ function RenderAdminProfilePage(props) {
             }
 
           </ContactInfoSection>
-          <NotesHr />
+          <Hr />
           <MoreInfoSection>
             <SecondPencil src={pencil} alt="pencil" />
             <SkillsSection>
@@ -733,12 +733,12 @@ const Pencil = styled.img`
   }
 `;
 
-/* const Hr = styled.hr`
+const Hr = styled.hr`
   border: 1px solid ${(props) => props.theme.colors.hr};
   width: 100%;
   max-width: 90%;
   margin-bottom: 0px;
-`; */
+`;
 
 const MoreInfoSection = styled.div`
   display: flex;
@@ -748,6 +748,7 @@ const MoreInfoSection = styled.div`
   align-self: flex-start;
   margin-top: 1.25rem; // 20px
   margin-bottom: 1.25rem; // 20px
+  
 
 
 
@@ -772,6 +773,7 @@ const SkillsSection = styled.div`
   flex-direction: column;
   justify-content: row;
   margin-left: 10px;
+  margin-top: 10px;
 
 
   
@@ -1007,7 +1009,6 @@ const NotesHr = styled.hr`
   align-self: flex-start;
   margin-left: 0px;
   margin-bottom: 8px;
-  margin-bottom: 8px;
 
 `;
 
@@ -1087,11 +1088,11 @@ const EditIcon = styled.img`
 /* display: flex;
 flex-direction: row;
 justify-content: flex-start; */
-width: 18.51px; // 20px
-height: 19.32px; // 20px
+width: 35px; // 20px
+height: 22px; // 20px
 color: ${(props) => props.theme.colors.pencil};
 ////padding-right: 10px;
-//padding-left: 8px;
+padding-left: 14px;
 
   &:hover {
   cursor: pointer;
