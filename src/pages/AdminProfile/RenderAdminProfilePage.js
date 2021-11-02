@@ -134,7 +134,8 @@ function RenderAdminProfilePage(props) {
             }
 
           </ContactInfoSection>
-          <Hr />
+
+          {useWindowWidth() <= 768 && <Hr />}
           <MoreInfoSection>
             <SecondPencil src={pencil} alt="pencil" />
             <SkillsSection>
