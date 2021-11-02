@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import search from '../../assets/icons/search.png';
 import notifications from '../../assets/icons/bell.png';
@@ -46,7 +46,7 @@ const notes = [{
 ];
 
 function RenderAdminProfilePage(props) {
-
+  const [noteShown, setNoteShown] = React.useState(false);
   return (
     <div>
       <PageContainer
@@ -197,7 +197,9 @@ function RenderAdminProfilePage(props) {
                           <DateFromNoteDiv>
                             <Date><span>{note.date}</span></Date>
                             <From className="from"><span>{note.from}</span></From>
-                            <Note>{note.content}</Note>
+                            {noteShown ? <Note>{note.content}</Note> : <Note>VIEW</Note>}
+                            {/* TODO: onClick will show note.content */}
+                            {/* {!noteShown && <Note><a href="" alt="">VIEW</a></Note>} */}
                           </DateFromNoteDiv>
                           <EditAndDeleteIconsDiv>
                             <EditIcon src={pencil} alt="edit" />
@@ -893,7 +895,7 @@ const ArtifactsSection = styled.div`
   align-self: flex-start;
   align-items: flex-start;
   margin-top: 28px;
-  margin-left: 10px; * 0.375
+  margin-left: 10px;
   
   h2 {
     display: flex;
@@ -1095,6 +1097,7 @@ const NotesHr = styled.hr`
   align-self: flex-start;
   margin-left: 0px;
   margin-bottom: 8px;
+  max-width: 85%;
 
 `;
 
@@ -1105,7 +1108,7 @@ flex-direction: row;
 justify-self: center;
 align-items: flex-start;
 margin-top: 0px;
-max-width: 90%;
+max-width: 85%;
 
 `;
 
