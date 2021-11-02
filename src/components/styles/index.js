@@ -48,7 +48,16 @@ const Tablet = styled.div`
   
 
   `;
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+  margin-top: 100px;
 
+
+`;
 
 const Wrapper = styled.div`
 display: flex;
@@ -421,5 +430,6 @@ export {
   PageContainer,
   TitleContainer,
   Mobile,
-  Tablet
+  Tablet,
+  Row
 };

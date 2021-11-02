@@ -19,7 +19,8 @@ import useWindowWidth from "../../hooks/useWindowWidth";
 import {
   PageContainer,
   Mobile,
-  Tablet
+  Tablet,
+  Row
 
 } from "../../components/styles";
 
@@ -49,14 +50,7 @@ function RenderAdminProfilePage(props) {
   const [noteShown, setNoteShown] = React.useState(false);
   return (
     <div>
-      <PageContainer
-      /*   onClick={(e) => {
-          document.querySelector(".firstname-label").classList.remove("active");
-          document.querySelector(".lastname-label").classList.remove("active");
-          document.querySelector(".email-label").classList.remove("active");
-          document.querySelector(".linkedin-label").classList.remove("active");
-        }} */
-      >
+      <PageContainer>
         <Navigation />
         <TopBarDiv className="topBar">
           <TitleDiv><h1>Profile</h1></TitleDiv>
@@ -76,70 +70,63 @@ function RenderAdminProfilePage(props) {
         <ProfileInfoSection>
           <ContactInfoSection>
             <Pencil src={pencil} alt="pencil" />
-            <div>
-              <ProfilePhoto src={photo} alt="me" />
-            </div>
-            <div>
-              <Name>Ferdinand Jones</Name>
-              <ProjectName>MentorBeast</ProjectName>
-              <LocationAndPhoneDiv>
-                <LocationDiv className='location'>
-                  <LocationIcon src={location} alt="location" />
-                  <Location>San Diego</Location>
-                </LocationDiv>
-                <PhoneDiv className='phone'>
-                  <PhoneIcon src={phone} alt="phone" />
-                  <Phone>555-555-5555</Phone>
-                </PhoneDiv>
-              </LocationAndPhoneDiv>
-              <EmailAndTimezoneDiv>
-                <EmailDiv className='email'>
-                  <EmailIcon src={email} alt="email" />
-                  <Email>email@email.com</Email>
-                </EmailDiv>
-                {
+            <ProfilePhoto src={photo} alt="me" />
+            <Name>Ferdinand Jones</Name>
+            <ProjectName>MentorBeast</ProjectName>
+            <LocationAndPhoneDiv>
+              <LocationDiv className='location'>
+                <LocationIcon src={location} alt="location" />
+                <Location>San Diego</Location>
+              </LocationDiv>
+              <PhoneDiv className='phone'>
+                <PhoneIcon src={phone} alt="phone" />
+                <Phone>555-555-5555</Phone>
+              </PhoneDiv>
+            </LocationAndPhoneDiv>
 
-                  useWindowWidth() >= 768 ?
-                    null
-                    :
-                    <TimezoneDiv className='timezone'>
+            {
+              useWindowWidth() < 768 ?
+                <Mobile>
+                  <EmailAndTimezoneDiv>
+                    <EmailDiv className='email'>
+                      <EmailIcon src={email} alt="email" />
+                      <Email>email@email.com</Email>
+                    </EmailDiv>
+                    <Timezone>Time Zone:<span>GMT+8</span></Timezone>
+                  </EmailAndTimezoneDiv>
+                  <PreferedCommunicationMethodMobile>
+                    Prefered method of communication: <a href="https://facebook.com">Facebook</a>
+                  </PreferedCommunicationMethodMobile>
+                  <SocialDiv>
+                    <FacebookIcon src={facebook} alt="facebook" />
+                    <InstagramIcon src={instagram} alt="instagram" />
+                    <LinkedInIcon src={linkedin} alt="linkedin" />
+                    <TwitterIcon src={twitter} alt="twitter" />
+                  </SocialDiv>
+                </Mobile>
+                :
+                <Tablet>
+                  <EmailAndTimezoneDiv>
+                    <EmailDiv className='email'>
+                      <EmailIcon src={email} alt="email" />
+                      <Email>email@email.com</Email>
+                    </EmailDiv>
+                  </EmailAndTimezoneDiv>
+                  <Row>
+
+                    <PreferedCommunicationMethodTablet>
                       <Timezone>Time Zone:<span>GMT+8</span></Timezone>
-                    </TimezoneDiv>
-
-                }
-
-
-              </EmailAndTimezoneDiv>
-              {
-                useWindowWidth() < 768 ?
-                  <Mobile>
-                    <TimezoneDiv className='timezone'>
-                      <Timezone>Time Zone:<span>GMT+8</span></Timezone>
-                    </TimezoneDiv>
-                    <PreferedCommunicationMethod>
                       Prefered method of communication: <a href="https://facebook.com">Facebook</a>
-                    </PreferedCommunicationMethod>
+                    </PreferedCommunicationMethodTablet>
                     <SocialDiv>
                       <FacebookIcon src={facebook} alt="facebook" />
                       <InstagramIcon src={instagram} alt="instagram" />
                       <LinkedInIcon src={linkedin} alt="linkedin" />
                       <TwitterIcon src={twitter} alt="twitter" />
                     </SocialDiv>
-                  </Mobile>
-                  :
-                  <Tablet>
-                    <PreferedCommunicationMethod>
-                      Prefered method of communication: <a href="https://facebook.com">Facebook</a>
-                    </PreferedCommunicationMethod>
-                    <SocialDiv>
-                      <FacebookIcon src={facebook} alt="facebook" />
-                      <InstagramIcon src={instagram} alt="instagram" />
-                      <LinkedInIcon src={linkedin} alt="linkedin" />
-                      <TwitterIcon src={twitter} alt="twitter" />
-                    </SocialDiv>
-                  </Tablet>
-              }
-            </div>
+                  </Row>
+                </Tablet>
+            }
           </ContactInfoSection>
 
           {useWindowWidth() <= 768 && <Hr />}
@@ -168,15 +155,25 @@ function RenderAdminProfilePage(props) {
 
 
             </ArtifactsSection>
-
-            <CredentialsSection>
-              <h2>Credentials:</h2>
-              <div>
-                <a href="https://lambdaschool.com">Lambda School Web Dev</a>
-                <a href="https://grow.google/projectmanagement/#?modal_active=none">Google Project Management</a>
-                <a href="https://www.freecodecamp.org">FreeCodeCamp.com</a>
-              </div>
-            </CredentialsSection>
+            {useWindowWidth() <= 768 ?
+              <CredentialsSectionMobile>
+                <h2>Credentials:</h2>
+                <div>
+                  <a href="https://lambdaschool.com">Lambda School Web Dev</a>
+                  <a href="https://grow.google/projectmanagement/#?modal_active=none">Google Project Management</a>
+                  <a href="https://www.freecodecamp.org">FreeCodeCamp.com</a>
+                </div>
+              </CredentialsSectionMobile>
+              :
+              <CredentialsSectionTablet>
+                <h2>Credentials:</h2>
+                <div>
+                  <a href="https://lambdaschool.com">Lambda School Web Dev</a>
+                  <a href="https://grow.google/projectmanagement/#?modal_active=none">Google Project Management</a>
+                  <a href="https://www.freecodecamp.org">FreeCodeCamp.com</a>
+                </div>
+              </CredentialsSectionTablet>
+            }
 
             <NotesSection>
               <NotesTitleDiv>
@@ -190,16 +187,20 @@ function RenderAdminProfilePage(props) {
 
                 <NotesList>
                   {notes.map((note, id) => {
+
+
                     return (
+
+
 
                       <NoteDiv id='note.id'>
                         <DateFromDiv>
                           <DateFromNoteDiv>
                             <Date><span>{note.date}</span></Date>
                             <From className="from"><span>{note.from}</span></From>
-                            {noteShown ? <Note>{note.content}</Note> : <Note>VIEW</Note>}
-                            {/* TODO: onClick will show note.content */}
-                            {/* {!noteShown && <Note><a href="" alt="">VIEW</a></Note>} */}
+                            {noteShown ? <Note>{note.content}</Note> : <Note><button onClick={() => {
+                              setNoteShown(true)
+                            }}>VIEW</button></Note>}
                           </DateFromNoteDiv>
                           <EditAndDeleteIconsDiv>
                             <EditIcon src={pencil} alt="edit" />
@@ -236,14 +237,16 @@ function RenderAdminProfilePage(props) {
 const TopBarDiv = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-self: center;
   align-items: center;
   height: 22px;
   margin-top: 26px;
+  width: 96%;
+  
 
   @media (min-width: ${props => props.theme.breakpoints.tablet}) {
-    
-
+    width: 90%;
   }
 `;
 
@@ -288,17 +291,32 @@ const NotificationsIcon = styled.div`
     padding-left: 10px;
     padding-right: 0;
     margin-right: 0;
-    width: 16px;
-    height: 14px;
-    width: 100%;
+    width: 16px * 0.375;
+    height: 14px * 0.375;
 
     @media (min-width: ${props => props.theme.breakpoints.tablet}) {
+      
     }
   }
 
 `;
 //here
 const TitleDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-self: baseline;
+  margin-left: 0;
+  padding-left: 0;
+  margin-right: 0;
+  padding-right: 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: #000000;
+  @media (min-width: ${props => props.theme.breakpoints.tablet}) {
+    font-size: 24px;
+  }
 
 h1{
     font-style: normal;
@@ -307,18 +325,18 @@ h1{
     font-size: 0.875rem; // 14px
     line-height: 1.0981rem; // 17.57px
     color: ${(props) => props.theme.colors.profileFontColor};
-    width: 7.625rem; // 122px
-    margin-left: 0.625rem; // 10px
+    //width: 7.625rem; // 122px
+    //margin-left: 0.625rem; // 10px
 
     @media (min-width: ${props => props.theme.breakpoints.tablet}) {
       font-weight: 700;
       font-size: 1.5rem; // 24px
       line-height: 1.8825rem; // 30.12px
       letter-spacing: 0.015625rem; // 0.3px
-      width: 10.625rem; // 150px
+     // width: 12.5rem; // 200px
       margin-left: 1.625rem; // 20px
       margin-left: 50px;
-      margin-right: 400px;
+      //margin-right: 400px;
     }
   }
   
@@ -336,12 +354,14 @@ const MiniName = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: last baseline;
-  width: max-content;
   padding-left: 0;
   @media (min-width: ${props => props.theme.breakpoints.tablet}) {
     font-size: 0.875rem; // 14px  
     line-height: 1.25rem; // 20 px
     letter-spacing: 0.0125rem; // 0.2px
+    
+    
+
   }
   
   span{
@@ -351,6 +371,7 @@ const MiniName = styled.div`
     font-size: 14px;
     line-height: 20px;
     font-style: normal;
+    width: max-content;
     font-family: ${(props) => props.theme.fonts.mulish}; // Mulish
     color: ${(props) => props.theme.colors.profileFontColor};
     @media (min-width: ${props => props.theme.breakpoints.tablet}) {
@@ -370,6 +391,9 @@ const Avatar = styled.img`
   width: 2.5187rem; // 40.3px
   height: 1.7237rem; // 27.58px
   padding-right: 10px;
+
+  @media (min-width: ${props => props.theme.breakpoints.tablet}) {
+  }
 `;
 
 const ProfileInfoSection = styled.div`
@@ -386,9 +410,11 @@ const ProfileInfoSection = styled.div`
   border-radius: 5px;
 
   @media (min-width: ${props => props.theme.breakpoints.tablet}) {
-    width: calc(100% - 17px * 2);
-    margin-left: 17px;
-    margin-right: 17px;
+    //width: calc(100% - 17px * 2);
+    //margin-left: 17px;
+    ///margin-right: 17px;
+    width: 92%;
+   
   }
 
 
@@ -400,9 +426,6 @@ const ContactInfoSection = styled.div`
   justify-content: center;
   align-items: center;
   align-self: center;
-  width: calc(100%-17px * 2);
-  //padding-left: 17px;
-  //padding-right: 17px;
   margin-top: 1.0625rem; // 17px
   box-sizing: border-box;
   background-color: ${(props) => props.theme.colors.profileBackgroundColor};
@@ -410,32 +433,37 @@ const ContactInfoSection = styled.div`
   @media (min-width: ${props => props.theme.breakpoints.tablet}) {
     display: flex;
     flex-direction: row;
-    width: calc(100% - 17px * 2);
-    margin-left: 17px;
-    margin-right: 17px;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    margin-left: 180px;
+
   }
 
 `;
 const ProfilePhoto = styled.img`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-self: center;
+  align-items: center;
   border-radius: 50%;
+
+  
 
   @media (min-width: ${props => props.theme.breakpoints.tablet}) {
     width: 200px;
     height: 200px;
-    margin-right: 100px;
-    margin-left:100px;
-    margin-top: -330px;
+    //margin-right: 100px;
+    //margin-left:100px;
     margin-bottom: 0px;
+    margin-left: 210px;
+    
   }
 `;
 
 const Name = styled.p`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-self: center;
   font-family: ${(props) => props.theme.fonts.mulish};
@@ -445,20 +473,19 @@ const Name = styled.p`
   line-height: 1.25rem; // 20px
   letter-spacing: 0.0125rem; // 0.2px
   color: ${(props) => props.theme.colors.profileFontColor};
-  width: max-content;
   //height: 2rem; // 32px
   margin-top: 1rem; // 16px
   //text-align: center;
-  margin-left: 20%; // 
+  //margin-left: 20%; // 
 
   @media (min-width: ${props => props.theme.breakpoints.tablet}) {
     font-size: 1.5rem; // 24px
     line-height: 1.8825rem; // 30.12px
     letter-spacing: 0.015625rem; // 0.3px
     //height: 2.5rem; // 40px
-    margin-top: 0px; // 100px
-    margin-right: 300px;
-    margin-left: 0;
+    margin-top: 80px; // 100px
+    //margin-right: 300px;
+    margin-left: 80px;
   }
 
 
@@ -469,6 +496,7 @@ const ProjectName = styled.p`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-self: center;
   font-family: ${(props) => props.theme.fonts.mulish};
   font-weight: 400;
   font-style: normal;
@@ -482,6 +510,7 @@ const ProjectName = styled.p`
   @media (min-width: ${props => props.theme.breakpoints.tablet}) {
     display: none;
     flex-direction: column;
+    margin-left: 80px;
   }
 
 
@@ -491,6 +520,7 @@ const LocationAndPhoneDiv = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-self: center;
   align-items: baseline;
   margin-top: 1.1875rem; // 19px
   @media (min-width: ${props => props.theme.breakpoints.tablet}) {
@@ -502,6 +532,7 @@ const LocationDiv = styled.div`
   display: flex;
   flex-direction: row;
   align-items: baseline;
+ 
   `;
 
 const LocationIcon = styled.img`
@@ -511,6 +542,7 @@ const LocationIcon = styled.img`
   width: 13.4192px * 0.375; // 13.42px
   height: 1.1663rem * 0.375; // 18.66px
   padding-right: 12px; // 8.79px
+  //margin-left: 80px;
 `;
 
 const Location = styled.p`
@@ -532,13 +564,14 @@ const Location = styled.p`
     letter-spacing: 0.0125rem* 0.375; // 0.2px
     font-weight: 600;
     color: ${(props) => props.theme.colors.profileFontColor};
-    margin-left: 4px* 0.375; // 4px
+    
   }
 `;
 
 const PhoneDiv = styled.div`
   display: flex;
   flex-direction: row;
+  align-self: center;
   align-items: baseline;
   
   @media (min-width: ${props => props.theme.breakpoints.tablet}) {
@@ -552,6 +585,8 @@ const PhoneIcon = styled.img`
   width: 1.0781rem* 0.375; // 17.25px
   height: 1.0781rem* 0.375; // 17.25px
   padding-right: 0.5494rem; // 8.79px
+  //margin-left: 80px;
+
 `;
 
 const Phone = styled.p`
@@ -584,6 +619,7 @@ const EmailAndTimezoneDiv = styled.div`
   @media (min-width: ${props => props.theme.breakpoints.tablet}) {
     margin-top: 0;
     flex-direction: column;
+    margin-left: 80px;
   }
   
 `;
@@ -637,14 +673,17 @@ const TimezoneDiv = styled.div`
   flex-direction: row;
   align-items: center;
   @media (min-width: ${props => props.theme.breakpoints.tablet}) {
-    margin-top: 200px;
-    margin-left: -300px;
+    //margin-top: 200px;
+    //margin-left: -300px;
     font-family: ${(props) => props.theme.fonts.mulish};
     font-weight: 300;
     font-style: normal;
     font-size: 14px; // 14px
     line-height: 1.25rem; // 20px
     letter-spacing: 0.0125rem; // 0.2px
+    margin: 0;
+    padding: 0;
+  
   }
 
 `;
@@ -663,7 +702,11 @@ const Timezone = styled.p`
 
   @media (min-width: ${props => props.theme.breakpoints.tablet}) {
     font-size: 14px; // 14px
-    margin-bottom: 300px;
+    margin:0;
+    padding:0;
+    padding-top: -16px;
+    padding-right: 16px;
+    
   }
 
   span {
@@ -671,8 +714,9 @@ const Timezone = styled.p`
   }
 `;
 
-const PreferedCommunicationMethod = styled.p`
+const PreferedCommunicationMethodMobile = styled.p`
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-self: center;
   font-family: ${(props) => props.theme.fonts.mulish};
@@ -684,28 +728,35 @@ const PreferedCommunicationMethod = styled.p`
   color: ${(props) => props.theme.colors.profileFontColor};
   width: max-content;
   margin-top: 1.25rem; // 20px
-  margin-bottom: 300px;
+  //margin-bottom: 300px;
 
-  @media (min-width: ${props => props.theme.breakpoints.tablet}) {
-    font-size: 0.875rem; // 14px
-    line-height: 1.25rem; // 20px
-    letter-spacing: 0.0125rem; // 0.2px
-    font-weight: 300;
-    color: ${(props) => props.theme.colors.profileFontColor};
-    margin-top: -1450px;
-    margin-left: 100px;
-  }
-
-  a {
+   a {
     padding-left: 20px;
     text-decoration: underline;
     margin-top: -2px;
     color: ${(props) => props.theme.colors.profileFontColor};
   }
 
-
   
 
+`;
+
+const PreferedCommunicationMethodTablet = styled(PreferedCommunicationMethodMobile)`
+    
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    font-size: 0.875rem; // 14px
+    line-height: 1.25rem; // 20px
+    letter-spacing: 0.0125rem; // 0.2px
+    font-weight: 300;
+    color: ${(props) => props.theme.colors.profileFontColor};
+    margin: 0;
+    padding: 0;
+  
+
+ 
 `;
 
 const SocialDiv = styled.div`
@@ -715,13 +766,13 @@ const SocialDiv = styled.div`
   align-items: baseline;
   margin-bottom: 1.25rem; // 16px
   margin-top: 1.1875rem; // 19px
-  margin-top: -280px;
   margin-left: 16px;
 
   @media (min-width: ${props => props.theme.breakpoints.tablet}) {
     margin-bottom: 0;
     margin-left: 40px;
-    margin-top: -500px;
+    margin-top: 7px;
+    
   } 
 
 
@@ -945,13 +996,7 @@ const ArtifactsSection = styled.div`
 `;
 
 const CredentialsSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-self: flex-start;
-  align-items: center;
-  margin-top: 24px;
-  margin-left: 10px;
+  
 
 
   h2 {
@@ -998,6 +1043,45 @@ const CredentialsSection = styled.div`
       text-decoration: none;
 
       color: ${(props) => props.theme.colors.artifactsLinks};
+    }
+  }
+
+
+`;
+
+
+const CredentialsSectionMobile = styled(CredentialsSection)`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-self: flex-start;
+  align-items: center;
+  margin-top: 24px;
+  margin-left: 10px;
+`;
+
+
+const CredentialsSectionTablet = styled(CredentialsSectionMobile)`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-self: flex-start;
+  align-items: center;
+  margin-top: 24px;
+  margin-left: 10px;
+
+
+  h2 {
+    
+
+  }
+
+  div {
+   
+    
+    
+    a {
+      
     }
   }
 `;
