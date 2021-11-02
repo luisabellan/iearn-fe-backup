@@ -3,8 +3,7 @@ import styled from "styled-components";
 import search from '../../assets/icons/search.png';
 import notifications from '../../assets/icons/bell.png';
 import location from '../../assets/icons/location.png';
-// import photo from '../../assets/icons/avatar.png';
-import photo from '../../assets/img/avatar.png';
+import photo from '../../assets/icons/avatar.png';
 import email from '../../assets/icons/email.png';
 import phone from '../../assets/icons/phone.png';
 import facebook from '../../assets/icons/facebook.png';
@@ -135,7 +134,7 @@ function RenderAdminProfilePage(props) {
             }
 
           </ContactInfoSection>
-          <Hr />
+          <NotesHr />
           <MoreInfoSection>
             <SecondPencil src={pencil} alt="pencil" />
             <SkillsSection>
@@ -734,11 +733,12 @@ const Pencil = styled.img`
   }
 `;
 
-const Hr = styled.hr`
+/* const Hr = styled.hr`
   border: 1px solid ${(props) => props.theme.colors.hr};
-  width: 80%;
+  width: 100%;
+  max-width: 90%;
   margin-bottom: 0px;
-`;
+`; */
 
 const MoreInfoSection = styled.div`
   display: flex;
@@ -998,14 +998,16 @@ flex-direction: column;
 `;
 
 
-const NotesHr = styled(Hr)`
+const NotesHr = styled.hr`
   border: 1px solid ${(props) => props.theme.colors.notesHr};
   display: flex;
   width: 100%;
+  max-width: 90%;
   justify-content: flex-start;
   align-self: flex-start;
   margin-left: 0px;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
+  margin-bottom: 8px;
 
 `;
 
@@ -1016,6 +1018,7 @@ flex-direction: row;
 justify-self: center;
 align-items: flex-start;
 margin-top: 0px;
+max-width: 90%;
 
 `;
 
@@ -1071,6 +1074,8 @@ font-size: 0.75rem; // 12px
 line-height: 1.25rem; // 20px
 letter-spacing: 0.0125rem; // 0.2px
 color: ${(props) => props.theme.colors.profileFontColor};
+width: auto;
+max-width: max-content;
 `;
 
 const EditAndDeleteIconsDiv = styled.div`
@@ -1082,11 +1087,11 @@ const EditIcon = styled.img`
 /* display: flex;
 flex-direction: row;
 justify-content: flex-start; */
-width: 20px; // 20px
-height: 20px; // 20px
+width: 18.51px; // 20px
+height: 19.32px; // 20px
 color: ${(props) => props.theme.colors.pencil};
-margin-right: 10px;
-padding-left: 8px;
+////padding-right: 10px;
+//padding-left: 8px;
 
   &:hover {
   cursor: pointer;
@@ -1096,6 +1101,7 @@ padding-left: 8px;
 const DeleteIcon = styled.img`
 width: 20px; // 20px
 height: 20px; // 20px
+margin-left: 8px;
 
   &:hover {
   cursor: pointer;
