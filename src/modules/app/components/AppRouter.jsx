@@ -12,7 +12,7 @@ const AppRouter = () => {
         <Route exact path="/" component={Dashboard} />
         <Route path="/signin" component={Signin} />
         <Route path="/signup" component={Signup} />
-        <Route path="/admin-profile" component={AdminProfile} /> {/* TODO: to be protected (admin only)*/}
+        <Route path="/profile" component={AdminProfile} /> {/* TODO: to be protected (admin only)*/}
       </Switch>
     </Router>
   );

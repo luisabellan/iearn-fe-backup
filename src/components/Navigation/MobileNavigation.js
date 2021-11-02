@@ -14,6 +14,32 @@ import {
   IEarnLink,
 } from "../styles";
 
+
+const MobileNavigation = (props) => {
+
+
+  return (
+    <Theme>
+      <GlobalStyles />
+      <Wrapper>
+        <Nav>
+          <HeaderContainer>
+            <Header>
+              <Logo>
+                <img src={headerLogoGreen} alt="" />
+              </Logo>
+              <IEarnLink to="/login">{props.linkText}</IEarnLink>
+              <MenuImg src={burgerMenu} alt="" />
+            </Header>
+          </HeaderContainer>
+        </Nav>
+      </Wrapper>
+    </Theme >
+  )
+
+
+}
+
 const Nav = styled.nav`
   display: flex;
   flex-direction: row;
@@ -84,36 +110,10 @@ const MenuImg = styled.img`
   justify-content: center;
   align-items: center;
   margin-top: 10px;
-  margin-right: 2.85px;
-  margin-right: 10px;
+  margin-right: 18px;
   width: 2.5625rem; // 41px
   height: 2rem; // 32px
 `;
-const MobileNavigation = (props) => {
-
-
-  return (
-    <Theme>
-      <GlobalStyles />
-
-      <Wrapper>
-        <Nav>
-          <HeaderContainer>
-            <Header>
-              <Logo>
-                <img src={headerLogoGreen} alt="" />
-              </Logo>
-              <IEarnLink to="/login">{props.linkText}</IEarnLink>
-              <MenuImg src={burgerMenu} alt="" />
-            </Header>
-          </HeaderContainer>
-        </Nav>
-      </Wrapper>
-    </Theme >
-  )
-
-
-}
 
 
 export default MobileNavigation

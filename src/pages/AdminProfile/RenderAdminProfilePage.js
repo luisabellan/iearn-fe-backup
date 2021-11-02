@@ -396,6 +396,12 @@ const ContactInfoSection = styled.div`
   box-sizing: border-box;
   background-color: ${(props) => props.theme.colors.profileBackgroundColor};
 
+  @media (min-width: ${props => props.theme.breakpoints.tablet}) {
+    width: calc(100% - 17px * 2);
+    margin-left: 17px;
+    margin-right: 17px;
+  }
+
 `;
 const ProfilePhoto = styled.img`
   display: flex;
@@ -939,6 +945,15 @@ const NotesSection = styled.section`
 const NotesTitleAndAddIconDiv = styled.div`
   display: flex;
   justify-content: space-between;
+  flex-direction: row;
+  align-items: space-between;
+  width: 100vw;
+  h2 {
+
+  }
+  img {
+
+  }
 `;
 
 const NotesTitleDiv = styled.div`
