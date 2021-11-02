@@ -111,8 +111,8 @@ function RenderAdminProfilePage(props) {
 
               </EmailAndTimezoneDiv>
               {
-                useWindowWidth() >= 768 ?
-                  <Tablet>
+                useWindowWidth() < 768 ?
+                  <Mobile>
                     <TimezoneDiv className='timezone'>
                       <Timezone>Time Zone:<span>GMT+8</span></Timezone>
                     </TimezoneDiv>
@@ -125,9 +125,9 @@ function RenderAdminProfilePage(props) {
                       <LinkedInIcon src={linkedin} alt="linkedin" />
                       <TwitterIcon src={twitter} alt="twitter" />
                     </SocialDiv>
-                  </Tablet>
+                  </Mobile>
                   :
-                  <Mobile>
+                  <Tablet>
                     <PreferedCommunicationMethod>
                       Prefered method of communication: <a href="https://facebook.com">Facebook</a>
                     </PreferedCommunicationMethod>
@@ -137,7 +137,7 @@ function RenderAdminProfilePage(props) {
                       <LinkedInIcon src={linkedin} alt="linkedin" />
                       <TwitterIcon src={twitter} alt="twitter" />
                     </SocialDiv>
-                  </Mobile>
+                  </Tablet>
               }
             </div>
           </ContactInfoSection>
@@ -448,6 +448,8 @@ const Name = styled.p`
   width: max-content;
   //height: 2rem; // 32px
   margin-top: 1rem; // 16px
+  //text-align: center;
+  margin-left: 20%; // 
 
   @media (min-width: ${props => props.theme.breakpoints.tablet}) {
     font-size: 1.5rem; // 24px
@@ -456,6 +458,7 @@ const Name = styled.p`
     //height: 2.5rem; // 40px
     margin-top: 0px; // 100px
     margin-right: 300px;
+    margin-left: 0;
   }
 
 
@@ -478,6 +481,7 @@ const ProjectName = styled.p`
 
   @media (min-width: ${props => props.theme.breakpoints.tablet}) {
     display: none;
+    flex-direction: column;
   }
 
 
@@ -1155,7 +1159,6 @@ margin-right: 8px;
 const Note = styled.p`
 display: flex;
 flex-direction: row;
-justify-content: flex-start;
 flex-wrap: wrap;
 font-family: ${(props) => props.theme.fonts.mulish};
 font-weight: 400;
