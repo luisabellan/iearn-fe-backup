@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import search from '../../assets/icons/search.png';
 import notifications from '../../assets/icons/bell.png';
@@ -14,6 +14,9 @@ import pencil from '../../assets/icons/pencil.png';
 import add from '../../assets/icons/add.png';
 //don't delete yet import status from '../../assets/status.png'; (luisabellan)
 import remove from '../../assets/icons/remove.png';
+
+import Note from "components/Note/Note";
+
 import useWindowWidth from "../../hooks/useWindowWidth";
 
 import {
@@ -47,11 +50,8 @@ const notes = [{
 ];
 
 function RenderAdminProfilePage(props) {
-  const [noteShown, setNoteShown] = React.useState(false);
   return (
     <div>
-
-
 
 
       {
@@ -168,9 +168,12 @@ function RenderAdminProfilePage(props) {
 
                                 </DateFromNoteDiv>
                                 <EditDeleteIconsNoteDiv>
-                                  {noteShown ? <Note>{note.content}</Note> : <Note><button onClick={() => {
-                                    setNoteShown(true)
-                                  }}>VIEW</button></Note>}
+
+                                  <Note id={note.id} content={note.content} />
+
+
+
+
                                   <EditIcon src={pencil} alt="edit" />
                                   <DeleteIcon src={remove} alt="remove" />
                                 </EditDeleteIconsNoteDiv>
@@ -309,9 +312,10 @@ function RenderAdminProfilePage(props) {
 
                                 </DateFromNoteDiv>
                                 <EditDeleteIconsNoteDiv>
-                                  {noteShown ? <Note>{note.content}</Note> : <Note><button onClick={() => {
-                                    setNoteShown(true)
-                                  }}>VIEW</button></Note>}
+
+                                  <Note id={note.id} content={note.content} />
+
+                                  {/* <Note content={note.content} /> */}
                                   <EditIcon src={pencil} alt="edit" />
                                   <DeleteIcon src={remove} alt="remove" />
                                 </EditDeleteIconsNoteDiv>
@@ -1354,20 +1358,7 @@ const From = styled.p`
 
       `;
 
-const Note = styled.p`
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      font-family: ${(props) => props.theme.fonts.mulish};
-      font-weight: 400;
-      font-style: normal;
-      font-size: 0.75rem; // 12px
-      line-height: 1.25rem; // 20px
-      letter-spacing: 0.0125rem; // 0.2px
-      color: ${(props) => props.theme.colors.profileFontColor};
-      width: auto;
-      max-width: max-content;
-      `;
+
 
 const EditDeleteIconsNoteDiv = styled.div`
       display: flex;
@@ -1375,11 +1366,8 @@ const EditDeleteIconsNoteDiv = styled.div`
       `;
 
 const EditIcon = styled.img`
-      /* display: flex;
-      flex-direction: row;
-      justify-content: flex-start; */
-      width: 35px * 0.375; // 20px
-      height: 22px * 0.375; // 20px
+      width: 35px; // 20px
+      height: 22px; // 20px
       color: ${(props) => props.theme.colors.pencil};
       ////padding-right: 10px;
       padding-left: 14px;
