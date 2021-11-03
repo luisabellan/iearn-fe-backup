@@ -160,26 +160,13 @@ function RenderAdminProfilePage(props) {
 
 
 
-                            <NoteDiv id='note.id'>
-                              <DateFromDiv>
-                                <DateFromNoteDiv>
-                                  <Date><span>{note.date}</span></Date>
-                                  <From className="from"><span>{note.from}</span></From>
 
-                                </DateFromNoteDiv>
-                                <EditDeleteIconsNoteDiv>
 
-                                  <Note id={note.id} content={note.content} />
+                            <Note id={note.id} content={note.content} date={note.date} from={note.from} />
 
 
 
 
-                                  <EditIcon src={pencil} alt="edit" />
-                                  <DeleteIcon src={remove} alt="remove" />
-                                </EditDeleteIconsNoteDiv>
-                              </DateFromDiv>
-                              <NotesHr />
-                            </NoteDiv>
 
                           )
                         })}
@@ -303,27 +290,12 @@ function RenderAdminProfilePage(props) {
                         {notes.map((note, id) => {
 
                           return (
-
-                            <NoteDiv id='note.id'>
-                              <DateFromDiv>
-                                <DateFromNoteDiv>
-                                  <Date><span>{note.date}</span></Date>
-                                  <From className="from"><span>{note.from}</span></From>
-
-                                </DateFromNoteDiv>
-                                <EditDeleteIconsNoteDiv>
-
-                                  <Note id={note.id} content={note.content} />
-
-                                  {/* <Note content={note.content} /> */}
-                                  <EditIcon src={pencil} alt="edit" />
-                                  <DeleteIcon src={remove} alt="remove" />
-                                </EditDeleteIconsNoteDiv>
-                              </DateFromDiv>
-                              <NotesHr />
-                            </NoteDiv>
-
+                            <div>
+                              {/* <span>VIEW</span> */}
+                              <Note id={note.id} date={note.date} from={note.from} content={note.content} />
+                            </div>
                           )
+
                         })}
                       </NotesList>
                     </NotesDiv>
@@ -906,11 +878,12 @@ const FacebookIcon = styled.img`
       @media (min-width: ${props => props.theme.breakpoints.tablet}) {
         width: 31px  * 0.375; // 31px
       height: 27.13px  * 0.375; // 27.13px
-  }
+      }
 
       @media (min-width: ${props => props.theme.breakpoints.desktop}) {
         width: 3.125rem * 0.375; // 50px
-      height: 2.7344rem * 0.375
+        height: 2.7344rem * 0.375;
+      }
       `;
 
 const InstagramIcon = styled.img`
@@ -1386,5 +1359,27 @@ const DeleteIcon = styled.img`
         cursor: pointer;
 }
       `;
+
+const Span = styled.span`
+      display: flex;
+      flex-direction: row;
+      align-self: start;
+      float:left;
+      flex-wrap: wrap;
+      font-family: ${(props) => props.theme.fonts.mulish};
+      font-weight: 400;
+      font-style: normal;
+      font-size: 0.75rem; // 12px
+      line-height: 1.25rem; // 20px
+      letter-spacing: 0.0125rem; // 0.2px
+      color: ${(props) => props.theme.colors.profileFontColor};
+      width: auto;
+      max-width: max-content;
+
+      &:hover {
+        cursor: pointer;
+      }
+`;
+
 
 export default RenderAdminProfilePage;
