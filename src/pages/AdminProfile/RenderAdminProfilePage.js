@@ -158,15 +158,7 @@ function RenderAdminProfilePage(props) {
 
                           return (
 
-
-
-
-
                             <Note id={note.id} content={note.content} date={note.date} from={note.from} />
-
-
-
-
 
                           )
                         })}
@@ -302,14 +294,7 @@ function RenderAdminProfilePage(props) {
                   </NotesSection>
                 </MoreInfoSection>
 
-                <CredentialsSectionTablet>
-                  <h2>Credentials: </h2>
-                  <div>
-                    <a href="https://lambdaschool.com">Lambda School Web Dev</a>
-                    <a href="https://grow.google/projectmanagement/#?modal_active=none">Google Project Management</a>
-                    <a href="https://www.freecodecamp.org">FreeCodeCamp.com</a>
-                  </div>
-                </CredentialsSectionTablet>
+
               </ProfileInfoSection>
             </PageContainer>
           </Tablet>
