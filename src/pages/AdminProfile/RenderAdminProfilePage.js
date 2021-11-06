@@ -23,7 +23,7 @@ import {
   PageContainer,
   Mobile,
   Tablet,
-  Row
+  TimezoneCommunicationDiv
 
 } from "../../components/styles";
 
@@ -97,7 +97,7 @@ function RenderAdminProfilePage(props) {
                         <EmailIcon src={email} alt="email" />
                         <Email>email @email.com</Email>
                       </EmailDiv>
-                      <Timezone>Time Zone: <span>GMT+8</span></Timezone>
+                      <TimezoneMobile>Time Zone: <span>GMT+8</span></TimezoneMobile>
                     </EmailAndTimezoneDiv>
                   </ProfileInfoDiv>
                 </ContactInfoDiv>
@@ -231,9 +231,9 @@ function RenderAdminProfilePage(props) {
                   </ContactInfoDiv>
                 </InfoDiv>
 
-                  <Row>
+                <TimezoneCommunicationDiv>
                     <PreferedCommunicationMethodTablet>
-                      <Timezone>Time Zone: <span>GMT+8</span></Timezone>
+                    <TimezoneTablet>Time Zone: <span>GMT+8</span></TimezoneTablet>
                       Prefered method of communication: <a href="https://facebook.com">Facebook</a>
                     </PreferedCommunicationMethodTablet>
                     <SocialDiv>
@@ -242,7 +242,7 @@ function RenderAdminProfilePage(props) {
                       <LinkedInIcon src={linkedin} alt="linkedin" />
                       <TwitterIcon src={twitter} alt="twitter" />
                     </SocialDiv>
-                  </Row>
+                </TimezoneCommunicationDiv>
                 </ContactInfoSection>
 
                 <Hr />
@@ -523,7 +523,19 @@ const ContactInfoSection = styled.div`
 
   }
 
-      `;
+  `;
+const InfoDiv = styled.div`
+
+@media(min-width: ${props => props.theme.breakpoints.tablet }) {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width:100%;
+
+
+}
+
+`;
 const ProfileInfoDiv = styled.div`
       display: flex;
       flex-direction: column;
@@ -543,9 +555,7 @@ const ProfileInfoDiv = styled.div`
 `;
 const ProfilePhotoDiv = styled.div`
       display: flex;
-      flex-direction: column;
       justify-content: center;
-      align-items: center;
       align-self: center;
       margin-top: 1.0625rem; // 17px
       box-sizing: border-box;
@@ -558,6 +568,8 @@ const ProfilePhoto = styled.img`
       justify-content: center;
       align-self: center;
       align-items: center;
+      width: 294.5px *0.385; // 294.5px * 0.385
+      height: 187.42px *0.385;
       border-radius: 50%;
 
 
@@ -581,21 +593,15 @@ const ContactInfoDiv = styled.div`
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      margin-top: -50px;
      }
 
 `;
 
-const InfoDiv = styled.div`
-     
-     @media (min-width: ${props => props.theme.breakpoints.tablet}) {
-      display: flex;
-      flex-direction: row;
-     }
 
-`;
 const Name = styled.p`
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       justify-content: center;
       align-self: center;
       font-family: ${(props) => props.theme.fonts.mulish};
@@ -611,13 +617,13 @@ const Name = styled.p`
       //margin-left: 20%; // 
 
       @media (min-width: ${props => props.theme.breakpoints.tablet}) {
-        font-size: 1.5rem; // 24px
-      line-height: 1.8825rem; // 30.12px
-      letter-spacing: 0.015625rem; // 0.3px
+        font-size: 2.125rem; // 34px
+      line-height: 1.25rem;  // 20 px
+      letter-spacing: 0.0125rem; // 0.2px
       //height: 2.5rem; // 40px
       margin-top: 80px; // 100px
       //margin-right: 300px;
-      margin-left: 32px;
+      padding-left: 50px;
   }
 
 
@@ -643,7 +649,7 @@ const ProjectName = styled.p`
       //  display: none;
       flex-direction: column;
       //margin-left: 80px;
-      margin-right:58px;
+      margin-right:115px;
   }
 
 
@@ -658,6 +664,7 @@ const LocationAndPhoneDiv = styled.div`
       margin-top: 1.1875rem; // 19px
       @media (min-width: ${props => props.theme.breakpoints.tablet}) {
         flex-direction: column;
+        margin-right: 60px;
   }
       `;
 
@@ -742,7 +749,7 @@ const Phone = styled.p`
       color: ${(props) => props.theme.colors.profileFontColor};
   }
 
-      `;
+`;
 
 const EmailAndTimezoneDiv = styled.div`
       display: flex;
@@ -752,10 +759,13 @@ const EmailAndTimezoneDiv = styled.div`
       @media (min-width: ${props => props.theme.breakpoints.tablet}) {
         margin-top: 0;
       flex-direction: column;
-      margin-left: 80px;
-  }
+      margin-left: 20px;
+      }
 
-      `;
+      @media (min-width: ${props => props.theme.breakpoints.desktop}) {
+      }
+
+`;
 
 const EmailDiv = styled.div`
       display: flex;
@@ -801,7 +811,7 @@ const Email = styled.p`
   }
       `;
 
-const TimezoneDiv = styled.div`
+/* const TimezoneDiv = styled.div`
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -819,8 +829,8 @@ const TimezoneDiv = styled.div`
   
   }
 
-      `;
-const Timezone = styled.p`
+      `; */
+const TimezoneMobile = styled.p`
 
       display: flex;
       align-self: center;
@@ -833,14 +843,29 @@ const Timezone = styled.p`
       color: ${(props) => props.theme.colors.profileFontColor};
       width: max-content;
 
-      @media (min-width: ${props => props.theme.breakpoints.tablet}) {
-        font-size: 14px; // 14px
-      margin:0;
-      padding:0;
+
+      span {
+        padding-left: 16px;
+  }
+      `;
+const TimezoneTablet = styled.p`
+
+      display: flex;
+      align-self: center;
+      font-family: ${(props) => props.theme.fonts.mulish};
+      font-weight: 300;
+      font-style: normal;
+      line-height: 1.25rem; // 20px
+      letter-spacing: 0.0125rem; // 0.2px
+      color: ${(props) => props.theme.colors.profileFontColor};
+      width: max-content;
+      font-size: 14px; // 14px
       padding-top: -16px;
       padding-right: 16px;
-    
-  }
+      display: flex;
+      align-self: flex-start;
+      margin-left: -50px;
+
 
       span {
         padding-left: 16px;
@@ -877,6 +902,7 @@ const PreferedCommunicationMethodMobile = styled.p`
 const PreferedCommunicationMethodTablet = styled(PreferedCommunicationMethodMobile)`
 
       display: flex;
+      flex-direction: row;
       justify-content: center;
       align-self: center;
       align-items: center;
@@ -887,6 +913,7 @@ const PreferedCommunicationMethodTablet = styled(PreferedCommunicationMethodMobi
       color: ${(props) => props.theme.colors.profileFontColor};
       margin: 0;
       padding: 0;
+      margin-top: 20px;
 
 
 
@@ -902,9 +929,10 @@ const SocialDiv = styled.div`
       margin-left: 16px;
 
       @media (min-width: ${props => props.theme.breakpoints.tablet}) {
-        margin-bottom: 0;
-      margin-left: 40px;
-      margin-top: 7px;
+        margin-left: 40px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+
     
   }
 
@@ -1014,7 +1042,9 @@ const MoreInfoSection = styled.div`
       align-self: flex-start;
       margin-top: 1.25rem; // 20px
       margin-bottom: 1.25rem; // 20px
-
+      @media (min-width: ${props => props.theme.breakpoints.tablet}) {
+        margin-left: 40px;
+      }
 
 
 
@@ -1040,6 +1070,9 @@ const SkillsSection = styled.div`
       justify-content: row;
       margin-left: 10px;
       margin-top: 10px;
+
+      @media (min-width: ${props => props.theme.breakpoints.tablet}) {
+      }
 
 
 
@@ -1135,20 +1168,20 @@ const CredentialsSection = styled.div`
 
       h2 {
         display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-self: flex-start;
-      font-family: ${(props) => props.theme.fonts.mulish};
-      font-weight: 600;
-      font-style: normal;
-      font-size: 0.875rem; // 14px
-      line-height: 1.25rem; // 20px
-      letter-spacing: 0.0125rem; // 0.2px
-      color: ${(props) => props.theme.colors.profileFontColor};
-      margin-left: 0;
-      padding-left: 0;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-self: flex-start;
+        font-family: ${(props) => props.theme.fonts.mulish};
+        font-weight: 600;
+        font-style: normal;
+        font-size: 0.875rem; // 14px
+        line-height: 1.25rem; // 20px
+        letter-spacing: 0.0125rem; // 0.2px
+        color: ${(props) => props.theme.colors.profileFontColor};
+        margin-left: 0;
+        padding-left: 0;
 
-  }
+      }
 
       div {
         display: flex;
@@ -1212,7 +1245,7 @@ const CredentialsSectionTablet = styled(CredentialsSectionMobile)`
 
       div {
 
-
+        flex-direction: row;
 
         a {
 

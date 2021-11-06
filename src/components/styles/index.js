@@ -51,13 +51,12 @@ const Tablet = styled.div`
   
 
   `;
-const Row = styled.div`
+const TimezoneCommunicationDiv = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-self: center;
   align-items: center;
-  margin-top: 100px;
 
 
 `;
@@ -434,5 +433,5 @@ export {
   TitleContainer,
   Mobile,
   Tablet,
-  Row
+  TimezoneCommunicationDiv
 };
