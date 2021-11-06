@@ -155,6 +155,7 @@ function RenderAdminProfilePage(props) {
                       <AddIcon src={add} alt="add" />
                       </NotesTitleAndAddIconDiv>
                     </NotesTitleDiv>
+
                     <NotesHr />
                     <NotesDiv>
 
@@ -1277,10 +1278,10 @@ const CredentialsSectionTablet = styled(CredentialsSectionMobile)`
 const NotesSection = styled.section`
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
       margin-top: 24px;
       margin-left: 10px;
       max-width: 100%;
+      width: 100%;
 
 
 
@@ -1293,21 +1294,29 @@ const NotesSection = styled.section`
 const NotesTitleAndAddIconDiv = styled.div`
       display: flex;
       justify-content: space-between;
-      flex-direction: row;
-      align-items: space-between;
-      width: 92vw;
-      h2 {
+      align-items: stretch;
+      width: 87%;
 
-      }
-      img {
 
-      }
+      `;
+const AddIcon = styled.img`
+      display: flex;
+      width: 17px * 0.375; // 17px
+      height: 17px * 0.375; // 17px
+      right:0;
+
+      color: ${(props) => props.theme.colors.pencil};
+
+      &:hover {
+        cursor: pointer;
+}
       `;
 
 const NotesTitleDiv = styled.div`
       display: flex;
       flex-direction: row;
       align-self: flex-start;
+      width: 92vw;
 
       `;
 
@@ -1333,15 +1342,7 @@ const NotesTitle = styled.h2`
       color: ${(props) => props.theme.colors.profileFontColor};
       `;
 
-const AddIcon = styled.img`
-      display: flex;
-      width: 17px * 0.375; // 17px
-      height: 17px * 0.375; // 17px
-      color: ${(props) => props.theme.colors.pencil};
-      &:hover {
-        cursor: pointer;
-}
-      `;
+
 
 
 
