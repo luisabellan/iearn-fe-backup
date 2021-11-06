@@ -148,11 +148,10 @@ function RenderAdminProfilePage(props) {
                   </CredentialsSectionMobile>
 
                   <NotesSection>
-                    <NotesTitleDiv>
-
+                  <NotesTitleDiv>
                       <NotesTitleAndAddIconDiv>
-                        <NotesTitle>Notes: </NotesTitle>
-                      <AddIcon src={add} alt="add" />
+                      <NotesTitle>Notes</NotesTitle>
+                      <AddIcon src={add} alt="add"></AddIcon>
                       </NotesTitleAndAddIconDiv>
                     </NotesTitleDiv>
 
@@ -1292,9 +1291,16 @@ const NotesSection = styled.section`
 
 const NotesTitleAndAddIconDiv = styled.div`
       display: flex;
+      flex-direction: row;
       justify-content: space-between;
-      align-items: stretch;
       width: 87%;
+
+      @media (min-width: ${props => props.theme.breakpoints.tablet}) {
+        max-width: 86%;
+      }
+      @media (min-width: ${props => props.theme.breakpoints.desktop}) {
+        max-width: 85.6%;
+      }
 
 
       `;
@@ -1302,10 +1308,12 @@ const AddIcon = styled.img`
       display: flex;
       width: 17px * 0.375; // 17px
       height: 17px * 0.375; // 17px
-      right:0;
+      align-self: end;
 
       color: ${(props) => props.theme.colors.pencil};
 
+      @media (min-width: ${props => props.theme.breakpoints.tablet}) {
+      }
       &:hover {
         cursor: pointer;
 }
@@ -1316,6 +1324,11 @@ const NotesTitleDiv = styled.div`
       flex-direction: row;
       align-self: flex-start;
       width: 92vw;
+
+      @media (min-width: ${props => props.theme.breakpoints.tablet}) {
+        width: 97vw;
+      }
+
 
       `;
 
