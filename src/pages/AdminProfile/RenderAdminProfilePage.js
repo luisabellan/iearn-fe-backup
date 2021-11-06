@@ -614,7 +614,10 @@ const StatusDiv = styled.div`
       justify-content: flex-start;
       align-self: center;
       align-items: center;
-      margin-top: 80px;
+
+      @media (min-width: ${props => props.theme.breakpoints.tablet}) {
+        margin-top: 80px;
+      }
 `;
 
 const StatusIconMobile = styled.img`
@@ -622,17 +625,11 @@ const StatusIconMobile = styled.img`
   align-self: center;
   width:1.2rem;
   height:0.9rem;
-  position: absolute;
-  top: 284px;
+  //position: absolute;
+  //top: 284px;
   padding-right: 5px;
-  @media (min-width: ${props => props.theme.breakpoints.tablet}) {
-    position: absolute;
-    top: 185px;
-    left: 305px;
-    width: 1.2rem *1.6;
-    height: 0.9rem *1.6;
-    padding-right: 5px;
-  }
+  margin-top: 0;
+
 
 `;
 
@@ -644,16 +641,14 @@ const StatusIconTablet = styled.img`
   position: absolute;
   top: 284px;
   padding-right: 5px;
-  @media (min-width: ${props => props.theme.breakpoints.tablet}) {
-    position: revert;
-    align-self: baseline;
-    width: 1.2rem *1.6;
-    height: 0.9rem *1.6;
-    padding-right: 5px;
-    padding-top: -80px;
+  position: revert;
+  align-self: baseline;
+  width: 1.2rem *1.6;
+  height: 0.9rem *1.6;
+  padding-right: 5px;
+  padding-top: -80px;
     
-   
-  }
+
 
 `;
 
@@ -670,7 +665,7 @@ const Name = styled.p`
       letter-spacing: 0.0125rem; // 0.2px
       color: ${(props) => props.theme.colors.profileFontColor};
       //height: 2rem; // 32px
-      margin-top: 1rem; // 16px
+      //margin-top: 1rem; // 16px
       //text-align: center;
       margin-left: 20px; // 16px
 
