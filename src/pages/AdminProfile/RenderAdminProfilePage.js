@@ -12,7 +12,7 @@ import linkedin from '../../assets/icons/linkedin.png';
 import twitter from '../../assets/icons/twitter.png';
 import pencil from '../../assets/icons/pencil.png';
 import add from '../../assets/icons/add.png';
-//don't delete yet import status from '../../assets/status.png'; (luisabellan)
+import status from '../../assets/icons/status.png';
 import remove from '../../assets/icons/remove.png';
 
 import Note from "components/Note/Note";
@@ -80,7 +80,10 @@ function RenderAdminProfilePage(props) {
                     <ProfilePhoto src={photo} alt="me" />
                   </ProfilePhotoDiv>
                   <ProfileInfoDiv>
-                    <Name>Ferdinand Jones</Name>
+                    <StatusDiv>
+                      <StatusIconMobile src={status} alt="status" />
+                      <Name>Ferdinand Jones</Name>
+                    </StatusDiv>
                     <ProjectName>MentorBeast</ProjectName>
                     <LocationAndPhoneDiv>
                       <LocationDiv className='location'>
@@ -211,7 +214,10 @@ function RenderAdminProfilePage(props) {
                   <ProfilePhoto src={photo} alt="me" />
                   </ProfilePhotoDiv>
                   <ContactInfoDiv>
-                  <Name>Ferdinand Jones</Name>
+                    <StatusDiv>
+                      <StatusIconTablet src={status} alt="status" />
+                      <Name>Ferdinand Jones</Name>
+                    </StatusDiv>
                   <ProjectName>MentorBeast</ProjectName>
                   <LocationAndPhoneDiv>
                     <LocationDiv className='location'>
@@ -317,9 +323,8 @@ const TopBarDiv = styled.div`
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      align-self: center;
-      align-items: first baseline;
-      height: 22px;
+            align-self: baseline;
+            align-items: baseline;
       margin-top: 26px;
       width: 96%;
 
@@ -334,8 +339,7 @@ const TopBarDiv = styled.div`
 const IconsDiv = styled.div`
       display: flex;
       flex-direction: row;
-      justify-content: center;
-      align-items: baseline;
+            justify-content: center;
       margin-right: 0;
       padding-right: 0;
       //margin-top: 10px;
@@ -352,8 +356,7 @@ const SearchIcon = styled.div`
       display: flex;
       flex-direction: row;
       justify-content: center;
-      align-items: center;
-      align-self: baseline;
+            align-items: baseline;
 
 
       img {
@@ -441,6 +444,7 @@ const MiniName = styled.div`
       justify-content: baseline;
       padding-left: 0;
       margin-bottom: 5px;
+            padding-top: -20px;
       @media (min-width: ${props => props.theme.breakpoints.tablet}) {
         font-size: 0.875rem; // 14px
       line-height: 1.25rem; // 20 px
@@ -509,7 +513,7 @@ const ContactInfoSection = styled.div`
 
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex;
       align-items: center;
       align-self: center;
       margin-top: 1.0625rem; // 17px
@@ -522,7 +526,10 @@ const ContactInfoSection = styled.div`
         justify-content: center;
         align-items: center;
         align-self: center;
-      //margin-left: 180px;
+        justify-content: flex-start;
+        align-items: flex-start;
+        align-self: flex-start;
+        margin-left: 60px;
 
   }
 
@@ -601,11 +608,59 @@ const ContactInfoDiv = styled.div`
 
 `;
 
+const StatusDiv = styled.div`
+      display: flex;
+      flex-direction: inline-flex;
+      justify-content: flex-start;
+      align-self: center;
+      align-items: center;
+      margin-top: 80px;
+`;
+
+const StatusIconMobile = styled.img`
+  display: flex;
+  align-self: center;
+  width:1.2rem;
+  height:0.9rem;
+  position: absolute;
+  top: 284px;
+  padding-right: 5px;
+  @media (min-width: ${props => props.theme.breakpoints.tablet}) {
+    position: absolute;
+    top: 185px;
+    left: 305px;
+    width: 1.2rem *1.6;
+    height: 0.9rem *1.6;
+    padding-right: 5px;
+  }
+
+`;
+
+const StatusIconTablet = styled.img`
+  display: flex;
+  align-self: center;
+  width:1.2rem;
+  height:0.9rem;
+  position: absolute;
+  top: 284px;
+  padding-right: 5px;
+  @media (min-width: ${props => props.theme.breakpoints.tablet}) {
+    position: revert;
+    align-self: baseline;
+    width: 1.2rem *1.6;
+    height: 0.9rem *1.6;
+    padding-right: 5px;
+    padding-top: -80px;
+    
+   
+  }
+
+`;
 
 const Name = styled.p`
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      flex-direction: row;
+      justify-content: last baseline;
       align-self: center;
       font-family: ${(props) => props.theme.fonts.mulish};
       font-weight: 600;
@@ -617,16 +672,18 @@ const Name = styled.p`
       //height: 2rem; // 32px
       margin-top: 1rem; // 16px
       //text-align: center;
-      //margin-left: 20%; // 
+      margin-left: 20px; // 16px
+
 
       @media (min-width: ${props => props.theme.breakpoints.tablet}) {
         font-size: 2.125rem; // 34px
       line-height: 1.25rem;  // 20 px
       letter-spacing: 0.0125rem; // 0.2px
       //height: 2.5rem; // 40px
-      margin-top: 80px; // 100px
+      //margin-top: 80px; // 100px
       //margin-right: 300px;
-      padding-left: 50px;
+      //padding-left: 17px;
+      margin-top: 0;
   }
 
 
@@ -867,7 +924,7 @@ const TimezoneTablet = styled.p`
       padding-right: 16px;
       display: flex;
       align-self: flex-start;
-      margin-left: -50px;
+      margin-left: 0px;
 
 
       span {
