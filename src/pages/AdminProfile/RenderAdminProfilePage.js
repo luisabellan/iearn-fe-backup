@@ -638,15 +638,13 @@ const StatusIconTablet = styled.img`
   align-self: center;
   width:1.2rem;
   height:0.9rem;
-  position: absolute;
-  top: 284px;
   padding-right: 5px;
   position: revert;
-  align-self: baseline;
+  align-self: center;
   width: 1.2rem *1.6;
   height: 0.9rem *1.6;
   padding-right: 5px;
-  padding-top: -80px;
+  //padding-top: -80px;
     
 
 
