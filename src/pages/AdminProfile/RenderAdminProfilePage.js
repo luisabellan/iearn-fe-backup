@@ -116,7 +116,7 @@ function RenderAdminProfilePage(props) {
                 <MoreInfoSection>
                   <SecondPencil src={pencil} alt="pencil" />
                   <SkillsSection>
-                    <h2>Skills: </h2>
+                  <h2>Skills</h2>
                     <div>
                       <p>React.js</p>
                       <p>Java</p>
@@ -129,7 +129,7 @@ function RenderAdminProfilePage(props) {
                   </SkillsSection>
 
                   <ArtifactsSection>
-                    <h2>Artifacts: </h2>
+                  <h2>Artifacts</h2>
                     <div>
                       <a href="https://resume.com">Resume</a>
                       <a href="https://mywebsite.com">Personal Website</a>
@@ -139,7 +139,7 @@ function RenderAdminProfilePage(props) {
 
                   </ArtifactsSection>
                   <CredentialsSectionMobile>
-                    <h2>Credentials: </h2>
+                  <h2>Credentials</h2>
                     <div>
                       <a href="https://lambdaschool.com">Lambda School Web Dev</a>
                       <a href="https://grow.google/projectmanagement/#?modal_active=none">Google Project Management</a>
@@ -149,9 +149,10 @@ function RenderAdminProfilePage(props) {
 
                   <NotesSection>
                     <NotesTitleDiv>
+
                       <NotesTitleAndAddIconDiv>
                         <NotesTitle>Notes: </NotesTitle>
-                        <AddIcon src={add} alt="add" />
+                      <AddIcon src={add} alt="add" />
                       </NotesTitleAndAddIconDiv>
                     </NotesTitleDiv>
                     <NotesHr />
@@ -249,7 +250,7 @@ function RenderAdminProfilePage(props) {
                 <MoreInfoSection>
                   <SecondPencil src={pencil} alt="pencil" />
                   <SkillsSection>
-                    <h2>Skills: </h2>
+                  <h2>Skills</h2>
                     <div>
                       <p>React.js</p>
                       <p>Java</p>
@@ -261,7 +262,7 @@ function RenderAdminProfilePage(props) {
                   </SkillsSection>
 
                   <ArtifactsSection>
-                    <h2>Artifacts: </h2>
+                  <h2>Artifacts</h2>
                     <div>
                       <a href="https://resume.com">Resume</a>
                       <a href="https://mywebsite.com">Personal Website</a>
@@ -318,7 +319,7 @@ const TopBarDiv = styled.div`
       flex-direction: row;
       justify-content: space-between;
       align-self: center;
-      align-items: center;
+      align-items: first baseline;
       height: 22px;
       margin-top: 26px;
       width: 96%;
@@ -327,6 +328,7 @@ const TopBarDiv = styled.div`
       @media (min-width: ${props => props.theme.breakpoints.tablet}) {
         width: 100%;
         margin-left: -40px;
+        margin-top: 26px;
   }
   `;
 
@@ -337,6 +339,7 @@ const IconsDiv = styled.div`
       align-items: baseline;
       margin-right: 0;
       padding-right: 0;
+      //margin-top: 10px;
 
 
       @media (min-width: ${props => props.theme.breakpoints.tablet}) {
@@ -429,15 +432,16 @@ const TopBarRightDiv = styled.div`
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
-
+      align-items: baseline;
 
       `;
 
 const MiniName = styled.div`
       display: flex;
       flex-direction: row;
-      justify-content: last baseline;
+      justify-content: baseline;
       padding-left: 0;
+      margin-bottom: 5px;
       @media (min-width: ${props => props.theme.breakpoints.tablet}) {
         font-size: 0.875rem; // 14px
       line-height: 1.25rem; // 20 px
@@ -691,9 +695,9 @@ const Location = styled.p`
       font-family: ${(props) => props.theme.fonts.mulish};
       font-weight: 600;
       font-style: normal;
-      font-size: 0.875rem* 0.375; // 14px
-      line-height: 1.25rem* 0.375; // 20px
-      letter-spacing: 0.0125rem* 0.375; // 0.2px
+      font-size: 0.875rem; // 14px
+      line-height: 1.25rem; // 20px
+      letter-spacing: 0.0125rem; // 0.2px
       color: ${(props) => props.theme.colors.profileFontColor};
       width: max-content;
       padding-right: 22px; // 22px
@@ -701,7 +705,7 @@ const Location = styled.p`
       @media (min-width: ${props => props.theme.breakpoints.tablet}) {
         font-size: 1.125rem; // 18px
       line-height: 1.25rem; // 20px
-      letter-spacing: 0.0125rem* 0.375; // 0.2px
+      letter-spacing: 0.0125rem; // 0.2px
       font-weight: 600;
       color: ${(props) => props.theme.colors.profileFontColor};
     
@@ -1016,11 +1020,13 @@ const TwitterIcon = styled.img`
 const Pencil = styled.img`
       position: absolute;
       display: block;
-      width: 32px * 0.375; // 32px
-      height: 30px * 0.375; // 30px
-      right: 28px;
+      width: 49px; // 32px
+      height: 46px; // 30px
+      right: 5%;
       top: 138px;
       color: ${(props) => props.theme.colors.pencil};
+      @media (min-width: ${props => props.theme.breakpoints.tablet}) {
+      }
 
       &:hover {
         cursor: pointer;
@@ -1052,10 +1058,10 @@ const MoreInfoSection = styled.div`
 const SecondPencil = styled.img`
       position: absolute;
       display: block;
-      width: 32px * 0.375; // 32px
-      height: 30px * 0.375; // 30px
-      right: 25px;
-      top: 510px;
+      width: 15.43px * 0.375; // 32px
+      height: 14.48px * 0.375; // 30px
+      right: 8%;
+      top: 555px;
       color: ${(props) => props.theme.colors.pencil};
 
       &:hover {
@@ -1104,7 +1110,7 @@ const SkillsSection = styled.div`
       line-height: 1.25rem; // 20px
       letter-spacing: 0.0125rem; // 0.2px
       color: ${(props) => props.theme.colors.profileFontColor};
-
+      padding-top: 5px;
 
     }
   }
@@ -1147,7 +1153,7 @@ const ArtifactsSection = styled.div`
       flex-direction: row;
       justify-content: flex-start;
       margin-right: 19px;
-
+      padding-top: 10px;
       width: max-content;
       font-family: ${(props) => props.theme.fonts.mulish};
       font-weight: 400;
@@ -1225,7 +1231,21 @@ const CredentialsSectionMobile = styled(CredentialsSection)`
       align-items: center;
       margin-top: 24px;
       margin-left: 10px;
-      `;
+
+      h2 {
+
+
+      }
+
+      div {
+
+        flex-direction: column;
+
+        a {
+          padding-top: 10px;;
+        }
+      }
+`;
 
 
 const CredentialsSectionTablet = styled(CredentialsSectionMobile)`
@@ -1248,6 +1268,7 @@ const CredentialsSectionTablet = styled(CredentialsSectionMobile)`
         flex-direction: row;
 
         a {
+          padding-bottom: 10px;
 
       }
   }
@@ -1274,7 +1295,7 @@ const NotesTitleAndAddIconDiv = styled.div`
       justify-content: space-between;
       flex-direction: row;
       align-items: space-between;
-      width: 100vw;
+      width: 92vw;
       h2 {
 
       }
@@ -1286,18 +1307,17 @@ const NotesTitleAndAddIconDiv = styled.div`
 const NotesTitleDiv = styled.div`
       display: flex;
       flex-direction: row;
-      justify-content: flex-start;
       align-self: flex-start;
 
       `;
 
-const DateFromNoteDiv = styled.div`
+/* const DateFromNoteDiv = styled.div`
       display: flex;
       flex-direction: row;
       justify-self: center;
       margin-top: 0px;
 
-      `;
+      `; */
 
 
 const NotesTitle = styled.h2`
@@ -1315,11 +1335,9 @@ const NotesTitle = styled.h2`
 
 const AddIcon = styled.img`
       display: flex;
-
-      width: 17x * 0.375; // 17px
-      height: 17x * 0.375; // 17px
+      width: 17px * 0.375; // 17px
+      height: 17px * 0.375; // 17px
       color: ${(props) => props.theme.colors.pencil};
-
       &:hover {
         cursor: pointer;
 }
