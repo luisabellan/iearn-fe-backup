@@ -44,7 +44,10 @@ const Mobile = styled.div`
 
 const Tablet = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
   
 
   `;

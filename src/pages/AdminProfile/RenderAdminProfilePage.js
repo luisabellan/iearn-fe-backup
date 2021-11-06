@@ -56,7 +56,6 @@ function RenderAdminProfilePage(props) {
 
       {
         useWindowWidth() < 768 ?
-          <Mobile>
             <PageContainer>
               <Navigation />
               <TopBarDiv className="topBar">
@@ -76,26 +75,32 @@ function RenderAdminProfilePage(props) {
               <ProfileInfoSection>
                 <ContactInfoSection>
                   <Pencil src={pencil} alt="pencil" />
-                  <ProfilePhoto src={photo} alt="me" />
-                  <Name>Ferdinand Jones</Name>
-                  <ProjectName>MentorBeast</ProjectName>
-                  <LocationAndPhoneDiv>
-                    <LocationDiv className='location'>
-                      <LocationIcon src={location} alt="location" />
-                      <Location>San Diego</Location>
-                    </LocationDiv>
-                    <PhoneDiv className='phone'>
-                      <PhoneIcon src={phone} alt="phone" />
-                      <Phone>555-555-5555</Phone>
-                    </PhoneDiv>
-                  </LocationAndPhoneDiv>
-                  <EmailAndTimezoneDiv>
-                    <EmailDiv className='email'>
-                      <EmailIcon src={email} alt="email" />
-                      <Email>email @email.com</Email>
-                    </EmailDiv>
-                    <Timezone>Time Zone: <span>GMT+8</span></Timezone>
-                  </EmailAndTimezoneDiv>
+                <ContactInfoDiv>
+                  <ProfilePhotoDiv>
+                    <ProfilePhoto src={photo} alt="me" />
+                  </ProfilePhotoDiv>
+                  <ProfileInfoDiv>
+                    <Name>Ferdinand Jones</Name>
+                    <ProjectName>MentorBeast</ProjectName>
+                    <LocationAndPhoneDiv>
+                      <LocationDiv className='location'>
+                        <LocationIcon src={location} alt="location" />
+                        <Location>San Diego</Location>
+                      </LocationDiv>
+                      <PhoneDiv className='phone'>
+                        <PhoneIcon src={phone} alt="phone" />
+                        <Phone>555-555-5555</Phone>
+                      </PhoneDiv>
+                    </LocationAndPhoneDiv>
+                    <EmailAndTimezoneDiv>
+                      <EmailDiv className='email'>
+                        <EmailIcon src={email} alt="email" />
+                        <Email>email @email.com</Email>
+                      </EmailDiv>
+                      <Timezone>Time Zone: <span>GMT+8</span></Timezone>
+                    </EmailAndTimezoneDiv>
+                  </ProfileInfoDiv>
+                </ContactInfoDiv>
                   <PreferedCommunicationMethodMobile>
                     Prefered method of communication: <a href="https://facebook.com">Facebook</a>
                   </PreferedCommunicationMethodMobile>
@@ -177,9 +182,7 @@ function RenderAdminProfilePage(props) {
 
             </PageContainer>
 
-          </Mobile>
           :
-          <Tablet>
 
             <PageContainer>
 
@@ -202,7 +205,11 @@ function RenderAdminProfilePage(props) {
               <ProfileInfoSection>
                 <ContactInfoSection>
                   <Pencil src={pencil} alt="pencil" />
+                <InfoDiv>
+                  <ProfilePhotoDiv>
                   <ProfilePhoto src={photo} alt="me" />
+                  </ProfilePhotoDiv>
+                  <ContactInfoDiv>
                   <Name>Ferdinand Jones</Name>
                   <ProjectName>MentorBeast</ProjectName>
                   <LocationAndPhoneDiv>
@@ -221,6 +228,8 @@ function RenderAdminProfilePage(props) {
                       <Email>email @email.com</Email>
                     </EmailDiv>
                   </EmailAndTimezoneDiv>
+                  </ContactInfoDiv>
+                </InfoDiv>
 
                   <Row>
                     <PreferedCommunicationMethodTablet>
@@ -296,8 +305,7 @@ function RenderAdminProfilePage(props) {
 
 
               </ProfileInfoSection>
-            </PageContainer>
-          </Tablet>
+          </PageContainer>
       }
 
     </div >
@@ -507,15 +515,44 @@ const ContactInfoSection = styled.div`
 
       @media (min-width: ${props => props.theme.breakpoints.tablet}) {
         display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      align-self: center;
-    //margin-left: 180px;
+        flex-direction: column; //here
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+      //margin-left: 180px;
 
   }
 
       `;
+const ProfileInfoDiv = styled.div`
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      align-self: center;
+      margin-top: 1.0625rem; // 17px
+      box-sizing: border-box;
+      background-color: ${(props) => props.theme.colors.profileBackgroundColor};
+      border-radius: 5px; 
+      @media (min-width: ${props => props.theme.breakpoints.tablet}) {
+        display: flex;
+        flex-direction: column; //here
+      }
+
+    
+`;
+const ProfilePhotoDiv = styled.div`
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      align-self: center;
+      margin-top: 1.0625rem; // 17px
+      box-sizing: border-box;
+      background-color: ${(props) => props.theme.colors.profileBackgroundColor};
+      border-radius: 5px; 
+`;
+
 const ProfilePhoto = styled.img`
       display: flex;
       justify-content: center;
@@ -526,16 +563,36 @@ const ProfilePhoto = styled.img`
 
 
       @media (min-width: ${props => props.theme.breakpoints.tablet}) {
+        display: flex;
         width: 200px;
-      height: 200px;
-      //margin-right: 100px;
-      //margin-left:100px;
-      margin-bottom: 0px;
-      margin-left: 210px;
-    
-  }
-      `;
+        height: 200px;
+        //margin-right: 100px;
+        //margin-left:100px;
+        margin-bottom: 0px;
+        //margin-left: 210px;
+      }
 
+
+`;
+const ContactInfoDiv = styled.div`
+     
+     @media (min-width: ${props => props.theme.breakpoints.tablet}) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+     }
+
+`;
+
+const InfoDiv = styled.div`
+     
+     @media (min-width: ${props => props.theme.breakpoints.tablet}) {
+      display: flex;
+      flex-direction: row;
+     }
+
+`;
 const Name = styled.p`
       display: flex;
       flex-direction: row;
@@ -560,7 +617,7 @@ const Name = styled.p`
       //height: 2.5rem; // 40px
       margin-top: 80px; // 100px
       //margin-right: 300px;
-      margin-left: 80px;
+      margin-left: 32px;
   }
 
 
@@ -583,9 +640,10 @@ const ProjectName = styled.p`
       margin-top: 0.75rem; // 12px
 
       @media (min-width: ${props => props.theme.breakpoints.tablet}) {
-        display: none;
+      //  display: none;
       flex-direction: column;
-      margin-left: 80px;
+      //margin-left: 80px;
+      margin-right:58px;
   }
 
 
