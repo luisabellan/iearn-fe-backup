@@ -188,6 +188,8 @@ input:focus {
   *, *::after, *::before {
     box-sizing: inherit;
   }
+
+
 `;
 
 export default GlobalStyle;
