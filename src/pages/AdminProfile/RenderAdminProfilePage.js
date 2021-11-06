@@ -294,7 +294,6 @@ function RenderAdminProfilePage(props) {
 
                           return (
                             <div>
-                              {/* <span>VIEW</span> */}
                               <Note id={note.id} date={note.date} from={note.from} content={note.content} />
                             </div>
                           )

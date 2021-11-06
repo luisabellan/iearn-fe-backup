@@ -44,6 +44,8 @@ const Span = styled.span`
 `;
 
 const Button = styled.button`
+  border: none;
+  color: ${(props) => props.theme.colors.viewButton};
   &:hover {
         cursor: pointer;
       }
@@ -62,14 +64,6 @@ const Note = (props) => {
 
   return (
     <div>
-      {/* {isShown ?
-        <Span id={props.id} onClick={toggleShow}>{props.content}</Span>
-        :
-        <Button id={props.id} onClick={toggleShow}>
-          <span>VIEW</span>
-        </Button>
-      } */}
-
       <NoteDiv id={props.id}>
         <DateFromDiv>
           <DateFromNoteDiv>

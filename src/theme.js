@@ -37,6 +37,7 @@ export const theme = {
     hr: '#DFE0EB',
     notesHr: '#00000066',
     artifactsLinks: '#4D89B7',
+    viewButton: '#4D89B7',
   },
   //fonts: ['Mulish', 'Oswald', 'Noto Sans', 'Inter', 'Times New Roman'],
   fonts: {
